@@ -7,12 +7,17 @@
 {% block tabs %}{% endblock %}
 {% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
 {% block container %}{% endblock %}
+{% block extrahead %}
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/netz.css' | url }}">
+  <script src="{{ 'assets/javascripts/netz.js' | url }}" defer></script>
+{% endblock %}
 {% block hero %}
 {% set m = page.meta %}
 {% set aktuell = config.extra.aktuell | d({}) %}
 <div class="cg-page">
 
   <section class="cg-hero">
+    <div class="cg-netz" aria-hidden="true"><canvas></canvas></div>
     <div class="cg-wrap cg-hero__inner">
       <h1 class="cg-hero__claim">
         {% for wort in m.hero.claim %}{{ wort }}<span class="cg-punkt">.</span>{% if not loop.last %}<br>{% endif %}{% endfor %}
@@ -26,6 +31,10 @@
       </div>
     </div>
     <a class="cg-hero__weiter" href="#mehr" aria-label="Weiter zum Inhalt"><span aria-hidden="true">↓</span></a>
+    <button type="button" class="cg-netz__pause" aria-pressed="false" aria-label="Animation anhalten">
+      <svg class="cg-netz__stopp" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" fill="currentColor"/><rect x="9.5" y="2" width="3.5" height="12" fill="currentColor"/></svg>
+      <svg class="cg-netz__play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg>
+    </button>
   </section>
 
   {% if m.schild %}
