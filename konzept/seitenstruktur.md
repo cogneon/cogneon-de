@@ -160,11 +160,14 @@ In der englischen Version der Website bleiben die Produktnamen unverändert.
 | `/podcast-2/` | entfällt, Umleitung auf podcasts.cogneon.io |
 | `/impressum/`, `/datenschutz/` | bleiben unter gleicher Adresse, Inhalt wird aktualisiert |
 | `/loscon23/`, `/audiobc23/`, `/c3managers/` | bleiben erreichbar, in keiner Navigation |
-| `/kex/`, `/kme/`, `/kme-olk/`, `/nwow/`, `/ok-msco/` | zu klären |
+| `/kex/` | frühere Namensidee für Team und Project Debriefing. Inhalte fließen in das Angebot Wissenstransfer, Adresse leitet dorthin um |
+| `/kme/` | agiler Ansatz zur Einführung von Wissensmanagement, Handwerkszeug des Knowledge Excellence Coach. Inhalte fließen in die Angebotsseite, Adresse leitet dorthin um. Die ausführliche Beschreibung kommt in den Leitfaden lernOS für Organisationen |
+| `/nwow/` | früherer Versuch eines Session-Katalogs. Inhalte fließen in die Learning Sessions, Adresse leitet dorthin um |
+| `/kme-olk/`, `/ok-msco/` | Online-Kurse hinter Passwort, werden nach SCORM überführt. Nicht Teil der Website, Verbleib mit der Online-Akademie zu klären |
 
 ## Offene Punkte
 
-- Verbleib der Seiten in der letzten Zeile der Tabelle
+- Plattform für die Online-Akademie (Kurse, Badges, Zertifikate) und Verbleib der beiden Online-Kurse
 - Benennung und Zuschnitt der Karten "Einstieg nach Anlass"
 - Blog-Übersicht unter `/blog/`, während die Beiträge unter `/JJJJ/MM/TT/` liegen - technisch zu lösen
 - Eigener Feed je Blog-Kategorie - technisch zu prüfen
