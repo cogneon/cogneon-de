@@ -147,7 +147,8 @@ class Converted:
     embeds: list[str] = field(default_factory=list)     # iframe-Quellen
     shortcodes: list[str] = field(default_factory=list)
     blocks: list[str] = field(default_factory=list)     # CSS-Klassen der WordPress-Bloecke
-    empty_links: list[str] = field(default_factory=list)
+    relinked: list[str] = field(default_factory=list)    # Kachel-Links, auf Text umgehaengt
+    h1_count: int = 0
     images_without_alt: int = 0
 
 
@@ -220,11 +221,39 @@ def convert_html(html: str, base_url: str) -> Converted:
             continue
         absolute = urljoin(base_url, href)
         if not link.get_text(strip=True) and not link.find("img"):
-            out.empty_links.append(absolute)
+            # Verlinkte Kachel (z. B. Spectra): leerer Link liegt ueber dem ganzen Block.
+            # Der Link wandert auf die Ueberschrift oder den ersten Text des Blocks.
+            label_host = None
+            parent = link.parent
+            if parent is not None and parent.name != "[document]":
+                candidates = [el for el in parent.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "span", "p", "strong"])
+                              if el is not link and el.get_text(strip=True) and not el.find("a")
+                              and link not in el.descendants]
+                headings = [el for el in candidates if el.name.startswith("h")]
+                label_host = (headings or candidates or [None])[0]
+            if label_host is not None:
+                link.extract()
+                link.clear()
+                for child in list(label_host.contents):
+                    link.append(child.extract())
+                label_host.append(link)
+            else:
+                label = (link.get("aria-label") or link.get("title") or urlparse(absolute).netloc).strip()
+                if not label:
+                    link.decompose()
+                    continue
+                link.string = label
+            out.relinked.append(absolute)
         if absolute.startswith(("http://", "https://")) and _same_site(absolute, site_host):
             link["href"] = _local_path(absolute)
             if "/wp-content/uploads/" in absolute:
                 out.media.append(absolute.split("#")[0].split("?")[0])
+
+    # Spectra-Icon-Listen sind inhaltlich Aufzaehlungen.
+    for wrap in soup.find_all(class_="uagb-icon-list__wrap"):
+        wrap.name = "ul"
+        for child in wrap.find_all(class_="wp-block-uagb-icon-list-child", recursive=False):
+            child.name = "li"
 
     for cap in soup.find_all("figcaption"):
         cap.name = "p"
@@ -238,6 +267,7 @@ def convert_html(html: str, base_url: str) -> Converted:
     text = text.replace(" ", " ")
     text = re.sub(r"[ \t]+\n", "\n", text)
     text = re.sub(r"\n{3,}", "\n\n", text).strip() + "\n"
+    out.h1_count = len(re.findall(r"^# ", text, flags=re.M))
     out.markdown = text
     out.shortcodes = sorted({m.group(1) for m in SHORTCODE_RE.finditer(text)})
     out.media = list(dict.fromkeys(out.media))
@@ -279,6 +309,15 @@ def write_markdown(path: Path, meta: dict, body: str) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
     return state
+
+
+def with_title(title: str, markdown: str) -> str:
+    """Setzt den Titel als Hauptueberschrift. Wiederholt der Inhalt ihn gleich am Anfang, entfaellt die Dopplung."""
+    first, _, rest = markdown.lstrip().partition("\n")
+    match = re.match(r"^#{1,6}\s+(.*?)\s*$", first)
+    if match and re.sub(r"[*_`]", "", match.group(1)).strip().lower() == title.strip().lower():
+        markdown = rest.lstrip("\n")
+    return f"# {title}\n\n{markdown}"
 
 
 def add_excerpt_marker(markdown: str) -> str:
@@ -326,6 +365,7 @@ class Export:
         self.block_examples: dict[str, str] = {}
         self.empty_links: list[tuple[str, str]] = []
         self.images_without_alt = Counter()
+        self.h1_pages = Counter()
         self.frozen_changed: list[str] = []
         self.unmapped_authors = Counter()
         self.url_map: list[dict] = []
@@ -466,8 +506,10 @@ class Export:
         for cls in conv.blocks:
             self.blocks[cls] += 1
             self.block_examples.setdefault(cls, path)
-        for href in conv.empty_links:
+        for href in conv.relinked:
             self.empty_links.append((path, href))
+        if conv.h1_count:
+            self.h1_pages[path] = conv.h1_count
         if conv.images_without_alt:
             self.images_without_alt[path] = conv.images_without_alt
         for code in conv.shortcodes:
@@ -522,7 +564,7 @@ class Export:
                 meta["pin"] = True
             meta["wp"] = {"id": post["id"], "link": post["link"],
                           "featured_media": post.get("featured_media") or None}
-            body = f"# {meta['title']}\n\n{add_excerpt_marker(conv.markdown)}"
+            body = with_title(meta["title"], add_excerpt_marker(conv.markdown))
             target = self.docs / "blog" / "posts" / post["date"][:4] / f"{post['slug']}.md"
             self._record("post", post, target, write_markdown(target, meta, body))
 
@@ -553,7 +595,7 @@ class Export:
                 "wp": {"id": page["id"], "link": page["link"],
                        "modified": page["modified"][:10]},
             }
-            body = f"# {meta['title']}\n\n{conv.markdown}"
+            body = with_title(meta["title"], conv.markdown)
             self._record("page", page, target, write_markdown(target, meta, body))
 
     def resolve_featured_media(self):
@@ -627,13 +669,19 @@ class Export:
             lines += ["", "## WordPress-Blöcke im Inhalt", "", "| Block | Seiten | Beispiel |", "|---|---|---|"]
             lines += [f"| `{b}` | {n} | {self.block_examples[b]} |" for b, n in self.blocks.most_common()]
         if self.empty_links:
-            lines += ["", "## Links ohne sichtbaren Text", "",
-                      "Meist verlinkte Kacheln oder Boxen. Der Export setzt den Link unter den Block.", ""]
+            lines += ["", "## Verlinkte Kacheln", "",
+                      "Der Link lag unsichtbar über dem ganzen Block. Der Export hängt ihn an die "
+                      "Überschrift oder den ersten Text des Blocks.", ""]
             lines += [f"- {page}: {href}" for page, href in self.empty_links[:200]]
         if self.images_without_alt:
             total = sum(self.images_without_alt.values())
             lines += ["", f"## Bilder ohne Beschreibung: {total} auf {len(self.images_without_alt)} Seiten", ""]
             lines += [f"- {page}: {n}" for page, n in self.images_without_alt.most_common(50)]
+        if self.h1_pages:
+            lines += ["", f"## Überschriften der ersten Ebene im Inhalt: {len(self.h1_pages)} Seiten", "",
+                      "Barrierefreiheit: Je Seite soll es nur eine Hauptüberschrift geben. "
+                      "Diese Seiten brauchen eine Korrektur der Ebenen.", ""]
+            lines += [f"- {page}: {n}" for page, n in self.h1_pages.most_common(50)]
         if self.frozen_changed:
             lines += ["", "## Eingefrorene Seiten mit Änderungen in WordPress", "",
                       "Diese Seiten wurden nicht überschrieben. Änderungen bei Bedarf von Hand nachziehen.", ""]

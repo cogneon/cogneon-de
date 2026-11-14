@@ -158,7 +158,8 @@ def test_convert_html_rewrites_links_and_media():
     assert conv.shortcodes == ["charta_unterschriften"]
     assert "Vertreten durch:<br>\nErika Muster<br>\nRegistereintrag: HRB 1" in md
     assert "\\" not in md
-    assert conv.empty_links == ["https://partner.example/"]
+    assert conv.relinked == ["https://partner.example/"]
+    assert "### [Partner Eins](https://partner.example/)" in md
     assert "wp-block-uagb-info-box" in conv.blocks and "wp-block-uagb-container" in conv.blocks
     assert conv.images_without_alt == 0
     assert f"{base}/wp-content/uploads/2026/01/handout.pdf" in conv.media
@@ -208,7 +209,7 @@ def test_full_export_is_repeatable_and_respects_frozen(server, tmp_path):
     assert ",frozen" in url_map
 
     assert "| `wp-block-uagb-info-box` | 1 |" in report
-    assert "## Links ohne sichtbaren Text" in report and "https://partner.example/" in report
+    assert "## Verlinkte Kacheln" in report and "https://partner.example/" in report
     tags = (tmp_path / "migration/tags.csv").read_text(encoding="utf-8")
     assert "lernos,lernOS,1,/tag/lernos/" in tags
     assert "ki,Künstliche Intelligenz & Lernen,2,/category/ki/" in (tmp_path / "migration/categories.csv").read_text(encoding="utf-8")
@@ -322,3 +323,17 @@ def test_frozen_page_changed_in_wordpress_is_reported(server, tmp_path):
     report = (tmp_path / "migration/report.md").read_text(encoding="utf-8")
     assert "in WordPress geändert am 2026-01-01, im Repo Stand 2025-06-01" in report
     assert (tmp_path / "migration/raw/angebote.html").exists()
+
+
+def test_spectra_icon_list_link_moves_to_label():
+    html = ('<div class="uagb-icon-list__wrap"><div class="wp-block-uagb-icon-list-child">'
+            '<a aria-label="GfWM" href="https://gfwm.de"> </a>'
+            '<span class="uagb-icon-list__source-wrap"><svg><path d="M0 0"/></svg></span>'
+            '<span class="uagb-icon-list__label">Gesellschaft für Wissensmanagement e.V.</span></div></div>')
+    md = wp_export.convert_html(html, "https://cogneon.de").markdown
+    assert md.strip() == "- [Gesellschaft für Wissensmanagement e.V.](https://gfwm.de)"
+
+
+def test_title_is_not_repeated():
+    assert wp_export.with_title("Über uns", "## Über uns\n\nText\n") == "# Über uns\n\nText\n"
+    assert wp_export.with_title("Über uns", "Text\n") == "# Über uns\n\nText\n"
