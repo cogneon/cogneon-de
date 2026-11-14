@@ -25,10 +25,11 @@
         </p>
       </div>
     </div>
+    <a class="cg-hero__weiter" href="#mehr" aria-label="Weiter zum Inhalt"><span aria-hidden="true">↓</span></a>
   </section>
 
   {% if m.schild %}
-  <section class="cg-section">
+  <section class="cg-section" id="mehr">
     <div class="cg-wrap cg-zwei">
       <img class="cg-bild" src="{{ m.schild.bild | url }}" alt="{{ m.schild.alt }}" width="1200" height="807" loading="lazy">
       <div class="cg-stack">
