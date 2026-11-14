@@ -9,7 +9,10 @@ var NETZ = {
   blitzAbstand: 2800, // mittlere Zeit zwischen zwei Geistesblitzen in ms
   blitzFarbe: "255, 102, 0",   // Orange #ff6600, als "r, g, b"
   linienDeckkraft: 0.09,       // Deckkraft der Verbindungen (0 bis 1)
-  punktDeckkraft: 0.28         // Deckkraft der Punkte (0 bis 1)
+  punktDeckkraft: 0.28,        // Deckkraft der Punkte (0 bis 1)
+  neueVerbindung: 0.35,        // wie hell eine neue Verbindung kurz aufleuchtet (0 = aus)
+  lernen: 0.3,                 // wie stark ein Geistesblitz seine Verbindung stärkt (0 = aus)
+  vergessenNach: 20000         // nach so vielen ms ohne Nutzung verblasst eine Verbindung wieder
 };
 /* Ende der Stellschrauben. */
 
@@ -21,7 +24,15 @@ var NETZ = {
   var ctx = canvas.getContext("2d");
   var ruhig = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  var punkte = [], kanten = [], blitze = [];
+  var punkte = [], blitze = [];
+  // Zustand der Verbindungen: Stärke (wächst mit Nutzung), Aufleuchten (neu entstanden).
+  var kanten = new Map(), letztesAufleuchten = 0, jetzt = 0;
+  function schluessel(i, j) { return i < j ? i * 1000 + j : j * 1000 + i; }
+  function kante(i, j) {
+    var k = schluessel(i, j), e = kanten.get(k);
+    if (!e) { e = { staerke: 0, licht: 0, zuletzt: 0, nah: false }; kanten.set(k, e); }
+    return e;
+  }
   var breite = 0, hoehe = 0, dpr = 1, reichweite = 0;
   var laeuft = false, pausiert = false, sichtbar = true, naechsterBlitz = 0, letzte = 0, frame = 0;
 
@@ -49,6 +60,7 @@ var NETZ = {
                     r: zufall(1, 2.2), glut: 0 });
     }
     blitze = [];
+    kanten = new Map();
   }
 
   function bewegen(dt) {
@@ -61,20 +73,34 @@ var NETZ = {
     }
   }
 
+  // Starke Verbindungen halten länger: ihre Reichweite wächst mit der Stärke.
+  function reichweiteVon(e) { return reichweite * (1 + 0.6 * (e ? e.staerke : 0)); }
+
   function nachbarn(i) {
     var a = punkte[i], liste = [];
     for (var j = 0; j < punkte.length; j++) {
       if (j === i) continue;
-      var dx = punkte[j].x - a.x, dy = punkte[j].y - a.y;
-      if (dx * dx + dy * dy < reichweite * reichweite) liste.push(j);
+      var dx = punkte[j].x - a.x, dy = punkte[j].y - a.y, r = reichweiteVon(kanten.get(schluessel(i, j)));
+      if (dx * dx + dy * dy < r * r) liste.push(j);
     }
     return liste;
+  }
+
+  // Geistesblitze nehmen bevorzugt starke Verbindungen: So entstehen Pfade.
+  function waehlen(von, liste) {
+    var summe = 0, gewichte = liste.map(function (j) {
+      var e = kanten.get(schluessel(von, j)), g = 1 + 4 * (e ? e.staerke : 0);
+      summe += g; return g;
+    });
+    var r = Math.random() * summe;
+    for (var k = 0; k < liste.length; k++) { r -= gewichte[k]; if (r <= 0) return liste[k]; }
+    return liste[liste.length - 1];
   }
 
   function blitzStarten(von, tiefe) {
     var n = nachbarn(von);
     if (!n.length) return;
-    var nach = n[Math.floor(Math.random() * n.length)];
+    var nach = waehlen(von, n);
     blitze.push({ von: von, nach: nach, t: 0, tiefe: tiefe });
     punkte[von].glut = Math.max(punkte[von].glut, 0.6);
   }
@@ -85,12 +111,39 @@ var NETZ = {
       b.t += dt / 650;
       if (b.t >= 1) {
         punkte[b.nach].glut = 1;
+        var e = kante(b.von, b.nach);
+        e.staerke = Math.min(1, e.staerke + NETZ.lernen);
+        e.zuletzt = jetzt;
         blitze.splice(i, 1);
         // Kleine Kettenreaktion: manchmal geht der Impuls weiter.
         if (b.tiefe < 3 && Math.random() < 0.55) blitzStarten(b.nach, b.tiefe + 1);
         if (b.tiefe < 2 && Math.random() < 0.2) blitzStarten(b.nach, b.tiefe + 1);
       }
     }
+  }
+
+  function kantenFortschreiben(dt) {
+    var r2 = reichweite * reichweite;
+    for (var i = 0; i < punkte.length; i++) {
+      for (var j = i + 1; j < punkte.length; j++) {
+        var dx = punkte[j].x - punkte[i].x, dy = punkte[j].y - punkte[i].y;
+        var nah = dx * dx + dy * dy < r2 * 0.55;   // gut sichtbarer Abstand
+        var k = schluessel(i, j), e = kanten.get(k);
+        if (nah && (!e || !e.nah)) {
+          e = e || kante(i, j);
+          // Neue Verbindung: kurz aufleuchten lassen, aber nicht zu oft.
+          if (jetzt - letztesAufleuchten > 900 && maske((punkte[i].x + punkte[j].x) / 2) > 0.4) {
+            e.licht = 1; letztesAufleuchten = jetzt;
+          }
+        }
+        if (e) e.nah = nah;
+      }
+    }
+    kanten.forEach(function (e, k) {
+      e.licht = Math.max(0, e.licht - dt / 1400);
+      if (e.staerke > 0 && jetzt - e.zuletzt > NETZ.vergessenNach) e.staerke = Math.max(0, e.staerke - dt / 40000);
+      if (!e.nah && e.staerke === 0 && e.licht === 0) kanten.delete(k);
+    });
   }
 
   function zeichnen() {
@@ -101,12 +154,17 @@ var NETZ = {
       var a = punkte[i];
       for (var j = i + 1; j < punkte.length; j++) {
         var b = punkte[j], dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy;
-        if (d2 > r2) continue;
-        var alpha = NETZ.linienDeckkraft * (1 - d2 / r2) * maske((a.x + b.x) / 2);
-        ctx.strokeStyle = "rgba(255,255,255," + alpha.toFixed(3) + ")";
+        var e = kanten.get(i * 1000 + j), st = e ? e.staerke : 0, li = e ? e.licht : 0;
+        var rr = reichweiteVon(e), rr2 = rr * rr;
+        if (d2 > rr2) continue;
+        var nahe = 1 - d2 / rr2, m = maske((a.x + b.x) / 2);
+        var alpha = (NETZ.linienDeckkraft * (1 + 2.5 * st) * nahe + NETZ.neueVerbindung * li) * m;
+        ctx.lineWidth = 1 + 1.2 * st;
+        ctx.strokeStyle = "rgba(255,255,255," + Math.min(1, alpha).toFixed(3) + ")";
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
       }
     }
+    ctx.lineWidth = 1;
     for (var k = 0; k < blitze.length; k++) {
       var bl = blitze[k], p = punkte[bl.von], q = punkte[bl.nach];
       var x = p.x + (q.x - p.x) * bl.t, y = p.y + (q.y - p.y) * bl.t;
@@ -137,12 +195,14 @@ var NETZ = {
     if (!laeuft) return;
     var dt = Math.min(64, zeit - (letzte || zeit));
     letzte = zeit;
+    jetzt += dt;
     bewegen(dt);
-    if (zeit > naechsterBlitz) {
+    kantenFortschreiben(dt);
+    if (jetzt > naechsterBlitz) {
       // Blitze bevorzugt rechts, wo das Netz sichtbar ist.
       var kandidaten = punkte.map(function (p, i) { return i; }).filter(function (i) { return punkte[i].x > breite * 0.4; });
       if (kandidaten.length) blitzStarten(kandidaten[Math.floor(Math.random() * kandidaten.length)], 0);
-      naechsterBlitz = zeit + NETZ.blitzAbstand * zufall(0.6, 1.4);
+      naechsterBlitz = jetzt + NETZ.blitzAbstand * zufall(0.6, 1.4);
     }
     blitzeFortschreiben(dt);
     zeichnen();
