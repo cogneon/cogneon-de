@@ -1,0 +1,49 @@
+# Aktuelles auf der Startseite. Wird von scripts/build_data.py gelesen.
+#
+# highlights: erscheinen im Abschnitt "Im Blick". Der Eintrag mit "bild" wird
+#   groß dargestellt. Mit "gueltig_bis" (JJJJ-MM-TT) verschwindet ein Eintrag
+#   nach diesem Datum von selbst.
+# termine: bis die Anbindung an pretix steht, werden Termine hier gepflegt.
+#   Vergangene Termine (Feld "tag") fallen automatisch weg.
+# blog: wird automatisch aus docs/blog/posts erzeugt, hier nichts eintragen.
+
+highlights:
+  - titel: Menerva-Programm 2036
+    text: 40 Jahre Wissensmanagement, 10 Jahre bis 2036. Unser Programm für das nächste Jahrzehnt.
+    bild: assets/bilder/menerva-programm-2036.jpg
+    alt: ""
+    link: 4010km/
+  - titel: "[Highlight]"
+    text: "[Platzhalter - zum Beispiel die nächste Veranstaltung]"
+    datum: "[Datum]"
+    link: events/
+    gueltig_bis: 2027-06-30
+  - titel: "[Highlight]"
+    text: "[Platzhalter - zum Beispiel eine neue Podcast-Folge]"
+    link: blog/
+    gueltig_bis: 2027-06-30
+
+termine:
+  - titel: "[Termin - Platzhalter]"
+    datum: "[TT.MM.JJJJ]"
+    tag: 2027-06-30
+    url: events/
+  - titel: "[Termin - Platzhalter]"
+    datum: "[TT.MM.JJJJ]"
+    tag: 2027-06-30
+    url: events/
+
+# Nur für die Vorschau, solange keine Beiträge im Repository liegen.
+blog_vorschau:
+  - titel: Interview mit Menerva-Schirmherr Prof. Leif Edvinsson
+    datum: 20.10.2026
+    url: blog/
+  - titel: "Das Menerva-Programm 2036: 40 Jahre Wissensmanagement, 10 Jahre bis 2036"
+    datum: 12.10.2026
+    url: 2026/10/12/das-menerva-programm-2036-40-jahre-wissensmanagement-10-jahre-bis-2036/
+  - titel: Menerva-Programm 2036
+    datum: 05.10.2026
+    url: 2026/10/05/menerva-programm-2036/
+  - titel: AI-Focused Knowledge Management – Eine neue Ära hat begonnen
+    datum: 03.10.2026
+    url: blog/

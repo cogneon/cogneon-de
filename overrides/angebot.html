@@ -1,0 +1,152 @@
+{#-
+  Angebotsseite und Übersichtsseite. Felder im Frontmatter (alle optional
+  außer title): untertitel, einleitung, pfad, anlaesse, gruppen, formate, ablauf,
+  pakete, verwandt, cta. Der Markdown-Text der Seite erscheint nach den
+  Anlässen bzw. Formaten.
+-#}
+{% extends "main.html" %}
+{% block tabs %}{% endblock %}
+{% block site_nav %}{% endblock %}
+{% block container %}{% endblock %}
+{% block hero %}
+{% set m = page.meta %}
+<div class="cg-page">
+
+  <section class="cg-section cg-section--kopf">
+    <div class="cg-wrap cg-stack">
+      {% if m.pfad %}
+      <nav class="cg-pfad" aria-label="Brotkrumen">
+        <ol>
+          {% for p in m.pfad %}
+          <li>{% if p.link %}<a href="{{ p.link | url }}">{{ p.titel }}</a>{% else %}{{ p.titel }}{% endif %}</li>
+          {% endfor %}
+        </ol>
+      </nav>
+      {% endif %}
+      <h1 class="cg-h1">{{ m.title }}</h1>
+      {% if m.untertitel %}<p class="cg-untertitel">{{ m.untertitel }}</p>{% endif %}
+      {% if m.einleitung %}<p class="cg-lead cg-muted">{{ m.einleitung }}</p>{% endif %}
+      <p class="cg-actions">
+        <a class="cg-button" href="#erstgespraech">Erstgespräch anfragen</a>
+        <span class="cg-muted">30 Minuten, kostenlos</span>
+      </p>
+    </div>
+  </section>
+
+  {% if m.anlaesse %}
+  <section class="cg-section cg-section--soft">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2">{{ m.anlaesse.titel }}</h2>
+      <ul class="cg-cards">
+        {% for a in m.anlaesse.karten %}
+        <li><div class="cg-card cg-card--ruhig"><span class="cg-card__titel">{{ a.titel }}</span><span class="cg-card__text">{{ a.text }}</span></div></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {% for g in m.gruppen | d([]) %}
+  <section class="cg-section{% if loop.index is odd %} cg-section--soft{% endif %}"{% if g.id %} id="{{ g.id }}"{% endif %}>
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <div class="cg-stack cg-schmal">
+        <h2 class="cg-h2">{{ g.titel }}</h2>
+        {% if g.text %}<p class="cg-lead cg-muted">{{ g.text }}</p>{% endif %}
+      </div>
+      <ul class="cg-cards">
+        {% for k in g.karten %}
+        <li>
+          {% if k.link %}<a class="cg-card cg-card--akzent" href="{{ k.link | url }}">{% else %}<div class="cg-card cg-card--linie">{% endif %}
+            <span class="cg-card__titel">{{ k.titel }}</span>
+            <span class="cg-card__text">{{ k.text }}</span>
+            {% if k.link %}<span class="cg-card__marke">Zum Angebot</span>{% else %}<span class="cg-card__vor">Seite folgt</span>{% endif %}
+          {% if k.link %}</a>{% else %}</div>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endfor %}
+
+  {% if m.formate %}
+  <section class="cg-section cg-section--soft">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2">{{ m.formate.titel }}</h2>
+      <ul class="cg-cards">
+        {% for f in m.formate.karten %}
+        <li>
+          {% if f.link %}<a class="cg-card cg-card--akzent" href="{{ f.link | url }}">{% else %}<div class="cg-card cg-card--linie">{% endif %}
+            <span class="cg-card__vor">{{ f.anlass }}</span>
+            <span class="cg-card__titel">{{ f.titel }}</span>
+            <span class="cg-card__text">{{ f.text }}</span>
+            <span class="cg-card__art">{{ f.art }}</span>
+            {% if f.link %}<span class="cg-card__marke">Zum Angebot</span>{% endif %}
+          {% if f.link %}</a>{% else %}</div>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.content | trim %}
+  <section class="cg-section">
+    <div class="cg-wrap">
+      <article class="md-typeset cg-prosa">{{ page.content }}</article>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if m.ablauf %}
+  <section class="cg-section cg-section--soft" id="ablauf">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <div class="cg-stack cg-schmal">
+        <h2 class="cg-h2">{{ m.ablauf.titel }}</h2>
+        {% if m.ablauf.text %}<p class="cg-lead cg-muted">{{ m.ablauf.text }}</p>{% endif %}
+      </div>
+      <ol class="cg-schritte">
+        {% for s in m.ablauf.schritte %}
+        <li><span class="cg-schritte__nr" aria-hidden="true">{{ loop.index }}</span><span class="cg-schritte__titel">{{ s.titel }}</span><span class="cg-card__text">{{ s.text }}</span></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if m.pakete %}
+  <section class="cg-section" id="pakete">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <div class="cg-stack cg-schmal">
+        <h2 class="cg-h2">{{ m.pakete.titel }}</h2>
+        {% if m.pakete.text %}<p class="cg-lead cg-muted">{{ m.pakete.text }}</p>{% endif %}
+      </div>
+      <ul class="cg-pakete">
+        {% for p in m.pakete.liste %}
+        <li class="cg-paket{% if p.hervorgehoben %} cg-paket--dunkel{% endif %}">
+          <h3 class="cg-paket__titel">{{ p.titel }}</h3>
+          <p class="cg-card__text">{{ p.text }}</p>
+          <p class="cg-paket__preis">{{ p.preis }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if m.verwandt %}
+  <section class="cg-section cg-section--soft">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2 cg-h2--klein">{{ m.verwandt.titel }}</h2>
+      <ul class="cg-cards cg-cards--zwei">
+        {% for v in m.verwandt.karten %}
+        <li><a class="cg-card" href="{{ v.link | url }}"><span class="cg-card__vor">{{ v.anlass }}</span><span class="cg-card__titel">{{ v.titel }}</span><span class="cg-card__text">{{ v.text }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {% include "partials/erstgespraech.html" %}
+
+</div>
+{% endblock %}

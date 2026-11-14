@@ -1,0 +1,149 @@
+{#-
+  Startseite. Inhalte kommen aus dem Frontmatter von docs/index.md
+  (hero, schild, anlaesse, belege) und aus _data/aktuell.yml
+  (highlights, blog, termine - erzeugt von scripts/build_data.py).
+-#}
+{% extends "main.html" %}
+{% block tabs %}{% endblock %}
+{% block site_nav %}{% endblock %}
+{% block container %}{% endblock %}
+{% block hero %}
+{% set m = page.meta %}
+{% set aktuell = config.extra.aktuell | d({}) %}
+<div class="cg-page">
+
+  <section class="cg-hero">
+    <div class="cg-wrap cg-hero__inner">
+      <h1 class="cg-hero__claim">
+        {% for wort in m.hero.claim %}{{ wort }}<span class="cg-punkt">.</span>{% if not loop.last %}<br>{% endif %}{% endfor %}
+      </h1>
+      <div class="cg-stack">
+        <p class="cg-lead">{{ m.hero.text }}</p>
+        <p class="cg-actions">
+          <a class="cg-button" href="{{ config.extra.erstgespraech | url }}">Erstgespräch anfragen</a>
+          <a class="cg-link cg-link--hell" href="{{ 'angebote/' | url }}">Angebote ansehen</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {% if m.schild %}
+  <section class="cg-section">
+    <div class="cg-wrap cg-zwei">
+      <img class="cg-bild" src="{{ m.schild.bild | url }}" alt="{{ m.schild.alt }}" width="1200" height="807" loading="lazy">
+      <div class="cg-stack">
+        <h2 class="cg-h2">{{ m.schild.titel }}</h2>
+        <p class="cg-lead cg-muted">{{ m.schild.text }}</p>
+        <ul class="cg-dimensionen">
+          {% for d in m.schild.dimensionen %}<li>{{ d }}</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if m.anlaesse %}
+  <section class="cg-section cg-section--soft">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2">{{ m.anlaesse.titel }}</h2>
+      <ul class="cg-cards">
+        {% for a in m.anlaesse.karten %}
+        <li>
+          <a class="cg-card" href="{{ a.link | url }}">
+            <span class="cg-card__titel">„{{ a.zitat }}“</span>
+            <span class="cg-card__text">{{ a.text }}</span>
+            <span class="cg-card__marke">{{ a.angebot }}</span>
+          </a>
+        </li>
+        {% endfor %}
+        <li class="cg-cards__breit">
+          <a class="cg-card cg-card--dunkel" href="{{ 'angebote/' | url }}">
+            <span class="cg-card__titel">Alle Angebote</span>
+            <span class="cg-card__text">Strategisches und operatives Wissensmanagement im Überblick.</span>
+            <span class="cg-card__marke" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if m.belege %}
+  <section class="cg-section cg-section--orange">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2">{{ m.belege.titel }}</h2>
+      <ul class="cg-zahlen">
+        {% for z in m.belege.zahlen %}
+        <li><span class="cg-zahl">{{ z.zahl }}</span><span>{{ z.text }}</span></li>
+        {% endfor %}
+      </ul>
+      {% if m.belege.kunden %}
+      <ul class="cg-logos">
+        {% for k in m.belege.kunden %}
+        <li>{% if k.logo %}<img src="{{ k.logo | url }}" alt="{{ k.name }}" loading="lazy">{% else %}{{ k.name }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if m.belege.zitat %}
+      <figure class="cg-zitat">
+        <blockquote>{{ m.belege.zitat.text }}</blockquote>
+        <figcaption>{{ m.belege.zitat.quelle }}</figcaption>
+      </figure>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if aktuell.highlights %}
+  <section class="cg-section cg-section--soft">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2">Im Blick</h2>
+      <ul class="cg-highlights">
+        {% for h in aktuell.highlights %}
+        <li{% if h.bild %} class="cg-highlights__gross"{% endif %}>
+          <a class="cg-highlight" href="{{ h.link if '://' in h.link else h.link | url }}">
+            {% if h.bild %}<img src="{{ h.bild | url }}" alt="{{ h.alt | d('') }}" loading="lazy">{% endif %}
+            <span class="cg-highlight__text">
+              {% if h.datum %}<span class="cg-card__marke">{{ h.datum }}</span>{% endif %}
+              <span class="cg-card__titel">{{ h.titel }}</span>
+              <span class="cg-card__text">{{ h.text }}</span>
+            </span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if aktuell.blog or aktuell.termine %}
+  <section class="cg-section">
+    <div class="cg-wrap cg-zwei cg-zwei--oben">
+      {% if aktuell.blog %}
+      <div>
+        <h2 class="cg-h2 cg-h2--klein">Blog</h2>
+        <ul class="cg-liste">
+          {% for b in aktuell.blog %}
+          <li><a href="{{ b.url | url }}"><span class="cg-liste__meta">{{ b.datum }}</span><span class="cg-liste__titel">{{ b.titel }}</span></a></li>
+          {% endfor %}
+        </ul>
+        <p><a class="cg-link" href="{{ 'blog/' | url }}">Alle Beiträge</a></p>
+      </div>
+      {% endif %}
+      {% if aktuell.termine %}
+      <div>
+        <h2 class="cg-h2 cg-h2--klein">Termine</h2>
+        <ul class="cg-liste cg-liste--termine">
+          {% for t in aktuell.termine %}
+          <li><a href="{{ t.url if '://' in t.url else t.url | url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}</span></a></li>
+          {% endfor %}
+        </ul>
+        <p><a class="cg-link" href="{{ 'events/' | url }}">Alle Termine</a></p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+</div>
+{% endblock %}
