@@ -1,0 +1,4 @@
+# Redirects für alte URLs, die es als Seite nicht mehr gibt.
+# Format: alter-pfad neues-ziel  (eine Regel pro Zeile)
+# Aus dieser Datei entsteht später die Redirect-Konfiguration des Webservers.
+/author/cogblogadmin /author/cogneon/

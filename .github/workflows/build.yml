@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Tests
+        run: python -m pytest -q tests
+      - name: Website bauen
+        run: zensical build
+      - name: URL-Check (alte URLs müssen erreichbar bleiben)
+        run: python scripts/check_urls.py --url-map migration/url-map.csv --url-list migration/old-urls.txt --report-only
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: |
+            site
+            migration/url-check.md
+          retention-days: 7

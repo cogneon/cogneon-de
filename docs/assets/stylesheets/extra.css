@@ -1,0 +1,13 @@
+/* Eigene Anpassungen am Zensical-Thema. Das eigentliche Design folgt später. */
+
+/* Kopfzeile: nur das Logo zeigen. Der Seitenname bleibt für Screenreader im
+   Dokument, der Titel der aktuellen Seite erscheint weiterhin beim Scrollen. */
+.md-header__title .md-header__topic:first-child {
+  opacity: 0;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 1.8rem;
+  width: auto;
+}

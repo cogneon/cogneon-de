@@ -1,0 +1,8 @@
+# Zuordnung WordPress-Benutzer-ID -> Autorenkürzel in docs/.authors.yml.
+# Nötig, weil cogneon.de die Benutzerliste per API nicht ausliefert.
+# Die Kürzel entsprechen den alten Autoren-URLs (/author/<kürzel>/).
+2: simon-dueckert
+3: benedikt-scheerer
+13: silvia-roderus
+# Früheres Sammelkonto "cogblogadmin": Beiträge laufen unter "Cogneon".
+12: cogneon
