@@ -187,7 +187,7 @@ def test_full_export_is_repeatable_and_respects_frozen(server, tmp_path):
     for name in ("bild-1024x576.png", "handout.pdf", "titel.jpg"):
         assert (tmp_path / "docs/wp-content/uploads/2026/01" / name).exists(), name
 
-    authors = yaml.safe_load((tmp_path / "docs/blog/.authors.yml").read_text(encoding="utf-8"))
+    authors = yaml.safe_load((tmp_path / "docs/.authors.yml").read_text(encoding="utf-8"))
     assert authors["authors"]["erika.muster"]["description"] == "Beraterin"
 
     report = (tmp_path / "migration/report.md").read_text(encoding="utf-8")

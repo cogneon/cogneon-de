@@ -372,8 +372,8 @@ class Export:
                                  "Vermutlich sperrt ein Sicherheits-Plugin die Benutzerliste.")
 
     def write_authors(self):
-        """Ergaenzt docs/blog/.authors.yml um fehlende Autoren. Bestehende bleiben unveraendert."""
-        path = self.docs / "blog" / ".authors.yml"
+        """Ergaenzt docs/.authors.yml um fehlende Autoren. Bestehende bleiben unveraendert."""
+        path = self.docs / ".authors.yml"
         data = {"authors": {}}
         if path.exists():
             data = yaml.safe_load(path.read_text(encoding="utf-8")) or data

@@ -9,8 +9,8 @@ Stand: Aufbau und Test. Die Live-Website läuft weiter auf WordPress, bis der Um
 | Pfad | Inhalt |
 |---|---|
 | `docs/` | Inhalte der Website als Markdown |
-| `docs/blog/posts/` | Blogbeiträge, ein Ordner pro Jahr |
-| `docs/blog/.authors.yml` | Autorenprofile |
+| `docs/blog/posts/` | Blogbeiträge, ein Ordner pro Jahr. Veröffentlicht unter `/JJJJ/MM/TT/titel/` wie in WordPress |
+| `docs/.authors.yml` | Autorenprofile |
 | `docs/wp-content/uploads/` | Medien unter ihren alten WordPress-Pfaden |
 | `zensical.toml` | Konfiguration der Website |
 | `scripts/wp_export.py` | wiederholbarer Export aus WordPress |
