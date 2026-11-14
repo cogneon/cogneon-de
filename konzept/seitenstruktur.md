@@ -18,6 +18,7 @@ Positionierung: "Wissen. Lernen. Wirken." - Cogneon als Partner von Organisation
 - Jede Seite endet mit demselben nächsten Schritt: Erstgespräch.
 - Alte Adressen bleiben erreichbar (Cool URLs don't change).
 - Barrierefreiheit nach WCAG/BITV ist feste Anforderung.
+- Keine Drittanbieter-Einbindungen: Schriften, Skripte und Bilder liegen lokal (DSGVO, kein Cookie-Banner).
 
 ## Wer kommt mit welchem Anlass
 
@@ -31,7 +32,7 @@ Positionierung: "Wissen. Lernen. Wirken." - Cogneon als Partner von Organisation
 
 ## Hauptnavigation
 
-**Angebote · Akademie · Blog · Termine · Über uns** - dazu rechts der Knopf **Erstgespräch**.
+**Angebote · Akademie · Blog · Termine · Über uns** - dazu rechts die **Suche** und der Knopf **Erstgespräch**.
 
 - "Startseite" entfällt als Menüpunkt, dorthin führt das Logo.
 - "Kontakt" wird zum Knopf "Erstgespräch".
@@ -61,6 +62,16 @@ Gliederung nach den zwei Blickwinkeln der Wissenstreppe von Klaus North.
 | Personal Knowledge Excellence | Persönliches Wissensmanagement fördern |
 
 Nicht in der Navigation: Akademie online. Sie kommt erst, wenn es ein Angebot gibt.
+
+### Übersichtsseiten und Angebotsseiten
+
+Ein Angebot mit mehreren Formaten bekommt eine Übersichtsseite als Weiche, jedes Format eine eigene Angebotsseite mit eigener Adresse. Beispiel Wissenstransfer:
+
+- `/wissenstransfer/` - Übersicht: drei Formate für drei Anlässe
+- `/expert-debriefing/` - eigene Angebotsseite (Interviewprozess, feste Pakete)
+- Project Debriefing und Team Debriefing (Workshop-Formate) - zunächst nur auf der Übersicht, eigene Seiten, sobald sie als Paket angeboten werden
+
+Eigene Adressen machen jedes Angebot einzeln verlinkbar und in der Webanalyse einzeln auswertbar: Aufrufe, Einstiegsseiten und Klicks auf "Erstgespräch" je Angebot.
 
 ### Aufbau jeder Angebotsseite
 
@@ -124,6 +135,14 @@ Eine Datei pro Termin. Daraus entstehen Terminseiten, Kalender-Feed und die List
 - **Fallbeispiele**: eigene Inhaltsart, eine Datei pro Fallbeispiel mit Kunde, Branche, Anlass, Angebot und Link zur Quelle. Erscheinen automatisch auf den passenden Angebotsseiten. Das Material ist vorhanden, aber verstreut, und wird gesammelt.
 - **Zitate**: Kundenstimmen, jeweils mit Zustimmung zur Veröffentlichung von Text und Name.
 - **Zahlen**: nur belegbare Angaben.
+
+## Design
+
+Gewählte Richtung: "Kontrast" - dunkler Einstieg mit großem Claim, eigene Schrift für Überschriften, Orange als tragende Markenfarbe. Die Abschnitte "Womit können wir helfen?" und "Im Blick" nutzen Karten auf hellem Grund.
+
+- Das Verkehrsschild "Wissensdatenbank → Lernende Organisation" aus der Akademie bekommt einen eigenen Abschnitt auf der Startseite.
+- Farbkontraste: Weiße Schrift auf dem Markenorange `#ff6600` erreicht nur 2,94:1 und ist nicht zulässig. Auf Orange steht dunkle Schrift, oder die Fläche nutzt ein dunkleres Orange.
+- Schriften werden lokal ausgeliefert.
 
 ## Sprachregel
 
