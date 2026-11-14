@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 import time
@@ -57,6 +58,12 @@ class WordPress:
         self.delay = delay
         self.session = requests.Session()
         self.session.headers["User-Agent"] = USER_AGENT
+        # Optional: Anmeldung mit WordPress-Anwendungspasswort. Die Werte kommen
+        # nur aus der Umgebung (lokal oder GitHub-Secret) und werden nie ausgegeben.
+        user, password = os.environ.get("WP_USER"), os.environ.get("WP_APP_PASSWORD")
+        self.authenticated = bool(user and password)
+        if self.authenticated:
+            self.session.auth = (user, password)
 
     def _get(self, url: str, params: dict | None = None, stream: bool = False):
         last = None
@@ -522,6 +529,15 @@ class Export:
     def run(self) -> int:
         inv = self.inventory()
         print(f"Inventar: {json.dumps({k: v['count'] for k, v in inv['types'].items()})}")
+        if self.wp.get("wp/v2/posts", {"per_page": 1, "_fields": "id"}).status_code in (401, 403):
+            hint = ("Die Anmeldung wurde abgelehnt - Benutzername und Anwendungspasswort prüfen."
+                    if self.wp.authenticated else
+                    "Die REST-API verlangt eine Anmeldung. WP_USER und WP_APP_PASSWORD setzen "
+                    "(WordPress-Anwendungspasswort), siehe README.")
+            self.problems.append(hint)
+            self.write_reports(inv)
+            print(f"FEHLER: {hint}")
+            return 2
         if not self.args.inventory_only:
             self.load_taxonomies()
             self.write_authors()

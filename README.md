@@ -35,6 +35,15 @@ python scripts/wp_export.py --limit 10         # Pilot
 python scripts/wp_export.py                    # alles
 ```
 
+cogneon.de gibt die REST-API nur für angemeldete Benutzer frei. Der Export braucht deshalb ein WordPress-Anwendungspasswort (WordPress: Benutzer > Profil > Anwendungspasswörter), am besten für einen eigenen Benutzer mit der Rolle Redakteur:
+
+```bash
+export WP_USER="benutzername"
+export WP_APP_PASSWORD="xxxx xxxx xxxx xxxx xxxx xxxx"
+```
+
+Für den Workflow dieselben beiden Werte als Repository-Secrets `WP_USER` und `WP_APP_PASSWORD` anlegen. Die Zugangsdaten gehören nie ins Repo.
+
 Regeln:
 
 - Seiten mit `frozen: true` im Frontmatter überschreibt der Export nie. Das gilt für alles, was von Hand überarbeitet wurde.

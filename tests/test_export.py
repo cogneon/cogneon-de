@@ -255,3 +255,35 @@ def test_blocked_endpoints_do_not_abort_export(server, tmp_path, monkeypatch):
     assert "authors" not in meta
     report = (tmp_path / "migration/report.md").read_text(encoding="utf-8")
     assert "rest_forbidden" in report and "Autoren nicht abrufbar" in report
+
+
+def test_locked_api_gives_clear_message(server, tmp_path, monkeypatch, capsys):
+    """cogneon.de liefert wp/v2 nur an angemeldete Benutzer aus."""
+    original = wp_export.WordPress.get
+
+    def locked(self, route, params=None):
+        if route.strip("/").startswith("wp/v2/"):
+            class Resp:
+                status_code = 401
+                headers = {}
+
+                @staticmethod
+                def json():
+                    return {"code": "rest_not_logged_in", "message": "nein", "data": {"status": 401}}
+            return Resp()
+        return original(self, route, params)
+
+    monkeypatch.setattr(wp_export.WordPress, "get", locked)
+    monkeypatch.delenv("WP_USER", raising=False)
+    monkeypatch.delenv("WP_APP_PASSWORD", raising=False)
+    assert run_export(server, tmp_path) == 2
+    assert "WP_APP_PASSWORD" in capsys.readouterr().out
+    assert "verlangt eine Anmeldung" in (tmp_path / "migration/report.md").read_text(encoding="utf-8")
+    assert not (tmp_path / "docs").exists()
+
+
+def test_credentials_come_from_environment_only(monkeypatch):
+    monkeypatch.setenv("WP_USER", "export")
+    monkeypatch.setenv("WP_APP_PASSWORD", "test-wert")
+    wp = wp_export.WordPress("https://cogneon.de")
+    assert wp.authenticated and wp.session.auth == ("export", "test-wert")
