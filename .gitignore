@@ -8,3 +8,4 @@ __pycache__/
 migration/raw/
 _data/aktuell.yml
 overrides/partials/blog-daten.html
+docs/tag/

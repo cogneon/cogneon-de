@@ -18,6 +18,7 @@
       {% if blog.kategorien %}
       <ul class="cg-schlagworte cg-schlagworte--links" aria-label="Kategorien">
         {% for k in blog.kategorien %}<li><a href="{{ k.url | url }}">{{ k.titel }}</a></li>{% endfor %}
+        <li><a href="{{ 'tag/' | url }}">Alle Schlagworte</a></li>
       </ul>
       {% endif %}
     </div>

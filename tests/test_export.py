@@ -405,3 +405,30 @@ def test_category_redirects_follow_zensical_slug(server, tmp_path):
     assert run_export(server, tmp_path) == 0
     rules = (tmp_path / "migration/redirects-kategorien.map").read_text(encoding="utf-8")
     assert "/category/ki /category/künstliche-intelligenz--lernen/" in rules
+
+
+def test_tag_slug():
+    assert wp_export.tag_slug("PersönlichesWissensmanagement") == "persoenlicheswissensmanagement"
+    assert wp_export.tag_slug("lernOS") == "lernos"
+    assert wp_export.tag_slug("4010km") == "4010km"
+
+
+def test_tags_follow_mapping(server, tmp_path):
+    (tmp_path / "migration").mkdir()
+    (tmp_path / "migration/schlagworte.csv").write_text(
+        "# Kommentar\nalt,neu\nLERNOS,lernOS\n", encoding="utf-8")
+    assert run_export(server, tmp_path) == 0
+    rules = (tmp_path / "migration/redirects-schlagworte.map").read_text(encoding="utf-8")
+    assert "/tag/lernos " not in rules          # Adresse bleibt gleich, keine Weiterleitung
+    meta = wp_export.read_frontmatter(tmp_path / "docs/blog/posts/2026/erster-beitrag.md")
+    assert meta["tags"] == ["lernOS"]
+
+
+def test_dropped_tags_redirect_to_blog(server, tmp_path):
+    (tmp_path / "migration").mkdir()
+    (tmp_path / "migration/schlagworte.csv").write_text("alt,neu\n", encoding="utf-8")
+    assert run_export(server, tmp_path) == 0
+    rules = (tmp_path / "migration/redirects-schlagworte.map").read_text(encoding="utf-8")
+    assert "/tag/lernos /blog/" in rules
+    posts = list((tmp_path / "docs/blog/posts").rglob("*.md"))
+    assert posts and all("tags:" not in p.read_text(encoding="utf-8") for p in posts)

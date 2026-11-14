@@ -1141,3 +1141,12 @@ ol.cg-schritte > li,
     backdrop-filter: none;
   }
 }
+
+/* Schlagwort-Übersicht unter /tag/ */
+.cg-schlagworte--gross a {
+  font-size: 0.85rem;
+}
+.cg-schlagworte--links .cg-muted {
+  font-size: 0.7rem;
+  margin-left: 0.2rem;
+}
