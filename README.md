@@ -24,10 +24,10 @@ Stand: Aufbau und Test. Die Live-Website läuft weiter auf WordPress, bis der Um
 ## Lokal arbeiten
 
 ```bash
-pip install -r requirements.txt
-python scripts/build_data.py   # Daten der Startseite erzeugen
+pip3 install -r requirements.txt
+python3 scripts/build_data.py   # Daten der Startseite erzeugen
 zensical serve          # Vorschau unter http://localhost:8000
-python -m pytest tests  # Tests des Export-Skripts
+python3 -m pytest tests  # Tests des Export-Skripts
 ```
 
 ## Export aus WordPress
@@ -35,9 +35,9 @@ python -m pytest tests  # Tests des Export-Skripts
 Der Export liest die öffentliche REST-API von cogneon.de. Er kann beliebig oft laufen.
 
 ```bash
-python scripts/wp_export.py --inventory-only   # nur zählen
-python scripts/wp_export.py --limit 10         # Pilot
-python scripts/wp_export.py                    # alles
+python3 scripts/wp_export.py --inventory-only   # nur zählen
+python3 scripts/wp_export.py --limit 10         # Pilot
+python3 scripts/wp_export.py                    # alles
 ```
 
 cogneon.de gibt die REST-API nur für angemeldete Benutzer frei. Der Export braucht deshalb ein WordPress-Anwendungspasswort (WordPress: Benutzer > Profil > Anwendungspasswörter), am besten für einen eigenen Benutzer mit der Rolle Redakteur:
@@ -63,7 +63,7 @@ Alte URLs dürfen nicht brechen. Nach dem Build:
 
 ```bash
 zensical build
-python scripts/check_urls.py --url-map migration/url-map.csv --url-list migration/old-urls.txt
+python3 scripts/check_urls.py --url-map migration/url-map.csv --url-list migration/old-urls.txt
 ```
 
 URLs, die es als Seite nicht mehr gibt, brauchen einen Eintrag in `migration/redirects.map` (`alter-pfad neues-ziel`, eine Regel pro Zeile). Aus dieser Datei entsteht später die Redirect-Konfiguration des Webservers.

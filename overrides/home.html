@@ -1,6 +1,6 @@
 {#-
   Startseite. Inhalte kommen aus dem Frontmatter von docs/index.md
-  (hero, schild, anlaesse, belege) und aus _data/aktuell.yml
+  (hero, schild, anlaesse, belege, newsletter) und aus _data/aktuell.yml
   (highlights, blog, termine - erzeugt von scripts/build_data.py).
 -#}
 {% extends "main.html" %}
@@ -141,6 +141,23 @@
         <p><a class="cg-link" href="{{ 'events/' | url }}">Alle Termine</a></p>
       </div>
       {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if m.newsletter %}
+  <section class="cg-section cg-section--soft" id="newsletter">
+    <div class="cg-wrap cg-zwei cg-zwei--oben">
+      <div class="cg-stack">
+        <h2 class="cg-h2">{{ m.newsletter.titel }}</h2>
+        <p class="cg-lead cg-muted">{{ m.newsletter.text }}</p>
+        {% if m.newsletter.links %}
+        <p class="cg-actions">
+          {% for l in m.newsletter.links %}<a class="cg-link" href="{{ l.url if '://' in l.url else l.url | url }}">{{ l.titel }}</a>{% endfor %}
+        </p>
+        {% endif %}
+      </div>
+      <iframe class="cg-newsletter__formular" src="{{ m.newsletter.formular }}" title="Anmeldung zum Newsletter" loading="lazy"></iframe>
     </div>
   </section>
   {% endif %}
