@@ -46,12 +46,12 @@ def make_site(base: str) -> dict:
         },
         "wp/v2/posts": [
             {"id": 11, "date": "2026-01-15T10:00:00", "modified": "2026-02-01T09:00:00",
-             "slug": "erster-beitrag", "link": f"{base}/2026/01/erster-beitrag/",
+             "slug": "erster-beitrag", "link": f"{base}/2026/01/15/erster-beitrag/",
              "title": {"rendered": "Erster Beitrag &#8211; Test"}, "content": {"rendered": html},
              "excerpt": {"rendered": ""}, "author": 1, "categories": [5], "tags": [7],
              "featured_media": 90, "sticky": False},
             {"id": 12, "date": "2025-11-03T08:00:00", "modified": "2025-11-03T08:00:00",
-             "slug": "zweiter-beitrag", "link": f"{base}/2025/11/zweiter-beitrag/",
+             "slug": "zweiter-beitrag", "link": f"{base}/2025/11/03/zweiter-beitrag/",
              "title": {"rendered": "Zweiter Beitrag"}, "content": {"rendered": "<p>Kurz.</p>"},
              "excerpt": {"rendered": ""}, "author": 1, "categories": [5], "tags": [],
              "featured_media": 0, "sticky": True},
@@ -191,12 +191,12 @@ def test_full_export_is_repeatable_and_respects_frozen(server, tmp_path):
     assert authors["authors"]["erika.muster"]["description"] == "Beraterin"
 
     report = (tmp_path / "migration/report.md").read_text(encoding="utf-8")
-    assert "`/{yyyy}/{mm}/{slug}/`: 2" in report
+    assert "`/{yyyy}/{mm}/{dd}/{slug}/`: 2" in report
     assert "[charta_unterschriften]" in report
     assert "www.youtube.com: 1" in report
     assert "Veranstaltungen: 3" in report
     url_map = (tmp_path / "migration/url-map.csv").read_text(encoding="utf-8")
-    assert "/2026/01/erster-beitrag/,post,11" in url_map
+    assert "/2026/01/15/erster-beitrag/,post,11" in url_map
     assert ",frozen" in url_map
 
     # Zweiter Lauf: nichts aendert sich, nichts wird erneut geladen.
