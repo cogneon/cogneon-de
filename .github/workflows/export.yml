@@ -1,7 +1,8 @@
 name: WordPress-Export
 
-# Liest cogneon.de über die REST-API aus. Das Ergebnis landet auf dem Branch
-# export/ergebnis (wird bei jedem Lauf überschrieben) und als Artefakt am Lauf.
+# Liest cogneon.de über die REST-API aus. Das Ergebnis landet auf einem Branch
+# (Pilot: export/ergebnis, sonst export/voll - wird bei jedem Lauf überschrieben)
+# und als Artefakt am Lauf.
 # main bleibt unberührt - übernommen wird per Pull Request.
 on:
   workflow_dispatch:
@@ -31,9 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      MODUS: ${{ inputs.modus || 'pilot' }}
+      # Bei Push steuert die Commit-Nachricht den Lauf: [voll] und [ohne-medien].
+      MODUS: ${{ inputs.modus || (contains(github.event.head_commit.message, '[voll]') && 'voll' || 'pilot') }}
       LIMIT: ${{ inputs.limit || '10' }}
-      MEDIEN: ${{ github.event_name == 'workflow_dispatch' && inputs.medien == false && 'nein' || 'ja' }}
+      MEDIEN: ${{ ((github.event_name == 'workflow_dispatch' && inputs.medien == false) || contains(github.event.head_commit.message, '[ohne-medien]')) && 'nein' || 'ja' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -49,6 +51,7 @@ jobs:
           ARGS=""
           if [ "$MODUS" = "inventar" ]; then ARGS="--inventory-only"; fi
           if [ "$MODUS" = "pilot" ]; then ARGS="--limit $LIMIT --raw"; fi
+          if [ "$MODUS" = "voll" ]; then ARGS="--raw"; fi
           if [ "$MEDIEN" = "nein" ]; then ARGS="$ARGS --no-media"; fi
           python scripts/wp_export.py $ARGS
       - name: Alte URLs aus der Sitemap sichern
@@ -71,12 +74,13 @@ jobs:
         run: |
           zensical build
           python scripts/check_urls.py --url-map migration/url-map.csv --report-only
-      - name: Ergebnis auf Branch export/ergebnis ablegen
+      - name: Ergebnis auf Branch ablegen (Pilot export/ergebnis, sonst export/voll)
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -q -B export/ergebnis
+          ZIEL=export/ergebnis; if [ "$MODUS" != "pilot" ]; then ZIEL=export/voll; fi
+          git checkout -q -B "$ZIEL"
           # Medien nur mitnehmen, solange sie klein sind (Pilot). Die Ablage großer
           # Medienbestände ist noch nicht entschieden.
           MB=$(du -sm docs/wp-content 2>/dev/null | cut -f1 || echo 0)
@@ -84,7 +88,7 @@ jobs:
           git add -A migration
           git add -f migration/raw 2>/dev/null || true
           git commit -q -m "WordPress-Export: Modus $MODUS, $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nichts zu committen"
-          git push -q --force origin export/ergebnis
+          git push -q --force origin "$ZIEL"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
