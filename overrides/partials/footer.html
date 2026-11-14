@@ -1,14 +1,6 @@
-{#- Fußzeile: Newsletter, Angebote, Ressourcen, Kontakt. -#}
+{#- Fußzeile: Angebote, Ressourcen, Kontakt. Der Newsletter-Link führt zur Anmeldung auf der Startseite. -#}
 <footer class="md-footer cg-footer">
   <div class="cg-wrap cg-footer__inner">
-
-    <div class="cg-footer__newsletter">
-      <div>
-        <h2 class="cg-h2 cg-h2--klein">Keep Calm &amp; Learn On</h2>
-        <p>Der Newsletter von Cogneon zu Wissensmanagement und Lernenden Organisationen.</p>
-      </div>
-      <p><a class="cg-button" href="{{ 'newsletter/' | url }}">Newsletter abonnieren</a></p>
-    </div>
 
     <nav class="cg-footer__spalten" aria-label="Fußzeile">
       <div>
@@ -32,6 +24,7 @@
       <div>
         <h3>Ressourcen</h3>
         <ul>
+          <li><a href="{{ nav.homepage.url | url }}#newsletter">Newsletter</a></li>
           <li><a href="https://podcasts.cogneon.io/">Podcasts</a></li>
           <li><a href="https://youtube.com/cogneon">YouTube</a></li>
           <li><a href="https://wiki.cogneon.de/">Wiki</a></li>

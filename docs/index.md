@@ -62,4 +62,14 @@ belege:
   zitat:
     text: "[Kundenzitat - erst nach Freigabe einsetzen]"
     quelle: "[Name, Funktion, Organisation]"
+
+newsletter:
+  titel: Keep Calm & Learn On
+  text: Der Newsletter von Cogneon zu Wissensmanagement und Lernenden Organisationen.
+  formular: https://newsletter.cogneon.de/hp/KRx-2hEiUPdv39fcqiME3g/signup
+  links:
+    - titel: Newsletter-Archiv
+      url: category/kclo/
+    - titel: Ausgaben vor 2023
+      url: https://wiki.cogneon.de/kclo
 ---

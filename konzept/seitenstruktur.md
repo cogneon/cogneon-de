@@ -143,7 +143,7 @@ Gewählte Richtung: "Kontrast" - dunkler Einstieg mit großem Claim, eigene Schr
 - Das Verkehrsschild "Wissensdatenbank → Lernende Organisation" aus der Akademie bekommt einen eigenen Abschnitt auf der Startseite.
 - Farbkontraste: Text erfüllt WCAG AA (4,5:1). Bewusste Ausnahme: der Abschnitt "Belege" auf der Startseite mit weißer Schrift auf dem Markenorange `#ff6600` (2,94:1). Entschieden am 14.11.2026, weil diese Kombination zur Marke gehört. Die Ausnahme gilt nur für diesen Abschnitt, nicht für Fließtext, Links oder Bedienelemente.
 - Das Verkehrsschild liegt als Bild unter `docs/assets/bilder/`. Es wird durch die SVG-Fassung ersetzt, sobald sie vorliegt.
-- Schriften werden lokal ausgeliefert.
+- Schriften werden lokal ausgeliefert: Geist für Überschriften, Inter für Fließtext (beide Open Font License). Entschieden am 14.11.2026.
 
 ## Bausteine
 
@@ -180,7 +180,7 @@ In der englischen Version der Website bleiben die Produktnamen unverändert.
 | `/expert-debriefing/` | Angebot Wissenstransfer, Unterseite |
 | `/edmod/`, `/edmod-olk/` | Ausbildung Expert Debriefing, zu Wissenstransfer |
 | `/ls-onenote/` | Learning Sessions, wird Eintrag im Katalog |
-| `/newsletter/` | bleibt |
+| `/newsletter/` | Weiterleitung auf die Anmeldung auf der Startseite (`/#newsletter`) |
 | `/lernos/` | bleibt, Footer |
 | `/4010km/` | Menerva-Programm 2036, bleibt, Footer und Highlight |
 | `/blp26/` | Benchlearning, bleibt, Footer |

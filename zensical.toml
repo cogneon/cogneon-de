@@ -96,6 +96,14 @@ pymdownx.tasklist.custom_checkbox = true
 [project.extra]
 erstgespraech = "kontakt/"
 
+# Matomo: dieselbe Site-ID wie unter WordPress, damit die Statistik
+# durchgehend vergleichbar bleibt. Gezählt wird nur auf den genannten Adressen.
+[project.extra.matomo]
+url = "https://analytics.cogneon.de/"
+site_id = "1"
+hosts = ["cogneon.de", "www.cogneon.de"]
+
+
 [[project.extra.menu]]
 titel = "Angebote"
 url = "angebote/"
