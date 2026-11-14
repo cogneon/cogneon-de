@@ -70,7 +70,7 @@ def make_site(base: str) -> dict:
              "content": {"rendered": "<p>Alte Startseite.</p>"}, "parent": 0, "menu_order": 0,
              "template": ""},
         ],
-        "wp/v2/categories": [{"id": 5, "name": "Künstliche Intelligenz", "slug": "ki",
+        "wp/v2/categories": [{"id": 5, "name": "Künstliche Intelligenz &amp; Lernen", "slug": "ki",
                               "description": "", "link": f"{base}/category/ki/", "count": 2}],
         "wp/v2/tags": [{"id": 7, "name": "lernOS", "slug": "lernos", "description": "",
                         "link": f"{base}/tag/lernos/", "count": 1}],
@@ -174,7 +174,7 @@ def test_full_export_is_repeatable_and_respects_frozen(server, tmp_path):
     assert meta["title"] == "Erster Beitrag – Test"
     assert meta["slug"] == "erster-beitrag"
     assert meta["authors"] == ["erika.muster"]
-    assert meta["categories"] == ["Künstliche Intelligenz"]
+    assert meta["categories"] == ["Künstliche Intelligenz & Lernen"]
     assert meta["tags"] == ["lernOS"]
     assert str(meta["date"]["created"]) == "2026-01-15"
     assert "<!-- more -->" in post.read_text(encoding="utf-8")
@@ -201,7 +201,7 @@ def test_full_export_is_repeatable_and_respects_frozen(server, tmp_path):
 
     tags = (tmp_path / "migration/tags.csv").read_text(encoding="utf-8")
     assert "lernos,lernOS,1,/tag/lernos/" in tags
-    assert "ki,Künstliche Intelligenz,2,/category/ki/" in (tmp_path / "migration/categories.csv").read_text(encoding="utf-8")
+    assert "ki,Künstliche Intelligenz & Lernen,2,/category/ki/" in (tmp_path / "migration/categories.csv").read_text(encoding="utf-8")
 
     # Zweiter Lauf: nichts aendert sich, nichts wird erneut geladen.
     before = post.read_text(encoding="utf-8")
@@ -258,7 +258,16 @@ def test_blocked_endpoints_do_not_abort_export(server, tmp_path, monkeypatch):
     meta = wp_export.read_frontmatter(tmp_path / "docs/blog/posts/2026/erster-beitrag.md")
     assert "authors" not in meta
     report = (tmp_path / "migration/report.md").read_text(encoding="utf-8")
-    assert "rest_forbidden" in report and "Autoren nicht abrufbar" in report
+    assert "rest_forbidden" in report and "Benutzerliste nicht abrufbar" in report
+    assert "ID 1: 2 Beiträge" in report
+
+    # Mit Zuordnungsdatei bekommen die Beitraege ihren Autor.
+    (tmp_path / "migration/autoren.yml").write_text("1: erika.muster\n", encoding="utf-8")
+    assert run_export(server, tmp_path) == 0
+    meta = wp_export.read_frontmatter(tmp_path / "docs/blog/posts/2026/erster-beitrag.md")
+    assert meta["authors"] == ["erika.muster"]
+    authors = yaml.safe_load((tmp_path / "docs/.authors.yml").read_text(encoding="utf-8"))
+    assert "erika.muster" in authors["authors"]
 
 
 def test_locked_api_gives_clear_message(server, tmp_path, monkeypatch, capsys):

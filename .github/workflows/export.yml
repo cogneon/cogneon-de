@@ -33,7 +33,7 @@ jobs:
     env:
       MODUS: ${{ inputs.modus || 'pilot' }}
       LIMIT: ${{ inputs.limit || '10' }}
-      MEDIEN: ${{ inputs.medien == false && 'nein' || 'ja' }}
+      MEDIEN: ${{ github.event_name == 'workflow_dispatch' && inputs.medien == false && 'nein' || 'ja' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -77,7 +77,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -q -B export/ergebnis
-          git add -A docs migration
+          # Medien bleiben vorerst draußen, bis ihre Ablage entschieden ist.
+          git add -A migration docs ':!docs/wp-content'
           git commit -q -m "WordPress-Export: Modus $MODUS, $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nichts zu committen"
           git push -q --force origin export/ergebnis
       - uses: actions/upload-artifact@v4
@@ -88,4 +89,5 @@ jobs:
             migration
             docs
             !docs/wp-content/**
+          include-hidden-files: true
           retention-days: 14

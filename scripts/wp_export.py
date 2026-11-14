@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import html
 import json
 import os
 import re
@@ -209,7 +210,7 @@ def convert_html(html: str, base_url: str) -> Converted:
         cap.append(em)
 
     text = markdownify(str(soup), heading_style="ATX", bullets="-", strong_em_symbol="*",
-                       escape_underscores=False)
+                       escape_underscores=False, newline_style="backslash")
     text = text.replace(" ", " ")
     text = re.sub(r"[ \t]+\n", "\n", text)
     text = re.sub(r"\n{3,}", "\n\n", text).strip() + "\n"
@@ -296,6 +297,8 @@ class Export:
         self.shortcodes = Counter()
         self.embeds = Counter()
         self.problems: list[str] = []
+        self.notes: list[str] = []
+        self.unmapped_authors = Counter()
         self.url_map: list[dict] = []
         self.media: dict[str, None] = {}
         self.categories: dict[int, dict] = {}
@@ -340,6 +343,11 @@ class Export:
                              ("tags", "wp/v2/tags"), ("users", "wp/v2/users"),
                              ("comments", "wp/v2/comments")):
             inv[label] = self.wp.count(route)
+        try:
+            counts = Counter(p.get("author") for p in self.wp.items("wp/v2/posts", {"_fields": "id,author"}))
+            inv["posts_by_author_id"] = {str(k): v for k, v in counts.most_common()}
+        except RuntimeError:
+            pass
         if "tribe/events/v1" in inv["namespaces"]:
             resp = self.wp.get("tribe/events/v1/events", {"per_page": 1, "start_date": "2000-01-01"})
             if resp.status_code == 200:
@@ -363,13 +371,23 @@ class Export:
         fields = "id,name,slug,description,link,count"
         self.categories = {c["id"]: c for c in self.wp.items("wp/v2/categories", {"_fields": fields})}
         self.tags = {t["id"]: t for t in self.wp.items("wp/v2/tags", {"_fields": fields})}
+        for term in (*self.categories.values(), *self.tags.values()):
+            term["name"] = html.unescape(term["name"])
         try:
             self.users = {u["id"]: u for u in self.wp.items(
                 "wp/v2/users", {"_fields": "id,name,slug,description,link"})}
         except RuntimeError as exc:
             self.users = {}
-            self.problems.append(f"Autoren nicht abrufbar ({exc}) - Beiträge werden ohne Autor exportiert. "
-                                 "Vermutlich sperrt ein Sicherheits-Plugin die Benutzerliste.")
+            self.notes.append(f"Benutzerliste nicht abrufbar ({exc}). Autoren kommen aus migration/autoren.yml.")
+        # Zuordnung von Hand: WordPress-Benutzer-ID -> Autorenkuerzel. Hat Vorrang.
+        mapping_file = self.migration / "autoren.yml"
+        if mapping_file.exists():
+            mapping = yaml.safe_load(mapping_file.read_text(encoding="utf-8")) or {}
+            for user_id, slug in mapping.items():
+                known = self.users.get(int(user_id), {})
+                self.users[int(user_id)] = {"id": int(user_id), "slug": str(slug),
+                                            "name": known.get("name", str(slug)),
+                                            "description": known.get("description", "")}
 
     def write_taxonomy_lists(self):
         """Schlagwort- und Kategorienlisten mit Haeufigkeit - Grundlage fuer die Konsolidierung."""
@@ -443,6 +461,8 @@ class Export:
             }
             if author:
                 meta["authors"] = [author["slug"]]
+            elif post.get("author"):
+                self.unmapped_authors[post["author"]] += 1
             cats = [self.categories[c]["name"] for c in post.get("categories", []) if c in self.categories]
             if cats:
                 meta["categories"] = cats
@@ -522,6 +542,9 @@ class Export:
                       f"- Kommentare: {inv.get('comments')}"]
             if "events" in inv:
                 lines.append(f"- Veranstaltungen: {inv['events']}")
+            if inv.get("posts_by_author_id"):
+                lines += ["", "Beiträge je WordPress-Benutzer-ID: " + ", ".join(
+                    f"{k}: {v}" for k, v in inv["posts_by_author_id"].items())]
             lines += ["", "| Inhaltstyp | Route | Anzahl |", "|---|---|---|"]
             lines += [f"| {k} | `{v['route']}` | {v['count']} |" for k, v in inv["types"].items()]
             lines += ["", "API-Namespaces: " + ", ".join(f"`{n}`" for n in inv["namespaces"]), ""]
@@ -536,6 +559,14 @@ class Export:
         if self.embeds:
             lines += ["", "## Einbettungen nach Anbieter", ""]
             lines += [f"- {h}: {n}" for h, n in self.embeds.most_common()]
+        if self.stats.get("media_bytes"):
+            lines += ["", f"Geladene Medien: {self.stats['media_bytes'] / 1e6:.1f} MB"]
+        if self.unmapped_authors:
+            lines += ["", "## Beiträge ohne Autoren-Zuordnung", "",
+                      "Diese Benutzer-IDs fehlen in `migration/autoren.yml`:", ""]
+            lines += [f"- ID {i}: {n} Beiträge" for i, n in self.unmapped_authors.most_common()]
+        if self.notes:
+            lines += ["", "## Hinweise", ""] + [f"- {n}" for n in self.notes]
         if self.problems:
             lines += ["", "## Probleme", ""] + [f"- {p}" for p in self.problems]
         (self.migration / "report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
