@@ -56,7 +56,7 @@
       <ul class="cg-cards">
         {% for k in g.karten %}
         <li>
-          {% if k.link %}<a class="cg-card cg-card--akzent" href="{{ k.link | url }}">{% else %}<div class="cg-card cg-card--linie">{% endif %}
+          {% if k.link %}<a class="cg-card" href="{{ k.link | url }}">{% else %}<div class="cg-card">{% endif %}
             <span class="cg-card__titel">{{ k.titel }}</span>
             <span class="cg-card__text">{{ k.text }}</span>
             {% if k.link %}<span class="cg-card__marke">Zum Angebot</span>{% else %}<span class="cg-card__vor">Seite folgt</span>{% endif %}
@@ -75,7 +75,7 @@
       <ul class="cg-cards">
         {% for f in m.formate.karten %}
         <li>
-          {% if f.link %}<a class="cg-card cg-card--akzent" href="{{ f.link | url }}">{% else %}<div class="cg-card cg-card--linie">{% endif %}
+          {% if f.link %}<a class="cg-card" href="{{ f.link | url }}">{% else %}<div class="cg-card">{% endif %}
             <span class="cg-card__vor">{{ f.anlass }}</span>
             <span class="cg-card__titel">{{ f.titel }}</span>
             <span class="cg-card__text">{{ f.text }}</span>

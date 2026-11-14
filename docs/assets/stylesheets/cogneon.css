@@ -395,10 +395,37 @@ input:focus-visible {
 }
 
 /* Einstieg der Startseite */
+/* Der Einstieg füllt den ersten Bildschirm. 3.4rem ist die Höhe der Kopfzeile. */
 .cg-hero {
+  position: relative;
   background: var(--cg-schwarz);
   color: #ffffff;
-  padding: 4.8rem 0 6rem;
+  padding: 3.2rem 0 4.8rem;
+  min-height: calc(100vh - 3.4rem);
+  min-height: calc(100svh - 3.4rem);
+  display: flex;
+  align-items: center;
+}
+.cg-hero > .cg-wrap {
+  width: 100%;
+}
+.cg-hero__weiter {
+  position: absolute;
+  left: 50%;
+  bottom: 1.2rem;
+  transform: translateX(-50%);
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 50%;
+}
+.cg-hero__weiter:hover {
+  color: var(--cg-orange);
 }
 .cg-hero__inner {
   display: grid;
@@ -420,15 +447,18 @@ input:focus-visible {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem 2rem;
+  gap: 0.4rem 0.8rem;
 }
 .cg-dimensionen li {
   font-family: var(--cg-font-kopf);
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  border-top: 4px solid var(--cg-orange);
-  padding-top: 0.5rem;
+}
+.cg-dimensionen li + li::before {
+  content: "·";
+  color: var(--cg-orange);
+  margin-right: 0.8rem;
 }
 
 /* Karten */
@@ -504,11 +534,12 @@ a.cg-card--dunkel:hover {
   color: var(--cg-orange);
   font-size: 1.4rem;
 }
-.cg-card--akzent {
-  border-top: 4px solid var(--cg-orange);
+/* Auf weißem Grund bekommen Karten die weiche Fläche, damit sie sichtbar bleiben. */
+.cg-section:not(.cg-section--soft) .cg-cards .cg-card:not(.cg-card--dunkel) {
+  background: var(--cg-bg-soft);
 }
-.cg-card--linie {
-  border-top: 4px solid var(--cg-fg);
+[data-md-color-scheme="slate"] .cg-section:not(.cg-section--soft) .cg-cards .cg-card:not(.cg-card--dunkel) {
+  background: var(--cg-karte);
 }
 .cg-card__titel {
   font-family: var(--cg-font-kopf);
