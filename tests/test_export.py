@@ -154,7 +154,7 @@ def test_convert_html_rewrites_links_and_media():
     assert "- Punkt eins" in md
     assert "alert" not in md and "srcset" not in md
     assert conv.embeds == ["https://www.youtube.com/embed/abc123"]
-    assert "Eingebetteter Inhalt: www.youtube.com" in md
+    assert "[Eingebetteter Inhalt: youtube.com](https://www.youtube.com/embed/abc123){ .embed }" in md
     assert conv.shortcodes == ["charta_unterschriften"]
     assert "Vertreten durch:<br>\nErika Muster<br>\nRegistereintrag: HRB 1" in md
     assert "\\" not in md
@@ -337,3 +337,52 @@ def test_spectra_icon_list_link_moves_to_label():
 def test_title_is_not_repeated():
     assert wp_export.with_title("Über uns", "## Über uns\n\nText\n") == "# Über uns\n\nText\n"
     assert wp_export.with_title("Über uns", "Text\n") == "# Über uns\n\nText\n"
+
+
+EMBED_PRIVACY = """<figure class="wp-block-embed wp-block-embed-youtube"><div class="wp-block-embed__wrapper">
+<div class="embed-privacy-container is-disabled embed-youtube" data-embed-provider="youtube">
+<button type="button" class="embed-privacy-enable screen-reader-text">Video anzeigen</button>
+<div class="embed-privacy-overlay"><div class="embed-privacy-inner"><p>Hier klicken, um den Inhalt von YouTube anzuzeigen.
+<noscript>Bitte aktiviere JavaScript.</noscript></p></div>
+<div class="embed-privacy-footer"><span class="embed-privacy-url"><a href="https://www.youtube.com/watch?v=ddO9idmax0o">„Twitter in Plain English“ direkt öffnen</a></span></div></div>
+<div class="embed-privacy-content"><script>var _oembed_1 = '{\\"embed\\":\\"&lt;iframe title=&quot;Twitter in Plain English&quot; src=&quot;https:\\\\/\\\\/www.youtube-nocookie.com\\\\/embed\\\\/ddO9idmax0o?feature=oembed&quot;&gt;&lt;\\\\/iframe&gt;\\"}';</script></div>
+</div></div></figure>"""
+
+
+def test_embed_privacy_placeholder_becomes_embed_link():
+    conv = wp_export.convert_html(EMBED_PRIVACY, "https://cogneon.de")
+    assert conv.markdown.strip() == "[YouTube: Twitter in Plain English](https://www.youtube.com/watch?v=ddO9idmax0o){ .embed }"
+    assert conv.embeds == ["https://www.youtube.com/watch?v=ddO9idmax0o"] and not conv.lost_embeds
+
+
+def test_embed_privacy_without_direct_link_uses_script():
+    html = ('<div class="embed-privacy-container" data-embed-provider="vimeo"><div class="embed-privacy-content">'
+            "<script>var _oembed_2 = '{\\\"embed\\\":\\\"&lt;iframe title=&quot;Film&quot; "
+            "src=&quot;https:\\\\/\\\\/player.vimeo.com\\\\/video\\\\/123456&quot;&gt;&lt;\\\\/iframe&gt;\\\"}';</script></div></div>")
+    conv = wp_export.convert_html(html, "https://cogneon.de")
+    assert conv.markdown.strip() == "[Vimeo: Film](https://player.vimeo.com/video/123456){ .embed }"
+
+
+def test_legacy_shortcodes():
+    html = ("<p>[av_video src=&#8217;https://www.youtube.com/watch?v=d7f_GZsQMpA&#8216; format=&#8217;16-9&#8242; av_uid=&#8217;av-1&#8242;]</p>"
+            "<p>[av_button label=&#8217;Zum Jam anmelden&#8216; link=&#8217;manually,https://example.org/tickets&#8242; size=&#8217;small&#8216;]</p>"
+            "<p>[bctt tweet=&#8220;HR wird Teil eines Netzwerks. <a href=\"https://cogneon.de/tag/hr/\">#hr</a>&#8243; username=&#8220;cogneon&#8220;]</p>"
+            "<p>[vimeo 108251676 w=500 h=281]</p>"
+            "<p>[pdf-embedder url=&#8220;https://cogneon.de/wp-content/uploads/2018/04/folien.pdf&#8220; width=&#8220;500&#8243;]</p>")
+    conv = wp_export.convert_html(html, "https://cogneon.de")
+    md = conv.markdown
+    assert "[Eingebetteter Inhalt: youtube.com](https://www.youtube.com/watch?v=d7f_GZsQMpA){ .embed }" in md
+    assert "[Zum Jam anmelden](https://example.org/tickets)" in md
+    assert "> HR wird Teil eines Netzwerks. [#hr](/tag/hr/)" in md
+    assert "[Eingebetteter Inhalt: Vimeo](https://vimeo.com/108251676){ .embed }" in md
+    assert "[PDF: folien.pdf](/wp-content/uploads/2018/04/folien.pdf)" in md
+    assert conv.shortcodes == []
+    assert "https://cogneon.de/wp-content/uploads/2018/04/folien.pdf" in conv.media
+
+
+def test_headings_shift_down_when_content_has_h1():
+    conv = wp_export.convert_html("<h1>Erster Tag</h1><h2>Vormittag</h2><p>Text</p>", "https://cogneon.de")
+    assert "## Erster Tag" in conv.markdown and "### Vormittag" in conv.markdown
+    assert conv.h1_count == 0 and conv.headings_shifted
+    untouched = wp_export.convert_html("<h2>Abschnitt</h2>", "https://cogneon.de")
+    assert "## Abschnitt" in untouched.markdown and not untouched.headings_shifted

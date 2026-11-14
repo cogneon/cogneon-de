@@ -135,6 +135,12 @@ class Converter(MarkdownConverter):
     def convert_br(self, el, text, *args, **kwargs):
         return "<br>\n"
 
+    def convert_a(self, el, text, *args, **kwargs):
+        result = super().convert_a(el, text, *args, **kwargs)
+        if el.get("data-embed") and result.endswith(")"):
+            result += "{ .embed }"
+        return result
+
 
 def markdownify(html_text: str, **options) -> str:
     return Converter(**options).convert(html_text)
@@ -147,6 +153,8 @@ class Converted:
     embeds: list[str] = field(default_factory=list)     # iframe-Quellen
     shortcodes: list[str] = field(default_factory=list)
     blocks: list[str] = field(default_factory=list)     # CSS-Klassen der WordPress-Bloecke
+    lost_embeds: list[str] = field(default_factory=list)
+    headings_shifted: bool = False
     relinked: list[str] = field(default_factory=list)    # Kachel-Links, auf Text umgehaengt
     h1_count: int = 0
     images_without_alt: int = 0
@@ -168,10 +176,96 @@ def _local_path(url: str) -> str:
     return path
 
 
-def convert_html(html: str, base_url: str) -> Converted:
+
+QUOTE_CHARS = "‘’‚‛′“”„″«»'"
+LEGACY_SHORTCODE_RE = re.compile(r"\[(av_video|av_button|bctt|vimeo|pdf-embedder)\b(.*?)\]", re.S)
+PROVIDER_NAMES = {"youtube": "YouTube", "x": "X", "vimeo": "Vimeo", "twitter": "X"}
+
+
+def _shortcode_attrs(raw: str) -> dict:
+    """Attribute eines Shortcodes lesen. WordPress hat die Anfuehrungszeichen typografisch ersetzt."""
+    text = html.unescape(raw)
+    for char in QUOTE_CHARS:
+        text = text.replace(char, '"')
+    return {k.lower(): v for k, v in re.findall(r'([\w-]+)\s*=\s*"(.*?)"(?=\s+[\w-]+\s*=|\s*$)', text.strip(), flags=re.S)}
+
+
+def _embed_link(url: str, title: str = "", provider: str = "") -> str:
+    """Einheitliche HTML-Form fuer Einbettungen. Wird beim Umwandeln zu einem Link mit Klasse 'embed'."""
+    host = urlparse(url).netloc.removeprefix("www.")
+    name = PROVIDER_NAMES.get(provider.lower(), "") or host
+    label = f"{name}: {title}" if title else f"Eingebetteter Inhalt: {name}"
+    return f'<p><a href="{html.escape(url, quote=True)}" data-embed="1">{html.escape(label)}</a></p>'
+
+
+def replace_legacy_shortcodes(source: str) -> str:
+    """Shortcodes frueherer Themes und Plugins, die WordPress nur noch als Text ausgibt."""
+
+    def repl(match):
+        kind, attrs = match.group(1), _shortcode_attrs(match.group(2))
+        if kind == "av_video" and attrs.get("src"):
+            return _embed_link(attrs["src"])
+        if kind == "av_button" and attrs.get("link"):
+            url = attrs["link"].split(",", 1)[-1].strip()
+            if url.startswith("http"):
+                return f'<p><a href="{html.escape(url, quote=True)}">{html.escape(attrs.get("label") or url)}</a></p>'
+        if kind == "bctt" and attrs.get("tweet"):
+            return f"<blockquote><p>{attrs['tweet']}</p></blockquote>"
+        if kind == "vimeo":
+            found = re.search(r"(\d{6,})", html.unescape(match.group(2)))
+            if found:
+                return _embed_link(f"https://vimeo.com/{found.group(1)}", provider="vimeo")
+        if kind == "pdf-embedder" and attrs.get("url"):
+            name = unquote(urlparse(attrs["url"]).path.rsplit("/", 1)[-1])
+            return f'<p><a href="{html.escape(attrs["url"], quote=True)}">PDF: {html.escape(name)}</a></p>'
+        return match.group(0)
+
+    return LEGACY_SHORTCODE_RE.sub(repl, source)
+
+
+def _embed_privacy_target(container) -> tuple[str, str]:
+    """Original-Adresse und Titel einer Einbettung, die das Plugin Embed Privacy verdeckt."""
+    title, url = "", ""
+    direct = container.select_one(".embed-privacy-url a[href]")
+    if direct:
+        url = direct["href"]
+        title = re.sub(r"\s*direkt öffnen\s*$", "", direct.get_text(strip=True)).strip("„“\"” ")
+    script = container.find("script")
+    if script and script.string:
+        embed = html.unescape(re.sub(r"\\+([/\"])", r"\1", script.string))
+        if not title:
+            found = re.search(r'title="([^"]+)"', embed)
+            title = found.group(1) if found else ""
+        if not url:
+            status = re.findall(r'href="(https?://(?:twitter|x)\.com/[^"]+/status/\d+[^"]*)"', embed)
+            src = re.search(r'src="(https?://[^"]+)"', embed)
+            url = status[-1] if status else (src.group(1) if src else "")
+    return url, title
+
+
+def convert_html(source: str, base_url: str) -> Converted:
     site_host = urlparse(base_url).netloc.lower()
-    soup = BeautifulSoup(html or "", "html.parser")
+    soup = BeautifulSoup(replace_legacy_shortcodes(source or ""), "html.parser")
     out = Converted(markdown="")
+
+    # Embed Privacy: Platzhalter durch die eigentliche Einbettung ersetzen.
+    for container in soup.select(".embed-privacy-container"):
+        provider = container.get("data-embed-provider", "")
+        url, title = _embed_privacy_target(container)
+        if url:
+            out.embeds.append(url)
+            container.replace_with(BeautifulSoup(_embed_link(url, title, provider), "html.parser"))
+        else:
+            out.lost_embeds.append(provider or "unbekannt")
+            container.decompose()
+
+    # Barrierefreiheit: eine Hauptueberschrift je Seite. Die setzt der Export aus dem Titel,
+    # Ueberschriften im Inhalt ruecken deshalb eine Ebene tiefer, wenn dort eine h1 steht.
+    if soup.find("h1"):
+        for level in (5, 4, 3, 2, 1):
+            for tag in soup.find_all(f"h{level}"):
+                tag.name = f"h{level + 1}"
+        out.headings_shifted = True
 
     for tag in soup.find_all(class_=True):
         for cls in tag.get("class", []):
@@ -192,11 +286,7 @@ def convert_html(html: str, base_url: str) -> Converted:
             continue
         src = urljoin(base_url, src)
         out.embeds.append(src)
-        para = soup.new_tag("p")
-        link = soup.new_tag("a", href=src)
-        link.string = f"Eingebetteter Inhalt: {urlparse(src).netloc}"
-        para.append(link)
-        frame.replace_with(para)
+        frame.replace_with(BeautifulSoup(_embed_link(src, frame.get("title", "")), "html.parser"))
 
     for img in soup.find_all("img"):
         src = img.get("data-lazy-src") or img.get("data-src") or img.get("src") or ""
@@ -220,6 +310,10 @@ def convert_html(html: str, base_url: str) -> Converted:
         if not href:
             continue
         absolute = urljoin(base_url, href)
+        if link.get("data-embed"):
+            if absolute not in out.embeds:
+                out.embeds.append(absolute)
+            continue
         if not link.get_text(strip=True) and not link.find("img"):
             # Verlinkte Kachel (z. B. Spectra): leerer Link liegt ueber dem ganzen Block.
             # Der Link wandert auf die Ueberschrift oder den ersten Text des Blocks.
@@ -510,6 +604,10 @@ class Export:
             self.empty_links.append((path, href))
         if conv.h1_count:
             self.h1_pages[path] = conv.h1_count
+        if conv.headings_shifted:
+            self.stats["pages_headings_shifted"] += 1
+        for provider in conv.lost_embeds:
+            self.problems.append(f"Einbettung ohne auffindbare Adresse ({provider}): {path}")
         if conv.images_without_alt:
             self.images_without_alt[path] = conv.images_without_alt
         for code in conv.shortcodes:
