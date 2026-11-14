@@ -87,7 +87,7 @@
       {% endif %}
       {% if m.belege.zitat %}
       <figure class="cg-zitat">
-        <blockquote>{{ m.belege.zitat.text }}</blockquote>
+        <blockquote{% if m.belege.zitat.sprache %} lang="{{ m.belege.zitat.sprache }}"{% endif %}>{{ m.belege.zitat.text }}</blockquote>
         <figcaption>{{ m.belege.zitat.quelle }}</figcaption>
       </figure>
       {% endif %}
