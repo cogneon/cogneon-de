@@ -50,8 +50,8 @@ belege:
       text: Seitdem führen wir Expert Debriefings durch.
     - zahl: "2001"
       text: Gründung von Cogneon in Nürnberg.
-    - zahl: "[Zahl]"
-      text: "[ausgebildete Moderator:innen - Zahl belegen]"
+    - zahl: "1.000+"
+      text: Ausgebildete Moderator:innen.
   kunden:
     - name: "[Kundenlogo]"
     - name: "[Kundenlogo]"
@@ -60,8 +60,11 @@ belege:
     - name: "[Kundenlogo]"
     - name: "[Kundenlogo]"
   zitat:
-    text: "[Kundenzitat - erst nach Freigabe einsetzen]"
-    quelle: "[Name, Funktion, Organisation]"
+    text: >-
+      Simon is an outstanding thought leader of Practice with modern social
+      media, and a very pedagogical skill to take people into the ICT future.
+    quelle: Leif Edvinsson
+    sprache: en
 
 newsletter:
   titel: Keep Calm & Learn On

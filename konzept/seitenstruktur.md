@@ -202,3 +202,5 @@ In der englischen Version der Website bleiben die Produktnamen unverändert.
 - Eigener Feed je Blog-Kategorie - technisch zu prüfen
 - Preisangaben: bei welchen Angeboten ja, bei welchen nein
 - Sammlung der Fallbeispiele und Freigabe der Kundennennungen
+- Animation im dunklen Einstieg der Startseite: ruhig, ohne Video, abschaltbar bei "Bewegung reduzieren", mit Pause-Möglichkeit
+- Moderatorenausbildung (heute `/edmod/`) ist über "Angebote" nicht mehr erreichbar - Platz in der Struktur festlegen (Wissenstransfer, Akademie oder beides)
