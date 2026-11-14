@@ -34,7 +34,7 @@ from urllib.parse import unquote, urljoin, urlparse
 import requests
 import yaml
 from bs4 import BeautifulSoup, Comment
-from markdownify import markdownify
+from markdownify import MarkdownConverter
 
 USER_AGENT = "cogneon-de-export/1.0 (+https://github.com/cogneon/cogneon-de)"
 CORE_TYPES_SKIP = {
@@ -129,12 +129,26 @@ class WordPress:
 # HTML -> Markdown
 # --------------------------------------------------------------------------
 
+class Converter(MarkdownConverter):
+    """Markdownify mit sichtbaren Zeilenumbruechen (<br>), die Zensical versteht."""
+
+    def convert_br(self, el, text, *args, **kwargs):
+        return "<br>\n"
+
+
+def markdownify(html_text: str, **options) -> str:
+    return Converter(**options).convert(html_text)
+
+
 @dataclass
 class Converted:
     markdown: str
     media: list[str] = field(default_factory=list)      # absolute URLs
     embeds: list[str] = field(default_factory=list)     # iframe-Quellen
     shortcodes: list[str] = field(default_factory=list)
+    blocks: list[str] = field(default_factory=list)     # CSS-Klassen der WordPress-Bloecke
+    empty_links: list[str] = field(default_factory=list)
+    images_without_alt: int = 0
 
 
 def _same_site(url: str, site_host: str) -> bool:
@@ -157,6 +171,12 @@ def convert_html(html: str, base_url: str) -> Converted:
     site_host = urlparse(base_url).netloc.lower()
     soup = BeautifulSoup(html or "", "html.parser")
     out = Converted(markdown="")
+
+    for tag in soup.find_all(class_=True):
+        for cls in tag.get("class", []):
+            if re.fullmatch(r"(wp-block-[a-z0-9-]+|uagb-block-[a-z-]+[a-z])", cls) or cls.startswith("wp-block-uagb-"):
+                out.blocks.append(cls)
+    out.blocks = sorted(set(out.blocks))
 
     for node in soup.find_all(string=lambda s: isinstance(s, Comment)):
         node.extract()
@@ -186,6 +206,8 @@ def convert_html(html: str, base_url: str) -> Converted:
         for attr in ("srcset", "sizes", "data-lazy-src", "data-src", "data-lazy-srcset",
                      "loading", "decoding", "class", "width", "height", "style"):
             img.attrs.pop(attr, None)
+        if not (img.get("alt") or "").strip():
+            out.images_without_alt += 1
         if _same_site(src, site_host):
             out.media.append(src)
             img["src"] = _local_path(src)
@@ -197,6 +219,8 @@ def convert_html(html: str, base_url: str) -> Converted:
         if not href:
             continue
         absolute = urljoin(base_url, href)
+        if not link.get_text(strip=True) and not link.find("img"):
+            out.empty_links.append(absolute)
         if absolute.startswith(("http://", "https://")) and _same_site(absolute, site_host):
             link["href"] = _local_path(absolute)
             if "/wp-content/uploads/" in absolute:
@@ -210,7 +234,7 @@ def convert_html(html: str, base_url: str) -> Converted:
         cap.append(em)
 
     text = markdownify(str(soup), heading_style="ATX", bullets="-", strong_em_symbol="*",
-                       escape_underscores=False, newline_style="backslash")
+                       escape_underscores=False)
     text = text.replace(" ", " ")
     text = re.sub(r"[ \t]+\n", "\n", text)
     text = re.sub(r"\n{3,}", "\n\n", text).strip() + "\n"
@@ -298,6 +322,11 @@ class Export:
         self.embeds = Counter()
         self.problems: list[str] = []
         self.notes: list[str] = []
+        self.blocks = Counter()
+        self.block_examples: dict[str, str] = {}
+        self.empty_links: list[tuple[str, str]] = []
+        self.images_without_alt = Counter()
+        self.frozen_changed: list[str] = []
         self.unmapped_authors = Counter()
         self.url_map: list[dict] = []
         self.media: dict[str, None] = {}
@@ -429,6 +458,18 @@ class Export:
 
     def _convert(self, item: dict) -> Converted:
         conv = convert_html(item["content"]["rendered"], self.wp.base_url)
+        path = url_path(item["link"])
+        if self.args.raw:
+            raw = self.migration / "raw" / (path.strip("/").replace("/", "_") or "startseite")
+            raw.parent.mkdir(parents=True, exist_ok=True)
+            raw.with_suffix(".html").write_text(item["content"]["rendered"], encoding="utf-8")
+        for cls in conv.blocks:
+            self.blocks[cls] += 1
+            self.block_examples.setdefault(cls, path)
+        for href in conv.empty_links:
+            self.empty_links.append((path, href))
+        if conv.images_without_alt:
+            self.images_without_alt[path] = conv.images_without_alt
         for code in conv.shortcodes:
             self.shortcodes[code] += 1
         for src in conv.embeds:
@@ -438,6 +479,13 @@ class Export:
         return conv
 
     def _record(self, kind: str, item: dict, target: Path, state: str):
+        if state == "frozen":
+            old = read_frontmatter(target)
+            seen = str((old.get("wp") or {}).get("modified") or (old.get("date") or {}).get("updated") or "")
+            if seen and item["modified"][:10] > seen[:10]:
+                self.frozen_changed.append(
+                    f"`{target.relative_to(self.root)}`: in WordPress geändert am {item['modified'][:10]}, "
+                    f"im Repo Stand {seen[:10]}")
         self.stats[f"{kind}_{state}"] += 1
         self.url_map.append({
             "old_path": url_path(item["link"]),
@@ -480,10 +528,25 @@ class Export:
 
     def export_pages(self):
         fields = "id,date,modified,slug,link,title,content,parent,menu_order,template"
-        for page in self.wp.items("wp/v2/pages", {"_fields": fields, "orderby": "id",
-                                                  "order": "asc"}, self.args.limit):
-            rel = url_path(page["link"]).strip("/")
-            target = self.docs / rel / "index.md" if rel else self.docs / "index.md"
+        pages = list(self.wp.items("wp/v2/pages", {"_fields": fields, "orderby": "id",
+                                                   "order": "asc"}, self.args.limit))
+        paths = [url_path(p["link"]) for p in pages]
+        for page in pages:
+            path = url_path(page["link"])
+            rel = path.strip("/")
+            has_children = any(other != path and other.startswith(path) for other in paths)
+            if not rel:
+                target = self.docs / "index.md"
+            elif has_children:
+                target = self.docs / rel / "index.md"
+                stale = self.docs / f"{rel}.md"
+                if stale.exists() and not read_frontmatter(stale).get("frozen"):
+                    stale.unlink()
+            else:
+                target = self.docs / f"{rel}.md"
+                stale = self.docs / rel / "index.md"   # Ablage aus frueheren Laeufen
+                if stale.exists() and not read_frontmatter(stale).get("frozen"):
+                    stale.unlink()
             conv = self._convert(page)
             meta = {
                 "title": html_to_text(page["title"]["rendered"]),
@@ -560,6 +623,21 @@ class Export:
         if self.embeds:
             lines += ["", "## Einbettungen nach Anbieter", ""]
             lines += [f"- {h}: {n}" for h, n in self.embeds.most_common()]
+        if self.blocks:
+            lines += ["", "## WordPress-Blöcke im Inhalt", "", "| Block | Seiten | Beispiel |", "|---|---|---|"]
+            lines += [f"| `{b}` | {n} | {self.block_examples[b]} |" for b, n in self.blocks.most_common()]
+        if self.empty_links:
+            lines += ["", "## Links ohne sichtbaren Text", "",
+                      "Meist verlinkte Kacheln oder Boxen. Der Export setzt den Link unter den Block.", ""]
+            lines += [f"- {page}: {href}" for page, href in self.empty_links[:200]]
+        if self.images_without_alt:
+            total = sum(self.images_without_alt.values())
+            lines += ["", f"## Bilder ohne Beschreibung: {total} auf {len(self.images_without_alt)} Seiten", ""]
+            lines += [f"- {page}: {n}" for page, n in self.images_without_alt.most_common(50)]
+        if self.frozen_changed:
+            lines += ["", "## Eingefrorene Seiten mit Änderungen in WordPress", "",
+                      "Diese Seiten wurden nicht überschrieben. Änderungen bei Bedarf von Hand nachziehen.", ""]
+            lines += [f"- {entry}" for entry in self.frozen_changed]
         if self.stats.get("media_bytes"):
             lines += ["", f"Geladene Medien: {self.stats['media_bytes'] / 1e6:.1f} MB"]
         if self.unmapped_authors:
@@ -609,6 +687,8 @@ def main(argv=None) -> int:
                         type=lambda s: [t.strip() for t in s.split(",") if t.strip()])
     parser.add_argument("--limit", type=int, help="nur die ersten N Einträge je Typ (Pilot)")
     parser.add_argument("--no-media", action="store_true", help="keine Medien laden")
+    parser.add_argument("--raw", action="store_true",
+                        help="Original-HTML je Seite nach migration/raw/ schreiben (zur Fehlersuche)")
     parser.add_argument("--inventory-only", action="store_true", help="nur zählen, nichts schreiben")
     parser.add_argument("--delay", type=float, default=0.2, help="Pause zwischen Abrufen in Sekunden")
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent.parent,

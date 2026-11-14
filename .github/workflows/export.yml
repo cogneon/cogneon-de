@@ -48,7 +48,7 @@ jobs:
         run: |
           ARGS=""
           if [ "$MODUS" = "inventar" ]; then ARGS="--inventory-only"; fi
-          if [ "$MODUS" = "pilot" ]; then ARGS="--limit $LIMIT"; fi
+          if [ "$MODUS" = "pilot" ]; then ARGS="--limit $LIMIT --raw"; fi
           if [ "$MEDIEN" = "nein" ]; then ARGS="$ARGS --no-media"; fi
           python scripts/wp_export.py $ARGS
       - name: Alte URLs aus der Sitemap sichern
@@ -77,8 +77,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -q -B export/ergebnis
-          # Medien bleiben vorerst draußen, bis ihre Ablage entschieden ist.
-          git add -A migration docs ':!docs/wp-content'
+          # Medien nur mitnehmen, solange sie klein sind (Pilot). Die Ablage großer
+          # Medienbestände ist noch nicht entschieden.
+          MB=$(du -sm docs/wp-content 2>/dev/null | cut -f1 || echo 0)
+          if [ "${MB:-0}" -le 100 ]; then git add -A docs; else git add -A docs ':!docs/wp-content'; fi
+          git add -A migration
+          git add -f migration/raw 2>/dev/null || true
           git commit -q -m "WordPress-Export: Modus $MODUS, $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nichts zu committen"
           git push -q --force origin export/ergebnis
       - uses: actions/upload-artifact@v4

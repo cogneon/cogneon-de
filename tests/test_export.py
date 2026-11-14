@@ -29,6 +29,9 @@ POST_HTML = """
 <figure class="wp-block-embed"><iframe src="https://www.youtube.com/embed/abc123"></iframe></figure>
 <p>[charta_unterschriften]</p>
 <p>Download: <a href="{base}/wp-content/uploads/2026/01/handout.pdf">Handout</a></p>
+<p>Vertreten durch:<br>Erika Muster<br />Registereintrag: HRB 1</p>
+<div class="wp-block-uagb-info-box uagb-block-9f8e"><a class="uagb-infobox-link-wrap" href="https://partner.example/"></a>
+<h3 class="uagb-ifb-title">Partner Eins</h3></div>
 <script>alert("weg")</script>
 </div>
 """
@@ -153,6 +156,11 @@ def test_convert_html_rewrites_links_and_media():
     assert conv.embeds == ["https://www.youtube.com/embed/abc123"]
     assert "Eingebetteter Inhalt: www.youtube.com" in md
     assert conv.shortcodes == ["charta_unterschriften"]
+    assert "Vertreten durch:<br>\nErika Muster<br>\nRegistereintrag: HRB 1" in md
+    assert "\\" not in md
+    assert conv.empty_links == ["https://partner.example/"]
+    assert "wp-block-uagb-info-box" in conv.blocks and "wp-block-uagb-container" in conv.blocks
+    assert conv.images_without_alt == 0
     assert f"{base}/wp-content/uploads/2026/01/handout.pdf" in conv.media
 
 
@@ -181,7 +189,7 @@ def test_full_export_is_repeatable_and_respects_frozen(server, tmp_path):
     assert wp_export.read_frontmatter(tmp_path / "docs/blog/posts/2025/zweiter-beitrag.md")["pin"] is True
 
     assert (tmp_path / "docs/angebote/index.md").exists()
-    assert (tmp_path / "docs/angebote/wissenstransfer/index.md").exists()
+    assert (tmp_path / "docs/angebote/wissenstransfer.md").exists()
     assert "Handgebaut" in home.read_text(encoding="utf-8"), "frozen-Seite wurde überschrieben"
 
     for name in ("bild-1024x576.png", "handout.pdf", "titel.jpg"):
@@ -199,6 +207,8 @@ def test_full_export_is_repeatable_and_respects_frozen(server, tmp_path):
     assert "/2026/01/15/erster-beitrag/,post,11" in url_map
     assert ",frozen" in url_map
 
+    assert "| `wp-block-uagb-info-box` | 1 |" in report
+    assert "## Links ohne sichtbaren Text" in report and "https://partner.example/" in report
     tags = (tmp_path / "migration/tags.csv").read_text(encoding="utf-8")
     assert "lernos,lernOS,1,/tag/lernos/" in tags
     assert "ki,Künstliche Intelligenz & Lernen,2,/category/ki/" in (tmp_path / "migration/categories.csv").read_text(encoding="utf-8")
@@ -300,3 +310,15 @@ def test_credentials_come_from_environment_only(monkeypatch):
     monkeypatch.setenv("WP_APP_PASSWORD", "test-wert")
     wp = wp_export.WordPress("https://cogneon.de")
     assert wp.authenticated and wp.session.auth == ("export", "test-wert")
+
+
+def test_frozen_page_changed_in_wordpress_is_reported(server, tmp_path):
+    page = tmp_path / "docs/angebote/index.md"
+    page.parent.mkdir(parents=True)
+    page.write_text("---\ntitle: Angebote\nfrozen: true\nwp:\n  id: 21\n  modified: '2025-06-01'\n---\n\n# Neu gebaut\n",
+                    encoding="utf-8")
+    assert run_export(server, tmp_path, "--raw") == 0
+    assert "Neu gebaut" in page.read_text(encoding="utf-8")
+    report = (tmp_path / "migration/report.md").read_text(encoding="utf-8")
+    assert "in WordPress geändert am 2026-01-01, im Repo Stand 2025-06-01" in report
+    assert (tmp_path / "migration/raw/angebote.html").exists()

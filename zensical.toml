@@ -13,6 +13,7 @@ use_directory_urls = true
 
 [project.theme]
 language = "de"
+logo = "assets/logo.svg"
 # Keine Schriften von Drittanbietern laden (kein Cookie-Banner noetig).
 font = false
 features = [
