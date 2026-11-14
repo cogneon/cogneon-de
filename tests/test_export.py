@@ -71,9 +71,9 @@ def make_site(base: str) -> dict:
              "template": ""},
         ],
         "wp/v2/categories": [{"id": 5, "name": "Künstliche Intelligenz", "slug": "ki",
-                              "description": "", "link": f"{base}/category/ki/"}],
+                              "description": "", "link": f"{base}/category/ki/", "count": 2}],
         "wp/v2/tags": [{"id": 7, "name": "lernOS", "slug": "lernos", "description": "",
-                        "link": f"{base}/tag/lernos/"}],
+                        "link": f"{base}/tag/lernos/", "count": 1}],
         "wp/v2/users": [{"id": 1, "name": "Erika Muster", "slug": "erika.muster",
                          "description": "<p>Beraterin</p>", "link": f"{base}/author/erika.muster/"}],
         "wp/v2/media": [{"id": 90, "source_url": f"{base}/wp-content/uploads/2026/01/titel.jpg"}],
@@ -198,6 +198,10 @@ def test_full_export_is_repeatable_and_respects_frozen(server, tmp_path):
     url_map = (tmp_path / "migration/url-map.csv").read_text(encoding="utf-8")
     assert "/2026/01/15/erster-beitrag/,post,11" in url_map
     assert ",frozen" in url_map
+
+    tags = (tmp_path / "migration/tags.csv").read_text(encoding="utf-8")
+    assert "lernos,lernOS,1,/tag/lernos/" in tags
+    assert "ki,Künstliche Intelligenz,2,/category/ki/" in (tmp_path / "migration/categories.csv").read_text(encoding="utf-8")
 
     # Zweiter Lauf: nichts aendert sich, nichts wird erneut geladen.
     before = post.read_text(encoding="utf-8")

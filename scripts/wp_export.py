@@ -360,7 +360,7 @@ class Export:
     # -- Stammdaten --------------------------------------------------------
 
     def load_taxonomies(self):
-        fields = "id,name,slug,description,link"
+        fields = "id,name,slug,description,link,count"
         self.categories = {c["id"]: c for c in self.wp.items("wp/v2/categories", {"_fields": fields})}
         self.tags = {t["id"]: t for t in self.wp.items("wp/v2/tags", {"_fields": fields})}
         try:
@@ -370,6 +370,20 @@ class Export:
             self.users = {}
             self.problems.append(f"Autoren nicht abrufbar ({exc}) - Beiträge werden ohne Autor exportiert. "
                                  "Vermutlich sperrt ein Sicherheits-Plugin die Benutzerliste.")
+
+    def write_taxonomy_lists(self):
+        """Schlagwort- und Kategorienlisten mit Haeufigkeit - Grundlage fuer die Konsolidierung."""
+        self.migration.mkdir(parents=True, exist_ok=True)
+        for name, terms in (("tags", self.tags), ("categories", self.categories)):
+            rows = sorted(terms.values(), key=lambda t: (-int(t.get("count") or 0), t["slug"]))
+            with open(self.migration / f"{name}.csv", "w", newline="", encoding="utf-8") as fh:
+                writer = csv.writer(fh)
+                writer.writerow(["slug", "name", "count", "old_path"])
+                for term in rows:
+                    writer.writerow([term["slug"], term["name"], term.get("count") or 0,
+                                     url_path(term.get("link") or "")])
+            self.stats[f"{name}_total"] = len(rows)
+            self.stats[f"{name}_used_once_or_never"] = sum(1 for t in rows if int(t.get("count") or 0) <= 1)
 
     def write_authors(self):
         """Ergaenzt docs/.authors.yml um fehlende Autoren. Bestehende bleiben unveraendert."""
@@ -540,6 +554,7 @@ class Export:
             return 2
         if not self.args.inventory_only:
             self.load_taxonomies()
+            self.write_taxonomy_lists()
             self.write_authors()
             if "posts" in self.args.types:
                 self.export_posts()

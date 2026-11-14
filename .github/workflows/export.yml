@@ -1,8 +1,8 @@
 name: WordPress-Export
 
-# Liest cogneon.de über die öffentliche REST-API aus. Das Ergebnis liegt als
-# Artefakt am Lauf (Bericht, Inventar, exportierte Dateien) - es wird nichts
-# ins Repo geschrieben.
+# Liest cogneon.de über die REST-API aus. Das Ergebnis landet auf dem Branch
+# export/ergebnis (wird bei jedem Lauf überschrieben) und als Artefakt am Lauf.
+# main bleibt unberührt - übernommen wird per Pull Request.
 on:
   workflow_dispatch:
     inputs:
@@ -24,7 +24,7 @@ on:
     paths: [".github/workflows/export.yml", "scripts/wp_export.py"]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   export:
@@ -71,6 +71,15 @@ jobs:
         run: |
           zensical build
           python scripts/check_urls.py --url-map migration/url-map.csv --report-only
+      - name: Ergebnis auf Branch export/ergebnis ablegen
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -q -B export/ergebnis
+          git add -A docs migration
+          git commit -q -m "WordPress-Export: Modus $MODUS, $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nichts zu committen"
+          git push -q --force origin export/ergebnis
       - uses: actions/upload-artifact@v4
         if: always()
         with:
