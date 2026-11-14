@@ -6,22 +6,36 @@ site_name = "Cogneon"
 site_url = "https://cogneon.de/"
 site_description = "Cogneon - Wissensmanagement und Lernende Organisation"
 site_author = "Cogneon GmbH"
-copyright = "Cogneon GmbH"
+copyright = "Cogneon GmbH - The Knowledge Company"
 docs_dir = "docs"
 site_dir = "site"
 use_directory_urls = true
-extra_css = ["assets/stylesheets/extra.css"]
+extra_css = ["assets/stylesheets/cogneon.css"]
+
+# Seitenmenü (mobil) und Reihenfolge der Seiten. Das Menü in der Kopfzeile
+# steht unter [project.extra] weiter unten.
+nav = [
+  { "Startseite" = "index.md" },
+  { "Angebote" = [
+    "angebote.md",
+    "wissenstransfer.md",
+    "expert-debriefing.md",
+  ] },
+  { "Bausteine" = "bausteine.md" },
+]
 
 [project.theme]
 language = "de"
-logo = "assets/logo.svg"
-# Keine Schriften von Drittanbietern laden (kein Cookie-Banner noetig).
+custom_dir = "overrides"
+# Kopfzeile ist immer dunkel, deshalb das helle Logo.
+logo = "assets/logo-hell.svg"
+favicon = "assets/favicon.svg"
+# Keine Schriften von Drittanbietern laden. Die Schriften liegen lokal
+# unter docs/assets/fonts und werden in cogneon.css eingebunden.
 font = false
 features = [
   "content.tooltips",
-  "navigation.footer",
   "navigation.indexes",
-  "navigation.tabs",
   "navigation.top",
   "search.highlight",
 ]
@@ -29,18 +43,24 @@ features = [
 # Light/Dark-Mode: folgt dem System, per Schalter umstellbar.
 [[project.theme.palette]]
 media = "(prefers-color-scheme)"
+primary = "custom"
+accent = "custom"
 toggle.icon = "lucide/sun-moon"
 toggle.name = "Helles Design"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
+primary = "custom"
+accent = "custom"
 toggle.icon = "lucide/sun"
 toggle.name = "Dunkles Design"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
+primary = "custom"
+accent = "custom"
 toggle.icon = "lucide/moon"
 toggle.name = "Systemeinstellung"
 
@@ -53,6 +73,10 @@ post_dir = "blog/posts"
 post_url_format = "{date}/{slug}"
 authors_profiles = true
 pagination_per_page = 10
+
+# Daten aus _data/*.yml stehen in den Vorlagen als config.extra.<datei> bereit.
+[project.plugins.markdownextradata]
+data = "_data"
 
 [project.markdown_extensions]
 abbr = {}
@@ -67,3 +91,27 @@ pymdownx.betterem = {}
 pymdownx.details = {}
 pymdownx.superfences = {}
 pymdownx.tasklist.custom_checkbox = true
+
+# Menü der Kopfzeile und Angaben für die Fußzeile.
+[project.extra]
+erstgespraech = "kontakt/"
+
+[[project.extra.menu]]
+titel = "Angebote"
+url = "angebote/"
+
+[[project.extra.menu]]
+titel = "Akademie"
+url = "akademie/"
+
+[[project.extra.menu]]
+titel = "Blog"
+url = "blog/"
+
+[[project.extra.menu]]
+titel = "Termine"
+url = "events/"
+
+[[project.extra.menu]]
+titel = "Über uns"
+url = "ueber-uns/"

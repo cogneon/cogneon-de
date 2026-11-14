@@ -6,3 +6,4 @@ __pycache__/
 .venv/
 .DS_Store
 migration/raw/
+_data/aktuell.yml
