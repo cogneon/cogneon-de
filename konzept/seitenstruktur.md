@@ -141,8 +141,18 @@ Eine Datei pro Termin. Daraus entstehen Terminseiten, Kalender-Feed und die List
 Gewählte Richtung: "Kontrast" - dunkler Einstieg mit großem Claim, eigene Schrift für Überschriften, Orange als tragende Markenfarbe. Die Abschnitte "Womit können wir helfen?" und "Im Blick" nutzen Karten auf hellem Grund.
 
 - Das Verkehrsschild "Wissensdatenbank → Lernende Organisation" aus der Akademie bekommt einen eigenen Abschnitt auf der Startseite.
-- Farbkontraste: Weiße Schrift auf dem Markenorange `#ff6600` erreicht nur 2,94:1 und ist nicht zulässig. Auf Orange steht dunkle Schrift, oder die Fläche nutzt ein dunkleres Orange.
+- Farbkontraste: Text erfüllt WCAG AA (4,5:1). Bewusste Ausnahme: der Abschnitt "Belege" auf der Startseite mit weißer Schrift auf dem Markenorange `#ff6600` (2,94:1). Entschieden am 14.11.2026, weil diese Kombination zur Marke gehört. Die Ausnahme gilt nur für diesen Abschnitt, nicht für Fließtext, Links oder Bedienelemente.
+- Das Verkehrsschild liegt als Bild unter `docs/assets/bilder/`. Es wird durch die SVG-Fassung ersetzt, sobald sie vorliegt.
 - Schriften werden lokal ausgeliefert.
+
+## Bausteine
+
+Die Seiten werden aus wiederverwendbaren Bausteinen gebaut, damit sie einheitlich aussehen:
+
+- **Seitenvorlagen**: Angebotsseite, Übersichtsseite, Startseite. Die Redaktion füllt Felder im Frontmatter und Text, das Layout kommt aus der Vorlage.
+- **Bausteine im Text**: Karten-Raster, Knopf, Hinweiskasten, Akkordeon/FAQ, Ablauf in Schritten, Zitat, Logo-Leiste, Erstgespräch-Block. Sie werden als kurze Markdown- oder HTML-Schnipsel eingesetzt.
+- **Textbausteine**: wiederkehrende Abschnitte wie der Erstgespräch-Block liegen einmal im Repo und werden eingebunden.
+- **Bausteinseite**: Eine Seite im Repo zeigt jeden Baustein mit Beispiel und Schreibweise. Sie ist zugleich der Design-Guide.
 
 ## Sprachregel
 
