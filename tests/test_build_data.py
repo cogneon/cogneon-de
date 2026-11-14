@@ -46,3 +46,25 @@ def test_vorschau_nur_ohne_beitraege(tmp_path):
     write(tmp_path / "inhalte/aktuell.yml",
           "blog_vorschau:\n  - {titel: Vorschau, datum: 01.01.2026, url: blog/}\n")
     assert build_data.build(tmp_path, dt.date(2026, 11, 14))["blog"][0]["titel"] == "Vorschau"
+
+
+def test_blog_uebersicht(tmp_path):
+    write(tmp_path / "docs/blog/posts/2026/a.md",
+          "---\ntitle: Neu\ndate:\n  created: '2026-10-12'\nslug: a\ncategories:\n- Keep Calm & Learn On\n---\n\n"
+          "# Neu\n\nEin **Anriss** mit [Link](https://example.org) und ![Bild](/b.png).\n\n<!-- more -->\n\nRest.\n")
+    write(tmp_path / "docs/blog/posts/2025/b.md",
+          "---\ntitle: Alt\ndate:\n  created: '2025-01-01'\nslug: b\n---\n\nText\n")
+    blog = build_data.build_blog(tmp_path)
+    assert blog["neueste"][0] == {
+        "titel": "Neu", "datum": "12.10.2026", "url": "2026/10/12/a/",
+        "kategorie": "Keep Calm & Learn On", "auszug": "Ein Anriss mit Link und.",
+    }
+    assert blog["kategorien"] == [{"titel": "Keep Calm & Learn On", "anzahl": 1,
+                                   "url": "category/keep-calm--learn-on/"}]
+    assert [j["jahr"] for j in blog["archiv"]] == [2026, 2025]
+
+
+def test_auszug_wird_an_wortgrenze_gekuerzt():
+    text = "Wort " * 100
+    result = build_data.excerpt(text, length=50)
+    assert result.endswith(" …") and len(result) <= 52

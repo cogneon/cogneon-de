@@ -2,6 +2,7 @@
 title: Expert Debriefing
 description: Mit dem Expert Debriefing sichert ihr das Erfahrungswissen von Fach- und Führungskräften, bevor sie wechseln oder ausscheiden.
 template: angebot.html
+frozen: true
 pfad:
   - titel: Angebote
     link: angebote/

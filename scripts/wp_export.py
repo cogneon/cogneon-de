@@ -442,6 +442,24 @@ def permalink_pattern(link: str, slug: str, date: str) -> str:
 # Export
 # --------------------------------------------------------------------------
 
+def category_slug(name: str) -> str:
+    """Slug, unter dem Zensical eine Kategorie veroeffentlicht (/category/<slug>/)."""
+    return re.sub(r"\s", "-", re.sub(r"[^\w\s-]", "", name.lower()))
+
+
+def redirect_sources(migration: Path) -> set[str]:
+    """Alte Pfade, fuer die in migration/redirects.map eine Weiterleitung steht."""
+    path = migration / "redirects.map"
+    if not path.exists():
+        return set()
+    rules = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.split("#")[0].strip()
+        if line:
+            rules.add(line.split()[0].rstrip("/") or "/")
+    return rules
+
+
 class Export:
     def __init__(self, wp: WordPress, root: Path, args):
         self.wp = wp
@@ -565,6 +583,20 @@ class Export:
                                      url_path(term.get("link") or "")])
             self.stats[f"{name}_total"] = len(rows)
             self.stats[f"{name}_used_once_or_never"] = sum(1 for t in rows if int(t.get("count") or 0) <= 1)
+        self.write_category_redirects()
+
+    def write_category_redirects(self):
+        """WordPress-Kategorien liegen unter ihrem Kurznamen (/category/kclo/), Zensical
+        veroeffentlicht sie unter dem Titel. Fuer jede Abweichung entsteht eine Weiterleitung."""
+        lines = ["# Erzeugt von scripts/wp_export.py - nicht von Hand ändern.",
+                 "# Alte Kategorie-Adressen aus WordPress -> Adresse in Zensical."]
+        for term in sorted(self.categories.values(), key=lambda t: t["slug"]):
+            old = url_path(term.get("link") or f"/category/{term['slug']}/").rstrip("/")
+            new = f"/category/{category_slug(term['name'])}/"
+            if old and old + "/" != new:
+                lines.append(f"{old} {new}")
+        (self.migration / "redirects-kategorien.map").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        self.stats["category_redirects"] = len(lines) - 2
 
     def write_authors(self):
         """Ergaenzt docs/.authors.yml um fehlende Autoren. Bestehende bleiben unveraendert."""
@@ -671,9 +703,14 @@ class Export:
         pages = list(self.wp.items("wp/v2/pages", {"_fields": fields, "orderby": "id",
                                                    "order": "asc"}, self.args.limit))
         paths = [url_path(p["link"]) for p in pages]
+        redirected = redirect_sources(self.migration)
         for page in pages:
             path = url_path(page["link"])
             rel = path.strip("/")
+            if (path.rstrip("/") or "/") in redirected:
+                # Fuer diese Adresse gibt es eine Weiterleitung: keine Seite anlegen.
+                self.stats["page_redirected"] += 1
+                continue
             has_children = any(other != path and other.startswith(path) for other in paths)
             if not rel:
                 target = self.docs / "index.md"

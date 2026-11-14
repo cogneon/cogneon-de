@@ -2,6 +2,7 @@
 title: Angebote
 description: Strategisches und operatives Wissensmanagement von Cogneon im Überblick.
 template: angebot.html
+frozen: true
 untertitel: Vom ersten Impuls bis zur mehrjährigen Begleitung.
 einleitung: >-
   Strategisch klären wir, wohin eure Organisation mit ihrem Wissen will.

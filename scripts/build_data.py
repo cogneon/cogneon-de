@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Erzeugt _data/aktuell.yml für die Startseite.
+"""Erzeugt _data/aktuell.yml (Startseite) und overrides/partials/blog-daten.html (Blog-Übersicht).
 
 Quellen:
   - inhalte/aktuell.yml   Highlights und Termine, von Hand gepflegt
@@ -12,6 +12,8 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import json
+import re
 import sys
 from pathlib import Path
 
@@ -39,6 +41,72 @@ def frontmatter(path: Path) -> dict:
         return yaml.safe_load(text.split("---", 2)[1]) or {}
     except (IndexError, yaml.YAMLError):
         return {}
+
+
+def category_slug(name: str) -> str:
+    """Slug, unter dem Zensical eine Kategorie veröffentlicht (/category/<slug>/)."""
+    return re.sub(r"\s", "-", re.sub(r"[^\w\s-]", "", name.lower()))
+
+
+def excerpt(text: str, length: int = 220) -> str:
+    """Anriss eines Beitrags: Text vor <!-- more -->, ohne Markdown, gekürzt an einer Wortgrenze."""
+    body = text.split("---", 2)[2] if text.startswith("---") else text
+    body = body.split("<!-- more -->")[0]
+    body = re.sub(r"^#.*$", "", body, flags=re.M)                 # Überschriften
+    body = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", body)             # Bilder
+    body = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", body)         # Links
+    body = re.sub(r"<[^>]+>|\{[^}]*\}|[*_`>]", "", body)           # HTML, Attribute, Auszeichnung
+    body = re.sub(r"\s+", " ", body).strip()
+    body = re.sub(r"\s+([.,;:!?])", r"\1", body)
+    if len(body) <= length:
+        return body
+    return body[:length].rsplit(" ", 1)[0].rstrip(".,;:- ") + " …"
+
+
+def all_posts(post_dir: Path) -> list[dict]:
+    """Alle veröffentlichten Beiträge, neueste zuerst."""
+    posts = []
+    for path in post_dir.rglob("*.md"):
+        meta = frontmatter(path)
+        if meta.get("draft"):
+            continue
+        date = meta.get("date")
+        created = as_date(date.get("created") if isinstance(date, dict) else date)
+        if not created or not meta.get("title"):
+            continue
+        slug = meta.get("slug") or path.stem
+        posts.append({
+            "titel": str(meta["title"]),
+            "tag": created,
+            "datum": created.strftime("%d.%m.%Y"),
+            "url": f"{created:%Y/%m/%d}/{slug}/",
+            "kategorien": [str(c) for c in meta.get("categories") or []],
+            "pfad": path,
+        })
+    posts.sort(key=lambda p: (p["tag"], p["url"]), reverse=True)
+    return posts
+
+
+def build_blog(root: Path, newest: int = 10) -> dict:
+    """Daten der Blog-Übersicht: neueste Beiträge mit Anriss, Kategorien, Archiv nach Jahren."""
+    posts = all_posts(root / "docs" / "blog" / "posts")
+    neueste = [{
+        "titel": p["titel"], "datum": p["datum"], "url": p["url"],
+        "kategorie": p["kategorien"][0] if p["kategorien"] else "",
+        "auszug": excerpt(p["pfad"].read_text(encoding="utf-8")),
+    } for p in posts[:newest]]
+    counts: dict[str, int] = {}
+    for p in posts:
+        for name in p["kategorien"]:
+            counts[name] = counts.get(name, 0) + 1
+    kategorien = [{"titel": name, "anzahl": n, "url": f"category/{category_slug(name)}/"}
+                  for name, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]
+    archiv: list[dict] = []
+    for p in posts:
+        if not archiv or archiv[-1]["jahr"] != p["tag"].year:
+            archiv.append({"jahr": p["tag"].year, "beitraege": []})
+        archiv[-1]["beitraege"].append({"titel": p["titel"], "datum": p["datum"], "url": p["url"]})
+    return {"neueste": neueste, "kategorien": kategorien, "archiv": archiv}
 
 
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
@@ -107,6 +175,18 @@ def main() -> int:
     )
     print(f"{target.relative_to(args.root)}: {len(result['highlights'])} Highlights, "
           f"{len(result['termine'])} Termine, {len(result['blog'])} Beiträge")
+    # Die Blog-Daten gehen nicht nach _data/: Daten dort landen im Kontext jeder
+    # Seite und bremsen den Build stark. Stattdessen entsteht eine Vorlagen-Datei,
+    # die nur die Blog-Übersicht einbindet.
+    blog = build_blog(args.root)
+    target = args.root / "overrides" / "partials" / "blog-daten.html"
+    target.write_text(
+        "{#- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -#}\n"
+        "{% set blog = " + json.dumps(blog, ensure_ascii=False) + " %}\n",
+        encoding="utf-8",
+    )
+    print(f"{target.relative_to(args.root)}: {sum(len(j['beitraege']) for j in blog['archiv'])} Beiträge, "
+          f"{len(blog['kategorien'])} Kategorien")
     return 0
 
 
