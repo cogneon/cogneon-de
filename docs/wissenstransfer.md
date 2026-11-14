@@ -2,6 +2,7 @@
 title: Wissenstransfer
 description: Erfahrungswissen sichern und weitergeben - mit Expert Debriefing, Project Debriefing und Team Debriefing.
 template: angebot.html
+frozen: true
 pfad:
   - titel: Angebote
     link: angebote/

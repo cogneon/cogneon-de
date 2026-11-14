@@ -7,3 +7,4 @@ __pycache__/
 .DS_Store
 migration/raw/
 _data/aktuell.yml
+overrides/partials/blog-daten.html

@@ -6,7 +6,7 @@
 -#}
 {% extends "main.html" %}
 {% block tabs %}{% endblock %}
-{% block site_nav %}{% endblock %}
+{% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
 {% block container %}{% endblock %}
 {% block hero %}
 {% set m = page.meta %}

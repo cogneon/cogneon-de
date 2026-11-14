@@ -386,3 +386,22 @@ def test_headings_shift_down_when_content_has_h1():
     assert conv.h1_count == 0 and conv.headings_shifted
     untouched = wp_export.convert_html("<h2>Abschnitt</h2>", "https://cogneon.de")
     assert "## Abschnitt" in untouched.markdown and not untouched.headings_shifted
+
+
+def test_page_with_redirect_is_not_exported(server, tmp_path):
+    (tmp_path / "migration").mkdir()
+    (tmp_path / "migration/redirects.map").write_text(
+        "# Kommentar\n/angebote/wissenstransfer /wissenstransfer/\n", encoding="utf-8")
+    assert run_export(server, tmp_path) == 0
+    assert not (tmp_path / "docs/angebote/wissenstransfer.md").exists()
+    # ohne Unterseite liegt "Angebote" als einfache Datei vor - oder als Ordner, beides ist in Ordnung
+    assert (tmp_path / "docs/angebote.md").exists() or (tmp_path / "docs/angebote/index.md").exists()
+
+
+def test_category_redirects_follow_zensical_slug(server, tmp_path):
+    assert wp_export.category_slug("Keep Calm & Learn On") == "keep-calm--learn-on"
+    assert wp_export.category_slug("Führung und Kultur") == "führung-und-kultur"
+    assert wp_export.category_slug("IT und Enterprise 2.0") == "it-und-enterprise-20"
+    assert run_export(server, tmp_path) == 0
+    rules = (tmp_path / "migration/redirects-kategorien.map").read_text(encoding="utf-8")
+    assert "/category/ki /category/künstliche-intelligenz--lernen/" in rules

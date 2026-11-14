@@ -72,7 +72,14 @@ blog_dir = "."
 post_dir = "blog/posts"
 post_url_format = "{date}/{slug}"
 authors_profiles = true
-pagination_per_page = 10
+# Die Übersicht unter /blog/ baut scripts/build_data.py, deshalb erzeugt das
+# Blog selbst keine Übersichtsseiten (/page/2/ ...).
+pagination = false
+# Jahresarchive wie in WordPress unter /JJJJ/.
+archive_url_format = "{date}"
+categories_pagination_per_page = 20
+authors_profiles_pagination_per_page = 20
+archive_pagination_per_page = 20
 
 # Daten aus _data/*.yml stehen in den Vorlagen als config.extra.<datei> bereit.
 [project.plugins.markdownextradata]
@@ -95,6 +102,7 @@ pymdownx.tasklist.custom_checkbox = true
 # Menü der Kopfzeile und Angaben für die Fußzeile.
 [project.extra]
 erstgespraech = "kontakt/"
+community = "https://community.cogneon.de/"
 
 # Matomo: dieselbe Site-ID wie unter WordPress, damit die Statistik
 # durchgehend vergleichbar bleibt. Gezählt wird nur auf den genannten Adressen.

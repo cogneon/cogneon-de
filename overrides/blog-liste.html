@@ -1,0 +1,62 @@
+{#-
+  Blog-Übersicht unter /blog/. Die Daten kommen aus partials/blog-daten.html
+  (scripts/build_data.py): die neuesten Beiträge mit Anriss, darunter das
+  Archiv nach Jahren.
+-#}
+{% extends "main.html" %}
+{% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
+{% block container %}{% endblock %}
+{% block hero %}
+{% import "partials/blog-daten.html" as daten %}
+{% set blog = daten.blog %}
+<div class="cg-page">
+
+  <section class="cg-section cg-section--kopf">
+    <div class="cg-wrap cg-stack">
+      <h1 class="cg-h1">{{ page.meta.title }}</h1>
+      {% if page.meta.einleitung %}<p class="cg-lead cg-muted">{{ page.meta.einleitung }}</p>{% endif %}
+      {% if blog.kategorien %}
+      <ul class="cg-schlagworte cg-schlagworte--links" aria-label="Kategorien">
+        {% for k in blog.kategorien %}<li><a href="{{ k.url | url }}">{{ k.titel }}</a></li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="cg-section cg-section--soft">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2 cg-h2--klein">Neueste Beiträge</h2>
+      <ul class="cg-cards cg-cards--zwei">
+        {% for b in blog.neueste %}
+        <li>
+          <a class="cg-card" href="{{ b.url | url }}">
+            <span class="cg-card__vor">{{ b.datum }}{% if b.kategorie %} · {{ b.kategorie }}{% endif %}</span>
+            <span class="cg-card__titel">{{ b.titel }}</span>
+            <span class="cg-card__text">{{ b.auszug }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="cg-section" id="archiv">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2 cg-h2--klein">Archiv</h2>
+      <div class="cg-archiv">
+        {% for j in blog.archiv %}
+        <details{% if loop.first %} open{% endif %}>
+          <summary><span class="cg-archiv__jahr">{{ j.jahr }}</span> <span class="cg-muted">{{ j.beitraege | length }} Beiträge</span></summary>
+          <ul class="cg-liste">
+            {% for b in j.beitraege %}
+            <li><a href="{{ b.url | url }}"><span class="cg-liste__meta">{{ b.datum }}</span><span class="cg-liste__titel">{{ b.titel }}</span></a></li>
+            {% endfor %}
+          </ul>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

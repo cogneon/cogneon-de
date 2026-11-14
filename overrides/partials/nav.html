@@ -1,0 +1,25 @@
+{#-
+  Seitenmenü für kleine Bildschirme. Zeigt dieselben Einträge wie die
+  Kopfzeile (extra.menu in zensical.toml). Auf großen Bildschirmen ist es
+  ausgeblendet, dort steht das Menü in der Kopfzeile.
+-#}
+<nav class="md-nav md-nav--primary cg-seitenmenue" aria-label="Hauptmenü" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-nav__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
+      {% include "partials/logo.html" %}
+    </a>
+    {{ config.site_name }}
+  </label>
+  <ul class="md-nav__list" data-md-scrollfix>
+    {% for eintrag in config.extra.menu %}
+    <li class="md-nav__item">
+      <a href="{{ eintrag.url | url }}" class="md-nav__link"{% if page.url and page.url is startingwith(eintrag.url) %} aria-current="page"{% endif %}>
+        <span class="md-ellipsis">{{ eintrag.titel }}</span>
+      </a>
+    </li>
+    {% endfor %}
+    <li class="md-nav__item cg-seitenmenue__cta">
+      <a class="cg-button" href="{{ config.extra.erstgespraech | url }}">Erstgespräch anfragen</a>
+    </li>
+  </ul>
+</nav>

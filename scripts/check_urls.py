@@ -92,6 +92,8 @@ def main(argv=None) -> int:
         return 0
 
     redirects = load_redirects(args.redirects)
+    for extra in sorted(args.redirects.parent.glob("redirects-*.map")):
+        redirects |= load_redirects(extra)
     ok, redirected, missing = [], [], []
     for path in sorted(paths):
         if exists(args.site, path):

@@ -1,0 +1,52 @@
+{#-
+  Blogbeitrag: eine Spalte. Oben Datum, Kategorie und Lesezeit, unten
+  Schlagworte, Autor:in und der Weg zur Diskussion in der Community.
+-#}
+{% extends "main.html" %}
+{% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
+{% block container %}
+<div class="md-content cg-beitrag" data-md-component="content">
+  <article class="md-content__inner md-typeset">
+    <a id="__skip" tabindex="-1"></a>
+    <p class="cg-beitrag__meta">
+      <a href="{{ 'blog/' | url }}">Blog</a>
+      <span aria-hidden="true">·</span>
+      <time datetime="{{ page.config.date.created }}">{{ page.config.date.created | date }}</time>
+      {% for category in page.categories %}
+      <span aria-hidden="true">·</span>
+      <a href="{{ category.url | url }}">{{ category.title }}</a>
+      {% endfor %}
+      {% if page.config.readtime %}
+      <span aria-hidden="true">·</span>
+      <span>{{ page.config.readtime }} Min. Lesezeit</span>
+      {% endif %}
+    </p>
+    {% block content %}
+      {% if "<h1" not in page.content %}
+        <h1>{{ page.title | d(config.site_name, true) }}</h1>
+      {% endif %}
+      {{ page.content }}
+    {% endblock %}
+    <footer class="cg-beitrag__fuss">
+      {% if page.meta.tags %}
+      <ul class="cg-schlagworte" aria-label="Schlagworte">
+        {% for tag in page.meta.tags %}<li>{{ tag }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+      {% for author in page.authors %}
+      <div class="cg-autor">
+        <img src="{{ author.avatar | url }}" alt="" width="56" height="56" loading="lazy">
+        <p>
+          <strong>{% if author.url %}<a href="{{ author.url | url }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}</strong><br>
+          {{ author.description }}
+        </p>
+      </div>
+      {% endfor %}
+      <div class="cg-beitrag__weiter">
+        <a class="cg-button" href="{{ page.meta.diskussion | d(config.extra.community, true) }}">In der Community diskutieren</a>
+        <a class="cg-link" href="{{ nav.homepage.url | url }}#newsletter">Newsletter abonnieren</a>
+      </div>
+    </footer>
+  </article>
+</div>
+{% endblock %}
