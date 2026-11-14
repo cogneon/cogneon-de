@@ -420,8 +420,9 @@ class Export:
                 "avatar": "/assets/authors/platzhalter.svg",
             }
             added += 1
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=True), encoding="utf-8")
+        if added or not path.exists():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=True), encoding="utf-8")
         self.stats["authors_added"] = added
 
     # -- Inhalte -----------------------------------------------------------

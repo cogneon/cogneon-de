@@ -1,0 +1,18 @@
+# Autorenprofile. Beschreibung und Bild werden später gepflegt.
+authors:
+  simon-dueckert:
+    name: Simon Dückert
+    description: Cogneon
+    avatar: /assets/authors/platzhalter.svg
+  benedikt-scheerer:
+    name: Benedikt Scheerer
+    description: Cogneon
+    avatar: /assets/authors/platzhalter.svg
+  silvia-roderus:
+    name: Silvia Roderus
+    description: Cogneon
+    avatar: /assets/authors/platzhalter.svg
+  cogneon:
+    name: Cogneon
+    description: News und Mitteilungen der Cogneon GmbH
+    avatar: /assets/authors/platzhalter.svg
