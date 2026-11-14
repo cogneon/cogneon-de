@@ -1,0 +1,123 @@
+{
+  "name": "Cogneon Akademie",
+  "description": "Wissen. Lernen. Wirken.",
+  "url": "https://cogneon.de",
+  "timezone": "Europe/Berlin",
+  "namespaces": [
+    "ithemes-security/rpc",
+    "ithemes-security/v1",
+    "oembed/1.0",
+    "activitypub/1.0",
+    "redirection/v1",
+    "wp-discourse/v1",
+    "tec/migrations/v1",
+    "liquidweb/harbor/v1",
+    "tribe/event-aggregator/v1",
+    "tribe/events/v1",
+    "tribe/views/v2",
+    "tec/v2/onboarding",
+    "tec/v1",
+    "tribe/zapier/v1",
+    "tribe/power-automate/v1",
+    "erecht24/v1",
+    "h5p/v1",
+    "health-check/v1",
+    "spectra/v1",
+    "uag/v1",
+    "wp-rocket/v1",
+    "r34icspro/v5",
+    "astra/v1",
+    "one-onboarding/v1",
+    "hub-connector/v1",
+    "wpmudev_blc/v1",
+    "wpmudev_pcs/v1",
+    "zipwp-images/v1",
+    "nps-survey/v1",
+    "zipwp/v1",
+    "gutenberg-templates/v1",
+    "wp/v2",
+    "wp-site-health/v1",
+    "wp-block-editor/v1",
+    "wp-abilities/v1"
+  ],
+  "generated": "2026-11-14T19:02:17",
+  "types": {
+    "ap_actor": {
+      "name": "Follower",
+      "route": "wp/v2/ap_actor",
+      "count": 73
+    },
+    "ap_extrafield": {
+      "name": "Zusatzfelder",
+      "route": "wp/v2/ap_extrafield",
+      "count": 10
+    },
+    "ap_extrafield_blog": {
+      "name": "Zusatzfelder",
+      "route": "wp/v2/ap_extrafield_blog",
+      "count": 0
+    },
+    "ap_post": {
+      "name": "Beiträge",
+      "route": "wp/v2/ap_post",
+      "count": 0
+    },
+    "page": {
+      "name": "Seiten",
+      "route": "wp/v2/pages",
+      "count": 28
+    },
+    "post": {
+      "name": "Beiträge",
+      "route": "wp/v2/posts",
+      "count": 534
+    },
+    "r34icspro_calendar": {
+      "name": "Kalender-Ersteller",
+      "route": "wp/v2/r34icspro_calendar",
+      "count": 0
+    },
+    "r34icspro_event": {
+      "name": "ICS-Veranstaltungen",
+      "route": "wp/v2/r34icspro_event",
+      "count": 0
+    },
+    "spectra-popup": {
+      "name": "Popup Builder",
+      "route": "wp/v2/spectra-popup",
+      "count": null
+    },
+    "tec_calendar_embed": {
+      "name": "Kalender-Einbettungen",
+      "route": "wp/v2/tec_calendar_embed",
+      "count": 0
+    },
+    "tribe_events": {
+      "name": "Veranstaltungen",
+      "route": "wp/v2/tribe_events",
+      "count": 1
+    },
+    "tribe_organizer": {
+      "name": "Veranstalter",
+      "route": "wp/v2/tribe_organizer",
+      "count": 2
+    },
+    "tribe_venue": {
+      "name": "Veranstaltungsorte",
+      "route": "wp/v2/tribe_venue",
+      "count": 4
+    }
+  },
+  "media": 941,
+  "categories": 29,
+  "tags": 1229,
+  "users": null,
+  "comments": 318,
+  "posts_by_author_id": {
+    "2": 431,
+    "12": 57,
+    "3": 45,
+    "13": 1
+  },
+  "events": 104
+}

@@ -1,0 +1,661 @@
+# Zuordnung alter WordPress-Schlagworte zu neuen Schlagworten (CamelCase).
+# Abgestimmt am 14.11.2026. Nicht aufgeführte Schlagworte werden gestrichen.
+alt,neu
+colearn,CorporateLearningCommunity
+gpowm,ProzessorientiertesWissensmanagement
+adidas,adidas
+okr,OKR
+agil,Agilität
+agile,Agilität
+agile transformation,Agilität
+agilität,Agilität
+lean management,LeanManagement
+retrospektive,Retrospektive
+scrum,Agilität
+kaizen,LeanManagement
+lean,LeanManagement
+lean thinking,LeanManagement
+objective key results,OKR
+timeboxing,Zeitmanagement
+audiobc21,AudioOnlyBarcamp
+audiobc22,AudioOnlyBarcamp
+audiobc,AudioOnlyBarcamp
+audiobc24,AudioOnlyBarcamp
+reaper,Podcasting
+audacity,Podcasting
+ultraschall,Podcasting
+mp3,Podcasting
+studio-link,Podcasting
+asio,Podcasting
+asio4all,Podcasting
+audio interface,Podcasting
+audiointerface,Podcasting
+audiotechnik,Podcasting
+daw,Podcasting
+encoder,Podcasting
+focusrite,Podcasting
+headsets,Podcasting
+kopfhörer,Podcasting
+mumble,Podcasting
+podcast audiotechnik,Podcasting
+protools,Podcasting
+soundflower,Podcasting
+virtual audio cable,Podcasting
+zoom l12,Podcasting
+barcamp,Barcamp
+virtuelles barcamp,Barcamp
+barcamp nürnberg,Barcamp
+barcircle,Barcamp
+educamp,Barcamp
+foo camp,Barcamp
+open space,Barcamp
+unkonferenz,Barcamp
+benchlearning,Benchlearning
+blp24,Benchlearning
+blp23,Benchlearning
+blp16,Benchlearning
+blp15,Benchlearning
+blp18,Benchlearning
+blp20,Benchlearning
+blp12,Benchlearning
+blp13,Benchlearning
+blp16vdi,Benchlearning
+blp17,Benchlearning
+blp19,Benchlearning
+blp21,Benchlearning
+blp26,Benchlearning
+weblog,Blogging
+blogparade,Blogging
+blog,Blogging
+blogging,Blogging
+wordpress,Blogging
+automattic,Blogging
+blog 100,Blogging
+blogosphere,Blogging
+twoday,Blogging
+weblogs,Blogging
+bosch,Bosch
+bosch experts organization,Bosch
+c3managers,C3Managers
+c3call,C3Managers
+change,ChangeManagement
+change agents,ChangeManagement
+change coalition,ChangeManagement
+change management,ChangeManagement
+changemanagement,ChangeManagement
+dual operating system,ChangeManagement
+guiding coalition,ChangeManagement
+32c3,ChaosComputerClub
+33c3,ChaosComputerClub
+35c3,ChaosComputerClub
+36c3,ChaosComputerClub
+chaos computer club,ChaosComputerClub
+easterhegg,ChaosComputerClub
+eh17,ChaosComputerClub
+community management,CommunityManagement
+cmgmt,CommunityManagement
+community,CommunityManagement
+bvcm,CommunityManagement
+cmgt,CommunityManagement
+commnunity management,CommunityManagement
+community camp,CommunityManagement
+cop,CommunityManagement
+communities of practice,CommunityOfPractice
+community of practice,CommunityOfPractice
+etienne wenger,CommunityOfPractice
+wissensgemeinschaft,CommunityOfPractice
+connect,ConnectCommunity
+akademie,Akademie
+ccc,ChaosComputerClub
+akademie community,ConnectCommunity
+cogneon akademie,Akademie
+community call,ConnectCommunity
+akademie everywhere,Akademie
+akademie talk,Akademie
+connect meetup,ConnectCommunity
+continental,Continental
+corporate learning,Weiterbildung
+cl2025,CorporateLearningCommunity
+cl20,CorporateLearningCommunity
+adidas learning campus,adidas
+cl2025kmu,CorporateLearningCommunity
+cl20crafting,CorporateLearningCommunity
+cl90,CorporateLearningCommunity
+house of learning,Weiterbildung
+learnin campus,adidas
+clc,CorporateLearningCommunity
+clc17,CorporateLearningCommunity
+clc16,CorporateLearningCommunity
+clc20da,CorporateLearningCommunity
+clc26,CorporateLearningCommunity
+corporate learning camp,CorporateLearningCommunity
+clc 15,CorporateLearningCommunity
+clc13,CorporateLearningCommunity
+clc15,CorporateLearningCommunity
+clc18,CorporateLearningCommunity
+clc20hybrid,CorporateLearningCommunity
+clc21,CorporateLearningCommunity
+clc22,CorporateLearningCommunity
+clc23,CorporateLearningCommunity
+clc24,CorporateLearningCommunity
+daimler,Daimler
+datev,DATEV
+datevlernt,DATEV
+db systel,DeutscheBahn
+db together,DeutscheBahn
+db training,DeutscheBahn
+deutsche bahn,DeutscheBahn
+digitalisierung,Digitalisierung
+digitale transformation,Digitalisierung
+chief digital officer,Digitalisierung
+digital,Digitalisierung
+digitallife,Digitalisierung
+transformation,Digitalisierung
+diymm,DIYMultimedia
+diy,DIYMultimedia
+making-of,DIYMultimedia
+dokumentation,Dokumentation
+edmod,edmod
+edmod18,edmod
+edmod23a,edmod
+edmod25b,edmod
+enterprise2.0,Enterprise20
+enterprise 2.0,Enterprise20
+e20,Enterprise20
+e20s,Enterprise20
+andrew mcafee,Enterprise20
+web 2.0,Enterprise20
+e20mooc,Enterprise20
+enterprise 20,Enterprise20
+enterprise20,Enterprise20
+erfolgsmessung,Erfolgsmessung
+kpi,Erfolgsmessung
+balanced scorecard,Erfolgsmessung
+kmmm,Erfolgsmessung
+reifegrade,Erfolgsmessung
+roi,Erfolgsmessung
+expert debriefing,ExpertDebriefing
+expertdebriefing,ExpertDebriefing
+wissenslandkarte,ExpertDebriefing
+festo,Festo
+führung,Führung
+distant leadership,Führung
+lead by example,Führung
+leadership,Führung
+menschenführung,Führung
+wissensorientierte führung,Führung
+gamification,Gamification
+lego,Gamification
+minetest,Gamification
+legoseriousplay,Gamification
+minecraft,Gamification
+gfwm,GfWM
+gkc17,KnowledgeCamp
+gkc23,KnowledgeCamp
+gkc24,KnowledgeCamp
+gkcber16,KnowledgeCamp
+knowledge camp,KnowledgeCamp
+knowledgecamp,KnowledgeCamp
+glossar,Glossar
+definition,Glossar
+hr,Personalwesen
+zukunft personal,ZukunftPersonal
+zp,ZukunftPersonal
+zp14,ZukunftPersonal
+hr innovation,Buch
+hr20,Personalwesen
+human resource management,Personalwesen
+personal swiss,Personalwesen
+personalmanagement,Personalwesen
+ibm,IBM
+innovation,Innovation
+crowdsourcing,Innovation
+hackathon,Hackathon
+innovationsmanagement,Innovation
+crowdfunding,Innovation
+innovation management,Innovation
+innovationsprozess,Innovation
+open innovation,Innovation
+intellectual capital,IntellectualCapital
+leif edvinsson,IntellectualCapital
+future center,IntellectualCapital
+future center alliance,IntellectualCapital
+intellektuelles kapital,IntellectualCapital
+new club of paris,NewClubOfParis
+nick–bontis,IntellectualCapital
+skandia,IntellectualCapital
+engineering,KnowledgeEngineering
+knowledge engineering,KnowledgeEngineering
+sparql,KnowledgeEngineering
+taxonomie,KnowledgeEngineering
+knowledgejam,KnowledgeJam
+ckj,KnowledgeJam
+knowledge jam,KnowledgeJam
+ckj29,KnowledgeJam
+ckj40,KnowledgeJam
+ckj41,KnowledgeJam
+ckj42,KnowledgeJam
+knowtech,KnowTech
+knt13,KnowTech
+knowtech12,KnowTech
+knt16,KnowTech
+knowtouch,KnowTech
+knt14,KnowTech
+knt17,KnowTech
+knt18,KnowTech
+kommunikation,Kommunikation
+unternehmenskommunikation,Kommunikation
+genai,GenerativeKI
+künstliche intelligenz,KünstlicheIntelligenz
+copilot,KünstlicheIntelligenz
+chatgpt,KünstlicheIntelligenz
+ki,KünstlicheIntelligenz
+kimooc24,kimooc24
+aifirst,KünstlicheIntelligenz
+chatbot,KünstlicheIntelligenz
+künstlicheintelligenz,KünstlicheIntelligenz
+promptathon,KünstlicheIntelligenz
+roboter,KünstlicheIntelligenz
+ai,KünstlicheIntelligenz
+aic26,KünstlicheIntelligenz
+cognitive computing,KünstlicheIntelligenz
+docling,KünstlicheIntelligenz
+euaiact,KünstlicheIntelligenz
+machine learning,KünstlicheIntelligenz
+machinelles lernen,KünstlicheIntelligenz
+pepper,KünstlicheIntelligenz
+promptbattle,KünstlicheIntelligenz
+promtathon,KünstlicheIntelligenz
+circle3,PeerLearning
+lce,LearningCircleExperience
+lce21,LearningCircleExperience
+lce22a,LearningCircleExperience
+learning circle experience,LearningCircleExperience
+learningcircle,LearningCircleExperience
+LearningCircleDiversity,PeerLearning
+p2pu,PeerLearning
+peer-learning,PeerLearning
+peer2peer,PeerLearning
+peerfinder,PeerLearning
+lernen,Lernen
+informelles lernen,Lernen
+lernen 2.0,Lernen
+weiterbildung,Weiterbildung
+lebenslanges lernen,Lernen
+702010,Lernen
+flipped classroom,Lernen
+personalentwicklung,Personalentwicklung
+21st century skills,Lernen
+ausbildung,Lernen
+blended learning,Lernen
+e-learning,Lernen
+elearning,Lernen
+formales lernen,Lernen
+formelles lernen,Lernen
+kompetenz,Lernen
+kompetenzmanagement,Lernen
+lernen20,Lernen
+lernformat,Lernen
+lerntag,Lernen
+lerntool,Lernen
+lernumgebung,Lernen
+lifelong learning,Lernen
+neverstoplearning,Lernen
+newwayoflearning,Lernen
+online training,Lernen
+selbstgesteuertes lernen,Lernen
+training,Lernen
+lernende organisation,LernendeOrganisation
+kernende organisation,LernendeOrganisation
+learning organization,LernendeOrganisation
+organisationales lernen,LernendeOrganisation
+organizational learning,LernendeOrganisation
+systemdenken,LernendeOrganisation
+lernos,lernOS
+lernos circle 01,lernOS
+lernos-for-organizations,lernOS
+lernOScmgmt,lernOS
+lernosvsvirus,lernOS
+loslos20,lernOS
+loscon23,lernOSConvention
+loscon22,lernOSConvention
+loscon21,lernOSConvention
+loscon25,lernOSConvention
+loscon26,lernOSConvention
+loscamp19,lernOSConvention
+loscamp20,lernOSConvention
+loscon24,lernOSConvention
+loscon23Den,lernOSConvention
+mgmt20,Management20
+management 2.0,Management20
+gary hamel,Management20
+management20,Management20
+manager20,Management20
+office 365,Microsoft365
+onenote,Microsoft365
+teams,Microsoft365
+microsoft,Microsoft365
+microsoft teams,Microsoft365
+office365,Microsoft365
+sharepoint,Microsoft365
+ls-onen,Microsoft365
+outlook,Microsoft365
+powertoys,Microsoft365
+blp18o365,Microsoft365
+blp19o365,Microsoft365
+microsoft365,Microsoft365
+ms teams,Microsoft365
+office,Microsoft365
+planner,Microsoft365
+skype for business,Microsoft365
+teamscommunityday,Microsoft365
+to do,Microsoft365
+mooc,MOOC
+moocathon,MOOC
+spoc,MOOC
+a40mooc,MOOC
+clmooc24,MOOC
+edx,MOOC
+mooin,MOOC
+wmooc,MOOC
+guide,ChangeAgents
+multiplikatoren,ChangeAgents
+vernetzung,ChangeAgents
+guide netzwerk,ChangeAgents
+guides,ChangeAgents
+multiplikator,ChangeAgents
+netzwerk,ChangeAgents
+nachhaltigkeit,Nachhaltigkeit
+new work,NewWork
+digitaler arbeitsplatz,NewWork
+hybrid,HybridWork
+coworking,Coworking
+remote,HybridWork
+arbeiten 4.0,NewWaysOfWorking
+arbeitsplatz der zukunft,FutureWork
+future of work,FutureWork
+future workplace,FutureWork
+HybridWork,HybridWork
+mobile arbeit,HybridWork
+new ways of working,NewWaysOfWorking
+nwow,NewWaysOfWorking
+verteilte teams,HybridWork
+workation,NewWaysOfWorking
+newsletter,Newsletter
+kclo,Newsletter
+iso9001km,Standards
+qualitätsmanagement,Qualitätsmanagement
+iso 30401,Standards
+iso 9001,Standards
+iso30401,Standards
+4010KM,4010km
+dgq,Qualitätsmanagement
+iso9001,Standards
+high level structure,Standards
+iso 9001:2015,Standards
+iso21500,Standards
+iso56000,Standards
+qualität,Qualitätsmanagement
+qualitätstag,Qualitätsmanagement
+standard,Standards
+offenheit,Offenheit
+open source,Offenheit
+creative commons,Offenheit
+creativecommons,Offenheit
+oer,Offenheit
+open badges,Offenheit
+open science,Offenheit
+sharing,SharingIsCaring
+SharingIsCaring,SharingIsCaring
+transparenz,Offenheit
+pkm,PersönlichesWissensmanagement
+memex,PersönlichesWissensmanagement
+2ndbrain,PersönlichesWissensmanagement
+gtd,GettingThingsDone
+obsidian,PersönlichesWissensmanagement
+pke24,PersönlichesWissensmanagement
+pim,PersönlichesWissensmanagement
+pke25,pke25
+pwm,PersönlichesWissensmanagement
+getting things done,GettingThingsDone
+Podcast,Podcast
+audio,Podcasting
+podcasting,Podcasting
+corporate podcasting,Podcasting
+corporate podcast,Podcasting
+fyyd,Podcasting
+knowledge on air,Podcast
+podcast lab,Podcasting
+podcastday,Podcasting
+podloe,Podcasting
+podlove,Podcasting
+podstock,Podcasting
+podunion,Podcasting
+sendegate,Podcasting
+subscribe,Podcasting
+subscribe9,Podcasting
+wissenschaftspodcast,Podcast
+projektmanagement,Projektmanagement
+pmf14,Projektmanagement
+lessons learned,Projektmanagement
+gpm,Projektmanagement
+pmo,Projektmanagement
+projektfalle,Projektmanagement
+republica,RePublica
+rp17,RePublica
+rpTEN,RePublica
+rp13,RePublica
+rp15,RePublica
+reverse mentoring,ReverseMentoring
+risikomanagement,Risikomanagement
+sennheiser,Sennheiser
+siemens,Siemens
+siemens healthineers,Siemens
+siemens km community,Siemens
+sika,Sika
+yammer,Intranet
+connections,Intranet
+enterprise social network,Intranet
+social intranet,Intranet
+intranet,Intranet
+soziales intranet,Intranet
+technoweb,Intranet
+connext,Intranet
+esn,Intranet
+jive,Intranet
+microblogging,Intranet
+social collaboration,Intranet
+e-collaboration,Intranet
+ibm connections,Intranet
+ibmconnect,Intranet
+newsgator,Intranet
+siemens social network,Siemens
+sitrion,Intranet
+socialcast,Intranet
+telligent,Intranet
+viva engage,Intranet
+twitter,SocialMedia
+soziale medien,SocialMedia
+social media,SocialMedia
+fediverse,SocialMedia
+mastodon,SocialMedia
+clubhouse,SocialMedia
+discord,SocialMedia
+bluesky,SocialMedia
+facebook,SocialMedia
+linkedin,SocialMedia
+social media guideline,SocialMedia
+soziales netzwerk,SocialMedia
+twitterexodus,Twitter
+xing,SocialMedia
+storytelling,Storytelling
+strategie,Strategie
+wissensstrategie,Strategie
+vision,Strategie
+ziele,Strategie
+studie,Studien
+apqc,Studien
+trends,Studien
+abschlussarbeit,Abschlussarbeit
+gartner,Studien
+hype cycle,Innovation
+megatrend,Innovation
+preprint,Studien
+telekom,Telekom
+konferenz,EventManagement
+event,EventManagement
+event management,EventManagement
+eventmanagement,EventManagement
+hybride veranstaltung,HybridWork
+meetup,EventManagement
+session,EventManagement
+virtuelle veranstaltung,EventManagement
+events,EventManagement
+großgruppe,EventManagement
+hybrid meeting kit,HybridMeetingKit
+hybride veranstaltungen,HybridWork
+ignite,ignite
+lightning talk,EventManagement
+messe,EventManagement
+veranstaltung,EventManagement
+veranstaltungen,EventManagement
+virtuelle events,HybridWork
+workshop,EventManagement
+world cafe,EventManagement
+video,Multimedia
+livestream,Multimedia
+multimedia,Multimedia
+livesession,Lernen
+hangout,Videokonferenz
+vlog,Multimedia
+youtube,Multimedia
+film,Multimedia
+kaltura,Multimedia
+lightworks,Multimedia
+matrox monarch hd,Multimedia
+movie maker,Multimedia
+mp4,Multimedia
+ndi,Multimedia
+obs studio,Multimedia
+stream,Multimedia
+streamting,Multimedia
+videobearbeitung,Multimedia
+videokonferenz,Videokonferenz
+videotechnik,Multimedia
+vimp,Multimedia
+webinar,Lernen
+wedcall,WEDCall
+WEDcalls,WEDCall
+wiki,Wiki
+copedia,Wiki
+mediawiki,Wiki
+confluence,Wiki
+opensym,Wiki
+wikidata,Wiki
+wikidatacon,Wiki
+wikipedia,Wiki
+wikisphere,Wiki
+wikisym,Wiki
+wissensarbeit,Wissensarbeit
+wissensgesellschaft,Wissensarbeit
+knowledge work,Wissensarbeit
+produktivität,Wissensarbeit
+augenhöhe,Wissenskultur
+geschichten des gelingens,Wissenskultur
+fehlerkultur,Wissenskultur
+kultur,Wissenskultur
+mindset,Wissenskultur
+unternehmenskultur,Wissenskultur
+wissensmanagement,Wissensmanagement
+knowledge management,Wissensmanagement
+prozessorientiertes wissensmanagement,ProzessorientiertesWissensmanagement
+ganzheitliches wissensmanagement,Wissensmanagement
+knowledge,Wissen
+wissen,Wissen
+wissensmanagement 2.0,Wissensmanagement
+wissensmanagmement,Wissensmanagement
+wm-ansatz,Wissensmanagement
+wissenstransfer,Wissenstransfer
+wissensbewahrung,Wissenstransfer
+erfahrung,Wissenstransfer
+demografischer wandel,DemografischerWandel
+implizites wissen,Wissen
+offboarding,Wissenstransfer
+wissensrisiko,Wissenstransfer
+wissenssicherung,Wissenstransfer
+wissensverlust,Wissenstransfer
+wtc25,WissensTransferCamp
+wtc26,WissensTransferCamp
+wtc24,WissensTransferCamp
+wt15,WissensTransferCamp
+wol,WorkingOutLoud
+working out loud,WorkingOutLoud
+john-stepper,WorkingOutLoud
+wolc19,WorkingOutLoud
+wolplus,WorkingOutLoud
+audiwol6,WorkingOutLoud
+observable work,WorkingOutLoud
+wol_de,WorkingOutLoud
+wolc17,WorkingOutLoud
+wolcamp,WorkingOutLoud
+wolcg,WorkingOutLoud
+wolcon18,WorkingOutLoud
+wolweek,WorkingOutLoud
+collaboration,Zusammenarbeit
+slack,Zusammenarbeit
+zusammenarbeit,Zusammenarbeit
+chat,Zusammenarbeit
+e-mail,Zusammenarbeit
+enterprise messaging,Zusammenarbeit
+kollaboration,Zusammenarbeit
+messaging,Zusammenarbeit
+open collaboration,Zusammenarbeit
+teamarbeit,Zusammenarbeit
+zusammenarbeit 20,Zusammenarbeit
+cebit,CeBIT
+meinziel22,MeinZiel22
+spitzencluster,Spitzencluster
+stifterverband,Stifterverband
+teneriffa,NewClubOfParis
+vdi,VDI
+voc,ChaosComputerClub
+airbus,Airbus
+aperto,Aperto
+audi,Audi
+barrierefreiheit,Barrierefreiheit
+boris gloger,Agilität
+cebit15,CeBIT
+cebitsba,CeBIT
+cluster management,ClusterManagement
+eportfolio,Lernen
+fachausschuss 110,VDI
+ffmpeg,Multimedia
+forwiss,FORWISS
+harald schirmer,HaraldSchirmer
+ic8,NewClubOfParis
+iomtalk,Kongressmedia
+katharina-krentz,KatharinaKrentz
+klaus kleinfeld,KlausKleinfeld
+km4dev,KM4Dev
+lerngeschehen26,lerngeschehen26
+lex,Telekom
+mindmap,MindMap
+networks of competence,CommunityOfPractice
+orangepeople,ConnectCommunity
+organisationsentwicklung,Organisationsentwicklung
+organisationstheorie,Organisationsentwicklung
+paris,NewClubOfParis
+prowm15,ProzessorientiertesWissensmanagement
+prozessmanagement,ProzessorientiertesWissensmanagement
+rstockm,RalfStockmann
+sap,SAP
+sascha-lobo,SaschaLobo
+schaeffler,Schaeffler
+seci,Wissen
+selbstorganisation,PersönlichesWissensmanagement
+sketchnoting,Sketchnoting
+sub11,Podcasting
+sub7,Podcasting
+swisscom,Swisscom
+tim o'reilly,TimOReilly
+volkswagen,Volkswagen

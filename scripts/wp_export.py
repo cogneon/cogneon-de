@@ -447,6 +447,25 @@ def category_slug(name: str) -> str:
     return re.sub(r"\s", "-", re.sub(r"[^\w\s-]", "", name.lower()))
 
 
+def tag_slug(name: str) -> str:
+    """Adresse einer Schlagwort-Seite (/tag/<slug>/): klein, Umlaute ausgeschrieben."""
+    s = name.lower()
+    for a, b in (("ä", "ae"), ("ö", "oe"), ("ü", "ue"), ("ß", "ss")):
+        s = s.replace(a, b)
+    return re.sub(r"[^a-z0-9-]", "", s)
+
+
+def load_tag_map(migration: Path) -> dict[str, str] | None:
+    """Zuordnung alter Schlagworte zu neuen aus migration/schlagworte.csv.
+    Schluessel klein geschrieben. None, wenn es keine Zuordnung gibt (dann bleibt alles, wie es ist)."""
+    path = migration / "schlagworte.csv"
+    if not path.exists():
+        return None
+    lines = [l for l in path.read_text(encoding="utf-8").splitlines() if l and not l.startswith("#")]
+    return {row["alt"].strip().lower(): row["neu"].strip()
+            for row in csv.DictReader(lines) if row.get("alt") and row.get("neu")}
+
+
 def redirect_sources(migration: Path) -> set[str]:
     """Alte Pfade, fuer die in migration/redirects.map eine Weiterleitung steht."""
     path = migration / "redirects.map"
@@ -484,6 +503,8 @@ class Export:
         self.media: dict[str, None] = {}
         self.categories: dict[int, dict] = {}
         self.tags: dict[int, dict] = {}
+        self.tag_map: dict[str, str] | None = None
+        self.used_tags: set[str] = set()
         self.users: dict[int, dict] = {}
 
     # -- Inventar ----------------------------------------------------------
@@ -554,6 +575,7 @@ class Export:
         self.tags = {t["id"]: t for t in self.wp.items("wp/v2/tags", {"_fields": fields})}
         for term in (*self.categories.values(), *self.tags.values()):
             term["name"] = html.unescape(term["name"])
+        self.tag_map = load_tag_map(self.migration)
         try:
             self.users = {u["id"]: u for u in self.wp.items(
                 "wp/v2/users", {"_fields": "id,name,slug,description,link"})}
@@ -584,6 +606,35 @@ class Export:
             self.stats[f"{name}_total"] = len(rows)
             self.stats[f"{name}_used_once_or_never"] = sum(1 for t in rows if int(t.get("count") or 0) <= 1)
         self.write_category_redirects()
+
+    def map_tags(self, names: list[str]) -> list[str]:
+        """Alte Schlagworte eines Beitrags auf die neuen abbilden: zusammengefuehrte werden
+        ersetzt, gestrichene fallen weg, Doppelte entfallen."""
+        if self.tag_map is None:
+            return names
+        result = []
+        for name in names:
+            new = self.tag_map.get(name.lower())
+            if new and new not in result:
+                result.append(new)
+        self.used_tags.update(result)
+        return result
+
+    def write_tag_redirects(self):
+        """Alte Schlagwort-Adressen auf die neuen Schlagwort-Seiten, gestrichene auf die Blog-Uebersicht."""
+        if self.tag_map is None:
+            return
+        lines = ["# Erzeugt von scripts/wp_export.py - nicht von Hand ändern.",
+                 "# Alte Schlagwort-Adressen aus WordPress -> neue Schlagwort-Seite oder Blog."]
+        for term in sorted(self.tags.values(), key=lambda t: t["slug"]):
+            old = url_path(term.get("link") or f"/tag/{term['slug']}/")
+            new_name = self.tag_map.get(term["name"].lower())
+            # Nur Schlagworte, die an mindestens einem Beitrag haengen, bekommen eine Seite.
+            new = f"/tag/{tag_slug(new_name)}/" if new_name in self.used_tags else "/blog/"
+            if old.rstrip("/") + "/" != new:
+                lines.append(f"{old.rstrip('/')} {new}")
+        (self.migration / "redirects-schlagworte.map").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        self.stats["tag_redirects"] = len(lines) - 2
 
     def write_category_redirects(self):
         """WordPress-Kategorien liegen unter ihrem Kurznamen (/category/kclo/), Zensical
@@ -687,7 +738,7 @@ class Export:
             cats = [self.categories[c]["name"] for c in post.get("categories", []) if c in self.categories]
             if cats:
                 meta["categories"] = cats
-            tags = [self.tags[t]["name"] for t in post.get("tags", []) if t in self.tags]
+            tags = self.map_tags([self.tags[t]["name"] for t in post.get("tags", []) if t in self.tags])
             if tags:
                 meta["tags"] = tags
             if post.get("sticky"):
@@ -851,6 +902,7 @@ class Export:
             self.write_authors()
             if "posts" in self.args.types:
                 self.export_posts()
+                self.write_tag_redirects()
             if "pages" in self.args.types:
                 self.export_pages()
             if not self.args.no_media:

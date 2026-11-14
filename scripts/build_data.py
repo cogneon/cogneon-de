@@ -81,6 +81,7 @@ def all_posts(post_dir: Path) -> list[dict]:
             "datum": created.strftime("%d.%m.%Y"),
             "url": f"{created:%Y/%m/%d}/{slug}/",
             "kategorien": [str(c) for c in meta.get("categories") or []],
+            "schlagworte": [str(t) for t in meta.get("tags") or []],
             "pfad": path,
         })
     posts.sort(key=lambda p: (p["tag"], p["url"]), reverse=True)
@@ -107,6 +108,47 @@ def build_blog(root: Path, newest: int = 10) -> dict:
             archiv.append({"jahr": p["tag"].year, "beitraege": []})
         archiv[-1]["beitraege"].append({"titel": p["titel"], "datum": p["datum"], "url": p["url"]})
     return {"neueste": neueste, "kategorien": kategorien, "archiv": archiv}
+
+
+def tag_slug(name: str) -> str:
+    """Adresse einer Schlagwort-Seite (/tag/<slug>/), wie in scripts/wp_export.py."""
+    s = name.lower()
+    for a, b in (("ä", "ae"), ("ö", "oe"), ("ü", "ue"), ("ß", "ss")):
+        s = s.replace(a, b)
+    return re.sub(r"[^a-z0-9-]", "", s)
+
+
+def build_tags(root: Path) -> int:
+    """Eine Seite je Schlagwort unter docs/tag/<slug>.md und eine Übersicht docs/tag/index.md.
+    Die Seiten werden bei jedem Lauf neu erzeugt und nicht ins Repository übernommen."""
+    target = root / "docs" / "tag"
+    if target.exists():
+        for old in target.glob("*.md"):
+            old.unlink()
+    posts = all_posts(root / "docs" / "blog" / "posts")
+    tags: dict[str, list[dict]] = {}
+    for p in posts:
+        for name in p["schlagworte"]:
+            tags.setdefault(name, []).append({"titel": p["titel"], "datum": p["datum"],
+                                              "url": "../../" + p["url"]})
+    if not tags:
+        return 0
+    target.mkdir(parents=True, exist_ok=True)
+    head = "<!-- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -->\n"
+    for name, items in tags.items():
+        meta = {"title": name, "description": f"Beiträge zum Schlagwort {name}",
+                "template": "schlagwort.html", "beitraege": items}
+        (target / f"{tag_slug(name)}.md").write_text(
+            "---\n" + yaml.safe_dump(meta, allow_unicode=True, sort_keys=False, width=1000)
+            + "---\n" + head, encoding="utf-8")
+    uebersicht = [{"titel": n, "anzahl": len(i), "url": f"{tag_slug(n)}/"}
+                  for n, i in sorted(tags.items(), key=lambda kv: kv[0].lower())]
+    meta = {"title": "Schlagworte", "description": "Alle Schlagworte im Blog von Cogneon",
+            "template": "schlagwort.html", "schlagworte": uebersicht}
+    (target / "index.md").write_text(
+        "---\n" + yaml.safe_dump(meta, allow_unicode=True, sort_keys=False, width=1000)
+        + "---\n" + head, encoding="utf-8")
+    return len(tags)
 
 
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
@@ -187,6 +229,8 @@ def main() -> int:
     )
     print(f"{target.relative_to(args.root)}: {sum(len(j['beitraege']) for j in blog['archiv'])} Beiträge, "
           f"{len(blog['kategorien'])} Kategorien")
+    anzahl = build_tags(args.root)
+    print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     return 0
 
 

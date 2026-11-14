@@ -1,0 +1,43 @@
+{#-
+  Schlagwort-Seiten unter /tag/<slug>/ und die Übersicht unter /tag/.
+  Die Seiten erzeugt scripts/build_data.py aus den Schlagworten der Beiträge.
+-#}
+{% extends "main.html" %}
+{% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
+{% block container %}{% endblock %}
+{% block hero %}
+{% set m = page.meta %}
+<div class="cg-page">
+  <section class="cg-section cg-section--kopf">
+    <div class="cg-wrap cg-stack">
+      <nav class="cg-pfad" aria-label="Pfad">
+        <ol>
+          <li><a href="{{ 'blog/' | url }}">Blog</a></li>
+          {% if m.beitraege %}<li><a href="{{ 'tag/' | url }}">Schlagworte</a></li>{% endif %}
+        </ol>
+      </nav>
+      <h1 class="cg-h1">{% if m.beitraege %}#{% endif %}{{ m.title }}</h1>
+      {% if m.beitraege %}
+      <p class="cg-lead cg-muted">{{ m.beitraege | length }} {{ "Beitrag" if m.beitraege | length == 1 else "Beiträge" }}</p>
+      {% endif %}
+    </div>
+  </section>
+  <section class="cg-section cg-section--soft">
+    <div class="cg-wrap">
+      {% if m.beitraege %}
+      <ul class="cg-liste">
+        {% for b in m.beitraege %}
+        <li><a href="{{ b.url }}"><span class="cg-liste__meta">{{ b.datum }}</span><span class="cg-liste__titel">{{ b.titel }}</span></a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <ul class="cg-schlagworte cg-schlagworte--links cg-schlagworte--gross" aria-label="Alle Schlagworte">
+        {% for t in m.schlagworte %}
+        <li><a href="{{ t.url }}">{{ t.titel }} <span class="cg-muted">{{ t.anzahl }}</span></a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -29,8 +29,8 @@
     {% endblock %}
     <footer class="cg-beitrag__fuss">
       {% if page.meta.tags %}
-      <ul class="cg-schlagworte" aria-label="Schlagworte">
-        {% for tag in page.meta.tags %}<li>{{ tag }}</li>{% endfor %}
+      <ul class="cg-schlagworte cg-schlagworte--links" aria-label="Schlagworte">
+        {% for tag in page.meta.tags %}{% set slug = tag | lower | replace("ä", "ae") | replace("ö", "oe") | replace("ü", "ue") | replace("ß", "ss") %}<li><a href="{{ ('tag/' ~ slug ~ '/') | url }}">#{{ tag }}</a></li>{% endfor %}
       </ul>
       {% endif %}
       {% for author in page.authors %}
