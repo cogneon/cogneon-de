@@ -13,6 +13,10 @@ Stand: Aufbau und Test. Die Live-Website läuft weiter auf WordPress, bis der Um
 | `docs/.authors.yml` | Autorenprofile |
 | `docs/wp-content/uploads/` | Medien unter ihren alten WordPress-Pfaden |
 | `zensical.toml` | Konfiguration der Website |
+| `overrides/` | Vorlagen: Kopf- und Fußzeile, Startseite (`home.html`), Angebotsseiten (`angebot.html`) |
+| `docs/assets/stylesheets/cogneon.css` | Gestaltung. Schriften liegen lokal in `docs/assets/fonts/` |
+| `inhalte/aktuell.yml` | Highlights und Termine der Startseite |
+| `scripts/build_data.py` | erzeugt daraus und aus den Blogbeiträgen `_data/aktuell.yml` |
 | `scripts/wp_export.py` | wiederholbarer Export aus WordPress |
 | `scripts/check_urls.py` | prüft, ob alle alten URLs erreichbar bleiben |
 | `migration/` | Berichte des Exports (Inventar, URL-Liste, URL-Check) |
@@ -21,6 +25,7 @@ Stand: Aufbau und Test. Die Live-Website läuft weiter auf WordPress, bis der Um
 
 ```bash
 pip install -r requirements.txt
+python scripts/build_data.py   # Daten der Startseite erzeugen
 zensical serve          # Vorschau unter http://localhost:8000
 python -m pytest tests  # Tests des Export-Skripts
 ```

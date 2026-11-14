@@ -1,0 +1,68 @@
+{#- Fußzeile: Newsletter, Angebote, Ressourcen, Kontakt. -#}
+<footer class="md-footer cg-footer">
+  <div class="cg-wrap cg-footer__inner">
+
+    <div class="cg-footer__newsletter">
+      <div>
+        <h2 class="cg-h2 cg-h2--klein">Keep Calm &amp; Learn On</h2>
+        <p>Der Newsletter von Cogneon zu Wissensmanagement und Lernenden Organisationen.</p>
+      </div>
+      <p><a class="cg-button" href="{{ 'newsletter/' | url }}">Newsletter abonnieren</a></p>
+    </div>
+
+    <nav class="cg-footer__spalten" aria-label="Fußzeile">
+      <div>
+        <h3>Strategisches Wissensmanagement</h3>
+        <ul>
+          <li><a href="{{ 'angebote/' | url }}#strategisch">Knowledge Excellence Coach</a></li>
+          <li><a href="{{ 'angebote/' | url }}#strategisch">Wissensbeirat</a></li>
+          <li><a href="{{ 'angebote/' | url }}#strategisch">Knowledge Pioneers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Operatives Wissensmanagement</h3>
+        <ul>
+          <li><a href="{{ 'wissenstransfer/' | url }}">Wissenstransfer</a></li>
+          <li><a href="{{ 'angebote/' | url }}#operativ">Wissensinfrastruktur</a></li>
+          <li><a href="{{ 'angebote/' | url }}#operativ">Communities &amp; Barcamps</a></li>
+          <li><a href="{{ 'angebote/' | url }}#operativ">Learning Sessions</a></li>
+          <li><a href="{{ 'angebote/' | url }}#operativ">Personal Knowledge Excellence</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ressourcen</h3>
+        <ul>
+          <li><a href="https://podcasts.cogneon.io/">Podcasts</a></li>
+          <li><a href="https://youtube.com/cogneon">YouTube</a></li>
+          <li><a href="https://wiki.cogneon.de/">Wiki</a></li>
+          <li><a href="https://community.cogneon.de/">Community CONNECT</a></li>
+          <li><a href="{{ 'lernos/' | url }}">lernOS</a></li>
+          <li><a href="{{ '4010km/' | url }}">Menerva-Programm 2036</a></li>
+          <li><a href="{{ 'blp26/' | url }}">Benchlearning</a></li>
+          <li><a href="{{ 'top10/' | url }}">Top 10s</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <address>
+          Cogneon GmbH<br>
+          Bucherstr. 79a<br>
+          90419 Nürnberg
+        </address>
+        <ul>
+          <li><a href="tel:+4991139570830">+49 911 39570830</a></li>
+          <li><a href="mailto:info@cogneon.de">info@cogneon.de</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="cg-footer__ende">
+      <p>{{ config.copyright }}</p>
+      <ul>
+        <li><a href="{{ 'impressum/' | url }}">Impressum</a></li>
+        <li><a href="{{ 'datenschutz/' | url }}">Datenschutz</a></li>
+      </ul>
+    </div>
+
+  </div>
+</footer>
