@@ -240,8 +240,13 @@ input:focus-visible {
   color: var(--cg-fg);
   text-wrap: pretty;
 }
-/* Seiten mit eigener Vorlage brauchen den leeren Standard-Inhaltsbereich nicht. */
+/* Seiten mit eigener Vorlage brauchen den Standard-Inhaltsbereich nicht.
+   Der Bereich selbst bleibt, weil darin das Seitenmenü für kleine Bildschirme
+   steckt; er nimmt aber keinen Platz ein. */
 .md-container:has(.cg-page) > .md-main {
+  flex-grow: 0;
+}
+.md-container:has(.cg-page) > .md-main .md-content {
   display: none;
 }
 
@@ -1125,4 +1130,14 @@ ol.cg-schritte > li,
 .cg-archiv .cg-liste__titel {
   font-size: 0.85rem;
   font-weight: 500;
+}
+
+/* Seitenmenü auf kleinen Bildschirmen: deckender Hintergrund, damit es auch
+   über dem dunklen Einstieg der Startseite gut lesbar ist. */
+@media screen and (max-width: 76.24em) {
+  .md-sidebar--primary {
+    background: var(--cg-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
