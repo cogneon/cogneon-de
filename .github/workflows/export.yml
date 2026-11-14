@@ -54,9 +54,13 @@ jobs:
       - name: Bericht
         if: always()
         run: |
-          cat migration/report.md >> "$GITHUB_STEP_SUMMARY" || true
-          echo "Alte URLs laut Sitemap: $(wc -l < migration/old-urls.txt 2>/dev/null || echo 0)" >> "$GITHUB_STEP_SUMMARY"
-          du -sh docs/wp-content 2>/dev/null || true
+          cat migration/report.md | tee -a "$GITHUB_STEP_SUMMARY" || true
+          echo "## Alte URLs laut Sitemap: $(wc -l < migration/old-urls.txt 2>/dev/null || echo 0)" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "### Verteilung nach erstem Pfadabschnitt"
+          sed -E 's#https?://[^/]+/##' migration/old-urls.txt | awk -F/ '{print $1}' | sort | uniq -c | sort -rn | head -40 || true
+          echo "### Medien"
+          du -sh docs/wp-content 2>/dev/null || echo "keine Medien geladen"
+          find docs/wp-content -type f 2>/dev/null | wc -l
       - name: Probe-Build mit exportierten Inhalten
         if: env.MODUS != 'inventar'
         run: |

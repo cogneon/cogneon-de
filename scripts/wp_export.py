@@ -298,7 +298,10 @@ class Export:
     # -- Inventar ----------------------------------------------------------
 
     def inventory(self) -> dict:
-        root = self.wp.get("").json()
+        resp = self.wp.get("")
+        if resp.status_code != 200:
+            raise RuntimeError(f"REST-API nicht erreichbar: HTTP {resp.status_code} ({self._error_code(resp)})")
+        root = resp.json()
         inv = {
             "name": root.get("name"),
             "description": root.get("description"),
@@ -308,7 +311,14 @@ class Export:
             "generated": datetime.now().isoformat(timespec="seconds"),
             "types": {},
         }
-        types = self.wp.get("wp/v2/types").json()
+        resp = self.wp.get("wp/v2/types")
+        types = resp.json() if resp.status_code == 200 else {}
+        if not types or not all(isinstance(v, dict) for v in types.values()):
+            self.problems.append(
+                f"Inhaltstypen nicht abrufbar (wp/v2/types: HTTP {resp.status_code}, "
+                f"{self._error_code(resp)}) - es werden nur Beiträge und Seiten gezählt.")
+            types = {"post": {"name": "Beiträge", "rest_base": "posts"},
+                     "page": {"name": "Seiten", "rest_base": "pages"}}
         for key, info in sorted(types.items()):
             if key in CORE_TYPES_SKIP:
                 continue
@@ -332,14 +342,27 @@ class Export:
             json.dumps(inv, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         return inv
 
+    @staticmethod
+    def _error_code(resp) -> str:
+        try:
+            data = resp.json()
+            return str(data.get("code", "ohne Fehlercode")) if isinstance(data, dict) else "unerwartete Antwort"
+        except ValueError:
+            return "keine JSON-Antwort"
+
     # -- Stammdaten --------------------------------------------------------
 
     def load_taxonomies(self):
         fields = "id,name,slug,description,link"
         self.categories = {c["id"]: c for c in self.wp.items("wp/v2/categories", {"_fields": fields})}
         self.tags = {t["id"]: t for t in self.wp.items("wp/v2/tags", {"_fields": fields})}
-        self.users = {u["id"]: u for u in self.wp.items(
-            "wp/v2/users", {"_fields": "id,name,slug,description,link"})}
+        try:
+            self.users = {u["id"]: u for u in self.wp.items(
+                "wp/v2/users", {"_fields": "id,name,slug,description,link"})}
+        except RuntimeError as exc:
+            self.users = {}
+            self.problems.append(f"Autoren nicht abrufbar ({exc}) - Beiträge werden ohne Autor exportiert. "
+                                 "Vermutlich sperrt ein Sicherheits-Plugin die Benutzerliste.")
 
     def write_authors(self):
         """Ergaenzt docs/blog/.authors.yml um fehlende Autoren. Bestehende bleiben unveraendert."""

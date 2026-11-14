@@ -231,3 +231,27 @@ def test_check_urls(tmp_path):
     report = (tmp_path / "check.md").read_text()
     assert "fehlend: 1" in report and "`/weg/`" in report and "per Redirect abgedeckt: 1" in report
     assert check_urls.main([*args, "--report-only"]) == 0
+
+
+def test_blocked_endpoints_do_not_abort_export(server, tmp_path, monkeypatch):
+    """Sicherheits-Plugins sperren oft die Typ- und Benutzerliste."""
+    original = wp_export.WordPress.get
+
+    def blocked(self, route, params=None):
+        if route.strip("/") in ("wp/v2/types", "wp/v2/users"):
+            class Resp:
+                status_code = 401
+                headers = {}
+
+                @staticmethod
+                def json():
+                    return {"code": "rest_forbidden", "message": "nein", "data": {"status": 401}}
+            return Resp()
+        return original(self, route, params)
+
+    monkeypatch.setattr(wp_export.WordPress, "get", blocked)
+    assert run_export(server, tmp_path) == 0
+    meta = wp_export.read_frontmatter(tmp_path / "docs/blog/posts/2026/erster-beitrag.md")
+    assert "authors" not in meta
+    report = (tmp_path / "migration/report.md").read_text(encoding="utf-8")
+    assert "rest_forbidden" in report and "Autoren nicht abrufbar" in report
