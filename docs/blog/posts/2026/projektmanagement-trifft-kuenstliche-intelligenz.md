@@ -12,6 +12,7 @@ tags:
 - Innovation
 - Projektmanagement
 - RalfStockmann
+bild: wp-content/uploads/2025/12/KCLO-Newsletter-Banner-KM-Map.png
 wp:
   id: 67354
   link: https://cogneon.de/2026/05/06/projektmanagement-trifft-kuenstliche-intelligenz/

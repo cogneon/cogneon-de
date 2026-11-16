@@ -10,6 +10,7 @@ categories:
 - lernOS Convention 2023
 tags:
 - lernOSConvention
+bild: wp-content/uploads/2023/04/loscon23-key-visual.png
 wp:
   id: 61570
   link: https://cogneon.de/2023/07/03/loscon23-alles-was-ihr-fuer-eure-teilnahme-wissen-muesst/

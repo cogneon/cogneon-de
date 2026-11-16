@@ -12,6 +12,7 @@ tags:
 - 4010km
 - KünstlicheIntelligenz
 - WEDCall
+bild: wp-content/uploads/2026/10/KCLO-Newsletter-Banner-2026-10-12.png
 wp:
   id: 67973
   link: https://cogneon.de/2026/10/12/das-menerva-programm-2036-40-jahre-wissensmanagement-10-jahre-bis-2036/

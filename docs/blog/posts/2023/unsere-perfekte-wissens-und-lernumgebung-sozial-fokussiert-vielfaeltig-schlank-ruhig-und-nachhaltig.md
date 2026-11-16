@@ -14,6 +14,8 @@ tags:
 - Lernen
 - lernOSConvention
 - PersönlichesWissensmanagement
+bild: wp-content/uploads/2023/10/loscon23-challenge-systemmodell.png
+bild_im_text: true
 wp:
   id: 61936
   link: https://cogneon.de/2023/10/01/unsere-perfekte-wissens-und-lernumgebung-sozial-fokussiert-vielfaeltig-schlank-ruhig-und-nachhaltig/

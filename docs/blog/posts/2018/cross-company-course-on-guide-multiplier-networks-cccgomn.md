@@ -12,6 +12,8 @@ tags:
 - Benchlearning
 - ChangeManagement
 - ChangeAgents
+bild: wp-content/uploads/2018/10/CCCOGMN-Invitation.png
+bild_im_text: true
 wp:
   id: 54117
   link: https://cogneon.de/2018/10/05/cross-company-course-on-guide-multiplier-networks-cccgomn/

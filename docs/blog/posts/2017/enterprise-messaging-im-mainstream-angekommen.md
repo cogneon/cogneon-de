@@ -12,6 +12,7 @@ tags:
 - Enterprise20
 - Zusammenarbeit
 - Microsoft365
+bild: wp-content/uploads/2017/11/img_999.jpg
 wp:
   id: 50053
   link: https://cogneon.de/2017/11/05/enterprise-messaging-im-mainstream-angekommen/

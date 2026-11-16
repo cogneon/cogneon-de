@@ -10,6 +10,7 @@ categories:
 - lernOS Convention 2023
 tags:
 - lernOSConvention
+bild: wp-content/uploads/2023/05/Internationals-at-loscon.png
 wp:
   id: 61369
   link: https://cogneon.de/2023/05/10/internationals-loscon23-how-we-make-the-lernos-convention-more-accessible-for-non-german-speakers/

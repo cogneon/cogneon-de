@@ -14,6 +14,7 @@ tags:
 - NewWork
 - Digitalisierung
 - Microsoft365
+bild: wp-content/uploads/2018/04/chat-based-workspace.png
 wp:
   id: 51733
   link: https://cogneon.de/2018/04/14/studie-digitale-arbeitsplatzgestaltung/

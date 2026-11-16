@@ -13,6 +13,7 @@ tags:
 - ChangeAgents
 - LernendeOrganisation
 - Microsoft365
+bild: wp-content/uploads/2018/12/office365-logo.png
 wp:
   id: 54641
   link: https://cogneon.de/2018/12/19/office-365-und-die-lernende-organisation/

@@ -15,6 +15,7 @@ tags:
 - Lernen
 - OKR
 - WorkingOutLoud
+bild: wp-content/uploads/2018/12/lernOS-Logo-1500x430.png
 wp:
   id: 51938
   link: https://cogneon.de/2018/05/09/wol-what-happens-after-working-out-loud-circle-1-wolplus/

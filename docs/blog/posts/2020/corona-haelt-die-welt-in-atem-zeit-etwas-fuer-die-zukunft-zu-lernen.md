@@ -11,6 +11,8 @@ categories:
 tags:
 - Microsoft365
 - Zusammenarbeit
+bild: wp-content/uploads/2020/03/novel-coronavirus.png
+bild_im_text: true
 wp:
   id: 57426
   link: https://cogneon.de/2020/03/07/corona-haelt-die-welt-in-atem-zeit-etwas-fuer-die-zukunft-zu-lernen/

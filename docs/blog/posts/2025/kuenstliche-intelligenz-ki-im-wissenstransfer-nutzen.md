@@ -12,6 +12,7 @@ tags:
 - GenerativeKI
 - WEDCall
 - Wissenstransfer
+bild: wp-content/uploads/2025/12/Apodcastrecordingwiththree_93684520.png
 wp:
   id: 66297
   link: https://cogneon.de/2025/12/07/kuenstliche-intelligenz-ki-im-wissenstransfer-nutzen/

@@ -17,6 +17,7 @@ tags:
 - Kommunikation
 - Microsoft365
 - Intranet
+bild: wp-content/uploads/2018/03/img_1123.jpg
 wp:
   id: 50541
   link: https://cogneon.de/2018/03/31/erfahrungen-zur-auswahl-einer-plattform-fuer-die-neue-akademie-community/

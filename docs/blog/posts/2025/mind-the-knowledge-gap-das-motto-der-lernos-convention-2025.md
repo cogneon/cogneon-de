@@ -13,6 +13,8 @@ tags:
 - lernOSConvention
 - Strategie
 - Wissensmanagement
+bild: wp-content/uploads/2025/03/loscon25-key-visual-motto-blog.png
+bild_alt: Motto der lernOS Convention 2025 "Mind the Gap".
 wp:
   id: 64705
   link: https://cogneon.de/2025/03/02/mind-the-knowledge-gap-das-motto-der-lernos-convention-2025/

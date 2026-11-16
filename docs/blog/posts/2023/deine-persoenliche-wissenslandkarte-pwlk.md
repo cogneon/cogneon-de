@@ -10,6 +10,8 @@ categories:
 - Keep Calm & Learn On
 tags:
 - ExpertDebriefing
+bild: wp-content/uploads/2023/10/KCLO-Newsletter-Banner-2023-10-23.png
+bild_im_text: true
 wp:
   id: 62046
   link: https://cogneon.de/2023/10/23/deine-persoenliche-wissenslandkarte-pwlk/

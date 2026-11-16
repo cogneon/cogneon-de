@@ -11,6 +11,7 @@ categories:
 tags:
 - lernOS
 - lernOSConvention
+bild: wp-content/uploads/2021/06/loscon21-key-visual-1.png
 wp:
   id: 58952
   link: https://cogneon.de/2021/06/05/loscon21-alles-was-ihr-fuer-eure-teilnahme-wissen-muesst/

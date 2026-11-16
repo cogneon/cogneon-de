@@ -13,6 +13,8 @@ tags:
 - EventManagement
 - Hackathon
 - HybridWork
+bild: wp-content/uploads/2021/09/event-location-1.png
+bild_im_text: true
 wp:
   id: 59148
   link: https://cogneon.de/2021/09/16/das-dilemma-hybrider-veranstaltungen/

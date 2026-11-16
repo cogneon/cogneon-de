@@ -11,6 +11,7 @@ categories:
 tags:
 - IntellectualCapital
 - Wissensmanagement
+bild: wp-content/uploads/2017/09/buecherregal.jpg
 wp:
   id: 41292
   link: https://cogneon.de/2017/09/23/top-10-journals-fuer-wissen-lernen-und-management-in-21-jahrhundert/

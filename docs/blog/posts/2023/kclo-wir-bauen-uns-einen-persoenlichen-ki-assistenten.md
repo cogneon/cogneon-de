@@ -13,6 +13,7 @@ tags:
 - KnowledgeJam
 - KünstlicheIntelligenz
 - lernOS
+bild: wp-content/uploads/2023/12/KCLO-Newsletter-Banner-2023-12-05.png
 wp:
   id: 62231
   link: https://cogneon.de/2023/12/05/kclo-wir-bauen-uns-einen-persoenlichen-ki-assistenten/

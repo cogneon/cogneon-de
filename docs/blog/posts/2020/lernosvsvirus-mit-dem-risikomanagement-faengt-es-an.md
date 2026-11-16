@@ -13,6 +13,7 @@ tags:
 - PersönlichesWissensmanagement
 - Risikomanagement
 - Wissenstransfer
+bild: wp-content/uploads/2020/03/novel-coronavirus.png
 wp:
   id: 57678
   link: https://cogneon.de/2020/04/29/lernosvsvirus-mit-dem-risikomanagement-faengt-es-an/

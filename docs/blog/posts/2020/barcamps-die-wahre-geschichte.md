@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Allgemein
+bild: wp-content/uploads/2020/08/34924369_85dfeeda9c_o.png
 wp:
   id: 57954
   link: https://cogneon.de/2020/08/15/barcamps-die-wahre-geschichte/

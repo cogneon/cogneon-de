@@ -8,6 +8,8 @@ authors:
 - simon-dueckert
 categories:
 - Künstliche Intelligenz
+bild: wp-content/uploads/2026/10/image.png
+bild_im_text: true
 wp:
   id: 67920
   link: https://cogneon.de/2026/10/03/ai-focused-knowledge-management-eine-neue-aera-hat-begonnen/

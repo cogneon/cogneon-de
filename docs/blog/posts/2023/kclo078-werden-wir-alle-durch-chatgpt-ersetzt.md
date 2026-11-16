@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Allgemein
+bild: wp-content/uploads/2023/01/KCLO-Newsletter-Banner.png
 wp:
   id: 61154
   link: https://cogneon.de/2023/03/09/kclo078-werden-wir-alle-durch-chatgpt-ersetzt/

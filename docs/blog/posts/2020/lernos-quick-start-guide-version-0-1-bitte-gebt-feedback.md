@@ -10,6 +10,8 @@ categories:
 - lernOS
 tags:
 - lernOS
+bild: wp-content/uploads/2020/08/20200805-lernOS-1-Pager-de-Feedback-Version.png
+bild_im_text: true
 wp:
   id: 57917
   link: https://cogneon.de/2020/08/05/lernos-quick-start-guide-version-0-1-bitte-gebt-feedback/

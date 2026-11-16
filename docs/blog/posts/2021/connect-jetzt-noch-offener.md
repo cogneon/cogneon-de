@@ -10,6 +10,8 @@ categories:
 - Community
 tags:
 - ConnectCommunity
+bild: wp-content/uploads/2021/10/Bildschirmfoto-2021-10-31-um-11.18.01.png
+bild_im_text: true
 wp:
   id: 59224
   link: https://cogneon.de/2021/11/02/connect-jetzt-noch-offener/

@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Wissensmanagement
+bild: wp-content/uploads/2024/08/stop-sending-start-sharing-1.jpg
 wp:
   id: 63589
   link: https://cogneon.de/2024/08/04/braucht-es-wissensmanagement-auch-in-zeiten-von-microsoft-365-nextcloud-co-noch/

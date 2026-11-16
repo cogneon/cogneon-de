@@ -15,6 +15,7 @@ tags:
 - KünstlicheIntelligenz
 - Wissenstransfer
 - WissensTransferCamp
+bild: wp-content/uploads/2023/12/KCLO-Newsletter-Banner-2023-12-05.png
 wp:
   id: 65735
   link: https://cogneon.de/2025/08/19/kclo-ai-first-km-organisationen-mit-ki-smarter-machen/

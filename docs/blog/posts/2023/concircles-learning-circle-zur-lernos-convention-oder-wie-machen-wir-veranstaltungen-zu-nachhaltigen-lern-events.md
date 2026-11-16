@@ -11,6 +11,8 @@ categories:
 tags:
 - Barcamp
 - lernOSConvention
+bild: wp-content/uploads/2023/05/event-with-concircles.png
+bild_im_text: true
 wp:
   id: 61336
   link: https://cogneon.de/2023/05/04/concircles-learning-circle-zur-lernos-convention-oder-wie-machen-wir-veranstaltungen-zu-nachhaltigen-lern-events/

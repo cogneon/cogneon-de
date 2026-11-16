@@ -12,6 +12,7 @@ categories:
 tags:
 - lernOSConvention
 - Nachhaltigkeit
+bild: wp-content/uploads/2022/06/loscon22-nachhaltigkeit.png
 wp:
   id: 59835
   link: https://cogneon.de/2022/06/08/das-nachhaltigkeits-konzept-der-lernos-convention-2022/

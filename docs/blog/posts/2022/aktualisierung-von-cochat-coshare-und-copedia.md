@@ -10,6 +10,8 @@ categories:
 - Akademie
 tags:
 - Wiki
+bild: wp-content/uploads/2022/08/Zeichnung2-2.png
+bild_im_text: true
 wp:
   id: 59949
   link: https://cogneon.de/2022/08/06/aktualisierung-von-cochat-coshare-und-copedia/

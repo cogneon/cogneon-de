@@ -10,6 +10,7 @@ categories:
 - lernOS
 tags:
 - lernOS
+bild: wp-content/uploads/2018/12/lernOS-Logo-1500x430.png
 wp:
   id: 54419
   link: https://cogneon.de/2018/12/13/neuer-lernos-produktions-workflow/

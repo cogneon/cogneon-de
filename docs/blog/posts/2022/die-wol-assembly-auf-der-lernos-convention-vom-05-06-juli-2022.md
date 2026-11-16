@@ -16,6 +16,8 @@ tags:
 - Offenheit
 - ChangeAgents
 - WorkingOutLoud
+bild: wp-content/uploads/2022/05/loscamp19-assembly-1.jpeg
+bild_im_text: true
 wp:
   id: 59766
   link: https://cogneon.de/2022/05/21/die-wol-assembly-auf-der-lernos-convention-vom-05-06-juli-2022/

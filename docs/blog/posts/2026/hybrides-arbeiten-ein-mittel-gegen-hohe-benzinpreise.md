@@ -10,6 +10,7 @@ categories:
 - Führung und Kultur
 tags:
 - HybridWork
+bild: wp-content/uploads/2026/04/hybrides-arbeiten-20.png
 wp:
   id: 67236
   link: https://cogneon.de/2026/04/06/hybrides-arbeiten-ein-mittel-gegen-hohe-benzinpreise/

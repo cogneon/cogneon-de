@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Wissenstransfer
+bild: wp-content/uploads/2024/07/blog-baby-boomer-wissensverlust-cc-by-sa.png
 wp:
   id: 63546
   link: https://cogneon.de/2024/07/31/die-generation-der-baby-boomer-geht-in-den-ruhestand-habt-ihr-das-risiko-des-wissensverlust-im-blick/

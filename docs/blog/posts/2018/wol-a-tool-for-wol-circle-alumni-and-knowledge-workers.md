@@ -15,6 +15,7 @@ tags:
 - OKR
 - Agilität
 - WorkingOutLoud
+bild: wp-content/uploads/2018/12/lernOS-Logo-1500x430.png
 wp:
   id: 52724
   link: https://cogneon.de/2018/05/24/wol-a-tool-for-wol-circle-alumni-and-knowledge-workers/

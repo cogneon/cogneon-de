@@ -1,6 +1,6 @@
 # Migrationsbericht
 
-Erzeugt: 2026-11-14T19:06:43
+Erzeugt: 2026-11-16T11:16:24
 Quelle: https://cogneon.de/
 
 ## Inventar
@@ -39,14 +39,16 @@ API-Namespaces: `ithemes-security/rpc`, `ithemes-security/v1`, `oembed/1.0`, `ac
 - categories_total: 29
 - categories_used_once_or_never: 6
 - category_redirects: 18
-- media_bytes: 125924237
-- media_downloaded: 483
-- media_failed: 1
-- page_created: 22
+- event_created: 97
+- media_bytes: 159937117
+- media_downloaded: 562
+- media_failed: 3
 - page_frozen: 5
 - page_redirected: 1
+- page_unchanged: 22
 - pages_headings_shifted: 54
-- post_created: 534
+- post_images: 163
+- post_unchanged: 534
 - tag_redirects: 1149
 - tags_total: 1229
 - tags_used_once_or_never: 931
@@ -221,7 +223,7 @@ Barrierefreiheit: Je Seite soll es nur eine Hauptüberschrift geben. Diese Seite
 
 - /themen/: 3
 
-Geladene Medien: 125.9 MB
+Geladene Medien: 159.9 MB
 
 ## Hinweise
 
@@ -230,4 +232,7 @@ Geladene Medien: 125.9 MB
 ## Probleme
 
 - Einbettung ohne auffindbare Adresse (youtube): /2013/03/20/enterprise-2-0-summit-2013-day-1/
+- Weiterleitungen aus WordPress nicht lesbar: HTTP 403
 - Medium nicht ladbar: https://cogneon.de/wp-content/uploads/2018/04/20170912-CLC-2017-Lernen-in-Organisationen-im-Digitalen-Zeitalter-Druck-Audi.pdf (HTTP 404)
+- Medium nicht ladbar: https://cogneon.de/wp-content/uploads/2019/01/2012-dueckert-expert-debriefing.pdf (HTTP 404)
+- Medium nicht ladbar: https://cogneon.de/wp-content/uploads/2021/09/edmod-ablauf-1.png (HTTP 404)

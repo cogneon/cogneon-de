@@ -12,6 +12,7 @@ categories:
 tags:
 - EventManagement
 - lernOSConvention
+bild: wp-content/uploads/2022/05/loscon22-banner-1500-384.png
 wp:
   id: 59871
   link: https://cogneon.de/2022/07/04/loscon22-alles-was-ihr-fuer-eure-teilnahme-wissen-muesst/

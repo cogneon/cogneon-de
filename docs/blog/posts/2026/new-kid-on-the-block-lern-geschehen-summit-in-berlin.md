@@ -11,6 +11,7 @@ categories:
 tags:
 - lerngeschehen26
 - WissensTransferCamp
+bild: wp-content/uploads/2024/08/KCLO-Newsletter-Banner-2024-07-30.png
 wp:
   id: 67835
   link: https://cogneon.de/2026/09/16/new-kid-on-the-block-lern-geschehen-summit-in-berlin/

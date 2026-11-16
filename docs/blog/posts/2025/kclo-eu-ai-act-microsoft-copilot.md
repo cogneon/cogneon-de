@@ -13,6 +13,7 @@ tags:
 - GenerativeKI
 - Microsoft365
 - WissensTransferCamp
+bild: wp-content/uploads/2024/08/KCLO-Newsletter-Banner-2024-07-30.png
 wp:
   id: 64418
   link: https://cogneon.de/2025/02/04/kclo-eu-ai-act-microsoft-copilot/

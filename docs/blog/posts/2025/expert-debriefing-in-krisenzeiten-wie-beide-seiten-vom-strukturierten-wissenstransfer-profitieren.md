@@ -11,6 +11,7 @@ categories:
 tags:
 - ExpertDebriefing
 - Wissenstransfer
+bild: wp-content/uploads/2025/02/expert-debriefing-banner-720p.png
 wp:
   id: 65101
   link: https://cogneon.de/2025/04/09/expert-debriefing-in-krisenzeiten-wie-beide-seiten-vom-strukturierten-wissenstransfer-profitieren/

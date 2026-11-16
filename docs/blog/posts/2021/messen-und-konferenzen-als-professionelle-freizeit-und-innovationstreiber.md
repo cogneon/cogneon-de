@@ -12,6 +12,7 @@ tags:
 - Innovation
 - EventManagement
 - NewWaysOfWorking
+bild: wp-content/uploads/2021/10/houses-g16f1d69c3_1280.png
 wp:
   id: 59213
   link: https://cogneon.de/2021/10/16/messen-und-konferenzen-als-professionelle-freizeit-und-innovationstreiber/

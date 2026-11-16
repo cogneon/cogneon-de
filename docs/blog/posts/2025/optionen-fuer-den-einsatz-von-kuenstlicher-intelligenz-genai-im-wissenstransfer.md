@@ -10,6 +10,7 @@ categories:
 - Wissenstransfer
 tags:
 - GenerativeKI
+bild: wp-content/uploads/2025/07/genai-in-ed-kex-events.png
 wp:
   id: 65559
   link: https://cogneon.de/2025/07/19/optionen-fuer-den-einsatz-von-kuenstlicher-intelligenz-genai-im-wissenstransfer/

@@ -12,6 +12,8 @@ categories:
 tags:
 - lernOSConvention
 - Wissensmanagement
+bild: wp-content/uploads/2022/05/loscon22-space-map.png
+bild_im_text: true
 wp:
   id: 59724
   link: https://cogneon.de/2022/05/06/loscon22-galaxy-map-die-lernos-themen-in-einer-landkarte/

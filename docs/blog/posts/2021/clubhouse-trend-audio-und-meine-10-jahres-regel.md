@@ -14,6 +14,7 @@ tags:
 - Podcast
 - Wissensmanagement
 - Wissenstransfer
+bild: wp-content/uploads/2021/01/59BBC4D8-DF46-4829-9516-0C8269313465.jpeg
 wp:
   id: 58272
   link: https://cogneon.de/2021/01/19/clubhouse-trend-audio-und-meine-10-jahres-regel/

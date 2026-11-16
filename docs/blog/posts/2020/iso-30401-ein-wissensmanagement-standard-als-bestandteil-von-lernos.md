@@ -12,6 +12,8 @@ categories:
 tags:
 - Standards
 - Wissensmanagement
+bild: wp-content/uploads/2020/03/KM_Chefs_Canvas_1_colour-1024x710-1.jpg
+bild_im_text: true
 wp:
   id: 57416
   link: https://cogneon.de/2020/03/07/iso-30401-ein-wissensmanagement-standard-als-bestandteil-von-lernos/

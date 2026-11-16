@@ -12,6 +12,7 @@ categories:
 tags:
 - CorporateLearningCommunity
 - Gamification
+bild: wp-content/uploads/2020/10/7B002297-2C11-4C8D-B8DD-D4D1A44A132E.png
 wp:
   id: 58221
   link: https://cogneon.de/2020/10/20/cl20crafting-baut-euch-euren-lieblings-lernraum-zum-corporate-learning-camp-2020/

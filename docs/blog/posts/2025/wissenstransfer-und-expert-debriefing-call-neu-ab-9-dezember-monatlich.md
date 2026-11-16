@@ -11,6 +11,7 @@ categories:
 tags:
 - ExpertDebriefing
 - WEDCall
+bild: wp-content/uploads/2023/12/KCLO-Newsletter-Banner-2023-12-05.png
 wp:
   id: 66276
   link: https://cogneon.de/2025/12/04/wissenstransfer-und-expert-debriefing-call-neu-ab-9-dezember-monatlich/

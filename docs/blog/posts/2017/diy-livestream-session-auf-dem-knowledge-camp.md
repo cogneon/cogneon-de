@@ -13,6 +13,7 @@ tags:
 - DIYMultimedia
 - KnowledgeCamp
 - Multimedia
+bild: wp-content/uploads/2017/09/diy-livestream-gkc17.jpg
 wp:
   id: 40226
   link: https://cogneon.de/2017/09/15/diy-livestream-session-auf-dem-knowledge-camp/

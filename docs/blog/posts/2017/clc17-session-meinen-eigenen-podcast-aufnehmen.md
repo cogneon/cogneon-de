@@ -14,6 +14,7 @@ tags:
 - CorporateLearningCommunity
 - DIYMultimedia
 - Podcast
+bild: wp-content/uploads/2017/09/podcast-studio-03.jpg
 wp:
   id: 41531
   link: https://cogneon.de/2017/09/25/clc17-session-meinen-eigenen-podcast-aufnehmen/

@@ -14,6 +14,7 @@ tags:
 - GenerativeKI
 - lernOS
 - lernOSConvention
+bild: wp-content/uploads/2025/06/KCLO-Newsletter-Banner-2025-06-02.png
 wp:
   id: 65473
   link: https://cogneon.de/2025/06/23/kclo-ki-basierte-dokumentation-von-veranstaltungen/

@@ -9,6 +9,8 @@ authors:
 categories:
 - Events und Vorträge
 - lernOS Convention 2022
+bild: wp-content/uploads/2022/06/Bildschirmfoto-2022-06-25-um-10.07.42.png
+bild_im_text: true
 wp:
   id: 59856
   link: https://cogneon.de/2022/06/25/minetest-loscon22-eine-aktion-fuer-junge-und-jungebliebene/

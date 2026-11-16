@@ -10,6 +10,7 @@ categories:
 - Studien und Bibliothek
 tags:
 - Lernen
+bild: wp-content/uploads/2013/01/wpid-photo-24-01-2013-1843.jpg
 wp:
   id: 438
   link: https://cogneon.de/2013/01/24/deutsche-wirtschaftsgeschichte-buch/

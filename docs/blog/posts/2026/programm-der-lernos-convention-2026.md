@@ -12,6 +12,7 @@ tags:
 - Innovation
 - lernOSConvention
 - Microsoft365
+bild: wp-content/uploads/2026/03/KCLO-Newsletter-Banner-2026-loscon26.png
 wp:
   id: 67456
   link: https://cogneon.de/2026/06/02/programm-der-lernos-convention-2026/

@@ -12,6 +12,7 @@ tags:
 - KünstlicheIntelligenz
 - ConnectCommunity
 - Intranet
+bild: wp-content/uploads/2018/04/chatbot-haende.png
 wp:
   id: 51756
   link: https://cogneon.de/2018/04/21/ein-chatbot-fuer-das-onboarding-in-community-plattformen-ein-erfahrungsbericht/

@@ -19,6 +19,7 @@ tags:
 - KnowTech
 - lernOS
 - Intranet
+bild: wp-content/uploads/2018/02/pfeil-ziel.jpg
 wp:
   id: 50182
   link: https://cogneon.de/2018/02/04/ein-kleiner-ausblick-auf-unser-jahr-2018/

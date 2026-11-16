@@ -12,6 +12,7 @@ tags:
 - CorporateLearningCommunity
 - MOOC
 - Stifterverband
+bild: wp-content/uploads/2017/07/stifterverband-2017.jpg
 wp:
   id: 24638
   link: https://cogneon.de/2017/07/16/podiumsdiskussion-bei-der-jahresversammlung-des-stifterverband/

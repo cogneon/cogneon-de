@@ -12,6 +12,7 @@ tags:
 - Digitalisierung
 - LeanManagement
 - Agilität
+bild: wp-content/uploads/2019/02/transformation-header.jpg
 wp:
   id: 56030
   link: https://cogneon.de/2019/02/02/the-transformers-von-digitalen-und-anderen-transformationen/

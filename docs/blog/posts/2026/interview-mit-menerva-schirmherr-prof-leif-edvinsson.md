@@ -8,6 +8,8 @@ authors:
 - simon-dueckert
 categories:
 - Allgemein
+bild: wp-content/uploads/2026/10/The-smart-thought-connection-on-the-emerging-KnowledgeHub.jpg
+bild_alt: 'Atoms colliding - The smart thought connection on the emerging young KnowledgeHub (Source: Leif Edvinsson)'
 wp:
   id: 68036
   link: https://cogneon.de/2026/10/20/interview-mit-menerva-schirmherr-prof-leif-edvinsson/

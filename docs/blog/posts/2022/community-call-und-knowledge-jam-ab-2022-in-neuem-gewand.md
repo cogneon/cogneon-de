@@ -12,6 +12,7 @@ tags:
 - KnowledgeJam
 - ConnectCommunity
 - lernOS
+bild: wp-content/uploads/2022/01/CONNECT-Community-Call-Jam-Key-Visual.png
 wp:
   id: 59464
   link: https://cogneon.de/2022/01/26/community-call-und-knowledge-jam-ab-2022-in-neuem-gewand/

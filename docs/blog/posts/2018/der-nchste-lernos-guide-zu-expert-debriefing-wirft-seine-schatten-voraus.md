@@ -10,6 +10,7 @@ categories:
 - lernOS
 tags:
 - ExpertDebriefing
+bild: wp-content/uploads/2018/12/lernOS-Logo-1500x430.png
 wp:
   id: 54171
   link: https://cogneon.de/2018/11/19/der-nchste-lernos-guide-zu-expert-debriefing-wirft-seine-schatten-voraus/

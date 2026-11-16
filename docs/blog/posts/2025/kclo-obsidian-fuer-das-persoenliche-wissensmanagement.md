@@ -13,6 +13,7 @@ tags:
 - lernOSConvention
 - PersönlichesWissensmanagement
 - pke25
+bild: wp-content/uploads/2024/08/KCLO-Newsletter-Banner-2024-07-30.png
 wp:
   id: 65239
   link: https://cogneon.de/2025/04/30/kclo-obsidian-fuer-das-persoenliche-wissensmanagement/

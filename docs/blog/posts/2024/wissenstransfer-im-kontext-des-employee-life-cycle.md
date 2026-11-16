@@ -12,6 +12,7 @@ tags:
 - ExpertDebriefing
 - Weiterbildung
 - Wissenstransfer
+bild: wp-content/uploads/2024/09/woman-8587090.png
 wp:
   id: 63834
   link: https://cogneon.de/2024/09/10/wissenstransfer-im-kontext-des-employee-life-cycle/

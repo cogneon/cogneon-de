@@ -16,6 +16,8 @@ tags:
 - Storytelling
 - Multimedia
 - WorkingOutLoud
+bild: wp-content/uploads/2020/06/A15519CA-D9C5-4013-93DF-871985458C8D.png
+bild_im_text: true
 wp:
   id: 57755
   link: https://cogneon.de/2020/06/14/the-new-wol-normal/

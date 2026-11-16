@@ -11,6 +11,8 @@ categories:
 tags:
 - Blogging
 - Podcast
+bild: wp-content/uploads/2018/12/img_1298.jpg
+bild_im_text: true
 wp:
   id: 54766
   link: https://cogneon.de/2018/12/26/blogparade-welche-blogs-empfehlt-ihr-mit-zu-digitaler-transformation-new-work-wissensarbeit-digital-leadership-lernen-2-0-etc/

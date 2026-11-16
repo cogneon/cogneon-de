@@ -11,6 +11,7 @@ categories:
 tags:
 - lernOSConvention
 - Studien
+bild: wp-content/uploads/2026/03/KCLO-Newsletter-Banner-AI-Crowdsourcing.png
 wp:
   id: 67217
   link: https://cogneon.de/2026/03/31/mach-mit-ai-crowdsourcing-2026/

@@ -14,6 +14,7 @@ tags:
 - IntellectualCapital
 - Podcast
 - HybridWork
+bild: wp-content/uploads/2017/10/podcast-setup-bibliothek.jpg
 wp:
   id: 46525
   link: https://cogneon.de/2017/10/19/how-to-record-a-podcast-in-a-remote-setup/
