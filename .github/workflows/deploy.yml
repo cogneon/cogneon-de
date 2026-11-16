@@ -54,20 +54,29 @@ jobs:
           sudo apt-get install -y -qq lftp > /dev/null
           date -u +"%Y-%m-%d %H:%M UTC, Commit ${GITHUB_SHA::7}" > site/.cogneon-de-deploy
           export LFTP_PASSWORD="$SFTP_PASSWORD"
-          VERBINDUNG="set sftp:auto-confirm yes; set net:max-retries 3; set net:timeout 30; set cmd:fail-exit yes; open --env-password -u $SFTP_USER sftp://$SFTP_HOST"
+          VERBINDUNG="set sftp:auto-confirm yes; set sftp:connect-program 'ssh -a -x -o ConnectTimeout=20 -o ServerAliveInterval=15'; set net:max-retries 2; set net:timeout 20; set net:reconnect-interval-base 5; set cmd:fail-exit yes; open --env-password -u $SFTP_USER sftp://$SFTP_HOST"
+
+          echo "Verbindung testen ..."
+          if ! timeout 90 lftp -c "$VERBINDUNG; cls -1 / | head -20"; then
+            echo "Keine Verbindung zum Server oder Anmeldung abgelehnt. Bitte SFTP_HOST (nur der Servername), SFTP_USER und SFTP_PASSWORD prüfen." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
 
           # Gelöscht wird auf dem Server nur, wenn dort schon ein Stand dieser Website
           # liegt (Markierungsdatei). So kann ein falsch gesetzter Pfad nichts Fremdes löschen.
-          if lftp -c "$VERBINDUNG; cat $SFTP_PATH/.cogneon-de-deploy" > /dev/null 2>&1; then
+          if timeout 60 lftp -c "$VERBINDUNG; cat $SFTP_PATH/.cogneon-de-deploy" > /dev/null 2>&1; then
             LOESCHEN="--delete"
           else
             LOESCHEN=""
             echo "Erster Upload in diesen Ordner: auf dem Server wird nichts gelöscht." | tee -a "$GITHUB_STEP_SUMMARY"
           fi
 
-          # Medien ändern sich selten: nur neue oder in der Größe geänderte Dateien.
-          # Alles andere (Seiten, Stile, Skripte) wird jedes Mal vollständig übertragen.
+          # Zuerst Seiten, Stile und Skripte (jedes Mal vollständig), dann die Medien
+          # (nur neue oder in der Größe geänderte Dateien). Die Markierungsdatei kommt
+          # zuletzt, damit ein abgebrochener Upload nicht als vollständig gilt.
+          mv site/.cogneon-de-deploy /tmp/marke
           lftp -c "$VERBINDUNG; mkdir -p -f $SFTP_PATH;
-            mirror -R $LOESCHEN --parallel=4 --ignore-time --no-perms site/wp-content $SFTP_PATH/wp-content;
-            mirror -R $LOESCHEN --parallel=4 --no-perms --exclude-glob wp-content/ site $SFTP_PATH"
+            mirror -R $LOESCHEN --verbose=1 --parallel=4 --no-perms --exclude-glob wp-content/ --exclude-glob .cogneon-de-deploy site $SFTP_PATH;
+            mirror -R $LOESCHEN --verbose=1 --parallel=4 --ignore-time --no-perms site/wp-content $SFTP_PATH/wp-content;
+            put -O $SFTP_PATH /tmp/marke -o .cogneon-de-deploy" | tail -n 40
           echo "Hochgeladen: $(find site -type f | wc -l) Dateien, $(du -sh site | cut -f1)." | tee -a "$GITHUB_STEP_SUMMARY"
