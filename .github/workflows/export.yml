@@ -96,7 +96,7 @@ jobs:
       - name: Übernahme für main vorbereiten (Branch inhalt/aus-export)
         # Enthält nur Inhalte, Medien und Migrationsdaten auf dem Stand von main.
         # Daraus wird ein Pull Request gestellt.
-        if: (!cancelled()) && env.MODUS == 'voll'
+        if: (!cancelled()) && env.MODUS == 'voll' && env.MEDIEN == 'ja'
         run: |
           git fetch -q origin main
           git checkout -q -B inhalt/aus-export FETCH_HEAD

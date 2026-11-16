@@ -756,6 +756,108 @@ class Export:
                           "featured_media": post.get("featured_media") or None}
             self._record("post", post, target, write_markdown(target, meta, body))
 
+    # -- Termine (The Events Calendar) -------------------------------------
+
+    def event_items(self):
+        """Alle veroeffentlichten Termine, auch vergangene. Die Schnittstelle des Kalenders
+        blaettert anders als wp/v2: Liste unter 'events', Seitenzahl unter 'total_pages'."""
+        page, got = 1, 0
+        while True:
+            resp = self.wp.get("tribe/events/v1/events", {
+                "per_page": 50, "page": page, "start_date": "2000-01-01", "status": "publish"})
+            if resp.status_code != 200:
+                if page == 1:
+                    self.problems.append(f"Termine nicht lesbar: HTTP {resp.status_code}")
+                return
+            data = resp.json()
+            for event in data.get("events", []):
+                yield event
+                got += 1
+                if self.args.limit and got >= self.args.limit:
+                    return
+            if page >= int(data.get("total_pages") or 1):
+                return
+            page += 1
+
+    def export_events(self):
+        """Termine als docs/event/<slug>.md, unter ihrer alten Adresse /event/<slug>/."""
+        for event in self.event_items():
+            raw_html = event.get("description") or ""
+            conv = convert_html(raw_html, self.wp.base_url)
+            self.media.update(dict.fromkeys(conv.media))
+            title = html.unescape(event["title"])
+            meta: dict = {"title": title, "template": "termin.html",
+                          "beginn": event["start_date"][:16], "ende": event["end_date"][:16]}
+            if event.get("all_day"):
+                meta["ganztags"] = True
+            venue = event.get("venue") or {}
+            if isinstance(venue, dict) and venue.get("venue"):
+                ort = {"name": html.unescape(venue["venue"])}
+                adresse = ", ".join(x for x in (venue.get("address"), " ".join(
+                    x for x in (venue.get("zip"), venue.get("city")) if x)) if x)
+                if adresse:
+                    ort["adresse"] = html.unescape(adresse)
+                meta["ort"] = ort
+            if event.get("is_virtual"):
+                meta["online"] = True
+            if event.get("cost"):
+                meta["kosten"] = html.unescape(event["cost"])
+            if event.get("website"):
+                meta["anmeldung"] = event["website"]
+            cats = [html.unescape(c["name"]) for c in event.get("categories") or [] if isinstance(c, dict)]
+            if cats:
+                meta["kategorien"] = cats
+                meta["kategorie_slugs"] = [c["slug"] for c in event["categories"] if isinstance(c, dict)]
+            image = (event.get("image") or {}).get("url") if isinstance(event.get("image"), dict) else None
+            if image:
+                self.media[image] = None
+                rel = unquote(urlparse(image).path).lstrip("/")
+                if rel.startswith("wp-content/"):
+                    meta["bild"] = rel
+            meta["wp"] = {"id": event["id"], "link": event["url"]}
+            target = self.docs / "event" / f"{event['slug']}.md"
+            item = {"id": event["id"], "link": event["url"], "modified": event.get("modified") or ""}
+            if self.args.raw:
+                raw = self.migration / "raw" / f"event_{event['slug']}.html"
+                raw.parent.mkdir(parents=True, exist_ok=True)
+                raw.write_text(raw_html, encoding="utf-8")
+            self._record("event", item, target, write_markdown(target, meta, with_title(title, conv.markdown)))
+
+    # -- Weiterleitungen (Plugin Redirection) -------------------------------
+
+    def export_redirects(self):
+        """Kurzlinks und Weiterleitungen aus WordPress nach migration/redirects-wordpress.map."""
+        rules, skipped, page = [], [], 0
+        while True:
+            resp = self.wp.get("redirection/v1/redirect", {"per_page": 200, "page": page})
+            if resp.status_code != 200:
+                if page == 0:
+                    self.problems.append(f"Weiterleitungen aus WordPress nicht lesbar: HTTP {resp.status_code}")
+                    return
+                break
+            data = resp.json()
+            items = data.get("items") or []
+            for item in items:
+                source = item.get("url") or ""
+                action = item.get("action_data")
+                target = action.get("url") if isinstance(action, dict) else action
+                usable = (item.get("enabled", True) and not item.get("regex") and source.startswith("/")
+                          and item.get("action_type") == "url" and isinstance(target, str) and target)
+                if usable:
+                    rules.append((source.rstrip("/") or "/", target))
+                else:
+                    skipped.append(f"{source} ({item.get('action_type')}, regex={bool(item.get('regex'))}, aktiv={item.get('enabled', True)})")
+            page += 1
+            if not items or page * 200 >= int(data.get("total") or 0):
+                break
+        lines = ["# Erzeugt von scripts/wp_export.py - nicht von Hand ändern.",
+                 "# Kurzlinks und Weiterleitungen, die in WordPress (Plugin Redirection) eingerichtet waren."]
+        lines += [f"{a} {b}" for a, b in sorted(set(rules))]
+        (self.migration / "redirects-wordpress.map").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        self.stats["wp_redirects"] = len(set(rules))
+        for entry in skipped:
+            self.problems.append(f"Weiterleitung nicht übernommen: {entry}")
+
     def export_pages(self):
         fields = "id,date,modified,slug,link,title,content,parent,menu_order,template"
         pages = list(self.wp.items("wp/v2/pages", {"_fields": fields, "orderby": "id",
@@ -942,6 +1044,10 @@ class Export:
                 self.write_tag_redirects()
             if "pages" in self.args.types:
                 self.export_pages()
+            if "events" in self.args.types:
+                self.export_events()
+            if "redirects" in self.args.types:
+                self.export_redirects()
             if "posts" in self.args.types:
                 self.resolve_featured_media()
             if not self.args.no_media:
@@ -961,7 +1067,7 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--base-url", default="https://cogneon.de")
     parser.add_argument("--out", default="docs", help="Zielordner relativ zum Repo")
-    parser.add_argument("--types", default="posts,pages",
+    parser.add_argument("--types", default="posts,pages,events,redirects",
                         type=lambda s: [t.strip() for t in s.split(",") if t.strip()])
     parser.add_argument("--limit", type=int, help="nur die ersten N Einträge je Typ (Pilot)")
     parser.add_argument("--no-media", action="store_true", help="keine Medien laden")
