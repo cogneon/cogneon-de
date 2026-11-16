@@ -12,6 +12,7 @@ tags:
 - Podcasting
 - AudioOnlyBarcamp
 - Podcast
+bild: wp-content/uploads/2024/08/clc17-podcasting-2.jpg
 wp:
   id: 63734
   link: https://cogneon.de/2024/08/11/kein-audio-only-barcamp-2024-dafuer-aber-die-subscribe-11/

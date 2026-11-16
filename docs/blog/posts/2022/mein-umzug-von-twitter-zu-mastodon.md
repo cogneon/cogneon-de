@@ -11,6 +11,7 @@ categories:
 tags:
 - SocialMedia
 - Twitter
+bild: wp-content/uploads/2022/11/Bildschirm­foto-2022-11-12-um-16.11.31.png
 wp:
   id: 60186
   link: https://cogneon.de/2022/11/12/mein-umzug-von-twitter-zu-mastodon/

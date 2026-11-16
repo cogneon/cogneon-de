@@ -11,6 +11,7 @@ categories:
 tags:
 - CorporateLearningCommunity
 - MeinZiel22
+bild: wp-content/uploads/2022/01/meinziel22-hintergrund.png
 wp:
   id: 59359
   link: https://cogneon.de/2022/01/13/meinziel22-die-jahresaktion-der-corporate-learning-community-in-einem-video-zusammengefasst/

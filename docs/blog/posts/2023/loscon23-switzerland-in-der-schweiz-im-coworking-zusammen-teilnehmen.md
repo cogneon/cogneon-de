@@ -11,6 +11,7 @@ categories:
 tags:
 - Coworking
 - lernOSConvention
+bild: wp-content/uploads/2023/07/loscon23-switzerland.png
 wp:
   id: 61580
   link: https://cogneon.de/2023/07/04/loscon23-switzerland-in-der-schweiz-im-coworking-zusammen-teilnehmen/

@@ -11,6 +11,7 @@ categories:
 tags:
 - ConnectCommunity
 - Innovation
+bild: wp-content/uploads/2018/03/schule.jpg
 wp:
   id: 50497
   link: https://cogneon.de/2018/03/04/helft-uns-unsere-lern-angebote-fuer-das-21-jahrhundert-zu-finden/

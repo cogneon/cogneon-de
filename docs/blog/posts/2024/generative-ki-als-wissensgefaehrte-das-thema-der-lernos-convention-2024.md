@@ -10,6 +10,7 @@ categories:
 - Events und Vorträge
 tags:
 - lernOSConvention
+bild: wp-content/uploads/2024/01/loscon24-key-visual-2.png
 wp:
   id: 62856
   link: https://cogneon.de/2024/05/18/generative-ki-als-wissensgefaehrte-das-thema-der-lernos-convention-2024/

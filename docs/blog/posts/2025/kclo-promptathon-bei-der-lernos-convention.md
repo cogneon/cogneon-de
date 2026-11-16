@@ -12,6 +12,7 @@ tags:
 - GenerativeKI
 - lernOSConvention
 - KünstlicheIntelligenz
+bild: wp-content/uploads/2023/12/KCLO-Newsletter-Banner-2023-12-05.png
 wp:
   id: 65329
   link: https://cogneon.de/2025/05/20/kclo-promptathon-bei-der-lernos-convention/

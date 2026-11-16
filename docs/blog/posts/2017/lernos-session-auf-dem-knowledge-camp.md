@@ -11,6 +11,7 @@ categories:
 tags:
 - KnowledgeCamp
 - lernOS
+bild: wp-content/uploads/2017/10/clc17-lernos-simon.jpg
 wp:
   id: 40202
   link: https://cogneon.de/2017/09/15/lernos-session-auf-dem-knowledge-camp/

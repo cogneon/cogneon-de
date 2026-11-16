@@ -13,6 +13,7 @@ tags:
 - GenerativeKI
 - kimooc24
 - KünstlicheIntelligenz
+bild: wp-content/uploads/2023/12/KCLO-Newsletter-Banner-2023-12-05.png
 wp:
   id: 62586
   link: https://cogneon.de/2024/03/04/kuenstliche-intelligenz-und-generative-ki-bei-enbw/

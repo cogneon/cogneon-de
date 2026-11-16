@@ -15,6 +15,7 @@ tags:
 - Intranet
 - KatharinaKrentz
 - WorkingOutLoud
+bild: wp-content/uploads/2017/09/bosch-yt-interview.png
 wp:
   id: 41400
   link: https://cogneon.de/2017/09/24/6-jahre-enterprise-2-0-bei-bosch-von-social-business-bis-working-out-lout/

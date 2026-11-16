@@ -14,6 +14,7 @@ tags:
 - NewWaysOfWorking
 - NewWork
 - Wissensmanagement
+bild: wp-content/uploads/2023/01/Cogneon-Benchlearning-blp23.png
 wp:
   id: 60741
   link: https://cogneon.de/2023/01/17/benchlearning-projekt-2023-scale-up-new-ways-of-working-blp23/

@@ -14,6 +14,7 @@ tags:
 - Multimedia
 - Microsoft365
 - WissensTransferCamp
+bild: wp-content/uploads/2025/12/KCLO-Newsletter-Banner-KM-Map.png
 wp:
   id: 66344
   link: https://cogneon.de/2025/12/15/jahresthema-2026-ai-for-work-that-works/

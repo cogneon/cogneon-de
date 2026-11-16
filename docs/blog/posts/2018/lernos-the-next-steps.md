@@ -12,6 +12,7 @@ tags:
 - ChangeAgents
 - Microsoft365
 - WorkingOutLoud
+bild: wp-content/uploads/2018/12/lernOS-Logo-1500x430.png
 wp:
   id: 53934
   link: https://cogneon.de/2018/08/04/lernos-the-next-steps/

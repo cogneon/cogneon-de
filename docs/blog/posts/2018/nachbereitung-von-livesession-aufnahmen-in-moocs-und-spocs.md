@@ -13,6 +13,7 @@ tags:
 - Multimedia
 - MOOC
 - Podcasting
+bild: wp-content/uploads/2018/10/CCCOGMN-Invitation.png
 wp:
   id: 54303
   link: https://cogneon.de/2018/12/05/nachbereitung-von-livesession-aufnahmen-in-moocs-und-spocs/

@@ -10,6 +10,7 @@ categories:
 - Menerva-Programm 2036
 tags:
 - 4010km
+bild: wp-content/uploads/2026/10/menerva36-key-visual-1280x720-1.png
 wp:
   id: 67947
   link: https://cogneon.de/2026/10/05/menerva-programm-2036/

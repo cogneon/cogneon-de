@@ -12,6 +12,7 @@ tags:
 - Personalwesen
 - Standards
 - Wissensmanagement
+bild: wp-content/uploads/2017/12/iso-logo.png
 wp:
   id: 50135
   link: https://cogneon.de/2017/12/04/euer-input-zur-wissensmanagement-norm-ist-gefragt-iso-dis-30401-knowledge-management-systems/

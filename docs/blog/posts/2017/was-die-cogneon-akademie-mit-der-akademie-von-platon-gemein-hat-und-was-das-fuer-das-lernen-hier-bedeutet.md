@@ -12,6 +12,7 @@ tags:
 - Akademie
 - ConnectCommunity
 - Lernen
+bild: wp-content/uploads/2017/11/Platon-Akademie-teaser.jpg
 wp:
   id: 50075
   link: https://cogneon.de/2017/11/12/was-die-cogneon-akademie-mit-der-akademie-von-platon-gemein-hat-und-was-das-fuer-das-lernen-hier-bedeutet/

@@ -12,6 +12,7 @@ tags:
 - ConnectCommunity
 - Akademie
 - Benchlearning
+bild: wp-content/uploads/2018/04/akademie-header.jpg
 wp:
   id: 51648
   link: https://cogneon.de/2018/04/12/am-1-mai-ist-tag-der-wissensarbeit-und-die-cogneon-akademie-kommt-nach-ueberall/

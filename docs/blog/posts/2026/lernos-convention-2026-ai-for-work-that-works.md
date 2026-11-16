@@ -13,6 +13,7 @@ tags:
 - GenerativeKI
 - LearningCircleExperience
 - lernOSConvention
+bild: wp-content/uploads/2026/03/KCLO-Newsletter-Banner-2026-loscon26.png
 wp:
   id: 66972
   link: https://cogneon.de/2026/03/10/lernos-convention-2026-ai-for-work-that-works/

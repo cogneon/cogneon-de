@@ -10,6 +10,7 @@ categories:
 - Events und Vorträge
 tags:
 - NewClubOfParis
+bild: wp-content/uploads/2012/12/20121220-062708.jpg
 wp:
   id: 419
   link: https://cogneon.de/2012/11/27/humboldt-kosmos-multiversity-review/

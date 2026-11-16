@@ -12,6 +12,7 @@ tags:
 - Podcasting
 - AudioOnlyBarcamp
 - Podcast
+bild: wp-content/uploads/2022/02/audiobc22-key-visual-1.png
 wp:
   id: 59604
   link: https://cogneon.de/2022/03/20/audiobc22-alles-was-ihr-fuer-eure-teilnahme-wissen-muesst/

@@ -11,6 +11,7 @@ categories:
 tags:
 - GenerativeKI
 - WissensTransferCamp
+bild: wp-content/uploads/2024/07/wtc25-key-visual-2.png
 wp:
   id: 65768
   link: https://cogneon.de/2025/08/26/sessionvorschlag-zum-wissenstransfercamp-2025/

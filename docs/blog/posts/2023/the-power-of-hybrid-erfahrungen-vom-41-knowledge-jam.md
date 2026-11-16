@@ -10,6 +10,9 @@ categories:
 - Allgemein
 tags:
 - KnowledgeJam
+bild: wp-content/uploads/2023/04/ckj41.jpg
+bild_alt: Setup beim 41. Knowledge Jam für die hybride Teilnahme. Es ist ein Display und die 360-Grad-Webcam Meeting Owl zu sehen.
+bild_im_text: true
 wp:
   id: 61296
   link: https://cogneon.de/2023/04/23/the-power-of-hybrid-erfahrungen-vom-41-knowledge-jam/

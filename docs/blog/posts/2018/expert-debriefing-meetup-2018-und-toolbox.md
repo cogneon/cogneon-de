@@ -12,6 +12,7 @@ tags:
 - edmod
 - lernOS
 - Wissenstransfer
+bild: wp-content/uploads/2018/11/Expert-Debriefing-Logo-1500x430.png
 wp:
   id: 54274
   link: https://cogneon.de/2018/11/29/expert-debriefing-meetup-2018-und-toolbox/

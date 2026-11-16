@@ -13,6 +13,7 @@ tags:
 - lernOS
 - Organisationsentwicklung
 - Wissensmanagement
+bild: wp-content/uploads/2019/04/lernOS-logo-400px.png
 wp:
   id: 57686
   link: https://cogneon.de/2020/05/03/lernos-fuer-organisationen-vom-taylorismus-ueber-die-iso-9001-bis-zur-iso-30401/

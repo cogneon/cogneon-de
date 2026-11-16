@@ -12,6 +12,7 @@ tags:
 - ignite
 - Microsoft365
 - Intranet
+bild: wp-content/uploads/2017/10/microsoft-ignite-2017.jpg
 wp:
   id: 43627
   link: https://cogneon.de/2017/10/07/microsoft-ignite-2017-msignite/

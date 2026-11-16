@@ -12,6 +12,7 @@ tags:
 - DIYMultimedia
 - LearningCircleExperience
 - SAP
+bild: wp-content/uploads/2022/08/screenshot-kdenlive.png
 wp:
   id: 59955
   link: https://cogneon.de/2022/08/11/making-of-sap-learning-circle-experience-video/

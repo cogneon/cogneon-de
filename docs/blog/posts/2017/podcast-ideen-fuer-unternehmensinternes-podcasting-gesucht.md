@@ -15,6 +15,7 @@ tags:
 - Microsoft365
 - Podcast
 - Siemens
+bild: wp-content/uploads/2017/11/podcast-mikrofon.jpg
 wp:
   id: 50108
   link: https://cogneon.de/2017/11/19/podcast-ideen-fuer-unternehmensinternes-podcasting-gesucht/

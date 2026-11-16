@@ -15,6 +15,7 @@ tags:
 - Kommunikation
 - Weiterbildung
 - WorkingOutLoud
+bild: wp-content/uploads/2017/10/subscribe9.png
 wp:
   id: 49913
   link: https://cogneon.de/2017/10/30/die-3-podcasting-welle-warum-audio-der-text-der-mobilen-generation-ist/

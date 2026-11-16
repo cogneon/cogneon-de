@@ -15,6 +15,7 @@ tags:
 - HaraldSchirmer
 - NewWork
 - Microsoft365
+bild: wp-content/uploads/2018/05/akademie-talk-harald-schirmer.jpg
 wp:
   id: 52430
   link: https://cogneon.de/2018/05/14/new-work-style-bei-continental/

@@ -11,6 +11,7 @@ categories:
 tags:
 - Standards
 - Strategie
+bild: wp-content/uploads/2025/11/ascientificgraphicvisualizi_13421190.png
 wp:
   id: 66043
   link: https://cogneon.de/2025/11/02/kritisches-wissen-ausgangspunkt-einer-gute-wissensstrategie/

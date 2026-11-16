@@ -12,6 +12,7 @@ tags:
 - Barcamp
 - EventManagement
 - Organisationsentwicklung
+bild: wp-content/uploads/2021/07/meeting-1189475_1280.jpg
 wp:
   id: 59063
   link: https://cogneon.de/2021/07/17/open-space-und-barcamp-ist-das-eigentlich-das-gleiche/

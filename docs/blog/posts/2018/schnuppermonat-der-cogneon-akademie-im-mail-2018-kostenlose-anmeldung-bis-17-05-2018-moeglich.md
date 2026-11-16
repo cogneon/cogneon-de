@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Akademie
+bild: wp-content/uploads/2018/04/Akademie-Schnuppermonat-052018.png
 wp:
   id: 51897
   link: https://cogneon.de/2018/04/30/schnuppermonat-der-cogneon-akademie-im-mail-2018-kostenlose-anmeldung-bis-17-05-2018-moeglich/

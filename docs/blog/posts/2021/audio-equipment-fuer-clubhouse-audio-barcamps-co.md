@@ -14,6 +14,7 @@ tags:
 - Barcamp
 - SocialMedia
 - Qualitätsmanagement
+bild: wp-content/uploads/2021/02/headphones-4611452_1280.jpg
 wp:
   id: 58426
   link: https://cogneon.de/2021/02/02/audio-equipment-fuer-clubhouse-audio-barcamps-co/

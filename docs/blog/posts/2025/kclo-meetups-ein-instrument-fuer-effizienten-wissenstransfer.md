@@ -13,6 +13,7 @@ tags:
 - ConnectCommunity
 - EventManagement
 - Wissenstransfer
+bild: wp-content/uploads/2024/08/KCLO-Newsletter-Banner-2024-07-30.png
 wp:
   id: 66098
   link: https://cogneon.de/2025/11/11/kclo-meetups-ein-instrument-fuer-effizienten-wissenstransfer/

@@ -11,6 +11,7 @@ categories:
 tags:
 - Barrierefreiheit
 - lernOSConvention
+bild: wp-content/uploads/2023/06/loscon23-barrierefreiheit.png
 wp:
   id: 61507
   link: https://cogneon.de/2023/06/17/barrierefreiheit-loscon23-wie-koennen-wir-allen-eine-moeglichst-reibungsfreie-teilnahme-ermoeglichen/

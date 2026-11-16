@@ -11,6 +11,7 @@ categories:
 tags:
 - Intranet
 - SocialMedia
+bild: wp-content/uploads/2021/02/mobile-phone-1917737_1280.jpg
 wp:
   id: 58475
   link: https://cogneon.de/2021/02/10/ist-microsoft-yammer-eigentlich-ein-soziales-netzwerk/

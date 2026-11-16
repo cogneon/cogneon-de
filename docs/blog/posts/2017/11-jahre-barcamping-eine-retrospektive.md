@@ -14,6 +14,7 @@ tags:
 - EventManagement
 - KnowledgeCamp
 - KnowledgeJam
+bild: wp-content/uploads/2017/10/barcamp-logo-quo-vadis.png
 wp:
   id: 42308
   link: https://cogneon.de/2017/10/01/11-jahre-barcamping-eine-retrospektive/

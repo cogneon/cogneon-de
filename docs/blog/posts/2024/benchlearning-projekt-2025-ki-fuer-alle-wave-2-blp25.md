@@ -13,6 +13,7 @@ tags:
 - KünstlicheIntelligenz
 - GenerativeKI
 - Microsoft365
+bild: wp-content/uploads/2024/12/Cogneon-Benchlearning-blp25.png
 wp:
   id: 64215
   link: https://cogneon.de/2024/12/18/benchlearning-projekt-2025-ki-fuer-alle-wave-2-blp25/

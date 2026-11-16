@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Künstliche Intelligenz
+bild: wp-content/uploads/2026/01/AI-Crowdsourcing-2026-1.png
 wp:
   id: 66535
   link: https://cogneon.de/2026/01/28/ai-crowdsourcing-2026-gemeinsam-die-wirklich-nuetzlichen-ki-anwendungen-finden/

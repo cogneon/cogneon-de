@@ -13,6 +13,7 @@ tags:
 - Dokumentation
 - EventManagement
 - Multimedia
+bild: wp-content/uploads/2019/05/introduction-3195427_1280.jpg
 wp:
   id: 56604
   link: https://cogneon.de/2019/05/11/gfwm-diymm-workshop-am-11-05-2019/

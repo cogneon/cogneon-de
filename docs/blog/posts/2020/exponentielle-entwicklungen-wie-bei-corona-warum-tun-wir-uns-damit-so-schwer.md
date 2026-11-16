@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Allgemein
+bild: wp-content/uploads/2020/03/novel-coronavirus.png
 wp:
   id: 57473
   link: https://cogneon.de/2020/03/21/exponentielle-entwicklungen-wie-bei-corona-warum-tun-wir-uns-damit-so-schwer/

@@ -11,6 +11,7 @@ categories:
 tags:
 - lernOS
 - lernOSConvention
+bild: wp-content/uploads/2023/04/loscon23-key-visual.png
 wp:
   id: 60960
   link: https://cogneon.de/2023/01/28/das-motto-der-lernos-convention-2023/

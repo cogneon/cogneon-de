@@ -12,6 +12,7 @@ tags:
 - ExpertDebriefing
 - WEDCall
 - Wissenstransfer
+bild: wp-content/uploads/2025/12/KCLO-Newsletter-Banner-KM-Map.png
 wp:
   id: 67276
   link: https://cogneon.de/2026/04/13/psychologische-wirkfaktoren-im-wissenstransfer/

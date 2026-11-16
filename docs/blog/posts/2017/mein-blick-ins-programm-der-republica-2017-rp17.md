@@ -14,6 +14,7 @@ tags:
 - Lernen
 - RePublica
 - WorkingOutLoud
+bild: wp-content/uploads/2017/05/img_0910.jpg
 wp:
   id: 9643
   link: https://cogneon.de/2017/05/07/mein-blick-ins-programm-der-republica-2017-rp17/

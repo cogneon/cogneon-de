@@ -15,6 +15,7 @@ tags:
 - PersönlichesWissensmanagement
 - Videokonferenz
 - Wissensarbeit
+bild: wp-content/uploads/2023/12/KCLO-Newsletter-Banner-2023-12-05.png
 wp:
   id: 64223
   link: https://cogneon.de/2024/12/18/kclo-kuenstliche-intelligenz-fuer-produktive-wissensarbeit/

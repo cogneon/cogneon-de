@@ -12,6 +12,7 @@ categories:
 tags:
 - lernOSConvention
 - KünstlicheIntelligenz
+bild: wp-content/uploads/2025/06/KCLO-Newsletter-Banner-2025-06-02.png
 wp:
   id: 65379
   link: https://cogneon.de/2025/06/02/kclo-programm-der-lernos-convention-2025-erschienen/

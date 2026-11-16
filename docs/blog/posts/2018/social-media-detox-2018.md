@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Community
+bild: wp-content/uploads/2018/12/img_1296.jpg
 wp:
   id: 54675
   link: https://cogneon.de/2018/12/20/social-media-detox-2018/

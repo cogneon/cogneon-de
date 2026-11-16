@@ -16,6 +16,7 @@ tags:
 - Podcast
 - Wissenstransfer
 - WissensTransferCamp
+bild: wp-content/uploads/2024/08/KCLO-Newsletter-Banner-2024-07-30.png
 wp:
   id: 63759
   link: https://cogneon.de/2024/08/13/kclo-podcasts-und-audio-fuer-den-wissenstransfer/

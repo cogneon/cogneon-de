@@ -13,6 +13,8 @@ tags:
 - lernOSConvention
 - EventManagement
 - Barcamp
+bild: wp-content/uploads/2020/01/loscamp20-key-visual-webseite-400px.png
+bild_im_text: true
 wp:
   id: 57725
   link: https://cogneon.de/2020/05/10/das-making-of-des-lernos-all-stars-camp-2020/

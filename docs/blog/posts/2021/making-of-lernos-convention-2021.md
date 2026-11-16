@@ -14,6 +14,7 @@ tags:
 - lernOS
 - lernOSConvention
 - DIYMultimedia
+bild: wp-content/uploads/2021/07/loscon21-key-visual.png
 wp:
   id: 59092
   link: https://cogneon.de/2021/07/26/making-of-lernos-convention-2021/

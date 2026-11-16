@@ -12,6 +12,7 @@ tags:
 - Wissensmanagement
 - KnowledgeEngineering
 - Wiki
+bild: wp-content/uploads/2017/11/wikidatacon-2017.png
 wp:
   id: 49945
   link: https://cogneon.de/2017/11/01/wikidata-wie-aus-strukturierten-daten-wissen-werden-kann/

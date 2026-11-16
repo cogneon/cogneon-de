@@ -11,6 +11,8 @@ categories:
 tags:
 - AudioOnlyBarcamp
 - Podcasting
+bild: wp-content/uploads/2021/01/comble.png
+bild_im_text: true
 wp:
   id: 58368
   link: https://cogneon.de/2021/01/26/lasttest-zum-audio-only-barcamp-audiobc21/

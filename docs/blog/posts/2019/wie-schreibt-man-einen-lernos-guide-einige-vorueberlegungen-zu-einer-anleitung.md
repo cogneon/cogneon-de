@@ -12,6 +12,7 @@ tags:
 - ChangeAgents
 - Standards
 - Sketchnoting
+bild: wp-content/uploads/2019/04/typewriter-1209082_1280.jpg
 wp:
   id: 56548
   link: https://cogneon.de/2019/04/30/wie-schreibt-man-einen-lernos-guide-einige-vorueberlegungen-zu-einer-anleitung/

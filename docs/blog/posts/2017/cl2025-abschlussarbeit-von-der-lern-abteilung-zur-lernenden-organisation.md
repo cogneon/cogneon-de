@@ -14,6 +14,7 @@ tags:
 - Weiterbildung
 - Lernen
 - LernendeOrganisation
+bild: wp-content/uploads/2017/07/cl2025-abschlussarbeit.jpg
 wp:
   id: 25459
   link: https://cogneon.de/2017/07/19/cl2025-abschlussarbeit-von-der-lern-abteilung-zur-lernenden-organisation/

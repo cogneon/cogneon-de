@@ -13,6 +13,7 @@ tags:
 - AudioOnlyBarcamp
 - Barcamp
 - Podcast
+bild: wp-content/uploads/2022/02/audiobc22-key-visual-1.png
 wp:
   id: 59692
   link: https://cogneon.de/2022/04/23/audiobc22-lessons-learned-vom-2-audio-barcamp/

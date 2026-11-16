@@ -11,6 +11,7 @@ categories:
 tags:
 - SocialMedia
 - KnowledgeJam
+bild: wp-content/uploads/2022/11/keep-calm-learn-on.png
 wp:
   id: 60193
   link: https://cogneon.de/2022/11/17/kclo075-twitter-goes-mastodon-fediverse-statt-metaverse/

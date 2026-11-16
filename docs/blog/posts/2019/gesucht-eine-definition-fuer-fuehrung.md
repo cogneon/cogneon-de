@@ -13,6 +13,7 @@ tags:
 - Führung
 - Personalentwicklung
 - Strategie
+bild: wp-content/uploads/2019/04/img_1368.png
 wp:
   id: 56389
   link: https://cogneon.de/2019/04/14/gesucht-eine-definition-fuer-fuehrung/

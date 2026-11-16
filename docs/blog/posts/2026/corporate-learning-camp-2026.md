@@ -13,6 +13,7 @@ tags:
 - lernOSConvention
 - SocialMedia
 - Microsoft365
+bild: wp-content/uploads/2025/12/KCLO-Newsletter-Banner-KM-Map.png
 wp:
   id: 66827
   link: https://cogneon.de/2026/02/26/corporate-learning-camp-2026/

@@ -14,6 +14,7 @@ tags:
 - KünstlicheIntelligenz
 - Zeitmanagement
 - Wissensmanagement
+bild: wp-content/uploads/2024/08/KCLO-Newsletter-Banner-2024-07-30.png
 wp:
   id: 63573
   link: https://cogneon.de/2024/08/01/kclo-made-in-germany-die-km-excellence-group-startet-2025/

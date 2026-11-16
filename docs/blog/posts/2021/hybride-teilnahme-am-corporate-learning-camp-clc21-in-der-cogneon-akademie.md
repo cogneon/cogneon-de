@@ -12,6 +12,7 @@ tags:
 - CorporateLearningCommunity
 - Akademie
 - HybridWork
+bild: wp-content/uploads/2021/08/akademie-coworking.jpeg
 wp:
   id: 59097
   link: https://cogneon.de/2021/08/11/hybride-teilnahme-am-corporate-learning-camp-clc21-in-der-cogneon-akademie/

@@ -12,6 +12,7 @@ categories:
 tags:
 - KünstlicheIntelligenz
 - GenerativeKI
+bild: wp-content/uploads/2026/02/machine-readable-file-formats.png
 wp:
   id: 66598
   link: https://cogneon.de/2026/02/08/barrierefrei-fuer-mensch-und-maschine-kleine-helferlein-zur-konvertierung-von-office-dokumenten-in-maschinenlesbare-formate/

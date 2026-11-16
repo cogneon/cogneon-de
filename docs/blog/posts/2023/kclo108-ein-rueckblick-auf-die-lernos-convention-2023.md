@@ -10,6 +10,7 @@ categories:
 - Keep Calm & Learn On
 tags:
 - lernOSConvention
+bild: wp-content/uploads/2023/01/KCLO-Newsletter-Banner.png
 wp:
   id: 61708
   link: https://cogneon.de/2023/07/31/kclo108-ein-rueckblick-auf-die-lernos-convention-2023/

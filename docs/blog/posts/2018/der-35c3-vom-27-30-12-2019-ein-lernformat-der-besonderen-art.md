@@ -11,6 +11,7 @@ categories:
 tags:
 - ChaosComputerClub
 - Lernen
+bild: wp-content/uploads/2018/12/img_1295.jpg
 wp:
   id: 54778
   link: https://cogneon.de/2018/12/27/der-35c3-vom-27-30-12-2019-ein-lernformat-der-besonderen-art/

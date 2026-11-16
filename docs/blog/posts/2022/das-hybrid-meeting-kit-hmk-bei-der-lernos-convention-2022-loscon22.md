@@ -13,6 +13,8 @@ tags:
 - HybridWork
 - HybridMeetingKit
 - lernOSConvention
+bild: wp-content/uploads/2022/06/Bildschirmfoto-2022-06-26-um-11.25.44.png
+bild_im_text: true
 wp:
   id: 59863
   link: https://cogneon.de/2022/06/26/das-hybrid-meeting-kit-hmk-bei-der-lernos-convention-2022-loscon22/

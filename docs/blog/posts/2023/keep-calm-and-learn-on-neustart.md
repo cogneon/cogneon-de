@@ -22,6 +22,7 @@ tags:
 - NewWaysOfWorking
 - PeerLearning
 - Wiki
+bild: wp-content/uploads/2023/01/KCLO-Newsletter-Banner.png
 wp:
   id: 60852
   link: https://cogneon.de/2023/01/23/keep-calm-and-learn-on-neustart/

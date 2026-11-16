@@ -13,6 +13,8 @@ tags:
 - Digitalisierung
 - lernOSConvention
 - EventManagement
+bild: wp-content/uploads/2020/05/plant-714583_1280.jpg
+bild_im_text: true
 wp:
   id: 57781
   link: https://cogneon.de/2020/05/30/raeume-und-infraraeume-fuer-virtuelle-barcamps/

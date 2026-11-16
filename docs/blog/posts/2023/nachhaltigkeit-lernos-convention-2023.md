@@ -10,6 +10,7 @@ categories:
 - lernOS Convention 2023
 tags:
 - Nachhaltigkeit
+bild: wp-content/uploads/2023/05/loscon23-nachhaltigkeit.png
 wp:
   id: 61455
   link: https://cogneon.de/2023/05/30/nachhaltigkeit-lernos-convention-2023/

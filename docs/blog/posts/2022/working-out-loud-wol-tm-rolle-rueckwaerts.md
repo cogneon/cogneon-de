@@ -14,6 +14,7 @@ tags:
 - Offenheit
 - Wiki
 - WorkingOutLoud
+bild: wp-content/uploads/2022/02/closed-open.png
 wp:
   id: 59562
   link: https://cogneon.de/2022/02/17/working-out-loud-wol-tm-rolle-rueckwaerts/

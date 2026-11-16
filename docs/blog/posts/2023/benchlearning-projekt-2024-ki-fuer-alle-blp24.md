@@ -11,6 +11,7 @@ categories:
 tags:
 - KünstlicheIntelligenz
 - Benchlearning
+bild: wp-content/uploads/2023/12/Cogneon-Benchlearning-blp24.png
 wp:
   id: 62199
   link: https://cogneon.de/2023/12/04/benchlearning-projekt-2024-ki-fuer-alle-blp24/

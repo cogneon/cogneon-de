@@ -17,6 +17,7 @@ tags:
 - lernOS
 - MOOC
 - Microsoft365
+bild: wp-content/uploads/2023/12/KCLO-Newsletter-Banner-2023-12-05.png
 wp:
   id: 62448
   link: https://cogneon.de/2024/01/25/kclo-generative-ai-new-kid-on-the-block/

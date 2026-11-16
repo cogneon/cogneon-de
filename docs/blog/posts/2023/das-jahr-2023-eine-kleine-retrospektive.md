@@ -10,6 +10,7 @@ categories:
 - Allgemein
 tags:
 - Retrospektive
+bild: wp-content/uploads/2023/10/challenge-9.png
 wp:
   id: 62285
   link: https://cogneon.de/2023/12/22/das-jahr-2023-eine-kleine-retrospektive/

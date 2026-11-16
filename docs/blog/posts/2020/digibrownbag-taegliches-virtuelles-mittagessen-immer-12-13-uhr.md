@@ -10,6 +10,7 @@ categories:
 - Akademie
 tags:
 - SocialMedia
+bild: wp-content/uploads/2020/03/novel-coronavirus.png
 wp:
   id: 57460
   link: https://cogneon.de/2020/03/16/digibrownbag-taegliches-virtuelles-mittagessen-immer-12-13-uhr/

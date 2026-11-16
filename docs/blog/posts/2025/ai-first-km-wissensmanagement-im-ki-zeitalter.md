@@ -12,6 +12,7 @@ categories:
 tags:
 - KünstlicheIntelligenz
 - Blogging
+bild: wp-content/uploads/2025/09/cover-image-ai-first.png
 wp:
   id: 65893
   link: https://cogneon.de/2025/09/28/ai-first-km-wissensmanagement-im-ki-zeitalter/

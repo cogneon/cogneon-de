@@ -13,6 +13,7 @@ tags:
 - KünstlicheIntelligenz
 - Wissenstransfer
 - WissensTransferCamp
+bild: wp-content/uploads/2024/02/KCLO-Newsletter-Banner-2024-02-20.png
 wp:
   id: 62581
   link: https://cogneon.de/2024/02/21/kclo-demografische-falle-unternehmen-verlieren-30-wissenkclo/

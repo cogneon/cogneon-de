@@ -11,6 +11,7 @@ categories:
 tags:
 - Weiterbildung
 - Wissenskultur
+bild: wp-content/uploads/2018/04/B15D7EE5-082D-4777-8F00-FEBB41A79085.jpeg
 wp:
   id: 51682
   link: https://cogneon.de/2018/04/13/learning-mindset-2-0-auf-die-grundannahmen-kommt-es-an-clsprint/

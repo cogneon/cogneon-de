@@ -12,6 +12,7 @@ categories:
 tags:
 - lernOS
 - lernOSConvention
+bild: wp-content/uploads/2022/06/FToMm6gXwAIk2gj.jpeg
 wp:
   id: 59797
   link: https://cogneon.de/2022/06/02/kaiserburg-nuernberg-die-location-fuer-die-lernos-convention-2022-loscon22/

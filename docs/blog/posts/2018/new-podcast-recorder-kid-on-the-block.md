@@ -12,6 +12,7 @@ tags:
 - DIYMultimedia
 - Podcast
 - Podcasting
+bild: wp-content/uploads/2018/03/koa-zoom-l12.jpeg
 wp:
   id: 50511
   link: https://cogneon.de/2018/03/25/new-podcast-recorder-kid-on-the-block/

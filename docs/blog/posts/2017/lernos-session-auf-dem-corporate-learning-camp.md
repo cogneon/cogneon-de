@@ -13,6 +13,7 @@ tags:
 - LernendeOrganisation
 - lernOS
 - Wissensmanagement
+bild: wp-content/uploads/2017/10/clc17-lernos-simon.jpg
 wp:
   id: 42501
   link: https://cogneon.de/2017/10/02/lernos-session-auf-dem-corporate-learning-camp/

@@ -13,6 +13,7 @@ tags:
 - KünstlicheIntelligenz
 - Intranet
 - SocialMedia
+bild: wp-content/uploads/2017/09/simondueckert-twitter.png
 wp:
   id: 40857
   link: https://cogneon.de/2017/09/20/10-jahre-twitter-eine-erfolgsgeschichte/

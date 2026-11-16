@@ -13,6 +13,7 @@ tags:
 - GenerativeKI
 - pke25
 - WissensTransferCamp
+bild: wp-content/uploads/2024/08/KCLO-Newsletter-Banner-2024-07-30.png
 wp:
   id: 65921
   link: https://cogneon.de/2025/10/01/kclo-ai-first-pkm-persoenliches-wissensmanagement-mit-ki-smarter-machen/

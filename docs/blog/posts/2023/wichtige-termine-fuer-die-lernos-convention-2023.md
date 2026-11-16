@@ -10,6 +10,7 @@ categories:
 - lernOS Convention 2023
 tags:
 - lernOSConvention
+bild: wp-content/uploads/2023/04/loscon23-key-visual.png
 wp:
   id: 61540
   link: https://cogneon.de/2023/06/23/wichtige-termine-fuer-die-lernos-convention-2023/

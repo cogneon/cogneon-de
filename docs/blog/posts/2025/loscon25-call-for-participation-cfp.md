@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - lernOS Convention 2025
+bild: wp-content/uploads/2025/03/loscon25-cfp.png
 wp:
   id: 65044
   link: https://cogneon.de/2025/03/25/loscon25-call-for-participation-cfp/

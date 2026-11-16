@@ -13,6 +13,8 @@ tags:
 - Zusammenarbeit
 - lernOS
 - lernOSConvention
+bild: wp-content/uploads/2022/06/loscon22-slack.png
+bild_im_text: true
 wp:
   id: 59841
   link: https://cogneon.de/2022/06/19/das-metaversum-fuer-die-lernos-convention-2022-loscon22/

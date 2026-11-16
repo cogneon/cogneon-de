@@ -8,6 +8,7 @@ authors:
 - simon-dueckert
 categories:
 - Keep Calm & Learn On
+bild: wp-content/uploads/2024/02/KCLO-Newsletter-Banner-2024-02-20.png
 wp:
   id: 67677
   link: https://cogneon.de/2026/08/07/wissenstransfercamp-2026-das-programm-steht/

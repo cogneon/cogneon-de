@@ -13,6 +13,8 @@ tags:
 - Studien
 - Innovation
 - Microsoft365
+bild: wp-content/uploads/2020/08/0D049167-F3DA-4AEA-9B5F-CC695F8C2B22.jpeg
+bild_im_text: true
 wp:
   id: 58168
   link: https://cogneon.de/2020/08/27/die-6-trends-2020-fuer-den-digitalen-arbeitsplatz-aus-dem-gartner-hype-cycle-for-the-digital-workplace/

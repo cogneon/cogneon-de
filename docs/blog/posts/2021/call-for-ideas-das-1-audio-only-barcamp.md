@@ -12,6 +12,7 @@ tags:
 - Podcasting
 - Barcamp
 - Podcast
+bild: wp-content/uploads/2021/01/audio-barcamp.png
 wp:
   id: 58288
   link: https://cogneon.de/2021/01/20/call-for-ideas-das-1-audio-only-barcamp/

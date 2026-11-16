@@ -11,6 +11,7 @@ categories:
 tags:
 - WorkingOutLoud
 - Wissensarbeit
+bild: wp-content/uploads/2017/10/werkzeugkasten.png
 wp:
   id: 48986
   link: https://cogneon.de/2017/10/26/5-methoden-die-wissensarbeiterin-kennen-sollten/

@@ -11,6 +11,7 @@ categories:
 tags:
 - lernOS
 - WorkingOutLoud
+bild: wp-content/uploads/2018/12/lernOS-Logo-1500x430.png
 wp:
   id: 53806
   link: https://cogneon.de/2018/06/24/how-to-use-the-lernos-canvas-as-tool-in-working-out-loud-circles-wol/

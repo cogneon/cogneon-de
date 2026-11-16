@@ -40,7 +40,7 @@
     "wp-block-editor/v1",
     "wp-abilities/v1"
   ],
-  "generated": "2026-11-14T19:02:17",
+  "generated": "2026-11-16T11:11:11",
   "types": {
     "ap_actor": {
       "name": "Follower",

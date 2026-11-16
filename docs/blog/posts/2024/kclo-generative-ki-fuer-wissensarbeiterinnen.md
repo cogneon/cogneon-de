@@ -13,6 +13,7 @@ tags:
 - KünstlicheIntelligenz
 - GenerativeKI
 - Lernen
+bild: wp-content/uploads/2023/12/KCLO-Newsletter-Banner-2023-12-05.png
 wp:
   id: 62739
   link: https://cogneon.de/2024/04/16/kclo-generative-ki-fuer-wissensarbeiterinnen/
