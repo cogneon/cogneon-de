@@ -1275,3 +1275,28 @@ ol.cg-schritte > li,
   padding: 0;
   font-size: 0.8rem;
 }
+
+/* Save the Date: Termin steht fest, Details folgen */
+.cg-marke {
+  display: inline-block;
+  font-family: var(--cg-font);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--cg-schwarz);
+  background: var(--cg-orange);
+  border-radius: 99px;
+  padding: 0.1rem 0.6rem;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.md-typeset .cg-hinweis {
+  border-left: 4px solid var(--cg-orange);
+  background: var(--cg-bg-soft);
+  padding: 0.9rem 1.1rem;
+  border-radius: 0 var(--cg-radius) var(--cg-radius) 0;
+}
+[data-md-color-scheme="slate"] .md-typeset .cg-hinweis {
+  background: var(--cg-karte);
+}

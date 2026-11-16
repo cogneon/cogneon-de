@@ -107,3 +107,19 @@ def test_rss_feed(tmp_path):
     assert item.findtext("link") == "https://cogneon.de/2026/10/12/a/"
     assert item.findtext("pubDate") == "Mon, 12 Oct 2026 08:00:00 +0200"
     assert [c.text for c in item.findall("category")] == ["News", "lernOS"]
+
+
+def test_save_the_date_und_schema(tmp_path):
+    write(tmp_path / "docs/event/std.md",
+          "---\ntitle: Camp 2027\ntemplate: termin.html\nbeginn: 2027-03-11 09:00\nende: 2027-03-12 17:00\n"
+          "save_the_date: true\nort:\n  name: Akademie\n  adresse: Bucherstr. 79a, 90419 Nürnberg\n---\n")
+    (tmp_path / "overrides/partials").mkdir(parents=True)
+    heute = dt.date(2026, 11, 16)
+    info = build_data.build_events(tmp_path, heute)
+    assert info["kommend"][0]["save_the_date"] is True
+    ics = (tmp_path / "docs/events/cogneon.ics").read_bytes().decode("utf-8")
+    assert "SUMMARY:Save the Date: Camp 2027" in ics and "STATUS:TENTATIVE" in ics
+    schema = build_data.event_jsonld(info["kommend"][0], "https://cogneon.de/")
+    assert schema["@type"] == "Event" and schema["startDate"] == "2027-03-11T09:00:00+01:00"
+    assert schema["location"] == {"@type": "Place", "name": "Akademie", "address": "Bucherstr. 79a, 90419 Nürnberg"}
+    assert build_data.build(tmp_path, heute)["termine"][0]["save_the_date"] is True

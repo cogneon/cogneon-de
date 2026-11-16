@@ -1,9 +1,17 @@
 {#-
   Ein Termin (docs/event/<slug>.md). Angaben stehen im Kopf der Datei:
-  beginn, ende, ganztags, ort {name, adresse}, online, kosten, anmeldung, kategorien.
+  beginn, ende, ganztags, ort {name, adresse}, online, kosten, anmeldung, kategorien,
+  save_the_date. Die Seite gibt die Angaben zusätzlich nach schema.org (Event) aus.
 -#}
 {% extends "main.html" %}
 {% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
+{% block extrahead %}
+  {{ super() }}
+  {% import "partials/termine-daten.html" as termindaten %}
+  {% if termindaten.termine.schema[page.url] %}
+  <script type="application/ld+json">{{ termindaten.termine.schema[page.url] | tojson }}</script>
+  {% endif %}
+{% endblock %}
 {% block container %}
 {% import "partials/termine-daten.html" as daten %}
 {% set m = page.meta %}
@@ -13,6 +21,9 @@
     <p class="cg-beitrag__meta"><a href="{{ 'events/' | url }}">Termine</a>{% for k in m.kategorien | d([]) %}<span aria-hidden="true">·</span><a href="{{ ('events/kategorie/' ~ m.kategorie_slugs[loop.index0] ~ '/') | url }}">{{ k }}</a>{% endfor %}</p>
     {% if m.bild and not m.bild_im_text %}<img class="cg-beitrag__bild" src="{{ m.bild | url }}" alt="">{% endif %}
     {{ page.content }}
+    {% if m.save_the_date %}
+    <p class="cg-hinweis"><strong>Save the Date.</strong> Der Termin steht fest, Beschreibung und Anmeldung folgen. Der <a href="{{ nav.homepage.url | url }}#newsletter">Newsletter</a> informiert, sobald die Anmeldung offen ist.</p>
+    {% endif %}
     <dl class="cg-termin">
       <div><dt>Wann</dt><dd>{{ daten.termine.zeiten[page.url] | d(m.beginn, true) }}</dd></div>
       {% if m.ort %}<div><dt>Wo</dt><dd>{{ m.ort.name }}{% if m.ort.adresse %}<br>{{ m.ort.adresse }}{% endif %}</dd></div>

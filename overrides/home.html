@@ -146,7 +146,7 @@
         <h2 class="cg-h2 cg-h2--klein">Termine</h2>
         <ul class="cg-liste cg-liste--termine">
           {% for t in aktuell.termine %}
-          <li><a href="{{ t.url if '://' in t.url else t.url | url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}</span></a></li>
+          <li><a href="{{ t.url if '://' in t.url else t.url | url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}</span></a></li>
           {% endfor %}
         </ul>
         <p class="cg-muted">Alle unsere Veranstaltungen findet ihr in unserem <a href="{{ 'events/' | url }}">Kalender</a> und im <a href="{{ config.extra.community_kalender }}">Community Kalender auf CONNECT</a>.</p>
