@@ -10,6 +10,7 @@ kategorien:
 kategorie_slugs:
 - live-session
 bild: wp-content/uploads/2024/03/ls-genai-2024-01.png
+bild_im_text: true
 wp:
   id: 62591
   link: https://cogneon.de/event/ls-genai-2024-01/

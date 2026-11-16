@@ -10,7 +10,7 @@ wp:
 
 Du kannst uns am besten per E-Mail erreichen. Wir melden uns so schnell wie möglich.
 
-[E-Mail schreiben](mailto:info@cogneon.de?subject=Kontakt%20über%20cogneon.de)
+[E-Mail schreiben](mailto:info@cogneon.de?subject=Kontakt%20über%20cogneon.de){ .cg-button }
 
 ## Anschrift
 

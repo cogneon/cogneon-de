@@ -10,6 +10,7 @@ kategorien:
 kategorie_slugs:
 - learning-circle-experience
 bild: wp-content/uploads/2022/01/lce22a.png
+bild_im_text: true
 wp:
   id: 59459
   link: https://cogneon.de/event/4-learning-circle-experience-podcasting-lce22a/

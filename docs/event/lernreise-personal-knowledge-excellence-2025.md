@@ -18,7 +18,7 @@ Die **2. Lernreise „Personal Knowledge Excellence“ (pke25)** findet vom **20
 
 [Zur Lernreise anmelden
 
-Alleine, im Tandem oder im Learning Circle](https://pretix.eu/cogneon/pke25/)
+Alleine, im Tandem oder im Learning Circle](https://pretix.eu/cogneon/pke25/){ .cg-button }
 
 ## Format
 
@@ -91,6 +91,6 @@ Die **Teilnahme** an der Lernreise kostet **€ 480,-**. Wenn ihr z.B. als **Ler
 
 [Zur Lernreise anmelden
 
-Alleine, im Tandem oder im Learning Circle](https://pretix.eu/cogneon/pke25/)
+Alleine, im Tandem oder im Learning Circle](https://pretix.eu/cogneon/pke25/){ .cg-button }
 
-[Click Here](/)
+[Click Here](/){ .cg-button }

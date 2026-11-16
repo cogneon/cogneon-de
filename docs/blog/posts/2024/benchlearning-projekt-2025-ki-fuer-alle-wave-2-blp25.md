@@ -50,4 +50,4 @@ Auch für das **Benchlearning-Jahr 2025** gibt es wieder **einige wenige freie P
 
 Die Teilnahme ist kostenpflichtig (€ 5.900,-, Frühbucher bis 31.12.24 nur € 4.900,-) und idR für größere Organisationen (>1.000 Mitarbeitende) geeignet. Alle Infos sind im [blp25 Flyer](https://cloud.cogneon.de/index.php/f/150666) zusammengefasst. Falls Ihr Interesse habt, meldet Euch einfach. Offene Fragen beantworten wir gerne textuell oder in einer virtuellen Besprechung.
 
-[Flyer Benchlearning Projekt 2025 (blp25)](https://cloud.cogneon.de/s/D4F5ANwPB6ASZoR)
+[Flyer Benchlearning Projekt 2025 (blp25)](https://cloud.cogneon.de/s/D4F5ANwPB6ASZoR){ .cg-button }

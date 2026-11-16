@@ -11,6 +11,7 @@ kategorie_slugs:
 - live-session
 - onenote
 bild: wp-content/uploads/2025/03/ls-obsi-2025-05.png
+bild_im_text: true
 wp:
   id: 64862
   link: https://cogneon.de/event/livesession-obsidian-fuer-die-produktive-wissensarbeit-ls-obsi-2025-05/
@@ -22,7 +23,7 @@ wp:
 
 **Produktiv arbeiten & nichts vergessen:** [Obsidian](https://obsidian.md/) als digitales [2nd Brain](https://fortelabs.com/blog/basboverview/) und [Memex](https://de.wikipedia.org/wiki/Memex) unterstützt Wissensarbeiter:innen in einer turbulenten und sich ständig ändernden Welt. In der LiveSession stellen wir einen Ansatz für professionelle Wissensarbeit anhand unserer PKE-Obsidian-Vorlage vor. Die Vorlage enthält eine Grundstruktur mit Registerkarten und Templates für die sofortige Verwendung, die auf bewährten Methoden wie [Gettings Things Done](https://de.wikipedia.org/wiki/Getting_Things_Done) (GTD), [Zen To Done](https://www.foerderland.de/organisieren/news/zen-to-done-das-e-book-auf-deutsch/) (ZTD), [PARA](https://www.buildingasecondbrain.com/para) und [Objectives & Key Results](https://de.wikipedia.org/wiki/Objectives_and_Key_Results) (OKR) aufbauen. Alle Teilnehmer:innen erhalten die Obsidian-Vorlage für die persönliche Verwendung zum Download. **Hinweis:** Obsidian kann seit dem 20. Februar 2025 [auch im beruflichen Kontext kostenlos genutzt werden](https://obsidian.md/blog/free-for-work/).
 
-[Anmelden](https://pretix.eu/cogneon/ls-obsi-2025-05/)
+[Anmelden](https://pretix.eu/cogneon/ls-obsi-2025-05/){ .cg-button }
 
 ## Inhalt LiveSession
 
@@ -50,6 +51,6 @@ Die **LiveSession** findet **online in Microsoft Teams** statt. In der LiveSessi
 
 ***Hinweise:** für Organisationen, die eine größere Menge Teilnahmen buchen wollen, gewähren wir einen Rabatt (Anfrage per E-Mail). Die Zahlung ist per Banküberweisung, Kreditkarte und Paypal möglich. Wer eine PDF-Rechnung z.B. für die Buchhaltung *brauch*t, wählt “Banküberweisung” als Zahlungsmethode.*
 
-[Anmelden](https://pretix.eu/cogneon/ls-obsi-2025-05/)
+[Anmelden](https://pretix.eu/cogneon/ls-obsi-2025-05/){ .cg-button }
 
 ## Session Owner

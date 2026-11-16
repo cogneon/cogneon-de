@@ -8,6 +8,7 @@ kategorien:
 kategorie_slugs:
 - lernoscon
 bild: wp-content/uploads/2025/03/loscon24-key-visual.png
+bild_im_text: true
 wp:
   id: 64721
   link: https://cogneon.de/event/lernos-convention-2025/
@@ -23,7 +24,7 @@ Die **9. lernOS Convention** (#loscon25) findet vom **1.-2. Juli 2025** auf der 
 
 [Tickets sichern
 
-Vor-Ort-, Remote- und Supporter-Tickets](https://pretix.eu/cogneon/loscon25/)
+Vor-Ort-, Remote- und Supporter-Tickets](https://pretix.eu/cogneon/loscon25/){ .cg-button }
 
 ## Thema der loscon25
 
@@ -31,7 +32,7 @@ Viele kennen sicher die Schilder und Durchsagen in der **Londoner U-Bahn**: [Min
 
 **Strategisches Wissensmanagement** (StWM) und entsprechendes **organisationales Change Management** (OCM) auf individueller, organisationaler und gesellschaftlicher Ebene sind daher die zentralen Themenfelder der **lernOS Convention 2025**. Ausführliche Informationen zum Jahresthema der lernOS Convention [in diesem Blog zum Motto](/2025/03/02/mind-the-knowledge-gap-das-motto-der-lernos-convention-2025/).
 
-[Das Thema 2025](/2025/03/02/mind-the-knowledge-gap-das-motto-der-lernos-convention-2025/)
+[Das Thema 2025](/2025/03/02/mind-the-knowledge-gap-das-motto-der-lernos-convention-2025/){ .cg-button }
 
 ## Event News
 
@@ -75,7 +76,7 @@ Viele kennen sicher die Schilder und Durchsagen in der Londoner U-Bahn: Mind the
 
 Das Programm der lernOS Convention 2025 wird wieder **gemeinsam mit der Community** gestaltet. Das konkrete Format ist im Orga-Team noch in Planung. Es gibt voraussichtlich wieder **Impulsvorträge**, **Lightning Talks** (5“), **Sessions/Workshops** (45“) und **selbstorganisierte Learning Circles**. Der Call for Participation (CfP) geht in Kürze online.
 
-[Call for Participation (CfP) ab Ende März](/)
+[Call for Participation (CfP) ab Ende März](/){ .cg-button }
 
 ### WANN & WO?
 

@@ -38,7 +38,7 @@ Das **Thema** dieses Jams ist **„Hands-on AI – Wir bauen uns unsere persönl
 
 Wir starten von 10:00-11:00 Uhr mit einer kurzen Einführung und einem Erfahrungsaustausch. Von 11:00-14:00 Uhr ist viel Zeit, für sich oder in kleinen Gruppen am eigenen KI-Assistent zu arbeiten. Schwerpunkte können z.B. Anpassungen über Systemprompts, lokale Sprachmodelle, individuelle GPTs/Copiloten oder eigene Chatbots sein. Von 14:00-15:00 Uhr machen wir ein Runde, bei der jede:r das eigene Ergebnis vorstellen kann. Ab ca. 16:00 Uhr gehen wir auf dem Nürnberger Christkindlesmarkt einen Glühwein trinken 🍷😎
 
-[ckj44 Info & Anmeldung](https://community.cogneon.de/t/44-knowledgejam-hands-on-ai-wir-bauen-uns-unsere-persoenlichen-ki-assistenten/3923)
+[ckj44 Info & Anmeldung](https://community.cogneon.de/t/44-knowledgejam-hands-on-ai-wir-bauen-uns-unsere-persoenlichen-ki-assistenten/3923){ .cg-button }
 
 ## lernOS KI MOOC vom 06.05.-21.06.2024
 
@@ -48,7 +48,7 @@ Vielleicht erinnert Ihr Euch noch an unseren [Management 2.0 MOOC](https://newsl
 
 Da wir auch beim MOOC 2013 schon mit **selbstorganisierten Lerngruppen** gearbeitet haben ([Präsentation](https://newsletter.cogneon.de/i/KARawW32ConnytVYtl9GE1MfBwOzmoXp)) und die Learning Circle der lernOS Convention 2023 sich sehr bewährt haben, werden wir die Lerngruppen des MOOCs für die **Learning-Circle-Bildung zur lernOS Convention 2024 (2.-3. Juli)** nutzen. Die Anmeldung zum lernOS KI MOOC starten wir offiziell Anfang 2024, wer mag kann sich aber schonmal über diese Meetup-Veranstaltung anmelden.
 
-[lernOS KI MOOC (Voranmeldung)](https://www.meetup.com/cogneon/events/297769514)
+[lernOS KI MOOC (Voranmeldung)](https://www.meetup.com/cogneon/events/297769514){ .cg-button }
 
 ## Benchlearning Projekt 2024 „KI für alle“
 
@@ -62,7 +62,7 @@ Außerdem haben wir einen Viko-Hintergrund für hybride Meetings entwickelt und 
 
 Und so haben wir als Jahresthema für das **Benchlearning Projekt 2024 (blp24)** das **Leitthema “KI für Alle/AI for everyone”** ausgewählt. Es wird im Kern darum gehen, wie die generative KI, die sich schneller als jede andere neue Technologie der letzen Jahre verbreitet, von Wissensarbeiter:innen in Organisationen schnell und nutzbringend eingesetzt werden kann. Für das blp24 gibt es noch wenige freie Plätze. Alle Infos zu Detaillthemen, Terminen und Teilnahme findet Ihr [in diesem Blog](https://newsletter.cogneon.de/i/pvTXryMh4kKEJySQfyTXiCkcSq0_IOOr).
 
-[Benchlearning blp24 Info & Teilnahme](/2023/12/04/benchlearning-projekt-2024-ki-fuer-alle-blp24/)
+[Benchlearning blp24 Info & Teilnahme](/2023/12/04/benchlearning-projekt-2024-ki-fuer-alle-blp24/){ .cg-button }
 
 ## Workhack: Screenshot Shortcut
 

@@ -39,4 +39,4 @@ Und so haben wir als Jahresthema für das **Benchlearning Projekt 2024** das **L
 
 Die meisten Unternehmen aus 2023 bleiben auch 2024 mit an Board. Doch es gibt **auch dieses Jahr wieder ein paar freie Benchlearning-Plätze**. Die Teilnahme ist kostenpflichtig (€ 5.900,-, Frühbucher bis 15.01.24 nur € 4.900,-)und idR für größere Organisationen geeignet. Alle Infos sind wie immer [in einem blp24 Flyer zusammengefasst](https://cloud.cogneon.de/s/PkiHPn4gsXHpQmn). Falls Ihr Interesse habt, meldet Euch einfach. Offene Fragen beantworten wir gerne textuell oder in einer virtuellen Besprechung.
 
-[Flyer Benchlearning Projekt 2024 (blp24)](https://cloud.cogneon.de/s/PkiHPn4gsXHpQmn)
+[Flyer Benchlearning Projekt 2024 (blp24)](https://cloud.cogneon.de/s/PkiHPn4gsXHpQmn){ .cg-button }

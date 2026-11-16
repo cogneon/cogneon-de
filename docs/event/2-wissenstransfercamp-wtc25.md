@@ -15,9 +15,9 @@ wp:
 
 Das **2. WissensTransferCamp (#wtc25, 18.09.)** ist die zentrale Veranstaltung für die Themen **Wissenstransfer & Wissensbewahrung** in Organisationen im deutschsprachigen Raum. Sie ist aus dem [Expert Debriefing Moderator:innen Meetup](https://wiki.cogneon.de/EDMOD_Meetup) hervorgegangen, das über die Pandemie „eingeschlafen“ ist. Mit der vorgelagerten **WissensTransferMasterclass (17.09.)**, in der **vier langjährige Expert:innen** tiefe Einblicke in ihre Praxis geben, bieten die zwei Tage geballtes Wissen aus der Praxis. Beide Veranstaltungen können unabhängig voneinander gebucht werden, die Masterclass ist in Präsenz, beim Barcamp ist hybride Teilnahme per Microsoft Teams möglich.
 
-[Ticket kaufen](https://pretix.eu/cogneon/wtc25)
+[Ticket kaufen](https://pretix.eu/cogneon/wtc25){ .cg-button }
 
-[CONNECT-Beitrag zum wtc25](https://community.cogneon.de/t/wissenstransfercamp-masterclass-vom-17-18-09-2025/4228)
+[CONNECT-Beitrag zum wtc25](https://community.cogneon.de/t/wissenstransfercamp-masterclass-vom-17-18-09-2025/4228){ .cg-button }
 
 –
 
@@ -81,4 +81,4 @@ Das **Sponsorenpaket kostet 500,-** zzgl. MwSt, es beinhaltet die **Nennung auf 
 
 **Hinweis:** die Tickets können mit Rechnung, mit Kreditkarte oder Paypal gekauft werden. Die Teilnahme an Masterclass oder Barcamp ist auch einzeln möglich. Für die Zahlung mit Rechnung (z.B. über die Buchhaltung eines Unternehmens) bei der Zahlungsmethode einfach *„Banküberweisung“* auswählen. Ihr erhaltet dann eine Rechnung als PDF-Datei.
 
-[Ticket kaufen](https://pretix.eu/cogneon/wtc25)
+[Ticket kaufen](https://pretix.eu/cogneon/wtc25){ .cg-button }

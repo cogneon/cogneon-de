@@ -43,4 +43,4 @@ An diesem Tag **treffen wir uns online**. Ich fasse die Kernaussagen von Karl Wi
 
 Dieses Thema ist für mich eine Herzensangelegenheit. Wenn es dir auch so geht, oder wenn du es noch werden willst, dann sei dabei.
 
-[Zum Kick-off am 20. Oktober 2026 kostenlos anmelden](https://events.teams.microsoft.com/event/bace5e95-ce6a-47db-b1ff-7b0cc37fe3c8@93e1683c-5df4-46ff-8c5a-de6f62e19d5d?source=copyLinkOneEventsShareDialog)
+[Zum Kick-off am 20. Oktober 2026 kostenlos anmelden](https://events.teams.microsoft.com/event/bace5e95-ce6a-47db-b1ff-7b0cc37fe3c8@93e1683c-5df4-46ff-8c5a-de6f62e19d5d?source=copyLinkOneEventsShareDialog){ .cg-button }

@@ -8,6 +8,7 @@ kategorien:
 kategorie_slugs:
 - c3managers
 bild: wp-content/uploads/2023/10/c3managers-visual-roh_grosse-gesichter-zwei-zeilen-links.png
+bild_im_text: true
 wp:
   id: 66505
   link: https://cogneon.de/event/c3managers-meetup-am-29-01-2026/
@@ -19,7 +20,7 @@ wp:
 
 Communities verbinden. Warum also nicht Community Manager über Unternehmensgrenzen hinweg zusammenbringen, um Erfahrungen zu teilen und voneinander zu lernen? Genau darum geht es in den **Cross-Company Community Managers Meetups** ([C3Managers auf Linkedin](https://www.linkedin.com/showcase/71184322/), [@C3Managers auf Mastodon](https://colearn.social/@c3managers)). In den 3-monatlich stattfindenden Sessions werden unterschiedliche Themen rund um Community Management bearbeitet.
 
-[Zum C3Managers Meetup anmelden (Teams)](https://events.teams.microsoft.com/event/75754471-a845-4b81-9b4b-776700f1a6e1@93e1683c-5df4-46ff-8c5a-de6f62e19d5d)
+[Zum C3Managers Meetup anmelden (Teams)](https://events.teams.microsoft.com/event/75754471-a845-4b81-9b4b-776700f1a6e1@93e1683c-5df4-46ff-8c5a-de6f62e19d5d){ .cg-button }
 
 ## Programm
 

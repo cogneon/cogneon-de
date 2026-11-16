@@ -14,7 +14,7 @@ wp:
 
 20. September 2023 online auf Discord
 
-[Tickets](https://pretix.eu/cogneon/audiobc23/)[Programm](https://pretalx.com/audiobc23/schedule)
+[Tickets](https://pretix.eu/cogneon/audiobc23/){ .cg-button }[Programm](https://pretalx.com/audiobc23/schedule){ .cg-button }
 
 Das **3. Audio-only BarCamp** (#audiobc23) **am 20.09.2023** (10-17 Uhr) ist ein [BarCamp](https://web.archive.org/web/20220223175106/https://de.wikipedia.org/wiki/Barcamp) zu **Audio und Podcasting in Organisationen**. Das audiobc23 findet [wie letztes Jahr](https://wiki.cogneon.de/audiobc22) **wieder online** statt, dieses Mal mit [Discord](https://de.wikipedia.org/wiki/Discord) als Plattform. Sessionvorschläge sind ab jetzt schon über unseren [Call for Participation](https://pretalx.com/audiobc23/cfp) möglich (Session Owner brauchen auch ein Ticket).
 
@@ -28,7 +28,7 @@ Das **3. Audio-only BarCamp** (#audiobc23) **am 20.09.2023** (10-17 Uhr) ist ein
 - **Hardware** und **Software** für Audio (z.B. Mikrofon, Mischpult, Audio-Interface, Kabel vs. Funk/Bluetooth)
 - **Podcasting lernen** und **Multiplikatoren-Netzwerke** etablieren mit dem [lernOS Podcasting Leitfaden](https://cogneon.github.io/lernos-podcasting/de/) (offene Lizenz, kann frei im Intranet verwendet werden).
 
-[Programm](https://pretalx.com/audiobc23/schedule)
+[Programm](https://pretalx.com/audiobc23/schedule){ .cg-button }
 
 ![](/wp-content/uploads/2023/09/audiobc23-key-visual-1030x579.png)
 

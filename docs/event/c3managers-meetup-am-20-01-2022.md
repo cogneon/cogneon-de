@@ -9,6 +9,7 @@ kategorien:
 kategorie_slugs:
 - c3managers
 bild: wp-content/uploads/2021/07/c3managers.png
+bild_im_text: true
 wp:
   id: 59339
   link: https://cogneon.de/event/c3managers-meetup-am-20-01-2022/

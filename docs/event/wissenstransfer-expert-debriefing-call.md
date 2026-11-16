@@ -31,4 +31,4 @@ Benjamin Wölfel gibt uns einen Einblick in seine praktischen Erfahrungen mit Ex
 - Was waren und sind Herausforderungen bei der Implementierung?
 - Was hat er in den Jahren gelernt?
 
-[Anmeldung Teams Webinar](https://events.teams.microsoft.com/event/6527de6d-2fc0-4e36-92c7-80001cd6309a@93e1683c-5df4-46ff-8c5a-de6f62e19d5d)
+[Anmeldung Teams Webinar](https://events.teams.microsoft.com/event/6527de6d-2fc0-4e36-92c7-80001cd6309a@93e1683c-5df4-46ff-8c5a-de6f62e19d5d){ .cg-button }

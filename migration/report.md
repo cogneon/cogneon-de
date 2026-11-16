@@ -1,6 +1,6 @@
 # Migrationsbericht
 
-Erzeugt: 2026-11-16T11:16:24
+Erzeugt: 2026-11-16T15:47:30
 Quelle: https://cogneon.de/
 
 ## Inventar
@@ -39,16 +39,18 @@ API-Namespaces: `ithemes-security/rpc`, `ithemes-security/v1`, `oembed/1.0`, `ac
 - categories_total: 29
 - categories_used_once_or_never: 6
 - category_redirects: 18
-- event_created: 97
-- media_bytes: 159937117
-- media_downloaded: 562
+- event_unchanged: 48
+- event_updated: 49
 - media_failed: 3
+- media_present: 562
 - page_frozen: 5
 - page_redirected: 1
-- page_unchanged: 22
+- page_unchanged: 14
+- page_updated: 8
 - pages_headings_shifted: 54
 - post_images: 163
-- post_unchanged: 534
+- post_unchanged: 525
+- post_updated: 9
 - tag_redirects: 1149
 - tags_total: 1229
 - tags_used_once_or_never: 931
@@ -222,8 +224,6 @@ Der Link lag unsichtbar über dem ganzen Block. Der Export hängt ihn an die Üb
 Barrierefreiheit: Je Seite soll es nur eine Hauptüberschrift geben. Diese Seiten brauchen eine Korrektur der Ebenen.
 
 - /themen/: 3
-
-Geladene Medien: 159.9 MB
 
 ## Hinweise
 

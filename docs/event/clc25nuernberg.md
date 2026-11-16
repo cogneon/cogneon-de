@@ -4,6 +4,7 @@ template: termin.html
 beginn: 2025-03-13 09:00
 ende: 2025-03-14 16:00
 bild: wp-content/uploads/2025/02/clc25nuernberg.png
+bild_im_text: true
 wp:
   id: 64589
   link: https://cogneon.de/event/clc25nuernberg/

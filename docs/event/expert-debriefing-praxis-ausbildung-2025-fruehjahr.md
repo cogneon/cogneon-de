@@ -13,6 +13,7 @@ kategorien:
 kategorie_slugs:
 - edmod
 bild: wp-content/uploads/2023/10/edmod-banner.png
+bild_im_text: true
 wp:
   id: 65265
   link: https://cogneon.de/event/expert-debriefing-praxis-ausbildung-2025-fruehjahr/
@@ -24,8 +25,8 @@ wp:
 
 Hinweis: an der Praxis-Ausbilung kann man vor Ort in Nürnberg ([Anfahrt](/kontakt)) oder Online teilnehmen. Das zugehörige Live-Online-Training ist am 14.05. von 13:00-14:20 Uhr.
 
-[Alle Infos zur Ausbildung](/edmod)
+[Alle Infos zur Ausbildung](/edmod){ .cg-button }
 
-[Direkt zur Anmeldung](https://pretix.eu/cogneon/edmod25a/)
+[Direkt zur Anmeldung](https://pretix.eu/cogneon/edmod25a/){ .cg-button }
 
 ![](/wp-content/uploads/2023/10/edmod-banner-1030x579.png)

@@ -17,4 +17,4 @@ wp:
 
 Der 41. [CONNECT KnowledgeJam](https://wiki.cogneon.de/ckj) findet am **21.04.2023** von **09:00-16:00 Uhr** in der [Cogneon Akademie in Nürnberg](/kontakt) und online statt. Der Jam besteht aus einem offenen Coworking und einem Impulsvortrag zum Thema am Vormittag und zwei Session-Runden am Nachmittag. Eine kostenlose Anmeldung ist notwending.
 
-[**Infos und Anmeldung auf CONNECT**](https://community.cogneon.de/t/41-knowledgejam-working-out-loud-mit-yammer-und-viva-engage-ckj41/3841)
+[**Infos und Anmeldung auf CONNECT**](https://community.cogneon.de/t/41-knowledgejam-working-out-loud-mit-yammer-und-viva-engage-ckj41/3841){ .cg-button }

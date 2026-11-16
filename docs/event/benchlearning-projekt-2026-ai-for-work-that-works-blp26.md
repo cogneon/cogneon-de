@@ -20,6 +20,6 @@ Um darauf **faktenbasierte Antworten** zu finden, werden wir im Benchlearning Pr
 
 Viele Unternehmen aus blp24 und blp25 bleiben mit dabei, **es gibt aber auch wieder einige wenige freie Plätze**. Alle Infos zum Ablauf und zur Anmeldung findet Ihr auf der [Landing Page zum Benchlearning Projekt 2026](/blp26/). **Bis Ende Januar** gibt es dafür auch wieder den **Frühbucherrabatt**.
 
-[Informationen zum blp26](/blp26/)
+[Informationen zum blp26](/blp26/){ .cg-button }
 
-[Per E-Mail anmelden oder Fragen stellen](mailto:info@cogneon.de?subject=blp26)
+[Per E-Mail anmelden oder Fragen stellen](mailto:info@cogneon.de?subject=blp26){ .cg-button }

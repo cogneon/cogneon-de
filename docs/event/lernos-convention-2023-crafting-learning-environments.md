@@ -9,6 +9,7 @@ ort:
 kosten: €99 – €199
 anmeldung: https://cogneon.de/loscon23
 bild: wp-content/uploads/2023/04/loscon23-key-visual.png
+bild_im_text: true
 wp:
   id: 60940
   link: https://cogneon.de/event/lernos-convention-2023-crafting-learning-environments/

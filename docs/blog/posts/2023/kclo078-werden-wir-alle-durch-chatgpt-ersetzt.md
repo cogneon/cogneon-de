@@ -46,7 +46,7 @@ Hier einige **Links zu meinen Lieblings-Quellen** zum Thema (gerne in den Kommen
 
 [YouTube: Artificial Intelligence: Last Week Tonight with John Oliver (HBO)](https://www.youtube.com/watch?v=Sqa8Zo2XWc4){ .embed }
 
-[Wikipedia-Artikel Artificial Intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence)
+[Wikipedia-Artikel Artificial Intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence){ .cg-button }
 
 ## KnowledgeJam zu Generativer KI, ChatGPT & Co. am 17.03.2023
 
@@ -58,7 +58,7 @@ Für den Impulsvortrag konnten wir **Stefan „Steve“ Holtel** von pwc ([Video
 
 **Hinweis:** für die Anmeldung zu den Online-Teilen des Jams verwenden wir dieses Mal **Microsoft Teams Webinar**([Anmeldung](https://events.teams.microsoft.com/event/f4144deb-6864-4ec9-9343-35fb5f175429@93e1683c-5df4-46ff-8c5a-de6f62e19d5d)). Für die informellen Teile steht unser virtuelle Akademie Akaverse auf Basis von Workadventure bereit. Was wo stattfindet haben wir in der Tabelle mit dem Zeitplan dieses Mal etwas deutlicher gemacht, da es beim letzten Mal etwas Verwirrung gab 😉
 
-[Infos und Anmeldung zum Jam](https://community.cogneon.de/t/40-knowledgejam-generative-ki-chatgpt-co-meilenstein-in-der-wissensarbeit-ckj40/3834)
+[Infos und Anmeldung zum Jam](https://community.cogneon.de/t/40-knowledgejam-generative-ki-chatgpt-co-meilenstein-in-der-wissensarbeit-ckj40/3834){ .cg-button }
 
 ## Hybride Vernetzungsinseln auf der lernOS Convention 2023
 
@@ -74,7 +74,7 @@ Im hybriden Setup unserer Schulungen wie beispielsweise unserer [Expert Debriefi
 
 **Hinweis:** den Frühbucherpreis auf die loscon23 Tickets gibt es noch bis Ende März. Dieses Mal beinhalten alle Online-Tickets ein Remote Caterin.
 
-[lernOS Convention 2023](/loscon23/)
+[lernOS Convention 2023](/loscon23/){ .cg-button }
 
 ## **Workhack**
 

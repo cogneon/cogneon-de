@@ -19,6 +19,6 @@ Das **3. Audio-only BarCamp** (#audiobc23) **am 20.09.2023** (10-17 Uhr) ist ein
 
 ## Anmelden
 
-[Tickets](https://pretix.eu/cogneon/audiobc23/)
+[Tickets](https://pretix.eu/cogneon/audiobc23/){ .cg-button }
 
-[Infos](/audiobc23)
+[Infos](/audiobc23){ .cg-button }

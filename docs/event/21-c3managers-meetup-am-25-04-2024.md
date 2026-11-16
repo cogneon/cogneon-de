@@ -20,9 +20,9 @@ wp:
 
 Communities verbinden. Warum also nicht Community Manager über Unternehmensgrenzen hinweg zusammenbringen, um Erfahrungen zu teilen und voneinander zu lernen? Genau darum geht es in den **Cross-Company Community Managers Meetups** ([C3Managers auf Linkedin](https://www.linkedin.com/showcase/71184322/), [@C3Managers auf Mastodon](https://colearn.social/@c3managers)). In den 3-monatlich stattfindenden Sessions werden unterschiedliche Themen rund um Community Management bearbeitet.
 
-[Einwahl MS Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_NTZjMjRmZDQtOGRlNy00YTJkLTgyZDQtN2M5NDFjOTQ3OGZl%40thread.v2/0?context=%7b%22Tid%22%3a%2293e1683c-5df4-46ff-8c5a-de6f62e19d5d%22%2c%22Oid%22%3a%224ccf8014-474c-408c-a8c2-26208c8c4919%22%7d)
+[Einwahl MS Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_NTZjMjRmZDQtOGRlNy00YTJkLTgyZDQtN2M5NDFjOTQ3OGZl%40thread.v2/0?context=%7b%22Tid%22%3a%2293e1683c-5df4-46ff-8c5a-de6f62e19d5d%22%2c%22Oid%22%3a%224ccf8014-474c-408c-a8c2-26208c8c4919%22%7d){ .cg-button }
 
-[In Kalender eintragen (ICS)](https://cloud.cogneon.de/s/9dCW5Kk6iPn3pa8)
+[In Kalender eintragen (ICS)](https://cloud.cogneon.de/s/9dCW5Kk6iPn3pa8){ .cg-button }
 
 ## Programm
 

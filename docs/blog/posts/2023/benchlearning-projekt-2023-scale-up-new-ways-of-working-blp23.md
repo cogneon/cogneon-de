@@ -46,6 +46,6 @@ Die konkreten Fragestellungen werden wie immer mit allen Teilnehmer:innen beim *
 
 ***Hinweis:** in 2020 und 2021 hat das Benchlearning vollständig virtuell stattgefunden, seit 2022 ist eine völlig flexible hybride Teilnahme an allen Programmteilen möglich.*
 
-[Wir haben Interesse!](mailto:info@cogneon.de?subject=Benchlearning-2023)
+[Wir haben Interesse!](mailto:info@cogneon.de?subject=Benchlearning-2023){ .cg-button }
 
-[blp23 Flyer](https://cloud.cogneon.de/s/9jsHxJ7eHk9GEGZ)
+[blp23 Flyer](https://cloud.cogneon.de/s/9jsHxJ7eHk9GEGZ){ .cg-button }
