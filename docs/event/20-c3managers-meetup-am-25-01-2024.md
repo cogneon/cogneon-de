@@ -32,7 +32,7 @@ Was passiert, wenn Generative AI und Communities aufeinandertreffen? Dieser span
 
 2. Wie wird GenAI jetzt schon im Community Management genutzt?
 
- Mit von der Partie sind Community Manager\*innen, die Generative AI Communities betreiben. Und an Bord sind auch Expert\*innen, die ihre Erfahrungen mit der Anwendung von Generative AI im Community Management teilen. Wir werden gemeinsam auf konkrete Anwendungsfälle schauen, wie sich Generative AI schon jetzt im Community Management einsetzen lässt.
+    Mit von der Partie sind Community Manager\*innen, die Generative AI Communities betreiben. Und an Bord sind auch Expert\*innen, die ihre Erfahrungen mit der Anwendung von Generative AI im Community Management teilen. Wir werden gemeinsam auf konkrete Anwendungsfälle schauen, wie sich Generative AI schon jetzt im Community Management einsetzen lässt.
 
 ## Programm
 

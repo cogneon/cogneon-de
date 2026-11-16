@@ -41,63 +41,63 @@ Auf Ebene des **strategischen Wissensmanagements** gilt es dann die Frage zu bea
 Im Bereich des **operativen Wissensmanagements** gilt es die Prozesse zu identifizieren, die besonders wissensintensiv sind. Das kann z.B. mit dem Kriterienkatalog für wissensintensive Prozesse nach Ulrich Remus erfolgen (s.a. [Dissertation von Ulrich Remus](http://epub.uni-regensburg.de/9925/1/remusdiss.pdf), S. 116):
 
 - **Prozessübergreifende Merkmale**
-  - Organisation und Kultur
-  - Umfeld
-  - Interprozessverflechtung
+    - Organisation und Kultur
+    - Umfeld
+    - Interprozessverflechtung
 - **Prozessbezogene Merkmal**e
-  - Komplexität
-  - Variabilität
-  - Strukturierungs-/Detaillierungsgrad
-  - Beteiligung
-  - Prozessobjekt
-  - Controlling
-  - Laufzeitverhalten
-  - Prozesstyp
+    - Komplexität
+    - Variabilität
+    - Strukturierungs-/Detaillierungsgrad
+    - Beteiligung
+    - Prozessobjekt
+    - Controlling
+    - Laufzeitverhalten
+    - Prozesstyp
 - **Aufgabenbezogene Merkmale**
-  - Controlling
-  - Lernzeit
-  - Arbeitsplatzgestaltung
-  - Aufgabentyp
+    - Controlling
+    - Lernzeit
+    - Arbeitsplatzgestaltung
+    - Aufgabentyp
 - **Mitarbeiterbezogene Merkmale**
-  - Entscheidungsspielraum
-  - Regeln und Vorgaben
-  - Kompetenz
+    - Entscheidungsspielraum
+    - Regeln und Vorgaben
+    - Kompetenz
 - **Ressourcenbezogene Merkmale**
-  - Wissensmanagement-Instrumente und -Systeme
-  - Wissensrepräsentation
-  - Wissensaustausch
-  - Wissensart
-  - Zugang
-  - Komplexität
-  - Aktualität/Zeit
-  - Budget
+    - Wissensmanagement-Instrumente und -Systeme
+    - Wissensrepräsentation
+    - Wissensaustausch
+    - Wissensart
+    - Zugang
+    - Komplexität
+    - Aktualität/Zeit
+    - Budget
 
 Auf Basis dieser Merkmale kann die Prozessstruktur der Organisation durchleuchtet und wissensintensive Prozesse (wiP) identifiziert werden. Für den Einstieg in das operative Wissensmanagement erhält man meist zu viele Prozesse, mit denen man starten könnten. Hier lohnt sich der Blickwinkel „Risk-based thinking“ aus der ISO 9001 (Kapitel 0.3.3). So können beisielsweise die identifizierten wiP auf ihre Wissensrisiken hin untersucht werden. So kann es sein, dass ein stark auf Erfahrungswissen basierter Prozess als sehr wissensintensiv eingestuft wurde, das Wissensverlustrisiko aber auf Basis von geringer Fluktuationsrate und niedrigem Altersdurchschnitt der Wissensträger gering ist. Als Raster für die systematische Analyse des Wissensrisikos können z.B. die Wissensrisiken nach Bayer verwendet werden (s.a. [Steuerung von Wissensriskien](http://d-nb.info/1024859290/34), S. 143):
 
 - **Personen**
-  - Unbegleiteter Ruhestand
-  - Beendigung der Erwerbstätigkeit
-  - Unternehmenswechsel
-  - Fahrlässiges Fehlverhalten
-  - Vorsätzliches Fehlverhalten
+    - Unbegleiteter Ruhestand
+    - Beendigung der Erwerbstätigkeit
+    - Unternehmenswechsel
+    - Fahrlässiges Fehlverhalten
+    - Vorsätzliches Fehlverhalten
 - **Prozesse**
-  - Reorganisationsverlust
-  - Nichtdokumentation
-  - Nachfolgeverlust
-  - Vertretungsverlust
-  - Übergabeverlust
-  - Zutrittsverletzung
-  - Zugriffsverletzung
-  - Unbegleitete Beendigung der Zusammenarbeit
+    - Reorganisationsverlust
+    - Nichtdokumentation
+    - Nachfolgeverlust
+    - Vertretungsverlust
+    - Übergabeverlust
+    - Zutrittsverletzung
+    - Zugriffsverletzung
+    - Unbegleitete Beendigung der Zusammenarbeit
 - **Systeme**
-  - Technisches Versagen/Fehlfunktion
-  - Mangelnde Wiederherstellbarkeit
+    - Technisches Versagen/Fehlfunktion
+    - Mangelnde Wiederherstellbarkeit
 - **Externe Faktoren**
-  - Abwerbung
-  - Personalausfall
-  - Diebstahl
-  - Angriff auf IT-Systeme
-  - Höhere Gewalt
+    - Abwerbung
+    - Personalausfall
+    - Diebstahl
+    - Angriff auf IT-Systeme
+    - Höhere Gewalt
 
 Sind auf dieser Basis die relevantesten wissensintensiven Prozesse identifiziert, können für diese konkrete Maßnahmen des operativen Wissensmanagements eingeplant werden. Das kann im einfachsten Fall die Umsetzung des geforderten P[lan-Do-Check-Act-Zyklus](https://de.wikipedia.org/wiki/Demingkreis) aus der ISO 9001 sein. Dieser fordert implizit die systematische Anwendung organisationalen Lernens auf alle Prozesse und damit die Entwicklung einer Lernenden Organisation. Alternativ können aber auch die bewährten Verfahren des (operativen) prozessorientierten Wissensmanagements wie beispielsweise SEKAM, MOCA oder GPO-WM angewendet werden.
 

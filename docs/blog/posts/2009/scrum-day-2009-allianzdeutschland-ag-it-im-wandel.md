@@ -26,4 +26,4 @@ wp:
 - Kerngeschäft: Informationsverarbeitung
 - Historisch: von struktureller Vielfalt zu Plattformstruktur, von Spartenmodell zu funktionalen Geschäftsmodell;von beziehungsorientierten Betreuung zum industriellen Betrieb; 20 Mio Kunden in einer zentralen Datenbank
 - Herausforderung:
-  - Stabilität und Performance der IT-Systeme bestimmen die Produktivität.
+    - Stabilität und Performance der IT-Systeme bestimmen die Produktivität.

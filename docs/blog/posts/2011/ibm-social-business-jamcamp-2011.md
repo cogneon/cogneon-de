@@ -59,10 +59,10 @@ Darüber hinaus möchte ich einige meiner Notizen zu den anderen Vorträgen hier
 - Der Betriebsrat war von der Konzeptionsphase an eingebunden.
 - Aus dem Management gibt es einen aktiven Video-Blogger, eine Veranstaltung zum Thema wie kann „Führung in connect.BASF“ aussehen.
 - Erfolgsfaktoren:
-  - Neben einem Einführungsprojekt muss eine Organisation hinter dem Business Network stehen (ein Mentor aus dem Board, zwei hauptberufliche Community Manager, Community Builder (=Koordinatoren), Advocates, die die Plattform in ihrer Organisationseinheit promoten.
-  - Freiwilliger Charakter (opt-in).
-  - Sichtbare Unterstützung des Top-Managements.
-  - „Face-to-face events foster adoption“.
-  - Kommunikation von Vorteilen und Erfolgsgeschichten (z.B. mit Kurzvideos)
+    - Neben einem Einführungsprojekt muss eine Organisation hinter dem Business Network stehen (ein Mentor aus dem Board, zwei hauptberufliche Community Manager, Community Builder (=Koordinatoren), Advocates, die die Plattform in ihrer Organisationseinheit promoten.
+    - Freiwilliger Charakter (opt-in).
+    - Sichtbare Unterstützung des Top-Managements.
+    - „Face-to-face events foster adoption“.
+    - Kommunikation von Vorteilen und Erfolgsgeschichten (z.B. mit Kurzvideos)
 - Best-Practice-Beispiele: 1. Mitarbeiter erhält Studie zu Marktforschung durch Post auf Microblog; 2. Projekt dokumentiert sich in einer virtuellen Gruppe selber (kritischer Projektschritt konnte um 25% verkürzt werden) 3. Community „Origami Cranes for Hope“ für die Mitarbeiter in Japan als Unterstützung nach dem Tsunami.
 - In der nächsten Version der Plattform wird es Ober-/Untercommunities geben.

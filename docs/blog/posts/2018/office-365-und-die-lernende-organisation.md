@@ -83,29 +83,29 @@ Aus diesen Vorüberlegungen lässt sich ein Maßnahmenplan ableiten, wie die Ein
 - **Communication:** wie kann die Vision und die Kernbotschaften bestmöglich in der ganzen Organisation bekannt gemacht werden? Welche Maßnahmen sind über Standard-Kommunikationsmaßnahmen (E-Mail, Flyer, Poster, 1-Pager etc.) hinaus sinnvoll? Welche Ansätze von Influencer- und Guerilla-Marketing können genutzt werden? Wie kann die Kommunikation „anders“ als bisher üblich gestaltet werden, um den Botschaften „anders arbeiten“ und „anders führen“ Rechnung zu tragen?
 - **Empowering broad-based action:** wie kann das Guide-Netzwerk als treiber für eine Massenbewegung eingesetzt werden? Wie kann das „Onboarding“ neuer Guides im Netzwerk aussehen? Welches „Guide Toolkit“ (Präsentationen, Leitfaden, Steckbriefe etc.) erhalten Guides als Hilfsmittel? Welche Regelaktivitäten werden für den Austausch von Guides angeboten (z.B. Monatstreffen, regelmäßige Online-Besprechungen)? Welche Unterstützung bieten die Guides an (1:1 Gespräche, Vorstellungen in Abteilungs-/Projektrunden, Hands-On-Workshops etc.)? Wie können alle Mitarbeiter Teil der Massenbewegung werden (z.B. Offene Calls, Barcamp zu Office 365, Bereitstellen aller Materialien in bearbeitbarer Form).
 - **Generating short-term wins:** wie kann mit den Office 365 Anwendungen schnell ein Aha-Effekt erzeugt werden? Was sind Beispiele guter Praxis? Das können z.B. sein
-  - Delve Profile als „Homepage“ und „Digital Twin“ für Mitarbeiter, Absprungpunkt zum persönlichen Blog der Mitarbeiter
-  - OneDrive als ersatz für persönliche Laufwerke mit einfachem Teilen und Verfügbarkeit der Dateien auf allen Endgeräten
-  - OneNote als digitales Notizbuch für Mitarbeiter oder ganze Teams
-  - PowerPoint für die Erstellung von Multimedia-Inhalten inkl. Screencasts
-  - SharePoint als Intranet für die ganze Organisation oder Teile der Organisation (s.a. [SharePoint Starter-Kit](https://github.com/SharePoint/sp-starter-kit) auf github)
-  - Skype for Business für Online-Besprechungen, aber auch für das Livestreaming von Meetups und Open Calls
-  - Stream für Aufzeichnungen von Schulungen, Screencasts, Tutorials (auch User Generated Content)
-  - Teams als Kommunikationszentrale für Abteilungs- und Projekt-Teams. Dadurch können E-Mails massive reduziert und Schatten-IT (z.B. Slack) zurückgefahren werden
-  - Teams für Gruppen, die gemeinsam durch eine Schulung oder ein Blended Learning Angebot laufen
-  - Word für maschinelle Übersetzung ganzer Dokumente (Beispiel: deutsche Version des lernOS Guide ist so entstanden)
-  - Yammer mit den Gruppen für offene Kampagnen und strategische Themen, die eine breite Menge von Leuten ansprechen
-  - Yammer mit dem offenen Aktivitätenstrom „Gesamtes Unternehmen“ für offenes Teilen, Vernetzten und systematisches Working Out Loud
-  - Yammer mit der Livestream-Funktion für Mitarbeiterveranstaltungen, Fachveranstaltungen/Meetups und Townhall
-  - Yammer mit den externen Gruppen für die Kommunikation und Zusammenarbeit mit externen Partnern und Stakeholdern
-  - DILO (day in a life of) für verschiedene Rollen der Organisation, z.B. für Marketing, Sales, Human Resources, Finance, Compliance, Construction, IT Manager, Service Engineer, Retail Associate, Retail Manager (s.a. Office 365 Adoption Kit)
-  - uvm. (Deine Idee?)
+    - Delve Profile als „Homepage“ und „Digital Twin“ für Mitarbeiter, Absprungpunkt zum persönlichen Blog der Mitarbeiter
+    - OneDrive als ersatz für persönliche Laufwerke mit einfachem Teilen und Verfügbarkeit der Dateien auf allen Endgeräten
+    - OneNote als digitales Notizbuch für Mitarbeiter oder ganze Teams
+    - PowerPoint für die Erstellung von Multimedia-Inhalten inkl. Screencasts
+    - SharePoint als Intranet für die ganze Organisation oder Teile der Organisation (s.a. [SharePoint Starter-Kit](https://github.com/SharePoint/sp-starter-kit) auf github)
+    - Skype for Business für Online-Besprechungen, aber auch für das Livestreaming von Meetups und Open Calls
+    - Stream für Aufzeichnungen von Schulungen, Screencasts, Tutorials (auch User Generated Content)
+    - Teams als Kommunikationszentrale für Abteilungs- und Projekt-Teams. Dadurch können E-Mails massive reduziert und Schatten-IT (z.B. Slack) zurückgefahren werden
+    - Teams für Gruppen, die gemeinsam durch eine Schulung oder ein Blended Learning Angebot laufen
+    - Word für maschinelle Übersetzung ganzer Dokumente (Beispiel: deutsche Version des lernOS Guide ist so entstanden)
+    - Yammer mit den Gruppen für offene Kampagnen und strategische Themen, die eine breite Menge von Leuten ansprechen
+    - Yammer mit dem offenen Aktivitätenstrom „Gesamtes Unternehmen“ für offenes Teilen, Vernetzten und systematisches Working Out Loud
+    - Yammer mit der Livestream-Funktion für Mitarbeiterveranstaltungen, Fachveranstaltungen/Meetups und Townhall
+    - Yammer mit den externen Gruppen für die Kommunikation und Zusammenarbeit mit externen Partnern und Stakeholdern
+    - DILO (day in a life of) für verschiedene Rollen der Organisation, z.B. für Marketing, Sales, Human Resources, Finance, Compliance, Construction, IT Manager, Service Engineer, Retail Associate, Retail Manager (s.a. Office 365 Adoption Kit)
+    - uvm. (Deine Idee?)
 - **Never letting up:** Keep Calm & Learn On!
 - **Incorporate changes into culture:** wie können alle Maßnahmen rund um die Office-365-Einführung die Kultur einer Lernenden Organisation fördern (Lernkultur, Führungskultur, Innovationskultur, Fehlerkultur etc.)? Beispiele für konkrete Maßnahmen:
-  - **Lead by Example:** Führungskräfte werden in die Lage versetzt und angehalten, für den neuen offenen, agilen, transparenten und digitalen Arbeitsstil als Vorbild zu fungieren (z.B. durch Reverse Mentoring, Führungskräfte-Community, Verankerung in Leadership-Programmen)
-  - **Open by default:** Yammer-Gruppen oder SharePoint-Teamsites sind im Standard offen für alle Mitarbeiter und können nur durch Begründung geschlossen gestartet werden
-  - **Working Out Loud:** alle Mitarbeiter werden motiviert, ihr Delve-Profil zu pflegen, dort ihren eigenen Blog zu starten, in Stream einen Video-Kanal anzulegen und im Bereich „Gesamtes Unternehmen“ auf Yammer intern zu twittern
-  - **Lessons Learned:** nach abgeschlossenen Aktionen oder Projekten werden After Action Reviews oder Lessons Learned Workshops durchgeführt und die Ergebnisse wenn möglich z.B. in einem Wiki allen Mitarbeitern verfügbar gemacht
-  - **Strategy/Innovation Challenges:** in offenen Yammer Gruppen werden Strategie- oder Innovationswettbewerbe gemacht, um Offenheit und Partizipation zu fördern
-  - uvm. (Deine Idee?)
+    - **Lead by Example:** Führungskräfte werden in die Lage versetzt und angehalten, für den neuen offenen, agilen, transparenten und digitalen Arbeitsstil als Vorbild zu fungieren (z.B. durch Reverse Mentoring, Führungskräfte-Community, Verankerung in Leadership-Programmen)
+    - **Open by default:** Yammer-Gruppen oder SharePoint-Teamsites sind im Standard offen für alle Mitarbeiter und können nur durch Begründung geschlossen gestartet werden
+    - **Working Out Loud:** alle Mitarbeiter werden motiviert, ihr Delve-Profil zu pflegen, dort ihren eigenen Blog zu starten, in Stream einen Video-Kanal anzulegen und im Bereich „Gesamtes Unternehmen“ auf Yammer intern zu twittern
+    - **Lessons Learned:** nach abgeschlossenen Aktionen oder Projekten werden After Action Reviews oder Lessons Learned Workshops durchgeführt und die Ergebnisse wenn möglich z.B. in einem Wiki allen Mitarbeitern verfügbar gemacht
+    - **Strategy/Innovation Challenges:** in offenen Yammer Gruppen werden Strategie- oder Innovationswettbewerbe gemacht, um Offenheit und Partizipation zu fördern
+    - uvm. (Deine Idee?)
 
 So viel erstmal zu meinen ersten Gedanken zum Thema. Welche Ideen habt Ihr zum Ansatz „Office 365 und Lernende Organisationen“ noch? Gerne unten in die Kommentare schreiben!

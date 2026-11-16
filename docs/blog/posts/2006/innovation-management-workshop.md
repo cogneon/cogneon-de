@@ -38,44 +38,44 @@ I would be happy if participants fill out our Feedback-Form (german) (Code of  E
 ## Context Setting
 
 - Learning Organizations
-  - Toyota (Winner of the MAKE-Award 2006)
-  - General Electric (4E, Boundaryless)
-  - British Petrol (Learning to fly)
-  - 3M (Creating Breakthroughs at 3M in Harvard Business Review on Innovation)
+    - Toyota (Winner of the MAKE-Award 2006)
+    - General Electric (4E, Boundaryless)
+    - British Petrol (Learning to fly)
+    - 3M (Creating Breakthroughs at 3M in Harvard Business Review on Innovation)
 - Innovation Processes
-  - Birgit Verworn, Cornelius Herstatt: Modelle des Innovationsprozesses
-  - ETH Zürich – [Portal zur Produktinnovation](http://www.ipi.ethz.ch/) (Innovationsprozess-Modell)
-  - 3M Continuous innovation process (in The Knowledge Creating Company)
-  - Audi Project „Methoden der Innovationsbewertung in der Vorentwicklung“ an der INI.TUM
+    - Birgit Verworn, Cornelius Herstatt: Modelle des Innovationsprozesses
+    - ETH Zürich – [Portal zur Produktinnovation](http://www.ipi.ethz.ch/) (Innovationsprozess-Modell)
+    - 3M Continuous innovation process (in The Knowledge Creating Company)
+    - Audi Project „Methoden der Innovationsbewertung in der Vorentwicklung“ an der INI.TUM
 - Innovation Methods
-  - [Open Innovation vs. Closed Innovation](http://www.openinnovation.eu/openinnovatie.php)
-  - TRIZ
-  - Nonaka’s SECI-Model (Matsushita’s twisting-stretch-example) (in The Knowledge Creating Company)
-  - Lead User Process (Creating Breakthroughs at 3M in Harvard Business Review on Innovation)
-  - Value Curve (Creating New Market Space in Harvard Business Review on Innovation)
+    - [Open Innovation vs. Closed Innovation](http://www.openinnovation.eu/openinnovatie.php)
+    - TRIZ
+    - Nonaka’s SECI-Model (Matsushita’s twisting-stretch-example) (in The Knowledge Creating Company)
+    - Lead User Process (Creating Breakthroughs at 3M in Harvard Business Review on Innovation)
+    - Value Curve (Creating New Market Space in Harvard Business Review on Innovation)
 
 ## Short Presentation on Social  Software and Web 2.0
 
 - [Social Software](http://en.wikipedia.org/wiki/Social_software), [Social Constructivism](http://en.wikipedia.org/wiki/Social_constructivism), [Web 2.0](http://en.wikipedia.org/wiki/Web_2.0), [RSS](http://en.wikipedia.org/wiki/RSS_(file_format)), [Wiki](http://en.wikipedia.org/wiki/Wiki), [Weblog](http://en.wikipedia.org/wiki/Weblog), [Social Network](http://en.wikipedia.org/wiki/Social_network)ing, [Social Bookmarking](http://en.wikipedia.org/wiki/Social_bookmarking)
 - Wikis
-  - [Wikipedia](http://en.wikipedia.org/)
-  - [Cogneon Wiki](https://wiki.cogneon.de/)
-  - [KM Wiki](http://kmwiki.wikispaces.com/)
+    - [Wikipedia](http://en.wikipedia.org/)
+    - [Cogneon Wiki](https://wiki.cogneon.de/)
+    - [KM Wiki](http://kmwiki.wikispaces.com/)
 - Weblogs
-  - [Weiterbildungsblog](http://www.weiterbildungsblog.de/)
-  - [Saftblog](http://www.saftblog.de/)
-  - [Google Blog](http://googleblog.blogspot.com/)
-  - [Google Blogsearch](http://blogsearch.google.com/): Blog Search Engine
-  - [Technorati](http://www.technorati.com/): Blog Search Engine
+    - [Weiterbildungsblog](http://www.weiterbildungsblog.de/)
+    - [Saftblog](http://www.saftblog.de/)
+    - [Google Blog](http://googleblog.blogspot.com/)
+    - [Google Blogsearch](http://blogsearch.google.com/): Blog Search Engine
+    - [Technorati](http://www.technorati.com/): Blog Search Engine
 - Social  Networking
-  - openBC
-  - [linkedin](http://www.linkedin.com/)
+    - openBC
+    - [linkedin](http://www.linkedin.com/)
 - Social Bookmarking
-  - [del.icio.us](http://del.icio.us/)
+    - [del.icio.us](http://del.icio.us/)
 - Other
-  - [Freemind](http://freemind.sourceforge.net/): Free Mindmapping Tool
-  - Timeline: Free Web-2.0-Tool to visualize temporal information
-  - [Google Trends](http://www.google.com/trends?q=web+2.0) on Web 2.0
+    - [Freemind](http://freemind.sourceforge.net/): Free Mindmapping Tool
+    - Timeline: Free Web-2.0-Tool to visualize temporal information
+    - [Google Trends](http://www.google.com/trends?q=web+2.0) on Web 2.0
 
 ## Sources
 

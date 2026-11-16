@@ -40,10 +40,10 @@ IBM lud heute (19.09.2012) zur IBM Connect 2012 in das Porsche Museum in Stuttga
 - Notes Social Edition: Integration von sozialen Funktionen wie Aktivitätenstrom in den E-Mail-Client (auf der Zugfahrt werde ich darüber nachdenken, was meine Wunschvorstellung eines modernen "Personal Dashboard" ist).
 - "Mobility is hard to overestimate".
 - Lessions Learned
-  - Kernziele von Enterprise 2.0 sind "create smarter workforce" und "create exceptional customer experience".
-  - Being purposful by defining business outcome and sponsorship is critical
-  - Need leadership around strategy, culture by being authentic&iterative
-  - Early engagement is the key to learn lessons for a successful long journey
+    - Kernziele von Enterprise 2.0 sind "create smarter workforce" und "create exceptional customer experience".
+    - Being purposful by defining business outcome and sponsorship is critical
+    - Need leadership around strategy, culture by being authentic&iterative
+    - Early engagement is the key to learn lessons for a successful long journey
 
 ## Implementierung von IBM Connections bei der Robert Bosch GmbH
 
@@ -52,57 +52,57 @@ IBM lud heute (19.09.2012) zur IBM Connect 2012 in das Porsche Museum in Stuttga
 - Zu Enterprise 2.0 (intern) gehören Technologie (EINE Standardplattform, Anwendungsfallspezifische Ergänzungen), Führung (Förderung von Transparenz/Feedback/Diskussionen und organisationsübergreifender Zusammenarbeit), Richtlinien (Bereitstellung von Empfehlungen/Guidelines, Klärung von rechtlichen Aspekten),  und Organisation (Umsetzung der E2.0-Organisation, Sicherstellung von E2.0-Training und -Coaching).
 - Für alle Geschäftsbereiche wurden Enterprise-2.0-Koordinatoren definiert.
 - Prozess der Enterprise-2.0-Toolauswahl
-  - Vier Marktführende E2.0-Plattformen plus Open-Source-Lösung als Kandidaten
-  - Evaluation mittels Testinstallation (on-premise)
-  - Produkt-Kriterien (Kosten, Funktionsumfang, IT-Anforderungen, Usability, Marktstärke/Strategie)
-  - Anbieter-Kriterien (Support-/Servicekonzept, Unternehmensstärke)
-  - Non-funktionale Anforderungen (Skalierbarkeit und Performanz, mobile Nutzung, Mehrsprachigkeit, weltweiter Support, einfache Integration in Bosch-Infrastruktur)
-  - Auswertung externer Analysen sowie Zugriff auf die Erfahrungen anderer Nutzer
-  - Konkreter Praxistest (sechs Wochen mit konkreten Praxisanforderungen)
+    - Vier Marktführende E2.0-Plattformen plus Open-Source-Lösung als Kandidaten
+    - Evaluation mittels Testinstallation (on-premise)
+    - Produkt-Kriterien (Kosten, Funktionsumfang, IT-Anforderungen, Usability, Marktstärke/Strategie)
+    - Anbieter-Kriterien (Support-/Servicekonzept, Unternehmensstärke)
+    - Non-funktionale Anforderungen (Skalierbarkeit und Performanz, mobile Nutzung, Mehrsprachigkeit, weltweiter Support, einfache Integration in Bosch-Infrastruktur)
+    - Auswertung externer Analysen sowie Zugriff auf die Erfahrungen anderer Nutzer
+    - Konkreter Praxistest (sechs Wochen mit konkreten Praxisanforderungen)
 - Entscheidung wurde für IBM Connections gefällt (Version 3) mit folgenden Vor- (+) und Nachteilen (-)
-  - + Nahezu alle funktionalen Anforderungen erfüllt
-  - + Schnittstellen zu relevanten IT-Werkzeugen bei Bosch
-  - + IBM nutzt Connections selbst für 400.000 Mitarbeiter
-  - + Klare, einfache Benutzerschnittstelle
-  - + Gute Strategie und Vision
-  - + Support weltweit verfügbar
-  - – Verknüpfung von Personen, Informationen und Aktivitäten noch nicht perfekt
-  - – Überschneidung im IBM-Produkt-Portfolio
-  - – Nicht die höchste Innovationsrate
+    - + Nahezu alle funktionalen Anforderungen erfüllt
+    - + Schnittstellen zu relevanten IT-Werkzeugen bei Bosch
+    - + IBM nutzt Connections selbst für 400.000 Mitarbeiter
+    - + Klare, einfache Benutzerschnittstelle
+    - + Gute Strategie und Vision
+    - + Support weltweit verfügbar
+    - – Verknüpfung von Personen, Informationen und Aktivitäten noch nicht perfekt
+    - – Überschneidung im IBM-Produkt-Portfolio
+    - – Nicht die höchste Innovationsrate
 - Aufbau der Umgebung
-  - Mehrtägiger Workshop mit Bosch-Experten (Storage, Netzwerk, Datenbank, Security) sowie IBM-Architekten
-  - Auslegung für bis zu 60.000 Nutzer weltweit, weiterer Ausbau in 2013
-  - Grundlegende Architekturentscheidung (dreistufige Landschaft (Entwicklungs-, Test-, Produktionssystem), zentrale Installation ohne regionale Komponenten (Caching), komplette Umgebung in isolierter Netzwerkzone (um System mobil/von zu Hause aus dem Internet zu ermöglichen), Nutzung virtualisierter Windows 2008 Server und Datenbank auf Linux-Cluster)
-  - Rascher Aufbau einer Sandbox für Pilotanwender zum Kennenlernen des Systems (Vorteil: Menge an Power-Usern wurde gewonnen)
-  - Nutzung der Hardware-Lieferzeit (Hardware mit über einem Terrabyte RAM) für detaillierte Planung und Vorbereitung
-  - Installation Connections-Datenbank
-  - Installation von mehr als 30 virtuellen Servern für alle drei Umgebungen
-  - Paralleler Aufbau einer Lasttest-Umgebung
+    - Mehrtägiger Workshop mit Bosch-Experten (Storage, Netzwerk, Datenbank, Security) sowie IBM-Architekten
+    - Auslegung für bis zu 60.000 Nutzer weltweit, weiterer Ausbau in 2013
+    - Grundlegende Architekturentscheidung (dreistufige Landschaft (Entwicklungs-, Test-, Produktionssystem), zentrale Installation ohne regionale Komponenten (Caching), komplette Umgebung in isolierter Netzwerkzone (um System mobil/von zu Hause aus dem Internet zu ermöglichen), Nutzung virtualisierter Windows 2008 Server und Datenbank auf Linux-Cluster)
+    - Rascher Aufbau einer Sandbox für Pilotanwender zum Kennenlernen des Systems (Vorteil: Menge an Power-Usern wurde gewonnen)
+    - Nutzung der Hardware-Lieferzeit (Hardware mit über einem Terrabyte RAM) für detaillierte Planung und Vorbereitung
+    - Installation Connections-Datenbank
+    - Installation von mehr als 30 virtuellen Servern für alle drei Umgebungen
+    - Paralleler Aufbau einer Lasttest-Umgebung
 - Landschaft besteht aus WebSEAL Instanzen, Caching Server (bei E2.0 kann nicht lange gecacht werden, da Inhalte sehr dynamisch), Loadbalancer, Tivoli Directory Integrator (Single Sign On), Web Server, WebSphere Application Server, File Storage und Datenbank
 - Tuning-Phase
-  - Erfolgreicher Test des Profilimports von 200.000 Nutzern
-  - Anpassung Corporate Design (eher dezente Anpassung, nur im Rahmen von IBM-Support)
-  - Durchführung Lasttest
+    - Erfolgreicher Test des Profilimports von 200.000 Nutzern
+    - Anpassung Corporate Design (eher dezente Anpassung, nur im Rahmen von IBM-Support)
+    - Durchführung Lasttest
 - Insgesamt 14 Wochen Durchlaufzeit vom Architektur-Workshop bis zur Abnahme des Produktivsystems durch den internen Kunden
 - Probleme
-  - Identifikation optimale Server/Server-Kommunikation zeitraubend und komplex
-  - WebSphere-Konfiguration sehr komplex und damit fehleranfällig
+    - Identifikation optimale Server/Server-Kommunikation zeitraubend und komplex
+    - WebSphere-Konfiguration sehr komplex und damit fehleranfällig
 - Erfolgsfaktoren
-  - Enge und frühzeitige Einbindung aller Bereiche, permanente Abstimmung
-  - Tiefgehendes internes WebSphere Know-how (da viele Einstellungen über Websphere gemacht werden, "Connections sollte eigentlich ‚Social Websphere‘ heißen")
-  - Berücksichtigung der internen Komponenten (z.B. Oracle) bei Architekturentscheidungen
-  - Sehr gute Unterstützung durch IBM vor Ort und Support/Labor
+    - Enge und frühzeitige Einbindung aller Bereiche, permanente Abstimmung
+    - Tiefgehendes internes WebSphere Know-how (da viele Einstellungen über Websphere gemacht werden, "Connections sollte eigentlich ‚Social Websphere‘ heißen")
+    - Berücksichtigung der internen Komponenten (z.B. Oracle) bei Architekturentscheidungen
+    - Sehr gute Unterstützung durch IBM vor Ort und Support/Labor
 - Herausforderungen
-  - Automatisierung der WebSphere-Konfigurationsänderungen notwendig
-  - Connections hat kein Transportsystem, daher war Aufbau eines Deployment-Prozesses notwendig
-  - Große Umgebung fürht zu aufwändiger Fehlersuche (unzählige Logdateien!)
+    - Automatisierung der WebSphere-Konfigurationsänderungen notwendig
+    - Connections hat kein Transportsystem, daher war Aufbau eines Deployment-Prozesses notwendig
+    - Große Umgebung fürht zu aufwändiger Fehlersuche (unzählige Logdateien!)
 - Ausblick
-  - Erprobung ausgewählter Anwendungsfllo und anschließender unternehmensweiter Rollout
-  - Upgrade auf Connections 4 im November/Dezember
-  - Bereitstellung des mobilen Zugriffs
-  - Einbindung in Intranet-Portal und Enterprise-Suche
-  - Anbindung an Instant-Messaging/Telefonie-Lösung
-  - Anbindung an Dokumentenmanagement-System
+    - Erprobung ausgewählter Anwendungsfllo und anschließender unternehmensweiter Rollout
+    - Upgrade auf Connections 4 im November/Dezember
+    - Bereitstellung des mobilen Zugriffs
+    - Einbindung in Intranet-Portal und Enterprise-Suche
+    - Anbindung an Instant-Messaging/Telefonie-Lösung
+    - Anbindung an Dokumentenmanagement-System
 - Reverse-Mentoring-Programm für Führungskräfte wurde gestartet (Hinweis kam, dass man es eigentlich in "Mentoring" umbenennen sollte, da Hierarchie nicht mehr so relevant)
 - Erster Anwendungsfall ist Community aller IT-Manager
 
@@ -122,16 +122,16 @@ IBM lud heute (19.09.2012) zur IBM Connect 2012 in das Porsche Museum in Stuttga
 
 - Live-Demonstration von **IBM Lotus Notes Social Edition**
 - Live-Demonstration von **IBM Connections 4**
-  - Aktivitätenstrom im Inhaltsberich (mit Filtermechanismus), einzelne Aktivitäten haben rechts kleine Pfeile, um ein Vorschaufenster einzublenden
-  - Microblog-Eingabefeld obendrüber (Microblogs können geliket und ge-repostet werden)
-  - Externe Systeme können in den Aktivitätenstrom eingebunden werden (z.B. SAP)
-  - Communities haben jetzt nicht mehr einzelne Widgets zu Forum etc., sondern einen integrierten Aktivitätenstrom
-  - Communities haben jetzt Gruppen, Drag&Drop von Dokumenten
-  - In Kalender gibt es die Funktion "Add to Personal Calender" mit RSS-Icon
-  - Anmeldung bei Kalender-Einträgen ist möglich
-  - Neu: auf Profilen  werden öffentliche Aktivitäten angezeigt
-  - In Communities gibt es Metrics (dahinter steckt Cognos) mit number of unique authenticated visitors, number of new members, mumber of members who left the communiy, number of unique contributirs, number or new updates, number of unique people following the community, most active content
-  - In der Toolbar oben gibt es ein Mail-Symbol an das Domino oder Exchange angebunden werden können
+    - Aktivitätenstrom im Inhaltsberich (mit Filtermechanismus), einzelne Aktivitäten haben rechts kleine Pfeile, um ein Vorschaufenster einzublenden
+    - Microblog-Eingabefeld obendrüber (Microblogs können geliket und ge-repostet werden)
+    - Externe Systeme können in den Aktivitätenstrom eingebunden werden (z.B. SAP)
+    - Communities haben jetzt nicht mehr einzelne Widgets zu Forum etc., sondern einen integrierten Aktivitätenstrom
+    - Communities haben jetzt Gruppen, Drag&Drop von Dokumenten
+    - In Kalender gibt es die Funktion "Add to Personal Calender" mit RSS-Icon
+    - Anmeldung bei Kalender-Einträgen ist möglich
+    - Neu: auf Profilen  werden öffentliche Aktivitäten angezeigt
+    - In Communities gibt es Metrics (dahinter steckt Cognos) mit number of unique authenticated visitors, number of new members, mumber of members who left the communiy, number of unique contributirs, number or new updates, number of unique people following the community, most active content
+    - In der Toolbar oben gibt es ein Mail-Symbol an das Domino oder Exchange angebunden werden können
 - Live-Demonstration **IBM Social Portal**
 
 - Fiktive Firma Greenwell

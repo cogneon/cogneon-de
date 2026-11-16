@@ -73,28 +73,28 @@ In **Mumble** müsst ihr einen Server mit **folgenden Zugangsdaten** hinzufügen
 
 - **10:30 Uhr:** ab jetzt ist jemand in der Lounge, ihr könnt euch schonmal einwählen und Fragen stellen/testen.
 - **11:00 Uhr:** Begrüßung und Einführung in COMBLE und die Idee des Audio-only Barcamps.
-  - **Bitte kommt pünktlich um 11:00 Uhr in den Raum „Publikum“ im Plenum.**
-  - Die Idee des Audio-only Barcamps kurz erkärt
-  - Der Ablauf heute (wichtigstes Ziel: Lasttest, Diskussion geeigneter Audio-Session-Formate, Anlegen temporärer Räume)
-  - Die wichtigsten Funktionen von Mumble:
-    - **Hinweis:** nicht alle Funktionen der Desktop-Anwendung sind in der mobilen App verfügbar
-    - **Tipps:** Text-zu-Sprache deaktivieren, Anzahl der Benutzer je Kanal anzeigen (Einstellungen->Benutzerinterface)
-    - **Raumwechsel** mit Doppelklick auf dem Raumnamen
-    - **Mute/Unmute** manuell oder per Push-to-Talk (PTT)
-    - **Taub-schalten:** wenn man sich kurz ausklinken will, kann man sich selber „taub“ (deaf) stellen
-    - **Personen stumm stellen:** per Rechtsklick auf einer Person, kann man diese für sich stumm stellen (nicht für andere) oder deren Lautstärke anpassen
-    - **Textchat** im Raum und privat mit einzelnen Personen
-    - **Profil:** über Avatar und Kommentar könnt ihr euch ein Miniprofil erstellen (wird per Mouse-over angezeigt)
+    - **Bitte kommt pünktlich um 11:00 Uhr in den Raum „Publikum“ im Plenum.**
+    - Die Idee des Audio-only Barcamps kurz erkärt
+    - Der Ablauf heute (wichtigstes Ziel: Lasttest, Diskussion geeigneter Audio-Session-Formate, Anlegen temporärer Räume)
+    - Die wichtigsten Funktionen von Mumble:
+        - **Hinweis:** nicht alle Funktionen der Desktop-Anwendung sind in der mobilen App verfügbar
+        - **Tipps:** Text-zu-Sprache deaktivieren, Anzahl der Benutzer je Kanal anzeigen (Einstellungen->Benutzerinterface)
+        - **Raumwechsel** mit Doppelklick auf dem Raumnamen
+        - **Mute/Unmute** manuell oder per Push-to-Talk (PTT)
+        - **Taub-schalten:** wenn man sich kurz ausklinken will, kann man sich selber „taub“ (deaf) stellen
+        - **Personen stumm stellen:** per Rechtsklick auf einer Person, kann man diese für sich stumm stellen (nicht für andere) oder deren Lautstärke anpassen
+        - **Textchat** im Raum und privat mit einzelnen Personen
+        - **Profil:** über Avatar und Kommentar könnt ihr euch ein Miniprofil erstellen (wird per Mouse-over angezeigt)
 - **11:30 Uhr:** Diskussion in 7 Kleingruppen
-  - Welche Arten von Sessions eignen sich für ein Audio-only Barcamp?
-  - Dokumentieren eure Ideen bitte [in diesem Pad](https://meet.cogneon.de/pad/p/audiobc21-lasttest).
+    - Welche Arten von Sessions eignen sich für ein Audio-only Barcamp?
+    - Dokumentieren eure Ideen bitte [in diesem Pad](https://meet.cogneon.de/pad/p/audiobc21-lasttest).
 - **11:45 Uhr:** Gemeinsamer Abschluss
-  - Was gefällt euch gut?
-  - Gab es Probleme, was können wir besser machen?
+    - Was gefällt euch gut?
+    - Gab es Probleme, was können wir besser machen?
 - **11:55 Uhr:** Test des Anlegens eigener Räume
-  - Klickt mit der rechten Maustaste auf die Lounge und legt einen temporären Raum an (Achtung: geht nur in Desktop-Anwendung, nicht in der mobilen App)
-  - Gebt dem Raum einen sprechenden Namen (z.B. Thema, über dass ihr gerne sprechen wollt, oder einfach Walk&Talk), keine Sonderzeichen erlaubt
-  - Wenn die letzte Person den Raum verlässt, schließt er sich automatisch (deswegen: temporär)
+    - Klickt mit der rechten Maustaste auf die Lounge und legt einen temporären Raum an (Achtung: geht nur in Desktop-Anwendung, nicht in der mobilen App)
+    - Gebt dem Raum einen sprechenden Namen (z.B. Thema, über dass ihr gerne sprechen wollt, oder einfach Walk&Talk), keine Sonderzeichen erlaubt
+    - Wenn die letzte Person den Raum verlässt, schließt er sich automatisch (deswegen: temporär)
 - **12:00 Uhr:** Ende des Lasttests (Zugang funktionier noch bis 28.01. EOB).
 
 ## FAQ
@@ -103,8 +103,8 @@ Einige schon gestellte Fragen beantworte ich an dieser Stelle gleich:
 
 - **Welche technische Ausstattung brauche ich?<br>**Ein Desktop-Computer, Smartphone oder Tablet mit einem [Mumble-Client](https://www.mumble.info/downloads/) darauf. Für gute Audio-Qualität ein Headset oder zumindest einen Kopfhörer.
 - **Geht es auch mit dem iPad?**<br>
-  Ja, einfach die iOS App aus dem App Store installieren.
+    Ja, einfach die iOS App aus dem App Store installieren.
 - **Ist die Nutzung direkt im Browser möglich?**<br>
-  Nein, für die Nutzung von Mumble braucht ihr eine Desktop- oder Mobile-App.
+    Nein, für die Nutzung von Mumble braucht ihr eine Desktop- oder Mobile-App.
 - **Kann ich auch mobil teilnehmen?**<br>
-  Ja, klar! Wir finden sogar, dass es eine gute Idee ist, am Audio-only Barcamp unterwegs, im Wald, beim Spazieren gehen, beim Wandern etc. teilzunehmen. In Videokonferenzen waren wir jetzt alle oft genug😉
+    Ja, klar! Wir finden sogar, dass es eine gute Idee ist, am Audio-only Barcamp unterwegs, im Wald, beim Spazieren gehen, beim Wandern etc. teilzunehmen. In Videokonferenzen waren wir jetzt alle oft genug😉

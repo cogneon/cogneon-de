@@ -22,9 +22,7 @@ Die **lernOS Convention** ist das Top-Event zu **Wissensmanagement** und **Lerne
 
 Die **9. lernOS Convention** (#loscon25) findet vom **1.-2. Juli 2025** auf der [Kaiserburg Nürnberg](https://de.wikipedia.org/wiki/N%C3%BCrnberger_Burg), an selbstorganisierten dezentralen Lokation & Online per MS Teams statt (hybride Veranstaltung). Das **Motto ist „Mind The Knowledge Gap“**. Weitere Informationen und Ticket-Shop folgen in KW10. Bis dahin könnt ihr euch schon einmal den [Blog-Beitrag zum Motto durchlesen](/2025/03/02/mind-the-knowledge-gap-das-motto-der-lernos-convention-2025/). Es wird am 30.06.2025 auch wieder ein Vorabend-Treffen im Rahmen der Eröffnung des [Nürnberg Digital Festivals](https://nuernberg.digital/) im [Künstlerhaus](https://www.kunstkulturquartier.de/kuenstlerhaus) direkt am Bahnhof geben.
 
-[Tickets sichern
-
-Vor-Ort-, Remote- und Supporter-Tickets](https://pretix.eu/cogneon/loscon25/){ .cg-button }
+[Tickets sichern - Vor-Ort-, Remote- und Supporter-Tickets](https://pretix.eu/cogneon/loscon25/){ .cg-button }
 
 ## Thema der loscon25
 
@@ -42,7 +40,7 @@ Viele kennen sicher die Schilder und Durchsagen in der **Londoner U-Bahn**: [Min
 
 2. Juni 2025
 
- Keine Kommentare
+    Keine Kommentare
 
 In genau vier Wochen ist es wieder so weit, die lernOS Convention 2025 öffnet unter dem Motto „Mind…
 
@@ -54,7 +52,7 @@ In genau vier Wochen ist es wieder so weit, die lernOS Convention 2025 öffnet u
 
 25. März 2025
 
- Keine Kommentare
+    Keine Kommentare
 
 Die Vorbereitungen für die lernOS Convention 2025 sind in vollem Gange, und wir freuen uns,…
 
@@ -66,7 +64,7 @@ Die Vorbereitungen für die lernOS Convention 2025 sind in vollem Gange, und wir
 
 2. März 2025
 
- 1 Kommentar
+    1 Kommentar
 
 Viele kennen sicher die Schilder und Durchsagen in der Londoner U-Bahn: Mind the Gap! Sie…
 

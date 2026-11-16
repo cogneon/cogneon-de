@@ -39,16 +39,16 @@ Alle Informationen sind [auf der Webseite](/loscon22) zu finden, aktuelle Ankün
 
 - **04.07.:** Wer am 4.7. schon in Nürnberg ist **UND** sich [ein Ticket für die Opening Night des Nürnberg Digital Festivals geklickt hat](https://nuernberg.digital/programm-2022/programmuebersicht/details/opening-night-nuernberg-digital-festival.html), kann sich dort am Nachmittag ab 16:00 Uhr treffen. Für die Vorträge ab 18:00 Uhr gab es eine extra Anmeldung über Eventbrite (ausverkauft).
 - **05.07.:** Adresse der Kaiserburg ist **Burg 2 in Nürnberg** ([Google Maps](https://goo.gl/maps/riPB2TM84qLALQ2e9))
-  - **Helping Hands:** wer beim Aufbau mithelfen oder Assembly aufbauen will, kann ab 10 Uhr kommen
-  - **Allgemeiner Einlass:** die Anmeldung am Tor eröffnen wir um 11 Uhr (ACHTUNG: an Tag 1 gibt es KEIN Mittagessen, Selbstversorger). Für den Einlass braucht ihr den QR-Code eures Tickets (elektronisch reicht). Ihr habt den Link zum Ticket mit einer Email mit dem Betreff „[loscon22] Deine Bestellung“ erhalten. Falls ihr die Mail nicht mehr findet, könnt ihr euch [das Ticket erneut zusenden lassen](https://pretix.eu/cogneon/loscon22/) (unten unter „Wenn du bereits ein Ticket bestellt hast“).
-  - **WLAN:** das Netzwerk vor Ort heißt „HOTSPLOTS“, es ist KEIN PASSWORT notwendig
-  - **13:00 Uhr Beginn:** wir starten pünktlich um 13:00 Uhr
+    - **Helping Hands:** wer beim Aufbau mithelfen oder Assembly aufbauen will, kann ab 10 Uhr kommen
+    - **Allgemeiner Einlass:** die Anmeldung am Tor eröffnen wir um 11 Uhr (ACHTUNG: an Tag 1 gibt es KEIN Mittagessen, Selbstversorger). Für den Einlass braucht ihr den QR-Code eures Tickets (elektronisch reicht). Ihr habt den Link zum Ticket mit einer Email mit dem Betreff „[loscon22] Deine Bestellung“ erhalten. Falls ihr die Mail nicht mehr findet, könnt ihr euch [das Ticket erneut zusenden lassen](https://pretix.eu/cogneon/loscon22/) (unten unter „Wenn du bereits ein Ticket bestellt hast“).
+    - **WLAN:** das Netzwerk vor Ort heißt „HOTSPLOTS“, es ist KEIN PASSWORT notwendig
+    - **13:00 Uhr Beginn:** wir starten pünktlich um 13:00 Uhr
 
 **Online-Teilnehmer_innen:**
 
 - **05.07.:** alle Einwahllinks findet ihr im loscon22 Programm (am besten bookmarken)
-  - **13:00 Uhr Beginn:** der Livestream von 13:00-15:00 Uhr läuft über YouTube. Dort kann man zwar auch kommentieren, der Veranstaltungs-interne Chat dazu läuft aber über den Slack-Kanal #raum-bühne. Tipp: wer 10 Minuten früher da ist, bekommt noch ein schönes Erinnerungsvideo zu sehen :-)
-  - 16:00 Uhr Vorstellungsrunde: um 16:00 Uhr starten wir unsere Vorstellungsrunde im Wechsel vor Ort und Online. Ab diesem Zeitpunkt finden alle Programmteile in MS Teams statt.
+    - **13:00 Uhr Beginn:** der Livestream von 13:00-15:00 Uhr läuft über YouTube. Dort kann man zwar auch kommentieren, der Veranstaltungs-interne Chat dazu läuft aber über den Slack-Kanal #raum-bühne. Tipp: wer 10 Minuten früher da ist, bekommt noch ein schönes Erinnerungsvideo zu sehen :-)
+    - 16:00 Uhr Vorstellungsrunde: um 16:00 Uhr starten wir unsere Vorstellungsrunde im Wechsel vor Ort und Online. Ab diesem Zeitpunkt finden alle Programmteile in MS Teams statt.
 
 **TIPP:** in der Fußzeile des Programms ist [eine ausführliche Online-Hilfe zur Veranstaltung](https://loscon22.cogneon.de/loscon22/page/hilfe/) verlinkt.
 

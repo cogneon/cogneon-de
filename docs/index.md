@@ -46,19 +46,25 @@ anlaesse:
 belege:
   titel: Erfahrung, die sich belegen lässt.
   zahlen:
-    - zahl: "1999"
-      text: Seitdem führen wir Expert Debriefings durch.
     - zahl: "2001"
       text: Gründung von Cogneon in Nürnberg.
+    - zahl: "400+"
+      text: Wissensmanagement-Projekte durchgeführt.
     - zahl: "1.000+"
-      text: Ausgebildete Moderator:innen.
+      text: Ausgebildete Expert Debriefing Moderator:innen.
   kunden:
-    - name: "[Kundenlogo]"
-    - name: "[Kundenlogo]"
-    - name: "[Kundenlogo]"
-    - name: "[Kundenlogo]"
-    - name: "[Kundenlogo]"
-    - name: "[Kundenlogo]"
+    - name: adidas
+      logo: wp-content/uploads/2026/03/Adidas_Logo.svg_.png
+    - name: Audi
+      logo: wp-content/uploads/2026/03/Audi-Logo_2016.svg_.png
+    - name: Siemens Healthineers
+      logo: wp-content/uploads/2026/03/Siemens_Healthineers_logo.svg_.png
+    - name: DATEV
+      logo: wp-content/uploads/2026/03/Datev.svg_.png
+    - name: Bosch
+      logo: wp-content/uploads/2026/03/Bosch-logotype.svg_.png
+    - name: SAP
+      logo: wp-content/uploads/2026/03/SAP-Logo.svg_.png
   zitat:
     text: >-
       Simon is an outstanding thought leader of Practice with modern social

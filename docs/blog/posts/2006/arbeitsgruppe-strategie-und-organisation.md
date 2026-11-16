@@ -26,6 +26,6 @@ Arbeitsgruppe Strategie und Organisation beim **BITKOM KEM Treffen am 26.04.2006
 - Zwei Schulen im Wissensmanagement: Systemische Ansätze und Ansätze, die aus der Komplexitätstheorie kommen
 - Produktivität von Wissensarbeitern im Fokus („Wissen auf Wissensarbeit anwenden“)
 - Modell 3D-KM (Anm.: im Kern identisch mit dem MOT-Modell, siehe auch die [MOI-Wissenslandkarte der GfWM](http://www.gfwm.de/))
-  - Organisation und Kultur (auch Motivation)
-  - Prozesse (kollaborative, datenorientierte, persönliche)
-  - Informationstechnik
+    - Organisation und Kultur (auch Motivation)
+    - Prozesse (kollaborative, datenorientierte, persönliche)
+    - Informationstechnik

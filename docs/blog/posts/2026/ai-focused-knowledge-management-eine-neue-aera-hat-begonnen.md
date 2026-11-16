@@ -53,37 +53,37 @@ Hier eine Sammlung von Ansatzpunkten, die sich in der Praxis bereits zeigen oder
 ![](/wp-content/uploads/2026/10/image-1-1030x579.png)
 
 1. **Wissensziele:** Orientierung geben, was wir wissen wollen und müssen.
-   - KI wertet Projektarchive aus und zeigt übersehene strategische Wissensziele.
-   - Szenario-Simulationen zeigen, welche Kompetenzen in drei bis fünf Jahren fehlen werden.
-   - KI leitet aus Unternehmenszielen persönliche Entwicklungsziele ab.
+    - KI wertet Projektarchive aus und zeigt übersehene strategische Wissensziele.
+    - Szenario-Simulationen zeigen, welche Kompetenzen in drei bis fünf Jahren fehlen werden.
+    - KI leitet aus Unternehmenszielen persönliche Entwicklungsziele ab.
 2. **Wissensidentifikation:** Transparenz über vorhandenes Wissen schaffen.
-   - Automatisches Skill-Mapping aus E-Mails, Dokumenten und Tickets.
-   - KI findet vergessene Datenschätze auf Laufwerken (dunkles Wissen).
-   - Experten-Finder in Echtzeit: Wer arbeitet gerade an einem ähnlichen Problem?
+    - Automatisches Skill-Mapping aus E-Mails, Dokumenten und Tickets.
+    - KI findet vergessene Datenschätze auf Laufwerken (dunkles Wissen).
+    - Experten-Finder in Echtzeit: Wer arbeitet gerade an einem ähnlichen Problem?
 3. **Wissenserwerb:** Fehlendes Wissen von außen holen.
-   - Recherche-Agenten durchforsten Quellen, Patente und Wettbewerbsanalysen.
-   - Wissen aus Bewerbungsgesprächen und Interviews neuer Fachkräfte extrahieren.
-   - Kuratierte Briefings statt Informationsflut.
+    - Recherche-Agenten durchforsten Quellen, Patente und Wettbewerbsanalysen.
+    - Wissen aus Bewerbungsgesprächen und Interviews neuer Fachkräfte extrahieren.
+    - Kuratierte Briefings statt Informationsflut.
 4. **Wissensentwicklung:** Neues Wissen und neue Fähigkeiten entstehen lassen.
-   - KI als Sparringspartner, der unbequeme Rückfragen zu Annahmen stellt.
-   - Erste Entwürfe für Konzepte, Code oder Dokumente, die Menschen veredeln.
-   - Erkenntnisse aus verschiedenen Abteilungen zu neuen Lösungsansätzen verknüpfen.
+    - KI als Sparringspartner, der unbequeme Rückfragen zu Annahmen stellt.
+    - Erste Entwürfe für Konzepte, Code oder Dokumente, die Menschen veredeln.
+    - Erkenntnisse aus verschiedenen Abteilungen zu neuen Lösungsansätzen verknüpfen.
 5. **Wissens(ver)teilung:** Wissen dorthin bringen, wo es gebraucht wird.
-   - Automatische Zusammenfassungen und Übersetzungen machen Wissen barrierefrei.
-   - Kontextsensitive Hinweise genau dann, wenn Wissen im Arbeitsfluss gebraucht wird.
-   - Podcast-zu-Wiki-Pipelines: Gespräche werden transkribiert, zusammengefasst und eingepflegt.
+    - Automatische Zusammenfassungen und Übersetzungen machen Wissen barrierefrei.
+    - Kontextsensitive Hinweise genau dann, wenn Wissen im Arbeitsfluss gebraucht wird.
+    - Podcast-zu-Wiki-Pipelines: Gespräche werden transkribiert, zusammengefasst und eingepflegt.
 6. **Wissensnutzung:** Wissen wirksam in die Anwendung bringen.
-   - Assistenten bieten Wissen proaktiv im genutzten Tool an, statt dass man es suchen muss.
-   - Fragen in eigenen Worten statt komplizierter Suchsyntax.
-   - KI erinnert an vorhandene Lösungen, bevor das Rad neu erfunden wird.
+    - Assistenten bieten Wissen proaktiv im genutzten Tool an, statt dass man es suchen muss.
+    - Fragen in eigenen Worten statt komplizierter Suchsyntax.
+    - KI erinnert an vorhandene Lösungen, bevor das Rad neu erfunden wird.
 7. **Wissensbewahrung:** Wertvolles Wissen vor dem Vergessen schützen.
-   - KI-gestützte Exit-Interviews dokumentieren Erfahrungswissen vor dem Ausscheiden.
-   - Lebendige Wissensarchive: KI hält Dokumentation aktuell und markiert Veraltetes.
-   - Digitale Wissenszwillinge auf Basis des Erfahrungswissens einzelner Expert:innen.
+    - KI-gestützte Exit-Interviews dokumentieren Erfahrungswissen vor dem Ausscheiden.
+    - Lebendige Wissensarchive: KI hält Dokumentation aktuell und markiert Veraltetes.
+    - Digitale Wissenszwillinge auf Basis des Erfahrungswissens einzelner Expert:innen.
 8. **Wissensbewertung:** Wirkung messen und den Kreislauf schließen.
-   - Automatisiertes Controlling: Welche Dokumente und Antworten werden tatsächlich genutzt?
-   - Qualitäts-Scoring für Aktualität, Vollständigkeit und Widersprüche.
-   - Frühwarnsystem: Wiederkehrende ungelöste Fragen zeigen Wissenslücken.
+    - Automatisiertes Controlling: Welche Dokumente und Antworten werden tatsächlich genutzt?
+    - Qualitäts-Scoring für Aktualität, Vollständigkeit und Widersprüche.
+    - Frühwarnsystem: Wiederkehrende ungelöste Fragen zeigen Wissenslücken.
 
 ## Die Wissensspirale von Nonaka und Takeuchi im KI-Zeitalter
 
@@ -92,20 +92,20 @@ Das SECI-Modell beschreibt, wie Wissen zwischen implizit (im Kopf, in Erfahrung)
 ![](/wp-content/uploads/2026/10/image-2-1030x579.png)
 
 1. **Sozialisierung** (implizit zu implizit): Erfahrungen im direkten Austausch teilen. Das bleibt im Kern menschlich, KI schafft Gelegenheiten.
-   - KI bringt passende Mentor:innen, Lernpartner:innen und Communities zusammen.
-   - KI bereitet Austauschformate vor, etwa mit Leitfragen auf Basis der letzten Projekte.
+    - KI bringt passende Mentor:innen, Lernpartner:innen und Communities zusammen.
+    - KI bereitet Austauschformate vor, etwa mit Leitfragen auf Basis der letzten Projekte.
 2. **Externalisierung** (implizit zu explizit): Erfahrung in Worte fassen. Hier erleben wir die stärkste Veränderung.
-   - Gespräche aufzeichnen, transkribieren lassen und daraus per KI Dokumentation erstellen: ein Podcast über ein Projekt wird zum Lessons-Learned-Dokument oder Wiki-Artikel.
-   - KI führt Expert Debriefings und stellt gezielt Nachfragen, bis das Erfahrungswissen greifbar wird.
-   - Sprachnotizen und Whiteboard-Fotos werden zu strukturierten Notizen.
+    - Gespräche aufzeichnen, transkribieren lassen und daraus per KI Dokumentation erstellen: ein Podcast über ein Projekt wird zum Lessons-Learned-Dokument oder Wiki-Artikel.
+    - KI führt Expert Debriefings und stellt gezielt Nachfragen, bis das Erfahrungswissen greifbar wird.
+    - Sprachnotizen und Whiteboard-Fotos werden zu strukturierten Notizen.
 3. **Kombination** (explizit zu explizit): Vorhandenes Wissen verknüpfen. Das ist das Heimspiel der KI.
-   - KI verbindet das dokumentierte Wissen der Organisation mit dem Wissen, das im Sprachmodell selbst gespeichert ist (Fachliteratur, Normen, Good Practices).
-   - Zusammenfassungen, Übersetzungen und Wissenslandkarten über große Dokumentenbestände.
-   - Antworten auf Fragen, die Wissen aus vielen Quellen kombinieren.
+    - KI verbindet das dokumentierte Wissen der Organisation mit dem Wissen, das im Sprachmodell selbst gespeichert ist (Fachliteratur, Normen, Good Practices).
+    - Zusammenfassungen, Übersetzungen und Wissenslandkarten über große Dokumentenbestände.
+    - Antworten auf Fragen, die Wissen aus vielen Quellen kombinieren.
 4. **Internalisierung** (explizit zu implizit): Wissen durch Anwendung und Lernen verinnerlichen.
-   - KI als persönlicher Tutor mit individuellen Lernpfaden.
-   - Simulationen und Rollenspiele zum Üben, bevor es ernst wird.
-   - KI-Coach für die Reflexion nach Projekten oder Einsätzen.
+    - KI als persönlicher Tutor mit individuellen Lernpfaden.
+    - Simulationen und Rollenspiele zum Üben, bevor es ernst wird.
+    - KI-Coach für die Reflexion nach Projekten oder Einsätzen.
 
 Gerade die Internalisierung zeigt, dass Wissensmanagement und Personalentwicklung zusammengehören: Wissen wirkt erst, wenn Menschen es sich zu eigen machen. Darauf gehe ich gleich ein.
 
