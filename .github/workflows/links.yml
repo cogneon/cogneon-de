@@ -1,0 +1,59 @@
+name: Linkprüfung
+
+# Prüft einmal pro Woche alle Links der Website, auch die zu fremden Websites,
+# und hält das Ergebnis im Issue "Linkprüfung" fest. Start von Hand:
+# Actions -> Linkprüfung -> Run workflow.
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"   # montags früh
+  workflow_dispatch:
+  push:
+    branches: ["setup/**"]
+    paths: [".github/workflows/links.yml"]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python scripts/build_data.py
+      - run: zensical build
+      - name: Links prüfen
+        run: python scripts/check_links.py --extern --report-only
+      - name: Ergebnis im Issue "Linkprüfung" festhalten
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "Stand: $(date -u +%d.%m.%Y), [Lauf](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}). Dieses Issue wird bei jedem Lauf überschrieben."
+            echo
+            tail -n +2 migration/link-check.md
+          } > bericht.md
+          # Ein Issue fasst höchstens 65.536 Zeichen. Der vollständige Bericht liegt im Artefakt.
+          if [ "$(wc -m < bericht.md)" -gt 60000 ]; then
+            head -c 58000 bericht.md > kurz.md
+            printf '\n\n... gekürzt. Vollständiger Bericht im Artefakt des Laufs.\n' >> kurz.md
+            mv kurz.md bericht.md
+          fi
+          NR=$(gh issue list --repo "${{ github.repository }}" --state open --search 'Linkprüfung in:title' --json number,title --jq '[.[] | select(.title == "Linkprüfung")][0].number // empty')
+          if [ -n "$NR" ]; then
+            gh issue edit "$NR" --repo "${{ github.repository }}" --body-file bericht.md
+          else
+            gh issue create --repo "${{ github.repository }}" --title "Linkprüfung" --body-file bericht.md
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: link-check
+          path: migration/link-check.md
+          retention-days: 30

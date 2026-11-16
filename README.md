@@ -17,6 +17,7 @@ Stand: Aufbau und Test. Die Live-Website läuft weiter auf WordPress, bis der Um
 | `docs/assets/stylesheets/cogneon.css` | Gestaltung. Schriften liegen lokal in `docs/assets/fonts/` |
 | `inhalte/aktuell.yml` | Highlights und Termine der Startseite |
 | `scripts/build_data.py` | erzeugt daraus und aus den Blogbeiträgen die Daten für Startseite und Blog-Übersicht. Muss vor `zensical build` oder `zensical serve` einmal laufen |
+| `scripts/check_links.py` | prüft die Links der gebauten Website, mit `--extern` auch fremde Adressen. Wöchentlich im Issue "Linkprüfung" |
 | `scripts/wp_export.py` | wiederholbarer Export aus WordPress |
 | `scripts/check_urls.py` | prüft, ob alle alten URLs erreichbar bleiben |
 | `migration/` | Berichte des Exports (Inventar, URL-Liste, URL-Check) |
