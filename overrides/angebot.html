@@ -27,7 +27,7 @@
       {% if m.untertitel %}<p class="cg-untertitel">{{ m.untertitel }}</p>{% endif %}
       {% if m.einleitung %}<p class="cg-lead cg-muted">{{ m.einleitung }}</p>{% endif %}
       <p class="cg-actions">
-        <a class="cg-button" href="#erstgespraech">Erstgespräch anfragen</a>
+        <a class="cg-button" href="{{ config.extra.erstgespraech | url }}">Erstgespräch anfragen</a>
         <span class="cg-muted">30 Minuten, kostenlos</span>
       </p>
     </div>
@@ -59,7 +59,7 @@
           {% if k.link %}<a class="cg-card" href="{{ k.link | url }}">{% else %}<div class="cg-card">{% endif %}
             <span class="cg-card__titel">{{ k.titel }}</span>
             <span class="cg-card__text">{{ k.text }}</span>
-            {% if k.link %}<span class="cg-card__marke">Zum Angebot</span>{% else %}<span class="cg-card__vor">Seite folgt</span>{% endif %}
+            {% if k.link %}<span class="cg-card__marke">Zum Angebot</span>{% else %}<a class="cg-link" href="{{ config.extra.erstgespraech | url }}">Kontakt aufnehmen</a>{% endif %}
           {% if k.link %}</a>{% else %}</div>{% endif %}
         </li>
         {% endfor %}

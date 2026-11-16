@@ -143,7 +143,9 @@ class Converter(MarkdownConverter):
         # "uagb-text-link" sind dagegen schlichte Weiterlesen-Links.
         classes = el.get("class") or []
         if "wp-block-button__link" in classes and "uagb-text-link" not in classes and result.strip().endswith(")"):
-            result = result.rstrip() + "{ .cg-button }"
+            # Mehrzeilige Knopftexte in eine Zeile, sonst zerfällt der Link.
+            result = re.sub(r"\s*\n\s*", " - ", result.strip(), count=1)
+            result = re.sub(r"\s*\n\s*", " ", result) + "{ .cg-button }"
         return result
 
 
@@ -246,6 +248,40 @@ def _embed_privacy_target(container) -> tuple[str, str]:
             src = re.search(r'src="(https?://[^"]+)"', embed)
             url = status[-1] if status else (src.group(1) if src else "")
     return url, title
+
+
+LIST_ITEM_RE = re.compile(r"^( *)([-*+]|\d+[.)]) ")
+
+
+def normalize_lists(text: str) -> str:
+    """Verschachtelte Listen auf vier Leerzeichen je Ebene einrücken. Markdown verlangt das,
+    sonst rutschen Unterpunkte auf die Ebene ihres Oberpunkts. Der Konverter rückt nur um die
+    Breite des Aufzählungszeichens ein (zwei oder drei Leerzeichen)."""
+    out, stack, shift, fenced = [], [], 0, False
+    for line in text.split("\n"):
+        if line.lstrip().startswith(("```", "~~~")):
+            fenced = not fenced
+        if fenced:
+            out.append(line)
+            continue
+        match = LIST_ITEM_RE.match(line)
+        indent = len(line) - len(line.lstrip(" "))
+        if match:
+            while stack and indent < stack[-1]:
+                stack.pop()
+            if not stack or indent > stack[-1]:
+                stack.append(indent)
+            shift = 4 * (len(stack) - 1) - indent
+            out.append(" " * (indent + shift) + line.lstrip(" "))
+        elif not line.strip():
+            out.append(line)
+        elif indent and stack:
+            # Folgezeile eines Listenpunkts: wandert mit ihrem Punkt mit
+            out.append(" " * max(indent + shift, 4 * (len(stack) - 1) + 4 if indent > stack[-1] else 0) + line.lstrip(" "))
+        else:
+            stack, shift = [], 0
+            out.append(line)
+    return "\n".join(out)
 
 
 def convert_html(source: str, base_url: str) -> Converted:
@@ -367,7 +403,9 @@ def convert_html(source: str, base_url: str) -> Converted:
     text = re.sub(r"[ \t]+\n", "\n", text)
     text = re.sub(r"\n{3,}", "\n\n", text).strip() + "\n"
     out.h1_count = len(re.findall(r"^# ", text, flags=re.M))
-    out.markdown = text
+    # Manche Bausteine liefern Zeichen als "u0022" statt als Zeichen selbst.
+    text = re.sub(r"u0026(?:amp;)?", "&", text).replace("u0022", '"').replace("u0027", "'")
+    out.markdown = normalize_lists(text)
     out.shortcodes = sorted({m.group(1) for m in SHORTCODE_RE.finditer(text)})
     out.media = list(dict.fromkeys(out.media))
     return out

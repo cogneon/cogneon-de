@@ -458,3 +458,21 @@ def test_wordpress_buttons_stay_buttons():
     markdown = wp_export.convert_html(source, "https://cogneon.de").markdown
     assert "[Mehr](/edmod){ .cg-button }" in markdown
     assert "[weiter](/a)" in markdown and "[weiter](/a){" not in markdown and "[normal](/b){" not in markdown
+
+
+def test_nested_lists_use_four_spaces():
+    source = ("<ol><li><strong>Ziele:</strong> Text<ul><li>Unterpunkt A<ul><li>tief</li></ul></li><li>Unterpunkt B</li></ul></li>"
+              "<li>Zweitens</li></ol><p>Absatz</p><ul><li>eins<ul><li>zwei</li></ul></li></ul>")
+    lines = wp_export.convert_html(source, "https://cogneon.de").markdown.splitlines()
+    assert "1. **Ziele:** Text" in lines and "    - Unterpunkt A" in lines and "        - tief" in lines
+    assert "    - Unterpunkt B" in lines and "2. Zweitens" in lines
+    assert "- eins" in lines and "    - zwei" in lines
+
+
+def test_escaped_characters_and_multiline_buttons():
+    source = ('<p>Modul u0022PKE 101u0022 mit Copilot u0026amp; Co.</p>'
+              '<div class="wp-block-button"><a class="wp-block-button__link" href="https://pretix.eu/x/">'
+              '<div>Zur Lernreise anmelden</div><p>Alleine oder im Tandem</p></a></div>')
+    markdown = wp_export.convert_html(source, "https://cogneon.de").markdown
+    assert 'Modul "PKE 101" mit Copilot & Co.' in markdown
+    assert "[Zur Lernreise anmelden - Alleine oder im Tandem](https://pretix.eu/x/){ .cg-button }" in markdown

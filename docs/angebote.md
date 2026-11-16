@@ -14,11 +14,14 @@ gruppen:
     text: Für Geschäftsführung und Verantwortliche, die Wissensmanagement in der Organisation verankern.
     karten:
       - titel: Knowledge Excellence Coach
-        text: "[Kurzbeschreibung folgt]"
+        text: >-
+          In Workshops bestimmen wir mit euch die Ausrichtung eures Wissensmanagements: Geltungsbereich, Ziele und Maßnahmen. Danach begleitet euch ein Coach bei der Umsetzung, typischerweise über ein bis drei Jahre.
       - titel: Wissensbeirat
-        text: "[Kurzbeschreibung folgt]"
+        text: >-
+          Ein Beirat nimmt an euren Leitungssitzungen teil und bringt dort die Wissensperspektive ein. So fließt Wissensmanagement in Entscheidungen ein, statt neben ihnen herzulaufen.
       - titel: Knowledge Pioneers
-        text: "[Kurzbeschreibung folgt]"
+        text: >-
+          Eine Gruppe von Organisationen, die Wissensmanagement professionell umsetzen wollen und dabei voneinander lernen. Start 2027.
   - id: operativ
     titel: Operatives Wissensmanagement
     text: Für Teams und Fachbereiche mit einem konkreten Anlass.
@@ -27,13 +30,17 @@ gruppen:
         text: Erfahrungswissen von Personen, Projekten und Teams sichern und weitergeben.
         link: wissenstransfer/
       - titel: Wissensinfrastruktur
-        text: "[Kurzbeschreibung folgt]"
+        text: >-
+          Strategie, Konzeption und Umsetzung moderner Intranets, Wikis, Collaboration-Plattformen und KI-Systeme - so, dass sie im Alltag genutzt werden.
       - titel: Communities & Barcamps
-        text: "[Kurzbeschreibung folgt]"
+        text: >-
+          Wissensaustausch auf Augenhöhe in Barcamps (vor Ort, online oder hybrid), Wissensnetzwerken und Communities of Practice. Wir helfen bei Konzeption und Einführung.
       - titel: Learning Sessions
-        text: "[Kurzbeschreibung folgt]"
+        text: >-
+          45-minütige Lernsessions zu Themen rund um das Wissensmanagement, buchbar als Inhouse-Format. Der Sessionkatalog erscheint 2027 und wird der Kern der Online-Akademie.
       - titel: Personal Knowledge Excellence
-        text: "[Kurzbeschreibung folgt]"
+        text: >-
+          Eine Lernreise in sechs Modulen zu persönlichem Wissens- und Informationsmanagement, mit Live-Impulsen, Erfahrungsaustausch und KI als Lernbegleiter. Auch als Inhouse-Format.
 
 cta:
   titel: Nicht sicher, was passt?
