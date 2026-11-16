@@ -10,3 +10,4 @@ _data/aktuell.yml
 overrides/partials/blog-daten.html
 docs/tag/
 migration/link-check.md
+migration/url-check.md

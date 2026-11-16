@@ -74,6 +74,9 @@ jobs:
         run: |
           zensical build
           python scripts/check_urls.py --url-map migration/url-map.csv --report-only
+      - name: Medien verkleinern
+        if: env.MODUS != 'inventar' && env.MEDIEN == 'ja'
+        run: python scripts/optimize_media.py | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Ergebnis auf Branch ablegen (Pilot export/ergebnis, sonst export/voll)
         if: always()
         run: |
@@ -81,14 +84,26 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           ZIEL=export/ergebnis; if [ "$MODUS" != "pilot" ]; then ZIEL=export/voll; fi
           git checkout -q -B "$ZIEL"
-          # Medien nur mitnehmen, solange sie klein sind (Pilot). Die Ablage großer
-          # Medienbestände ist noch nicht entschieden.
+          # Medien liegen unter ihren alten Pfaden im Repository. Obergrenze als
+          # Schutz, falls der Bestand unerwartet wächst.
           MB=$(du -sm docs/wp-content 2>/dev/null | cut -f1 || echo 0)
-          if [ "${MB:-0}" -le 100 ]; then git add -A docs; else git add -A docs ':!docs/wp-content'; fi
+          if [ "${MB:-0}" -le 300 ]; then git add -A docs; else git add -A docs ':!docs/wp-content'; echo "Medien nicht übernommen: ${MB} MB" | tee -a "$GITHUB_STEP_SUMMARY"; fi
           git add -A migration
           git add -f migration/raw 2>/dev/null || true
           git commit -q -m "WordPress-Export: Modus $MODUS, $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nichts zu committen"
           git push -q --force origin "$ZIEL"
+      - name: Übernahme für main vorbereiten (Branch inhalt/aus-export)
+        # Enthält nur Inhalte, Medien und Migrationsdaten auf dem Stand von main.
+        # Daraus wird ein Pull Request gestellt.
+        if: env.MODUS == 'voll'
+        run: |
+          git fetch -q origin main
+          git checkout -q -B inhalt/aus-export FETCH_HEAD
+          git checkout export/voll -- docs/blog/posts docs/.authors.yml migration ':(exclude)migration/raw'
+          git ls-tree --name-only export/voll docs/ | grep '\.md$' | xargs -r git checkout export/voll --
+          if git cat-file -e export/voll:docs/wp-content 2>/dev/null; then git checkout export/voll -- docs/wp-content; fi
+          git commit -q -m "Inhalte und Medien aus WordPress, Export vom $(date -u +%d.%m.%Y)" || echo "nichts zu übernehmen"
+          git push -q --force origin inhalt/aus-export
       - uses: actions/upload-artifact@v4
         if: always()
         with:

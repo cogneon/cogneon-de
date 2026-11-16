@@ -82,6 +82,8 @@ def all_posts(post_dir: Path) -> list[dict]:
             "url": f"{created:%Y/%m/%d}/{slug}/",
             "kategorien": [str(c) for c in meta.get("categories") or []],
             "schlagworte": [str(t) for t in meta.get("tags") or []],
+            "bild": str(meta.get("bild") or ""),
+            "bild_alt": str(meta.get("bild_alt") or ""),
             "pfad": path,
         })
     posts.sort(key=lambda p: (p["tag"], p["url"]), reverse=True)
@@ -95,6 +97,9 @@ def build_blog(root: Path, newest: int = 10) -> dict:
         "titel": p["titel"], "datum": p["datum"], "url": p["url"],
         "kategorie": p["kategorien"][0] if p["kategorien"] else "",
         "auszug": excerpt(p["pfad"].read_text(encoding="utf-8")),
+        # Bild nur, wenn die Datei im Repository liegt.
+        **({"bild": p["bild"], "bild_alt": p["bild_alt"]}
+           if p["bild"] and (root / "docs" / p["bild"]).is_file() else {}),
     } for p in posts[:newest]]
     counts: dict[str, int] = {}
     for p in posts:

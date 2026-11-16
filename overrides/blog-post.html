@@ -21,6 +21,9 @@
       <span>{{ page.config.readtime }} Min. Lesezeit</span>
       {% endif %}
     </p>
+    {% if page.meta.bild and not page.meta.bild_im_text %}
+    <img class="cg-beitrag__bild" src="{{ page.meta.bild | url }}" alt="{{ page.meta.bild_alt | d('', true) }}">
+    {% endif %}
     {% block content %}
       {% if "<h1" not in page.content %}
         <h1>{{ page.title | d(config.site_name, true) }}</h1>

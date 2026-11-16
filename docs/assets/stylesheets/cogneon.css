@@ -1150,3 +1150,35 @@ ol.cg-schritte > li,
   font-size: 0.7rem;
   margin-left: 0.2rem;
 }
+
+/* Beitragsbilder */
+.cg-card--bild {
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+.cg-card--bild img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.cg-card--bild > span {
+  margin: 0 1.6rem;
+}
+.cg-card--bild > span:first-of-type {
+  margin-top: 1.4rem;
+}
+.cg-card--bild > span + span {
+  margin-top: 0.7rem;
+}
+.cg-card--bild > span:last-child {
+  margin-bottom: 1.6rem;
+}
+.cg-beitrag__bild {
+  width: 100%;
+  height: auto;
+  border-radius: var(--cg-radius);
+  margin: 0 0 1.6rem;
+  display: block;
+}

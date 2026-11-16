@@ -743,10 +743,17 @@ class Export:
                 meta["tags"] = tags
             if post.get("sticky"):
                 meta["pin"] = True
-            meta["wp"] = {"id": post["id"], "link": post["link"],
-                          "featured_media": post.get("featured_media") or None}
             body = with_title(meta["title"], add_excerpt_marker(conv.markdown))
             target = self.docs / "blog" / "posts" / post["date"][:4] / f"{post['slug']}.md"
+            # Das Beitragsbild traegt resolve_featured_media() ein. Bleibt es dasselbe,
+            # wird es hier uebernommen, damit ein zweiter Lauf nichts aendert.
+            old = read_frontmatter(target)
+            if post.get("featured_media") and (old.get("wp") or {}).get("featured_media") == post["featured_media"]:
+                for key in ("bild", "bild_alt", "bild_im_text"):
+                    if key in old:
+                        meta[key] = old[key]
+            meta["wp"] = {"id": post["id"], "link": post["link"],
+                          "featured_media": post.get("featured_media") or None}
             self._record("post", post, target, write_markdown(target, meta, body))
 
     def export_pages(self):
@@ -785,19 +792,49 @@ class Export:
             self._record("page", page, target, write_markdown(target, meta, body))
 
     def resolve_featured_media(self):
-        """Beitragsbilder: IDs gesammelt aufloesen und zur Medienliste hinzufuegen."""
-        ids = []
+        """Beitragsbilder: IDs gesammelt aufloesen, zur Medienliste hinzufuegen und den
+        Pfad als 'bild' in den Kopf des Beitrags schreiben (fuer Blog-Uebersicht und Beitragskopf)."""
+        files: dict[int, list[Path]] = {}
         for row in self.url_map:
             if row["type"] != "post":
                 continue
-            wp = read_frontmatter(self.root / row["file"]).get("wp") or {}
+            path = self.root / row["file"]
+            wp = read_frontmatter(path).get("wp") or {}
             if wp.get("featured_media"):
-                ids.append(int(wp["featured_media"]))
+                files.setdefault(int(wp["featured_media"]), []).append(path)
+        ids = sorted(files)
         for start in range(0, len(ids), 100):
             chunk = ",".join(str(i) for i in ids[start:start + 100])
-            for media in self.wp.items("wp/v2/media", {"include": chunk, "_fields": "id,source_url"}):
-                if media.get("source_url"):
-                    self.media[media["source_url"]] = None
+            for media in self.wp.items("wp/v2/media", {"include": chunk, "_fields": "id,source_url,alt_text"}):
+                if not media.get("source_url"):
+                    continue
+                self.media[media["source_url"]] = None
+                rel = unquote(urlparse(media["source_url"]).path).lstrip("/")
+                if not rel.startswith("wp-content/"):
+                    continue
+                for path in files.get(media["id"], []):
+                    self.set_post_image(path, rel, html.unescape(media.get("alt_text") or ""))
+
+    def set_post_image(self, path: Path, image: str, alt: str):
+        match = FRONTMATTER_RE.match(path.read_text(encoding="utf-8"))
+        if not match:
+            return
+        meta = yaml.safe_load(match.group(1)) or {}
+        if meta.get("frozen"):
+            return
+        body = path.read_text(encoding="utf-8")[match.end():].lstrip("\n")
+        meta["bild"] = image
+        if alt:
+            meta["bild_alt"] = alt
+        # Steht das Bild schon im Text, zeigt die Vorlage es oben nicht noch einmal.
+        stem = re.sub(r"-\d+x\d+$", "", Path(image).stem)
+        if stem and stem in body:
+            meta["bild_im_text"] = True
+        wp = meta.pop("wp", None)        # 'wp' bleibt der letzte Eintrag
+        if wp is not None:
+            meta["wp"] = wp
+        write_markdown(path, meta, body)
+        self.stats["post_images"] += 1
 
     def download_media(self):
         for url in self.media:
@@ -905,8 +942,9 @@ class Export:
                 self.write_tag_redirects()
             if "pages" in self.args.types:
                 self.export_pages()
-            if not self.args.no_media:
+            if "posts" in self.args.types:
                 self.resolve_featured_media()
+            if not self.args.no_media:
                 self.download_media()
         self.write_reports(inv)
         print("Ergebnis:", dict(sorted(self.stats.items())))

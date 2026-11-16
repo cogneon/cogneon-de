@@ -432,3 +432,14 @@ def test_dropped_tags_redirect_to_blog(server, tmp_path):
     assert "/tag/lernos /blog/" in rules
     posts = list((tmp_path / "docs/blog/posts").rglob("*.md"))
     assert posts and all("tags:" not in p.read_text(encoding="utf-8") for p in posts)
+
+
+def test_featured_image_lands_in_frontmatter(server, tmp_path):
+    assert run_export(server, tmp_path, "--no-media") == 0
+    posts = [wp_export.read_frontmatter(p) for p in (tmp_path / "docs/blog/posts").rglob("*.md")]
+    with_image = [m for m in posts if m.get("bild")]
+    assert len(with_image) == 1
+    assert with_image[0]["bild"] == "wp-content/uploads/2026/01/titel.jpg"
+    assert list(with_image[0])[-1] == "wp"
+    # zweiter Lauf ändert nichts mehr
+    assert run_export(server, tmp_path, "--no-media") == 0
