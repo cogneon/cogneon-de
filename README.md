@@ -19,6 +19,7 @@ Stand: Aufbau und Test. Die Live-Website läuft weiter auf WordPress, bis der Um
 | `scripts/build_data.py` | erzeugt daraus und aus den Blogbeiträgen die Daten für Startseite und Blog-Übersicht. Muss vor `zensical build` oder `zensical serve` einmal laufen |
 | `scripts/check_links.py` | prüft die Links der gebauten Website, mit `--extern` auch fremde Adressen. Wöchentlich im Issue "Linkprüfung" |
 | `scripts/optimize_media.py` | verkleinert übernommene Bilder unter `docs/wp-content/` (läuft im Export) |
+| `scripts/build_htaccess.py` | erzeugt `site/.htaccess`: Weiterleitungen aus `migration/redirects*.map` und Server-Regeln |
 | `scripts/wp_export.py` | wiederholbarer Export aus WordPress |
 | `scripts/check_urls.py` | prüft, ob alle alten URLs erreichbar bleiben |
 | `migration/` | Berichte des Exports (Inventar, URL-Liste, URL-Check) |
@@ -104,3 +105,14 @@ Für ganztägige Termine `ganztags: true`, für Online-Termine `online: true` st
 Übersicht (`/events/`), Kategorie-Seiten, die Terminliste der Startseite und die
 Kalenderdatei `/events/cogneon.ics` entstehen daraus bei jedem Build. Vergangene
 Termine wandern von selbst ins Archiv.
+
+## Veröffentlichen
+
+Der Workflow "Veröffentlichen" baut die Website und lädt sie per SFTP auf den
+Webspace: bei jedem Merge nach `main`, jeden Morgen und auf Knopfdruck
+(Actions, "Veröffentlichen", "Run workflow"). Die Zugangsdaten stehen als
+Secrets im Repository (`SFTP_HOST`, `SFTP_USER`, `SFTP_PASSWORD`, `SFTP_PATH`).
+
+Weiterleitungen stehen in `migration/redirects.map`, eine je Zeile:
+alte Adresse, Leerzeichen, neue Adresse. Beim Veröffentlichen entsteht
+daraus die Datei `.htaccess` für den Webserver.
