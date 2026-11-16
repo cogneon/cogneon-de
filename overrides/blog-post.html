@@ -37,13 +37,14 @@
       </ul>
       {% endif %}
       {% for author in page.authors %}
-      <div class="cg-autor">
-        <img src="{{ author.avatar | url }}" alt="" width="56" height="56" loading="lazy">
-        <p>
-          <strong>{% if author.url %}<a href="{{ author.url | url }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}</strong><br>
-          {{ author.description }}
-        </p>
-      </div>
+      <aside class="cg-autor" aria-label="Über die Autorin oder den Autor">
+        <img src="{{ author.avatar | url }}" alt="" width="96" height="96" loading="lazy">
+        <div>
+          <p class="cg-autor__name">{{ author.name }}</p>
+          {% if author.description %}<p>{{ author.description }}</p>{% endif %}
+          {% if author.url %}<p class="cg-autor__links"><a href="{{ author.url | url }}">Alle Beiträge von {{ author.name }}</a></p>{% endif %}
+        </div>
+      </aside>
       {% endfor %}
       <div class="cg-beitrag__weiter">
         <a class="cg-button" href="{{ page.meta.diskussion | d(config.extra.community, true) }}">In der Community diskutieren</a>

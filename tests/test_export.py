@@ -450,3 +450,11 @@ def test_calendar_markup_is_removed():
               '<div class="tribe-block tribe-block__events-link"><button>Zum Kalender hinzufügen</button></div>')
     cleaned = wp_export.Export.strip_calendar_markup(source)
     assert "Text bleibt." in cleaned and "Kalender" not in cleaned and "@" not in cleaned
+
+
+def test_wordpress_buttons_stay_buttons():
+    source = ('<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/edmod">Mehr</a></div>'
+              '<p><a class="wp-block-button__link uagb-text-link" href="/a">weiter</a> <a href="/b">normal</a></p>')
+    markdown = wp_export.convert_html(source, "https://cogneon.de").markdown
+    assert "[Mehr](/edmod){ .cg-button }" in markdown
+    assert "[weiter](/a)" in markdown and "[weiter](/a){" not in markdown and "[normal](/b){" not in markdown

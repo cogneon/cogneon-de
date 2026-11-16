@@ -1032,12 +1032,18 @@ ol.cg-schritte > li,
   border-radius: 99px;
   padding: 0.2rem 0.7rem;
 }
-.cg-schlagworte--links li {
+.cg-schlagworte--links li,
+.md-typeset .cg-schlagworte--links li {
   padding: 0;
   background: none;
+  flex: none;
+}
+/* Im Fuß eines Beitrags: Schlagworte nicht über die ganze Breite ziehen */
+.cg-beitrag__fuss > .cg-schlagworte {
+  align-self: flex-start;
 }
 .cg-schlagworte--links a {
-  display: block;
+  display: inline-block;
   padding: 0.3rem 0.8rem;
   border-radius: 99px;
   background: var(--cg-bg-soft);
@@ -1050,18 +1056,43 @@ ol.cg-schritte > li,
 }
 .cg-autor {
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
+  align-items: flex-start;
+  gap: 1.2rem;
+  padding: 1.4rem;
+  background: var(--cg-bg-soft);
+  border-radius: var(--cg-radius);
+}
+[data-md-color-scheme="slate"] .cg-autor {
+  background: var(--cg-karte);
 }
 .cg-autor img {
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 4.8rem;
+  height: 4.8rem;
   border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 .md-typeset .cg-autor p {
-  margin: 0;
+  margin: 0 0 0.3rem;
   font-size: 0.8rem;
-  line-height: 1.4;
+  line-height: 1.5;
+}
+.md-typeset .cg-autor .cg-autor__name {
+  font-family: var(--cg-font-kopf);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.cg-autor__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.2rem;
+  padding-top: 0.3rem;
+}
+@media screen and (max-width: 30em) {
+  .cg-autor {
+    flex-direction: column;
+  }
 }
 .cg-beitrag__weiter {
   display: flex;
@@ -1206,4 +1237,10 @@ ol.cg-schritte > li,
 }
 [data-md-color-scheme="slate"] .md-typeset dl.cg-termin {
   background: var(--cg-karte);
+}
+
+/* Knöpfe im Fließtext: zwei Knöpfe hintereinander stehen nebeneinander */
+.md-typeset p:has(> a.cg-button:only-child) {
+  display: inline-block;
+  margin: 0.4rem 0.6rem 0.8rem 0;
 }

@@ -1,4 +1,5 @@
 name: WordPress-Export
+# Start über einen Push auf setup/**: ein neuer Branch allein löst nichts aus, erst ein weiterer Commit.
 
 # Liest cogneon.de über die REST-API aus. Das Ergebnis landet auf einem Branch
 # (Pilot: export/ergebnis, sonst export/voll - wird bei jedem Lauf überschrieben)
