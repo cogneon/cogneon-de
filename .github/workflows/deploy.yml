@@ -57,7 +57,7 @@ jobs:
           VERBINDUNG="set sftp:auto-confirm yes; set sftp:connect-program 'ssh -a -x -o ConnectTimeout=20 -o ServerAliveInterval=15'; set net:max-retries 2; set net:timeout 20; set net:reconnect-interval-base 5; set cmd:fail-exit yes; open --env-password -u $SFTP_USER sftp://$SFTP_HOST"
 
           echo "Verbindung testen ..."
-          if ! timeout 90 lftp -c "$VERBINDUNG; cls -1 / | head -20"; then
+          if ! timeout 90 lftp -c "$VERBINDUNG; cls -1 /" > /dev/null; then
             echo "Keine Verbindung zum Server oder Anmeldung abgelehnt. Bitte SFTP_HOST (nur der Servername), SFTP_USER und SFTP_PASSWORD prüfen." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
