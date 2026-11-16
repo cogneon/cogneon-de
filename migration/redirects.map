@@ -15,3 +15,39 @@
 /veranstaltungsort/die-insel-online /events/
 /veranstaltungsort/virtuell-microsoft-teams /events/
 /feed/podcast https://podcasts.cogneon.io/@kclo/feed.xml
+# Kurzlinks aus WordPress (Plugin Redirection), Stand 16.11.2026.
+# Ketten sind aufgelöst: jede Adresse zeigt direkt auf ihr Ziel.
+/menerva /4010km/
+# /pke26: Der Termin 2026 ist in WordPress nicht veröffentlicht, vorerst zur Terminübersicht.
+/pke26 /events/
+/wtc26 /event/wissenstransfercamp-2026-geballtes-praxiswissen-zu-wissenstransfer-wissensbewahrung/
+/loscon26 /event/lernos-convention-2026-ai-for-work-that-works/
+/loscon25 /event/lernos-convention-2025/
+/loscon24 /event/8-lernos-convention-2024-die-wissensgefaehrten/
+/wtc25 /event/2-wissenstransfercamp-wtc25/
+/wtc24 /event/1-wissenstransfercamp-wtc24/
+/pke25 /event/lernreise-personal-knowledge-excellence-2025/
+/edmod22b /edmod-olk/
+/edmod23a /edmod-olk/
+/edmod23b /edmod-olk/
+/edmod24a /edmod-olk/
+/edmod24b /edmod-olk/
+/literatur /top10/
+/ed /expert-debriefing/
+/loa /podcast-2/
+/hmk https://linksta.cc/@hmk
+/keep-calm-and-learn-on /#newsletter
+/ckj /events/kategorie/knowledgejam/
+/community-call /events/
+/kalender /events/
+/termine /events/
+/loscamp https://wiki.cogneon.de/LernOS_Rockstars_Camp
+/loscon22 https://wiki.cogneon.de/loscon22
+/loscon21 https://wiki.cogneon.de/loscon21
+/audiobc22 https://wiki.cogneon.de/audiobc22
+/loscamp20 https://wiki.cogneon.de/loscamp20
+/audiobc21 https://wiki.cogneon.de/audiobc21
+# In alten Beiträgen verlinkt, in WordPress ohne Weiterleitung (dort schon defekt)
+/pke24 /event/lernreise-personal-knowledge-excellence/
+/c3-managers /c3managers/
+/lernoscon21 https://wiki.cogneon.de/loscon21
