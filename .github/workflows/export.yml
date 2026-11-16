@@ -72,10 +72,11 @@ jobs:
       - name: Probe-Build mit exportierten Inhalten
         if: env.MODUS != 'inventar'
         run: |
+          python scripts/build_data.py
           zensical build
           python scripts/check_urls.py --url-map migration/url-map.csv --report-only
       - name: Medien verkleinern
-        if: env.MODUS != 'inventar' && env.MEDIEN == 'ja'
+        if: (!cancelled()) && env.MODUS != 'inventar' && env.MEDIEN == 'ja'
         run: python scripts/optimize_media.py | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Ergebnis auf Branch ablegen (Pilot export/ergebnis, sonst export/voll)
         if: always()
@@ -95,7 +96,7 @@ jobs:
       - name: Übernahme für main vorbereiten (Branch inhalt/aus-export)
         # Enthält nur Inhalte, Medien und Migrationsdaten auf dem Stand von main.
         # Daraus wird ein Pull Request gestellt.
-        if: env.MODUS == 'voll'
+        if: (!cancelled()) && env.MODUS == 'voll'
         run: |
           git fetch -q origin main
           git checkout -q -B inhalt/aus-export FETCH_HEAD
