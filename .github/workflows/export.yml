@@ -102,7 +102,9 @@ jobs:
           git checkout -q -B inhalt/aus-export FETCH_HEAD
           git checkout export/voll -- docs/blog/posts docs/.authors.yml migration ':(exclude)migration/raw'
           git ls-tree --name-only export/voll docs/ | grep '\.md$' | xargs -r git checkout export/voll --
-          if git cat-file -e export/voll:docs/wp-content 2>/dev/null; then git checkout export/voll -- docs/wp-content; fi
+          for d in docs/wp-content docs/event; do
+            if git cat-file -e "export/voll:$d" 2>/dev/null; then git checkout export/voll -- "$d"; fi
+          done
           git commit -q -m "Inhalte und Medien aus WordPress, Export vom $(date -u +%d.%m.%Y)" || echo "nichts zu übernehmen"
           git push -q --force origin inhalt/aus-export
       - uses: actions/upload-artifact@v4
