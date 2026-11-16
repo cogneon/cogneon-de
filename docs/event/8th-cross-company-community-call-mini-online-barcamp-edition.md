@@ -5,6 +5,7 @@ beginn: 2021-01-21 16:00
 ende: 2021-01-21 17:30
 anmeldung: https://community.cogneon.de/t/8th-cross-company-community-call-mini-online-barcamp-edition
 bild: wp-content/uploads/2021/01/c3call.jpeg
+bild_im_text: true
 wp:
   id: 58295
   link: https://cogneon.de/event/8th-cross-company-community-call-mini-online-barcamp-edition/

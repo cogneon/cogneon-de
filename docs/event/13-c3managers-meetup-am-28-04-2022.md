@@ -5,6 +5,7 @@ beginn: 2022-04-28 16:00
 ende: 2022-04-28 17:30
 kosten: Kostenlos
 bild: wp-content/uploads/2021/07/c3managers.png
+bild_im_text: true
 wp:
   id: 59599
   link: https://cogneon.de/event/13-c3managers-meetup-am-28-04-2022/

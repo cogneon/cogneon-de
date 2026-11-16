@@ -9,6 +9,7 @@ kategorien:
 kategorie_slugs:
 - c3managers
 bild: wp-content/uploads/2021/07/c3managers.png
+bild_im_text: true
 wp:
   id: 60072
   link: https://cogneon.de/event/15c3managers/
@@ -48,7 +49,7 @@ Strengthen internal networking to be able to communicate effectively. Telekom am
 
 The lernOS Community is a community of about 1,500 people who deal with the lernOS (lernos.org) method for lifelong learning and learning organizations. In the article, the individual components of the community are presented and experiences with them are shared. These include activities such as the monthly lernOS Community Call, the podcast lernOS on Air, the annual event „lernOS Convention“, hackathons and working in teams on learning guides.
 
-[Einwahl MS Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTE2MzFmMTAtOTFkNi00ZWM0LWI0M2ItMDU2YjQxZDQ3YWQw%40thread.v2/0?context=%7b%22Tid%22%3a%2293e1683c-5df4-46ff-8c5a-de6f62e19d5d%22%2c%22Oid%22%3a%224ccf8014-474c-408c-a8c2-26208c8c4919%22%7d)
+[Einwahl MS Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTE2MzFmMTAtOTFkNi00ZWM0LWI0M2ItMDU2YjQxZDQ3YWQw%40thread.v2/0?context=%7b%22Tid%22%3a%2293e1683c-5df4-46ff-8c5a-de6f62e19d5d%22%2c%22Oid%22%3a%224ccf8014-474c-408c-a8c2-26208c8c4919%22%7d){ .cg-button }
 
 ---
 

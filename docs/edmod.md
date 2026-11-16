@@ -39,10 +39,10 @@ Die Ausbildung kombiniert Online-Theorie, zwei intensive Praxistage und ein eige
 
 Praxistage: 20.05. (10:00-17:00 Uhr) – 21.05. (09:00-16:00 Uhr); Live-Online-Training: 11.05. (13:00-13:55 Uhr).
 
-[Jetzt buchen](https://pretix.eu/cogneon/edmod26a/)
+[Jetzt buchen](https://pretix.eu/cogneon/edmod26a/){ .cg-button }
 
 ### 18.-19.11.2026 (edmod26b)
 
 Praxistage: 18.11. (10:00-16:00 Uhr) – 19.11. (09:00-16:00 Uhr); Live-Online-Training: 09.11. (15:00-15:55 Uhr).
 
-[Jetzt buchen](https://pretix.eu/cogneon/edmod26b/)
+[Jetzt buchen](https://pretix.eu/cogneon/edmod26b/){ .cg-button }

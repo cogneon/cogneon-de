@@ -4,6 +4,7 @@ template: termin.html
 beginn: 2024-03-07 10:00
 ende: 2024-03-07 17:00
 bild: wp-content/uploads/2023/12/wtt24-key-visual.png
+bild_im_text: true
 wp:
   id: 62217
   link: https://cogneon.de/event/1-wissenstransfercamp-wtc24/
@@ -31,7 +32,7 @@ Das WissensTransferCamp findet **hybrid** in der Cogneon Akademie Nürnberg (30 
 
 Die Impulsvorträge wurden vom Orga-Team kuratiert, die Sessions von allen Teilnehmer:innen eingereicht werden. Der [Vorab-Impulsvortrag „Wissenstransfer – alles eine Frage der Motivation?“](https://youtu.be/0KP8m5kTqNw) von [Laura Rinker](https://www.linkedin.com/in/laura-rinker/) fand vorab als YouTube-Premiere statt.
 
-[**Programm**](https://pretalx.com/wtc24/schedule/)
+[**Programm**](https://pretalx.com/wtc24/schedule/){ .cg-button }
 
 [YouTube: Wissenstransfer – alles eine Frage der Motivation?](https://www.youtube.com/watch?v=0KP8m5kTqNw){ .embed }
 
@@ -39,7 +40,7 @@ Die Impulsvorträge wurden vom Orga-Team kuratiert, die Sessions von allen Teiln
 
 Die Tickets können per Überweisung (mit Rechnung), mit Kreditkarte oder Paypal gekauft werden.
 
-[**Ticket kaufen**](https://pretix.eu/cogneon/wtc24/)
+[**Ticket kaufen**](https://pretix.eu/cogneon/wtc24/){ .cg-button }
 
 ## Sponsor
 

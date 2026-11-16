@@ -4,6 +4,7 @@ template: termin.html
 beginn: 2024-07-02 10:00
 ende: 2024-07-03 16:00
 bild: wp-content/uploads/2024/01/loscon24-key-visual-2.png
+bild_im_text: true
 wp:
   id: 62342
   link: https://cogneon.de/event/8-lernos-convention-2024-die-wissensgefaehrten/
@@ -17,6 +18,6 @@ Die **lernOS Convention** ist das Top-Event zu **Wissensmanagement** und **Lerne
 
 Die **8. lernOS Convention** (#loscon24) findet vom **2.-3. Juli 2024** wieder auf der [Kaiserburg Nürnberg](https://de.wikipedia.org/wiki/N%C3%BCrnberger_Burg) & Online per MS Teams statt (hybride Veranstaltung). Das **Motto ist „Die Wissensgefährten“** (Mensch-Mensch, Mensch-Maschine/KI). Im Vorfeld der lernOS Convention wird erstmalig der [lernOS KI MOOC](https://loscon.lernos.org/de/kimooc24/) (06. Mai bis 21. Juni) mit dem [neuen lernOS KI Leitfaden](https://ai.lernos.org) als Grundlage stattfinden. Weitere Infos und Anmeldung folgen.
 
-[Tickets](https://pretix.eu/cogneon/loscon24/)
+[Tickets](https://pretix.eu/cogneon/loscon24/){ .cg-button }
 
-[Infoseiten](https://loscon.lernos.org)
+[Infoseiten](https://loscon.lernos.org){ .cg-button }

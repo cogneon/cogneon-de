@@ -4,6 +4,7 @@ template: termin.html
 beginn: 2026-11-18 10:00
 ende: 2026-11-19 16:00
 bild: wp-content/uploads/2023/10/edmod-banner.png
+bild_im_text: true
 wp:
   id: 66392
   link: https://cogneon.de/event/expert-debriefing-praxis-ausbildung-herbst-2026-edmod26b/
@@ -17,6 +18,6 @@ wp:
 
 Hinweis: an der Praxis-Ausbilung kann man vor Ort in Nürnberg ([Anfahrt](/kontakt)) oder Online per Microsoft Teams teilnehmen. Das zugehörige Live-Online-Training ist am 09.11. von 15:00-15:55 Uhr.
 
-[Mehr Informationen](/edmod)
+[Mehr Informationen](/edmod){ .cg-button }
 
-[Anmeldung](https://pretix.eu/cogneon/edmod26b/)
+[Anmeldung](https://pretix.eu/cogneon/edmod26b/){ .cg-button }

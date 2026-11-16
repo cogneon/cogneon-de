@@ -26,4 +26,4 @@ Der WED Call findet jeweils **am zweiten Dienstag im Monat von 13:00-13:30 Uhr**
 In Expert Debriefings und Wissenstransfer-Prozessen werden häufig **Notizbuch-Anwendungen als „2nd Brain“** von Expert:innen verwendet, um **Wissen an einer zentralen Stelle zu dokumentieren**. Die Session gibt einen Überblick über die gängigsten Anwendungen und wie diese **im Wissenstransfer mit und ohne Nutzung von KI verwendet** werden können (z.B. KI als „Bibliothekar“ der persönlichen Wissensbasis).<br>
 Im Anschluss ist wie immer Raum für Fragen und Austausch.
 
-[Anmeldung Teams Webinar](https://events.teams.microsoft.com/event/b1a4649f-222e-4654-a01c-9b3bad0963c8@93e1683c-5df4-46ff-8c5a-de6f62e19d5d)
+[Anmeldung Teams Webinar](https://events.teams.microsoft.com/event/b1a4649f-222e-4654-a01c-9b3bad0963c8@93e1683c-5df4-46ff-8c5a-de6f62e19d5d){ .cg-button }

@@ -33,7 +33,7 @@ Die [lernOS Convention 2023](/loscon23) hat am 11.-12. Juli 2023 wieder auf der 
 
 Die meisten **Programmpunkte der loscon23** haben wir wieder als Dokumentation **aufgenommen**. Dieses Jahr gibt es vom Bühnenprogramm sogar eine **Simultanübersetzung** Deutsch-Englisch und Englisch-Deutsch. Die bereits verfügbare [loscon23 Dokumentation findet Ihr in unserem offenen Wiki COPEDIA](https://wiki.cogneon.de/LernOS_Convention_2023). Evalutationsbericht und weitere Doku werden dort ergänzt. Einen guten Überblick bietet auch die [loscon23 Mastowall](https://cogneon.github.io/digital-asset-pool/loscon23/mastowall/?hashtags=loscon23,lernos&server=https://colearn.social).
 
-[loscon23 Dokumentation](https://wiki.cogneon.de/loscon23)
+[loscon23 Dokumentation](https://wiki.cogneon.de/loscon23){ .cg-button }
 
 ## NEU: lernOS Künstliche Intelligenz (KI) Leitfaden
 
@@ -43,7 +43,7 @@ Im Rahmen der lernOS Convention ist klar geworden, dass im Kontext der **hybride
 
 Von der [Meetup-Gruppe Betreute Intelligenz](https://www.meetup.com/betreute-intelligenz/events/295002828) gibt es ein Treffen am **10. August 2023** in Fürth. In dem Rahmen machen wir von **11:00-11:45 Uhr** einen kleine **Kick-off zum Leitfaden**. Die Online-Teilnahme per MS Teams ist möglich. Die Einwahldaten erhaltet ihr mit der [Anmeldung auf meetup.com](https://www.meetup.com/cogneon/events/295108379/).
 
-[Kick-off lernOS KI Leitfaden auf meetup.com](https://www.meetup.com/cogneon/events/295108379/)
+[Kick-off lernOS KI Leitfaden auf meetup.com](https://www.meetup.com/cogneon/events/295108379/){ .cg-button }
 
 ## 3. Audio-only Barcamp am 20.09.2023
 
@@ -53,7 +53,7 @@ Das erste Thema ist der **Einsatz von Audio- und Podcast-Technik im Kontext von 
 
 ![](/wp-content/uploads/2023/07/audiobc23-key-visual-1-1030x579.png)
 
-[3. Audio-only Barcamp](/audiobc23)
+[3. Audio-only Barcamp](/audiobc23){ .cg-button }
 
 ## **Termine**
 

@@ -60,4 +60,4 @@ Alle Räume sind für hybrides Arbeiten ausgestattet (z.B. Einwahl von Kolleg:in
 
 Vereinbaren Sie jetzt einen Termin und lassen Sie uns gemeinsam die Erfahrungsschätze Ihres Teams heben.
 
-[Infos & Termin anfragen](mailto:info@cogneon.de?subject=KEx-Workshop%20Anfrage)
+[Infos & Termin anfragen](mailto:info@cogneon.de?subject=KEx-Workshop%20Anfrage){ .cg-button }

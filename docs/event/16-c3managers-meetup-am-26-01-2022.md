@@ -8,6 +8,7 @@ ort:
   adresse: Bucherstr. 79a, 90419 Nürnberg
 kosten: Kostenlos
 bild: wp-content/uploads/2021/07/c3managers.png
+bild_im_text: true
 wp:
   id: 60489
   link: https://cogneon.de/event/16-c3managers-meetup-am-26-01-2022/
@@ -17,7 +18,7 @@ wp:
 
 Communities verbinden. Warum also nicht Community Manager über Unternehmensgrenzen hinweg zusammenbringen, um Erfahrungen zu teilen und voneinander zu lernen? Genau darum geht es in den **Cross-Company Community Managers Meetups (#C3Managers)**. In den 3-monatlich stattfindenden Sessions werden unterschiedliche Themen rund um Community Management bearbeitet.
 
-[Einwahl MS Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MDY2Y2NlMDAtNGE2ZS00YmMxLTg1NmItOTcwMGRlYTcxODFl%40thread.v2/0?context=%7b%22Tid%22%3a%2293e1683c-5df4-46ff-8c5a-de6f62e19d5d%22%2c%22Oid%22%3a%224ccf8014-474c-408c-a8c2-26208c8c4919%22%7d)
+[Einwahl MS Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MDY2Y2NlMDAtNGE2ZS00YmMxLTg1NmItOTcwMGRlYTcxODFl%40thread.v2/0?context=%7b%22Tid%22%3a%2293e1683c-5df4-46ff-8c5a-de6f62e19d5d%22%2c%22Oid%22%3a%224ccf8014-474c-408c-a8c2-26208c8c4919%22%7d){ .cg-button }
 
 ## Thema 1: Der Beitrag einer Techie-Community zu Bosch Zukunft<br>  Your Attractive Heading
 

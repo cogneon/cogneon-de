@@ -25,4 +25,4 @@ Der WED Call findet jeweils **am zweiten Dienstag im Monat von 13:00-13:30 Uhr**
 
 Die **persönlichen Wissenslandkarten** **im Expert Debriefing** hießen früher einmal Jobmaps. Ganz zu Beginn haben wir die ähnlich der Vorgehensweise im Mind Mapping „auf der grünen Wiese“ erstellt. Im Lauf der vielen Jahre Praxis hat sich jedoch eine Standardstruktur herausgebildet, die in jedem Expert Debriefing angewendet werden kann. In diesem Beitrag zeigt Simon auf, wie die **aktuelle Standardstruktur** für den Referenzprozess Expert Debriefing aufgebaut ist und was **die methodischen und wissenschaftlichen Hintergründe** dazu sind.
 
-[Anmeldung Teams Webinar](https://events.teams.microsoft.com/event/d97611dd-6856-4fd4-b376-66eef4e3deff@93e1683c-5df4-46ff-8c5a-de6f62e19d5d?source=copyLinkLegacyShareLinkDialog)
+[Anmeldung Teams Webinar](https://events.teams.microsoft.com/event/d97611dd-6856-4fd4-b376-66eef4e3deff@93e1683c-5df4-46ff-8c5a-de6f62e19d5d?source=copyLinkLegacyShareLinkDialog){ .cg-button }

@@ -83,4 +83,4 @@ Die **Teilnahme** an der Lernreise kostet **€ 480,-**. Wenn ihr z.B. als **Ler
 
 **HINWEIS:** 20×20 – die ersten 20 Frühbucher erhalten 20% Rabatt. Gutschein-Code posten wir am 29.07. in unseren Kanälen auf Discord, Signal und Whatsapp (Einladungslinks auf der Startseite).
 
-[Zur Lernreise anmelden](https://pretix.eu/cogneon/pke24/)
+[Zur Lernreise anmelden](https://pretix.eu/cogneon/pke24/){ .cg-button }

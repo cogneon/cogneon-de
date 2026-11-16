@@ -4,6 +4,7 @@ template: termin.html
 beginn: 2026-09-24 10:00
 ende: 2026-09-24 17:00
 bild: wp-content/uploads/2026/03/wtc26-key-visual.png
+bild_im_text: true
 wp:
   id: 67144
   link: https://cogneon.de/event/wissenstransfercamp-2026-geballtes-praxiswissen-zu-wissenstransfer-wissensbewahrung/
@@ -15,9 +16,9 @@ Das **3. WissensTransferCamp (#wtc26, 24.09.)** ist die zentrale Veranstaltung f
 
 ![](/wp-content/uploads/2026/03/wtc26-key-visual-1030x579.png)
 
-[Ticket kaufen](https://pretix.eu/cogneon/wtc26)
+[Ticket kaufen](https://pretix.eu/cogneon/wtc26){ .cg-button }
 
-[Dokumentation wtc25](https://wiki.cogneon.de/wtc25)
+[Dokumentation wtc25](https://wiki.cogneon.de/wtc25){ .cg-button }
 
 –
 
@@ -65,4 +66,4 @@ Das **Sponsorenpaket kostet 500,-** zzgl. MwSt, es beinhaltet die **Nennung auf 
 
 **Hinweis:** die Tickets können mit Rechnung, mit Kreditkarte oder Paypal gekauft werden. Die Teilnahme an Masterclass oder Barcamp ist auch einzeln möglich. Für die Zahlung mit Rechnung (z.B. über die Buchhaltung eines Unternehmens) bei der Zahlungsmethode einfach *„Banküberweisung“* auswählen. Ihr erhaltet dann eine Rechnung als PDF-Datei.
 
-[Ticket kaufen](https://pretix.eu/cogneon/wtc26)
+[Ticket kaufen](https://pretix.eu/cogneon/wtc26){ .cg-button }

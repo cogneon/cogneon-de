@@ -15,9 +15,9 @@ wp:
 
 Communities verbinden. Warum also nicht Community Manager über Unternehmensgrenzen hinweg zusammenbringen, um Erfahrungen zu teilen und voneinander zu lernen? Genau darum geht es in den **Cross-Company Community Managers Meetups (#C3Managers)**. In den 3-monatlich stattfindenden Sessions werden unterschiedliche Themen rund um Community Management bearbeitet.
 
-[Einwahl MS Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZTE2NmI3MzktYTY3Mi00ZjU3LWJjMTctZGVkOWE0Njg1Yjlm%40thread.v2/0?context=%7b%22Tid%22%3a%2293e1683c-5df4-46ff-8c5a-de6f62e19d5d%22%2c%22Oid%22%3a%224ccf8014-474c-408c-a8c2-26208c8c4919%22%7d)
+[Einwahl MS Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZTE2NmI3MzktYTY3Mi00ZjU3LWJjMTctZGVkOWE0Njg1Yjlm%40thread.v2/0?context=%7b%22Tid%22%3a%2293e1683c-5df4-46ff-8c5a-de6f62e19d5d%22%2c%22Oid%22%3a%224ccf8014-474c-408c-a8c2-26208c8c4919%22%7d){ .cg-button }
 
-[Zum Kalender Hinzufügen](https://cloud.cogneon.de/s/pFtsFJGMALFMpgn)
+[Zum Kalender Hinzufügen](https://cloud.cogneon.de/s/pFtsFJGMALFMpgn){ .cg-button }
 
 ## Thema 1: Envisioneers bei ZF Friedrichshafen (in English)
 

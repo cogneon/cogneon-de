@@ -5,6 +5,7 @@ beginn: 2025-02-27 13:00
 ende: 2025-02-27 14:00
 kosten: Free
 bild: wp-content/uploads/2025/02/expert-debriefing-banner-720p.png
+bild_im_text: true
 wp:
   id: 64435
   link: https://cogneon.de/event/infosession-wissenstransfer-mit-expert-debriefing-kostenlos/
@@ -20,4 +21,4 @@ Die Methode ist [in einem offen verfügbaren lernOS Leitfaden](https://expert-de
 
 **Die Teilnahme an der InfoSession ist kostenlos.**
 
-[Registrieren](https://events.teams.microsoft.com/event/2ac54ba6-2b05-43a5-a2c4-c8a5d1cfc801@93e1683c-5df4-46ff-8c5a-de6f62e19d5d)
+[Registrieren](https://events.teams.microsoft.com/event/2ac54ba6-2b05-43a5-a2c4-c8a5d1cfc801@93e1683c-5df4-46ff-8c5a-de6f62e19d5d){ .cg-button }

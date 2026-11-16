@@ -67,7 +67,7 @@ Als Titel haben wir **„Scale-up New Ways of Working“** gewählt (bewusst nic
 
 Es gibt noch **wenige freie Plätze im Projekt**, falls Ihr mit Eurer Organisation Interesse an Teilnahme habt, lest Euch gerne die Infos im Blog dazu durch und [meldet Euch bei Bedarf](/kontakt).
 
-[Blog zum blp23](/2023/01/17/benchlearning-projekt-2023-scale-up-new-ways-of-working-blp23/)
+[Blog zum blp23](/2023/01/17/benchlearning-projekt-2023-scale-up-new-ways-of-working-blp23/){ .cg-button }
 
 ## Änderungen an unserer Community-Plattform CONNECT
 
@@ -79,7 +79,7 @@ Wir hatten uns seinerzeit für das Tool [Discourse](https://de.wikipedia.org/wik
 
 Von Discourse [ist jetzt die Version 3 erschienen](https://blog.discourse.org/2023/01/discourse-3-0-is-here/) und **zwei neue Funktionen** haben wir bei CONNECT direkt umgesetzt. Die **Navigation** erfolgt jetzt bequem über eine **linke Seitenleiste**. Außerdem gibt es eine **Live-Chat-Funktion**, die evtl. unsere Plattform [COCHAT](https://chat.cogneon.de/) auf Basis von Rocketchat ablösen könnte (das testen wir mal im ersten Halbjahr). Details zu den neuen Funktion im Blog.
 
-[Beitrag zu CONNECT Update](https://community.cogneon.de/t/aenderungen-an-der-benutzeroberflaeche-der-community-plattform-connect/3810)
+[Beitrag zu CONNECT Update](https://community.cogneon.de/t/aenderungen-an-der-benutzeroberflaeche-der-community-plattform-connect/3810){ .cg-button }
 
 ## Neuauflage der Lernreise MeinZiel23 der Corporate Learning Community
 
@@ -91,7 +91,7 @@ Da Lebenslanges Lernen nicht aufhört, gibt es in diesem Jahr mit **[#MeinZiel23
 
 Ich werde bei [#MeinZiel23](/tag/meinziel23/) auf mit einem Ziel dabei sein. Ich will **gemeinsam mit Menschen aus Organisationen** herausfinden, wie man die Idee eines **lernOS Hub im Intranet der Organisation** (s.a. [Session von der lernOS Convention 2022](https://www.youtube.com/watch?v=S4l6U757Ewg)) umsetzen kann. Wer in dieser Lerngruppe mitmachen will, kann gerne [dieser Gruppe im Peerinder](https://web.peerfinder.app/groups/KNC8yvxY3O0licAKg) beitreten.
 
-[Blog zu #MeinZiel23](https://colearn.de/meinziel23/)
+[Blog zu #MeinZiel23](https://colearn.de/meinziel23/){ .cg-button }
 
 ## **Termine**
 

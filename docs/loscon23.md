@@ -14,7 +14,7 @@ wp:
 
 11.-12. Juli 2023 in Nürnberg & Online ([Non German?](/2023/05/10/internationals-loscon23-how-we-make-the-lernos-convention-more-accessible-for-non-german-speakers/))
 
-[Dokumentation](https://wiki.cogneon.de/loscon23)[Programm](https://loscon23.cogneon.de/loscon23/schedule/)
+[Dokumentation](https://wiki.cogneon.de/loscon23){ .cg-button }[Programm](https://loscon23.cogneon.de/loscon23/schedule/){ .cg-button }
 
 Die **lernOS Convention** ist das Top-Event zu **Wissensmanagement** und **Lernenden Organisationen** im deutschsprachigen Raum. Der **digitale Arbeitsplatz**, **moderne Intranets**, **New Ways of Working** und **persönliches Wissensmanagement** für **Wissensarbeiter:innen** und **Lernende Teams** sind die zentralen Themen.
 
@@ -62,9 +62,9 @@ Die **lernOS Convention** ist das Top-Event zu **Wissensmanagement** und **Lerne
 
 Das [Programm der lernOS Convention 2023](https://loscon23.cogneon.de/) wurde wie immer **gemeinsam mit der Community** gestaltet. Es gibt **Impulsvorträge** (20“), **Lightning Talks** (5“), **Sessions/Workshops** (45“), **Assemblies** (90“) und **selbstorganisierte Learning Circles** (losconCircles). Schaut Euch das Programm gerne in Ruhe an:
 
-[**loscon23 Programm**](https://loscon23.cogneon.de/loscon23/schedule/)
+[**loscon23 Programm**](https://loscon23.cogneon.de/loscon23/schedule/){ .cg-button }
 
-[**loscon23 Vortragende**](https://loscon23.cogneon.de/loscon23/speaker/)
+[**loscon23 Vortragende**](https://loscon23.cogneon.de/loscon23/speaker/){ .cg-button }
 
 #### WANN & WO?
 
