@@ -37,16 +37,16 @@ Um einen ersten Eindruck zu bekommen, wie der aktuelle Stand des **Corporate Lea
 - **55,5% der KMU setzen e-Learning bereits ein** (Großunternehmen: 66%)
 - **Räumliche und zeitliche Flexibilität** ist der entscheidende Vorteil von e-Learning (KMU: 87%, Großunternehmen 91%)
 - **Top 10 Lernformen und -tools:**
-  - Web Based Training (72%/66%)
-  - Virtuelle Klassenräume/Webinare (56%/49%)
-  - Wikis (52%/59%)
-  - Social Media (47%/48%)
-  - Blended Learning (45%/52%)
-  - Videobasierte Lernformen (40%/38%)
-  - Microblogging (24%/13%)
-  - Simulationen (15%/33%)
-  - Mobiles Lernen (13%/17%)
-  - Spielebasiertes Lernen, Serious Games (12%/20%)
+    - Web Based Training (72%/66%)
+    - Virtuelle Klassenräume/Webinare (56%/49%)
+    - Wikis (52%/59%)
+    - Social Media (47%/48%)
+    - Blended Learning (45%/52%)
+    - Videobasierte Lernformen (40%/38%)
+    - Microblogging (24%/13%)
+    - Simulationen (15%/33%)
+    - Mobiles Lernen (13%/17%)
+    - Spielebasiertes Lernen, Serious Games (12%/20%)
 - **Videobasiertes Lernen** ist auf dem Vormarsch
 - **IT** und **Management** sind die wichtigsten inhaltlichen Themen der e-Learning-Angebote; Soft Skills, Sprachen und technische Fachkompetenzen bilden das Schlusslicht
 - Die drei wichtigsten **„Aspekte des digitalen Lernens“** sind Lern Management Systeme (LMS), IT-Sicherheit und Cloud-basierte Systeme

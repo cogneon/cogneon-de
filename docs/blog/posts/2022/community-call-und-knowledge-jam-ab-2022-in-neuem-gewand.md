@@ -43,8 +43,8 @@ Mit Tobias und Moritz habe ich vor über einem Jahr schonmal zur Idee gesprochen
 
 - Der lernOS Community Call wird zum **CONNECT Community Call** und der Cogneon Knowledge Jam wird zum **CONNECT Knowledge Jam**.
 - Beides findet wie der Call bisher schon jeweils am **1. Freitag im Monat von 13:00-16:00 Uhr** statt (außer Januar und August).
-  - Von **13:00-13:50 Uhr** machen wir den Community Call, bei dem wie bisher alle ihre Themen vorab einbringen können (Tool: MS Teams).
-  - Von **14:00-14:45 Uhr und 15:00-15:45 Uhr** machen wir zwei Session-Runden im Stil Knowledge Jam’s mit ein oder mehreren Tracks parallel (Tool: BYOT, Session Owner stellen ein Tool und tragen die Zugangsdaten im Sessionplan ein).
+    - Von **13:00-13:50 Uhr** machen wir den Community Call, bei dem wie bisher alle ihre Themen vorab einbringen können (Tool: MS Teams).
+    - Von **14:00-14:45 Uhr und 15:00-15:45 Uhr** machen wir zwei Session-Runden im Stil Knowledge Jam’s mit ein oder mehreren Tracks parallel (Tool: BYOT, Session Owner stellen ein Tool und tragen die Zugangsdaten im Sessionplan ein).
 - Für die Planung jedes Termins wird ein **Beitrag auf CONNECT** in der [Kategorie zum Community Call](https://community.cogneon.de/c/community/community-call/17) verwendet (Call und Jam gemeinsam in einem Beitrag), der über den Wiki-Modus von allen bearbeitet werden kann.
 
 Alle Termine werden im [Cogneon Kalender](/events) angekündigt, der per [iCal-Feed](webcal://cogneon.de/?post_type=tribe_events&tribe-bar-date=2022-01-23&ical=1) auch abonniert werden kann (z.B. in Outlook). Außerdem stehen die Termine im [CONNECT Community Kalender](https://community.cogneon.de/t/community-kalender-2022/3545), alle Dokumentationen befinden sich wie bisher [in der zugehörigen Kategorie](https://community.cogneon.de/c/community/community-call/17).

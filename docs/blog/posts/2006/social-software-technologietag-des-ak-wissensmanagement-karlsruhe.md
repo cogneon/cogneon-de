@@ -27,33 +27,33 @@ Technologietag des AK Wissensmanagement Karlsruhe (AKWM) zum Thema [Social Softw
 - **Referent:** Max Völkel ([FZI Karlsruhe](http://www.fzi.de/))
 - Vortrag: Präsentation
 - Definition von [Web 2.0](http://de.wikipedia.org/wiki/Web_2.0) als Liste der neuen Dienste, z.B.
-  - [G-Mail (Google-Mail)](http://mail.google.com/)
-  - Writely (von Google gekauft): Mehrbenutzer-Notepad im Web
-  - Backpack: Projektmanagement als Webdienst
-  - [Flickr](http://www.flickr.com/): Tagging von Fotos
-  - Mesh-Ups: Kombination von Websites zur Erzeugung von Mehrwert
+    - [G-Mail (Google-Mail)](http://mail.google.com/)
+    - Writely (von Google gekauft): Mehrbenutzer-Notepad im Web
+    - Backpack: Projektmanagement als Webdienst
+    - [Flickr](http://www.flickr.com/): Tagging von Fotos
+    - Mesh-Ups: Kombination von Websites zur Erzeugung von Mehrwert
 - Neue Formen von Spams in Blogs, Wikis oder durch Tags.
 - Behandelte Trends:
-  - [Blogs](http://de.wikipedia.org/wiki/Weblog)
-  - [Wiki](http://de.wikipedia.org/wiki/Wiki)
-  - Tagging
+    - [Blogs](http://de.wikipedia.org/wiki/Weblog)
+    - [Wiki](http://de.wikipedia.org/wiki/Wiki)
+    - Tagging
 - Fazit:
-  - Technisch neueste Entwicklung, die im Zusammenhang mit Web 2.0 genutzt werden: [AJAX](http://de.wikipedia.org/wiki/Ajax_(Programmierung))
-  - Soziale Entwicklung
-    - Kollektiv von Nutzern schafft Mehrwert
-    - Freie Inhalte setzen sich durch ([Creative Commons](http://creativecommons.org/), [Wikipedia](http://de.wikipedia.de/))
-    - Aufmerksamkeit wird monetarisiert (Text-Ads)
-    - Mehrwert-Websites durch Rekombination (Mesh-Ups)
+    - Technisch neueste Entwicklung, die im Zusammenhang mit Web 2.0 genutzt werden: [AJAX](http://de.wikipedia.org/wiki/Ajax_(Programmierung))
+    - Soziale Entwicklung
+        - Kollektiv von Nutzern schafft Mehrwert
+        - Freie Inhalte setzen sich durch ([Creative Commons](http://creativecommons.org/), [Wikipedia](http://de.wikipedia.de/))
+        - Aufmerksamkeit wird monetarisiert (Text-Ads)
+        - Mehrwert-Websites durch Rekombination (Mesh-Ups)
 - [Semantic Web](http://de.wikipedia.org/wiki/Semantic_Web)
 - Web 3.0
 - Demo: Wikipedia-Erweiterung zur Nutzung der Semantic-Web-Technologie
 - Einsatz: Semantic Wikipedia
-  - Export neu strukturierten Wissens (RDF-Standard)
-  - Zusammenwirken mit anderen Datenbanken (IMDB, CDDB, Amazon etc.)
-  - aggregierte Suche über mehrere Seiten
-  - Qualitätssteigerung durch Aufdecken von Widersprüchen und Fehlern
-  - Offene Fragen: Benutzerschnittstellen
-  - Automatisierte Hilfestellung (per statistische Auswertung)
+    - Export neu strukturierten Wissens (RDF-Standard)
+    - Zusammenwirken mit anderen Datenbanken (IMDB, CDDB, Amazon etc.)
+    - aggregierte Suche über mehrere Seiten
+    - Qualitätssteigerung durch Aufdecken von Widersprüchen und Fehlern
+    - Offene Fragen: Benutzerschnittstellen
+    - Automatisierte Hilfestellung (per statistische Auswertung)
 
 ---
 
@@ -67,15 +67,15 @@ Technologietag des AK Wissensmanagement Karlsruhe (AKWM) zum Thema [Social Softw
 - [Wikimedia](http://www.wikimedia.org/): Stiftung
 - [Mediawiki](http://www.mediawiki.de/): Wiki-Engine
 - Arbeitsfelder im Bereich der Wikipedia:
-  - [Wikimedia Commons](http://commons.wikimedia.org/wiki/Hauptseite) : Bilderdatenbank mit Tagging
-  - [Wikisource](http://de.wikisource.org/wiki/Hauptseite): Veröffentlichung von freien Primärtexten
-  - [Wikiquote](http://de.wikiquote.org/wiki/Hauptseite): Zitatensammlung
-  - [Wikinews](http://de.wikinews.org/wiki/Hauptseite): Tagesaktuelle Inhalte (noch nicht ausgereift)
+    - [Wikimedia Commons](http://commons.wikimedia.org/wiki/Hauptseite) : Bilderdatenbank mit Tagging
+    - [Wikisource](http://de.wikisource.org/wiki/Hauptseite): Veröffentlichung von freien Primärtexten
+    - [Wikiquote](http://de.wikiquote.org/wiki/Hauptseite): Zitatensammlung
+    - [Wikinews](http://de.wikinews.org/wiki/Hauptseite): Tagesaktuelle Inhalte (noch nicht ausgereift)
 - Ausblicke Wikipedia
-  - Semantic Wikipedia
-  - Modelle für Datenstrukturierung (z.B. zur sprachübergreifenden Datenpflege)
-  - WYSIWYG-Editoren
-  - Stabilisierung von Inhalten
+    - Semantic Wikipedia
+    - Modelle für Datenstrukturierung (z.B. zur sprachübergreifenden Datenpflege)
+    - WYSIWYG-Editoren
+    - Stabilisierung von Inhalten
 
 ---
 

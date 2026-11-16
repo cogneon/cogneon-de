@@ -1,6 +1,6 @@
 # Migrationsbericht
 
-Erzeugt: 2026-11-16T15:47:30
+Erzeugt: 2026-11-16T22:11:59
 Quelle: https://cogneon.de/
 
 ## Inventar
@@ -39,18 +39,18 @@ API-Namespaces: `ithemes-security/rpc`, `ithemes-security/v1`, `oembed/1.0`, `ac
 - categories_total: 29
 - categories_used_once_or_never: 6
 - category_redirects: 18
-- event_unchanged: 48
-- event_updated: 49
+- event_unchanged: 93
+- event_updated: 4
 - media_failed: 3
 - media_present: 562
-- page_frozen: 5
+- page_frozen: 6
 - page_redirected: 1
-- page_unchanged: 14
-- page_updated: 8
+- page_unchanged: 17
+- page_updated: 4
 - pages_headings_shifted: 54
 - post_images: 163
-- post_unchanged: 525
-- post_updated: 9
+- post_unchanged: 498
+- post_updated: 36
 - tag_redirects: 1149
 - tags_total: 1229
 - tags_used_once_or_never: 931

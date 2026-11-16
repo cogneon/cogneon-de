@@ -28,7 +28,7 @@ Im Gegensatz zur Nupedia, war es nun sämtlichen Internetnutzern nach einer einm
 - Beiträge sind so zu verfassen, dass sie dem Grundsatz des neutralen Standpunkts entsprechen.
 - Geltendes Recht – insbesondere das Urheberrecht – ist strikt zu beachten.
 - Andere Benutzer sind zu respektieren und die Wikiquette einzuhalten. <br>
-  Quelle: <http://de.wikipedia.org/wiki/Wikipedia>, abgerufen am 18.04.2011
+    Quelle: <http://de.wikipedia.org/wiki/Wikipedia>, abgerufen am 18.04.2011
 
 Demzufolge gab es gewisse Vorgaben, der Prozess Artikelerstellung und des Reviews wurde allerdings komplett im Sinne eines selbstorganisierten Peer Reviews des Netzwerks verstanden und gelebt. Innerhalb kürzester Zeit wuchsen die Anzahl der veröffentlichtenArtikel und die Popularität der Wikipedia weltweit. In 2003 wurde Nupedia mit weniger als 100 veröffentlichten Artikeln eingestellt.
 

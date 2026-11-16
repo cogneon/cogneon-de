@@ -16,9 +16,7 @@ wp:
 
 Die **2. Lernreise „Personal Knowledge Excellence“ (pke25)** findet vom **20. Oktober bis zum 28. November 202**5 statt. Die Teilnehmer:innen werden ihre Fähigkeiten in **sechs Modulen** zu **persönlichem Wissens- und Informationsmanagement** auf- und ausbauen. Jede Woche gibt es eine **Livesession** mit Impulsen (Montags, 13-14 Uhr) und eine Session zum **Austausch von Erfahrungen** (Donnerstags, 11-12 Uhr). Ein exklusiver **Community-Bereich** dient dem Dialog auch zwischen den Sessions.
 
-[Zur Lernreise anmelden
-
-Alleine, im Tandem oder im Learning Circle](https://pretix.eu/cogneon/pke25/){ .cg-button }
+[Zur Lernreise anmelden - Alleine, im Tandem oder im Learning Circle](https://pretix.eu/cogneon/pke25/){ .cg-button }
 
 ## Format
 
@@ -41,7 +39,7 @@ Oktober 20, 2025
 
 #### Modul 1: Personal Knowledge Excellence 101
 
-Das Modul u0022Personal Knowledge Excellence 101u0022 gibt einen Überblick über gute Praktiken des persönlichen Wissens- und Informationsmanagements sowie über die Grundhaltung für gesunde Wissensarbeit. Anhand des PKE-Referenzmodells wird ein erster Einblick in die Vertiefungsmodule der Lernreise gegeben.
+Das Modul "Personal Knowledge Excellence 101" gibt einen Überblick über gute Praktiken des persönlichen Wissens- und Informationsmanagements sowie über die Grundhaltung für gesunde Wissensarbeit. Anhand des PKE-Referenzmodells wird ein erster Einblick in die Vertiefungsmodule der Lernreise gegeben.
 
 Oktober 20, 2025
 
@@ -57,7 +55,7 @@ November 3, 2025
 
 #### Modul 3: GenAI als Wissensgefährte und Lernbegleiter
 
-Mit ChatGPT, Copilot, Claude u0026amp; Co. hat die generative künstliche Intelligenz (GenAI) Einzug in die Wissensarbeit gehalten. Doch welche Tools helfen mir wirklich kreativer und produktiver zu werden? In diesem Modul lernt ihr eine strukturierte Vorgehensweise kennen, mit der ihr entlang eurer wissensintensiven Aufgaben Verbesserungspotentiale durch KI entdecken und heben könnt.
+Mit ChatGPT, Copilot, Claude & Co. hat die generative künstliche Intelligenz (GenAI) Einzug in die Wissensarbeit gehalten. Doch welche Tools helfen mir wirklich kreativer und produktiver zu werden? In diesem Modul lernt ihr eine strukturierte Vorgehensweise kennen, mit der ihr entlang eurer wissensintensiven Aufgaben Verbesserungspotentiale durch KI entdecken und heben könnt.
 
 November 3, 2025
 
@@ -65,7 +63,7 @@ November 10, 2025
 
 #### Modul 4: Überblick behalten durch Wissensstrukturierung und -visualisierung
 
-Informationsflut, Datendschungel, Wissenschaos und u0022gewachseneu0022 Strukturen sind für dich bekannte Begriffe? In unserer schnelllebigen Zeit, in der sich gefühlt alles ständig ändert, ist es wichtig, einen kühlen Kopf zu bewahren und den Überblick zu behalten. In diesem Modul lernen wir mit Ansätzen wie MindMaps (z.B. Freeplane, Mindmanager), Whiteboards (z.B. MS Whiteboard, Conceptboard), Wissenslandkarten, Concept Maps etc. Wege kennen, das Chaos durch Visualisierung zu bändigen.
+Informationsflut, Datendschungel, Wissenschaos und "gewachsene" Strukturen sind für dich bekannte Begriffe? In unserer schnelllebigen Zeit, in der sich gefühlt alles ständig ändert, ist es wichtig, einen kühlen Kopf zu bewahren und den Überblick zu behalten. In diesem Modul lernen wir mit Ansätzen wie MindMaps (z.B. Freeplane, Mindmanager), Whiteboards (z.B. MS Whiteboard, Conceptboard), Wissenslandkarten, Concept Maps etc. Wege kennen, das Chaos durch Visualisierung zu bändigen.
 
 November 10, 2025
 
@@ -73,7 +71,7 @@ November 17, 2025
 
 #### Modul 5: Aufgaben- und Zielmanagement für Wissensarbeit
 
-Der Vordenker Peter Drucker hat gesagt, dass ein Schlüsselfaktor für die Produktivität von Wissensarbeit darin besteht, sich die Frage zu stellen: u0022Was ist eigentlich die Aufgabeu0022? In komplexen Umgebungen den Überblick über Aufgaben sowie eigene und fremde Ziele zu behalten ist nicht einfach. Dieses Modul vermittelt anhand konkreter Vorgehensweisen aus den Methoden Getting Things Done (GTD) und Objectives u0026amp; Key Results (OKR), wie man auch in turbulenten Zeiten den Fokus nicht verliert.
+Der Vordenker Peter Drucker hat gesagt, dass ein Schlüsselfaktor für die Produktivität von Wissensarbeit darin besteht, sich die Frage zu stellen: "Was ist eigentlich die Aufgabe"? In komplexen Umgebungen den Überblick über Aufgaben sowie eigene und fremde Ziele zu behalten ist nicht einfach. Dieses Modul vermittelt anhand konkreter Vorgehensweisen aus den Methoden Getting Things Done (GTD) und Objectives & Key Results (OKR), wie man auch in turbulenten Zeiten den Fokus nicht verliert.
 
 November 17, 2025
 
@@ -81,7 +79,7 @@ November 24, 2024
 
 #### Modul 6: Wissen teilen mit dem Team, der Organisation und der Welt
 
-Frei nach John Donne können wir sagen u0022Niemand ist eine Insel des Wissensu0022. Wir stehen mit unserem Wissen auf den Schultern von Riesen. Wir lernen mit anderen und von anderen. Und deshalb ist es wichtig, dass wir unser Wissen auch teilen (#SharingIsCaring). Wie das ganz einfach mit Instrumenten wie Websites/Weblogs (z.B. Sharepoint, WordPress), Wikis (z.B. Confluence, Mediawiki), Podcasts/Videoblogs (z.B. Sharepoint, Stream, Youtube) u0026amp; Co. funktioniert, ist Thema dieses Moduls.
+Frei nach John Donne können wir sagen "Niemand ist eine Insel des Wissens". Wir stehen mit unserem Wissen auf den Schultern von Riesen. Wir lernen mit anderen und von anderen. Und deshalb ist es wichtig, dass wir unser Wissen auch teilen (#SharingIsCaring). Wie das ganz einfach mit Instrumenten wie Websites/Weblogs (z.B. Sharepoint, WordPress), Wikis (z.B. Confluence, Mediawiki), Podcasts/Videoblogs (z.B. Sharepoint, Stream, Youtube) & Co. funktioniert, ist Thema dieses Moduls.
 
 November 24, 2024
 
@@ -89,8 +87,6 @@ November 24, 2024
 
 Die **Teilnahme** an der Lernreise kostet **€ 480,-**. Wenn ihr z.B. als **Lerngruppe** teilnehmen wollt oder als Weiterbildner:innen ein **Kontingent für eure Organisation** kaufen wollt, gewähren wir einen Nachlass für 5 Tickets (-20%) und 10 Tickets (-30%). **Gemeinnützige Organisationen** erhalten gegen Nachweis einen Rabatt von 50% auf alle Ticketkategorien (Rabattcode „pke25nonprofit“) bei der Anmeldung mit angeben.
 
-[Zur Lernreise anmelden
-
-Alleine, im Tandem oder im Learning Circle](https://pretix.eu/cogneon/pke25/){ .cg-button }
+[Zur Lernreise anmelden - Alleine, im Tandem oder im Learning Circle](https://pretix.eu/cogneon/pke25/){ .cg-button }
 
 [Click Here](/){ .cg-button }

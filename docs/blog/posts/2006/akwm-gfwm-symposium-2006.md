@@ -42,32 +42,32 @@ Dr.-Ing. Josef Hofer-Alfeis, Siemens AG München
 - Wissen (kodifiziert, individuell, organisational) ist versteckt in Geschäftsmodellen.
 - Auch Produktmodelle können als Wissenslandkarten genutzt werden.
 - 3 Erfolgsfaktoren für Wissensmanagement
-  - Business driven knowledge strategy
-  - interdisciplinary KM supporting organization
-  - Collaboration with management disciplines (via intellectual capital management)
+    - Business driven knowledge strategy
+    - interdisciplinary KM supporting organization
+    - Collaboration with management disciplines (via intellectual capital management)
 - 3 Voraussetzungen für erfolgreiches Wissensmanagement
-  - Wissensmodell, das alle Wissensarten/-typen umfasst)
-  - Soziotechnisches KM-System
-  - Standardisierte Prozesse für Wissen und Wissensmanagement
+    - Wissensmodell, das alle Wissensarten/-typen umfasst)
+    - Soziotechnisches KM-System
+    - Standardisierte Prozesse für Wissen und Wissensmanagement
 
 ## Vom Wissen zur Kompetenz – der neue Realismus wissensorientierter Unternehmensführung
 
 Prof. Dr.-Ing. Klaus North, Hochschule Wiesbaden
 
 - Begriff „Kompetenz“
-  - Fähigkeit, situationsadäquat zu handeln
-  - Disposition zur Selbsorganisation
-  - die angemessene Umsetzung/Anwendung von Wissen in der jeweiligen Situation
+    - Fähigkeit, situationsadäquat zu handeln
+    - Disposition zur Selbsorganisation
+    - die angemessene Umsetzung/Anwendung von Wissen in der jeweiligen Situation
 - Kluft zwischen Wissen und Handeln
-  - Individuelles Wollen (Motivation, Werte)
-  - Wissen und Können
-  - Situative Ermöglichung (Rahmenbedingungen)
-  - Soziales Dürfen und Wollen (Normen, Regelungen)
+    - Individuelles Wollen (Motivation, Werte)
+    - Wissen und Können
+    - Situative Ermöglichung (Rahmenbedingungen)
+    - Soziales Dürfen und Wollen (Normen, Regelungen)
 - Vom Wissen zur Kompetenz
-  - Intrinsische Motivation fördern, Feedback geben
-  - Reflektieren, Wissensspirale in Gang setzen
-  - Selbstorganisation, Handungs-Spiel-Räume
-  - Werte vorleben, erwünschtes Verhalten einfordern
+    - Intrinsische Motivation fördern, Feedback geben
+    - Reflektieren, Wissensspirale in Gang setzen
+    - Selbstorganisation, Handungs-Spiel-Räume
+    - Werte vorleben, erwünschtes Verhalten einfordern
 - http://www.kompetenzen-managen.de/
 
 Prof. Dr. Rudi Studer, Universität Karlsruhe<br>
@@ -83,10 +83,10 @@ Prof. Dr.-Ing. Norbert Gronau, Universität Potsdam
 
 - Marktstudie Anwendungen und Systeme für das Wissensmanagement
 - Grundfunktionen von Wissensmanagement-Systemen
-  - Content Management
-  - Information Retrieval
-  - Visualisierung und Aggregation
-  - Zusammenarbeit (Collaboration)
+    - Content Management
+    - Information Retrieval
+    - Visualisierung und Aggregation
+    - Zusammenarbeit (Collaboration)
 - vgl. Diplomarbeit Kristina Makedonska (bei Cogneon): „Konzeption und Entwicklung eines auf Social-Software-Prinzipien basierenden Systems zum Wissensmanagement in Unternehmen“
 
 ## Erfolgsfaktor Kundenwissen – Praxisbeispiele aus Vertrieb und Marketing
@@ -100,24 +100,24 @@ Anja Flicker, reinisch AG Karlsruhe
 - [Wissensbilanz made in Germany](http://akwissensbilanz.org/leitfaeden-und-mehr/) (s. [AK Wissensbilanz](http://www.akwissensbilanz.org/))
 - Wissensbilanz bei reinisch
 - Projektteam
-  - 10-12 Mitarbeiter vertreten das Unternehmen
-  - aus verschiedenen Standorten
-  - verschiedene Hierarchiestufen
-  - verschiedene Dienstleistungsbereiche
+    - 10-12 Mitarbeiter vertreten das Unternehmen
+    - aus verschiedenen Standorten
+    - verschiedene Hierarchiestufen
+    - verschiedene Dienstleistungsbereiche
 - Fazit zum Erstellungsprozess der Wissensbilanz („Intellectual capital report“, ICR)
-  - Potenzialportfolio zeigt Handlungsbedarf
-  - Wirkungsnetz zeigt Wechselbeziehungen zwischen Einzelfaktoren
-  - Von einander abweichende Bewertungen werden im Projektteam diskutiert
-  - Zusammenhang zwischen Systemen wird gesehen, nicht nur einzelnde Bereiche und Handlungsfelder
+    - Potenzialportfolio zeigt Handlungsbedarf
+    - Wirkungsnetz zeigt Wechselbeziehungen zwischen Einzelfaktoren
+    - Von einander abweichende Bewertungen werden im Projektteam diskutiert
+    - Zusammenhang zwischen Systemen wird gesehen, nicht nur einzelnde Bereiche und Handlungsfelder
 - Nutzung des ICR
-  - interne und externe Kommunikation
-  - Maßnahmen-Workshop
-  - Steckbrief für Einflussfaktoren
-  - Priorisierung der Einflussfaktoren
+    - interne und externe Kommunikation
+    - Maßnahmen-Workshop
+    - Steckbrief für Einflussfaktoren
+    - Priorisierung der Einflussfaktoren
 - Definition von Maßnahmen
-  - reinsich Academy (Führungskompetenzen verbessern)
-  - Verbesserung der Kommunikationsarchitektur (Informations- und Wissensflüsse verbessern)
-  - Einführung von Projektreviews, bessere Kundenbetreuung durch Debriefing
+    - reinsich Academy (Führungskompetenzen verbessern)
+    - Verbesserung der Kommunikationsarchitektur (Informations- und Wissensflüsse verbessern)
+    - Einführung von Projektreviews, bessere Kundenbetreuung durch Debriefing
 - Wichtigstes Lessons Learned: Maßnahmen müssen bereits Bestandteil des ICR sein. Eine getrennte Initiative „Maßnahmen-Workshop“ ist weniger wirksam.
 
 ## Intelligence, Ignorance and Knowledge
@@ -135,10 +135,10 @@ knowledge navigation: dealing with what you not know
 - social intelligence (Stefan Dedijer)
 - Intellectual capital  management for cities: Ragusa
 - social ignorance index, ignorance areas, types of not knowing (see Urlsula Schneider)
-  - Ignorance is an exponential function of knowledge.
-  - Different types of ignorance serve different functions.
-  - The most dangerous type is the ignorance of ignorance (the blind spot).
-  - The most viable type is the way humans filter signals in order to survive in a sea of signals and information overload.
+    - Ignorance is an exponential function of knowledge.
+    - Different types of ignorance serve different functions.
+    - The most dangerous type is the ignorance of ignorance (the blind spot).
+    - The most viable type is the way humans filter signals in order to survive in a sea of signals and information overload.
 - trade of knowledge
 - global competitiveness: islands perfom better
 - SQ: Synapses quotient

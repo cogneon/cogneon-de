@@ -40,11 +40,11 @@ Alle Räume sind für hybrides Arbeiten ausgestattet (z.B. Einwahl von Kolleg:in
 
 1. **Vorbereitung**: Über ein strukturiertes Formular können Sie Ihre Themen für die Gespräche festlegen. Sie stellen uns (bis zu zehn) relevante Schlüsseldokumente zur Verfügung.
 2. **Ihr Austausch**: In moderierten 45-Minuten-Sessions teilen 3-4 Personen ihr Wissen, z.B. zu:
-   - Strategie & Zielen
-   - Projekten & Prozessen
-   - Methoden & Fachwissen
-   - Kunden, Märkten & Wettbewerbern
-   - Lieferanten & Partnern
+    - Strategie & Zielen
+    - Projekten & Prozessen
+    - Methoden & Fachwissen
+    - Kunden, Märkten & Wettbewerbern
+    - Lieferanten & Partnern
 3. **Nachbereitung**: Wir erzeugen das Transkript, Sie bekommen die Podcasts (mp3-Dateien) und die KI-Aufbereitung (Formate: txt, md, docx, html, pdf).
 
 ## Die Optionen

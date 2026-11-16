@@ -25,10 +25,10 @@ Die Aufgabe meiner Diplomarbeit besteht darin, Schwächen von bisherigen IT-Syst
 - Analyse von Schwächen von IT-Systemen für das Wissensmanagement anhand der [Studie Anwendungen und Systeme für das Wissensmanagement](http://www.wissensmanagement-studie.de/)
 - Analyse der Ergebnisse aus der Umfrage Schwächen von IT-Systeme für das Wissensmanagement
 - Analyse von Verbesserungspotentialen aus interdisziplinärer Sicht
-  - anhand von bestehenden Wissensmanagement Frameworks
-  - anhand von etablierten Wissensmanagement Methoden
-  - anhand von Diszilinen aus der Wissenslandkarte der [GfWM](http://www.gfwm.de/)
-  - anhand von Erfolgskriterien bestehender<br>
-    Social-Software-Systeme und –Dienste
+    - anhand von bestehenden Wissensmanagement Frameworks
+    - anhand von etablierten Wissensmanagement Methoden
+    - anhand von Diszilinen aus der Wissenslandkarte der [GfWM](http://www.gfwm.de/)
+    - anhand von Erfolgskriterien bestehender<br>
+        Social-Software-Systeme und –Dienste
 - Konzeption und Realisierung eines auf Social-Software-Prinzipien basierenden<br>
-  IT-Systems für das Wissensmanagement
+    IT-Systems für das Wissensmanagement

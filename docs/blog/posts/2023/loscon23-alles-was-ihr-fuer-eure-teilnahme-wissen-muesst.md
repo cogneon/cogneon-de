@@ -31,14 +31,14 @@ Bei **Vor-Ort-Teilnahme:**
 
 - **10.07.:** Wir werden uns sicher am Vorabend der loscon23 wieder auf ein Tages-Abschluss-Bierchen treffen. Wann und wo steht noch nicht fest, wir werden das im Kanal Lobby auf Discord posten.
 - **11.07.:** Adresse der Kaiserburg ist **Burg 2 in 90403 Nürnberg**, unser Einlass ist links am Gebäude am 5-Eck-Turm ([Google Maps](https://goo.gl/maps/DMumnfcVXZJRA4856))
-  - **Einlass:** die Anmeldung am Tor öffnen wir um 11 Uhr (ACHTUNG: an Tag 1 gibt es KEIN Mittagessen, Selbstversorgung). Für den Einlass braucht ihr den QR-Code eures Tickets (elektronisch reicht, bitte nicht drucken). Ihr habt den Link zum Ticket mit einer Email mit dem Betreff „[loscon23] Deine Bestellung“ erhalten. Falls ihr die Mail nicht mehr findet, könnt ihr euch [das Ticket erneut zusenden lassen](https://pretix.eu/cogneon/loscon22/) (unten unter „Wenn du bereits ein Ticket bestellt hast“).
-  - **WLAN:** aus der Erfahrung von 2022 wissen wir, dass das Besucher-WLAN der Burg nicht sooo dolle ist, bringt Euch gerne selber Netzwerk auf dem Smartphone (Hotspot) oder kleine mobile Router mit, um auf der sicheren Seite zu sein. Wir werden zusätzlich wieder ein eigenen LTE-Würfel mitbringen.
-  - **13:00 Uhr Beginn:** wir starten pünktlich um 13:00 Uhr, schaut, dass ihr auf jeden Fall mindestens 10 Minuten vorher im Saal seid.
+    - **Einlass:** die Anmeldung am Tor öffnen wir um 11 Uhr (ACHTUNG: an Tag 1 gibt es KEIN Mittagessen, Selbstversorgung). Für den Einlass braucht ihr den QR-Code eures Tickets (elektronisch reicht, bitte nicht drucken). Ihr habt den Link zum Ticket mit einer Email mit dem Betreff „[loscon23] Deine Bestellung“ erhalten. Falls ihr die Mail nicht mehr findet, könnt ihr euch [das Ticket erneut zusenden lassen](https://pretix.eu/cogneon/loscon22/) (unten unter „Wenn du bereits ein Ticket bestellt hast“).
+    - **WLAN:** aus der Erfahrung von 2022 wissen wir, dass das Besucher-WLAN der Burg nicht sooo dolle ist, bringt Euch gerne selber Netzwerk auf dem Smartphone (Hotspot) oder kleine mobile Router mit, um auf der sicheren Seite zu sein. Wir werden zusätzlich wieder ein eigenen LTE-Würfel mitbringen.
+    - **13:00 Uhr Beginn:** wir starten pünktlich um 13:00 Uhr, schaut, dass ihr auf jeden Fall mindestens 10 Minuten vorher im Saal seid.
 
 **Bei Online-Teilnahme**
 
 - **05.07.:** alle **Einwahllinks** findet ihr **AB DEM 10.07.** in dem **Termin „lernOS Convention 2023“**, den wir Euch geschickt haben **und auf Discord im Kanal [#programm](/tag/programm/)**.
-  - **13:00 Uhr Eröffnung:** dieses Jahr starten wir direkt in Microsoft Teams, es gibt parallel keinen Livestream. Der Chat zur Eröffnung läuft über den Kanal [#eppeleinsaal](/tag/eppeleinsaal/)-bühne in Discord. Tipp: pünktlich da sein, es gibt natürlich wieder ein Opening-Video ;-)
+    - **13:00 Uhr Eröffnung:** dieses Jahr starten wir direkt in Microsoft Teams, es gibt parallel keinen Livestream. Der Chat zur Eröffnung läuft über den Kanal [#eppeleinsaal](/tag/eppeleinsaal/)-bühne in Discord. Tipp: pünktlich da sein, es gibt natürlich wieder ein Opening-Video ;-)
 
 **TIPP:** in der Fußzeile des Programms ist [eine Online-Hilfe zur Veranstaltung](https://loscon23.cogneon.de/loscon23/page/hilfe/) verlinkt.
 

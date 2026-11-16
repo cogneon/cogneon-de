@@ -52,7 +52,7 @@ Im Vorfeld der **lernOS Convention** führen wir das [AI Crowdsourcing 2026](/20
 
 29. Januar 2026
 
- Keine Kommentare
+    Keine Kommentare
 
 Alle fühlen gerade, dass wir bei Künstlicher Intelligenz im Hype Cycle über den Berg der überzogenen…
 

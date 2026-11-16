@@ -24,17 +24,17 @@ Here are some of my notes for the first day of the World Conference on Intellect
 
 - New Public Mangement (NPM)
 - Measurement
-  - Value of scientific paper = Value of the journal publishing it
-  - Measurement tools replace peer review
+    - Value of scientific paper = Value of the journal publishing it
+    - Measurement tools replace peer review
 - Basic assumptions from „mainstream economics“ are wrong but not questioned
-  - Efficiency infreases with competition
-  - Profit seeking strengthen competition
+    - Efficiency infreases with competition
+    - Profit seeking strengthen competition
 - Market Theory does not apply to NPM (no demand/supply, no price, no self regulation mechanisms)
 - [Tournament Theory](http://en.wikipedia.org/wiki/Tournament_theory) (sport competition) may be better
 - Economics of Singularities (Multi-dimensionality, Incommensurability, Radical Quality Uncertainty)
-  - Refusal of the gain/competition/efficiency proposition as a general proposal
-  - Refusal of the postulate of goods and services general equivalence
-  - Refusal of the usual goods and services definitions based either on differentiation or the distinction between „experience“ and „research“ products
+    - Refusal of the gain/competition/efficiency proposition as a general proposal
+    - Refusal of the postulate of goods and services general equivalence
+    - Refusal of the usual goods and services definitions based either on differentiation or the distinction between „experience“ and „research“ products
 - Homo singularis: Max Weber – differentiation of symbolic action (value criteria) and material action (profit maximization)
 - Judgement devices in business (brands, critics, guides, networks, top-10) and research (journals, critics, networks)
 - Amount of citation as quality indicator
@@ -55,17 +55,17 @@ Here are some of my notes for the first day of the World Conference on Intellect
 - Definition intangible assets from Baruch Lev: „claims on future benefits that do not have a physical or financial embodiment“
 - Nakamura (2001), Corrado, Hulten and Sichel (2005)
 - Intellectual Assets
-  - Computerised information (software, databases)
-  - Innovative properties (patents, copyrights, trademarks, designs)
-  - Economic competencies(?) (brands)
+    - Computerised information (software, databases)
+    - Innovative properties (patents, copyrights, trademarks, designs)
+    - Economic competencies(?) (brands)
 - In 1998 companies started to invest more in intangibles than in tangibles
 - Reasons:
-  - rising educational attainment
-  - many products become more knowledge-intensive
-  - with globalisation/deregulation competitive advantage increasingly driven by innovation
-  - fragmentation of value chain
-  - new ICT increase the value of intangibles
-  - growth of the service sector
+    - rising educational attainment
+    - many products become more knowledge-intensive
+    - with globalisation/deregulation competitive advantage increasingly driven by innovation
+    - fragmentation of value chain
+    - new ICT increase the value of intangibles
+    - growth of the service sector
 - Van Ark (2009)
 - In the project OECD will focus on measurement, taxation, data, corporate reporting, competition, knowledge networks and markets, global value chain
 - # of Design Schools in china went from 40 to over 400 („our clothes are Italian, French and German, so the profits are all leaving China … We need to create brands, and fast“)
@@ -73,17 +73,17 @@ Here are some of my notes for the first day of the World Conference on Intellect
 ## Vincent Delbecque: Investments in Intangibles and Economic Growth Performance
 
 - Types of Intangibles
-  - Software & Databases
-  - R&D
-  - Artistic originals
-  - Architecture and engineering design
-  - Advertising
-  - Organization
-  - Training
+    - Software & Databases
+    - R&D
+    - Artistic originals
+    - Architecture and engineering design
+    - Advertising
+    - Organization
+    - Training
 - Retail, Telecom, Pharma, Aircraft invest a lot in Intangibles
 - Findings
-  - intangible investment has a positive impact on production
-  - intangible asset is highly industry-specific – therefor need for industry-level innovation policy (no one-size-fits-all)
+    - intangible investment has a positive impact on production
+    - intangible asset is highly industry-specific – therefor need for industry-level innovation policy (no one-size-fits-all)
 
 ## Bruno Menard: Human Capital and the Digital Enterprise
 
@@ -109,14 +109,14 @@ Here are some of my notes for the first day of the World Conference on Intellect
 - 3000 companies were analysed
 - Longitudinal analysis 2006 (n=2342)-2010 (3401)
 - Top fields of action
-  - Internal information systems
-  - project learnings
-  - internet access in the workplace
-  - transfer of experiences
-  - continuous HR training
-  - identification of strategic knowledge gaps
-  - networking of experts
-  - implementation of new ideas
+    - Internal information systems
+    - project learnings
+    - internet access in the workplace
+    - transfer of experiences
+    - continuous HR training
+    - identification of strategic knowledge gaps
+    - networking of experts
+    - implementation of new ideas
 - In the next 12 month transfer of experiences, project learning and knowledge strategies are the top fields companies plan to invest
 - Knowledge identification top 4: direct customer relation, evaluation of customer complaints, analysis of mistakes, identification of key employees
 - Used knowledge lifecycle: knowledge identifikation, diffusion, retention, use

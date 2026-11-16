@@ -26,6 +26,6 @@ wp:
 - „Agilität“ ist ein inzwischen bekannter Begriff
 - Studie zum Vergleich von agilen und klassischen Projekten in der Software-Entwicklung
 - Erfolgfaktoren:
-  - Agilität: Agile Projekte sind erfolgreicher als klassische Projekte
-  - Kundenkontakt: Setzen Sie Prioritäten gemeinsam mit dem Kunden
-  - Erfahrung des Projektleiters: Erfahrene Projektleiter sind nicht zwingend besser, leiten aber die größeren und länge
+    - Agilität: Agile Projekte sind erfolgreicher als klassische Projekte
+    - Kundenkontakt: Setzen Sie Prioritäten gemeinsam mit dem Kunden
+    - Erfahrung des Projektleiters: Erfahrene Projektleiter sind nicht zwingend besser, leiten aber die größeren und länge

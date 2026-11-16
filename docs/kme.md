@@ -69,9 +69,7 @@ Entwicklung von [Ansätzen der Wissensaktivierung](https://podcasts.cogneon.io/@
 
 Du kannst uns jederzeit **eine E-Mail schreiben**, um ein konkretes Angebot anzufordern oder offene Fragen zu stellen. Alternativ kannst du uns unter [+49 911 39570830](tel:+4991139570830) auch **eine Sprachnachricht hinterlassen**.
 
-[Jetzt Angebot einholen
-
-Bitte korrekte Anschrift für Angebote angeben!](mailto:info@cogneon.de?subject=Anfrage%20KM%20Excellence){ .cg-button }
+[Jetzt Angebot einholen - Bitte korrekte Anschrift für Angebote angeben!](mailto:info@cogneon.de?subject=Anfrage%20KM%20Excellence){ .cg-button }
 
 ### Oft gestellte Fragen (FAQ)
 

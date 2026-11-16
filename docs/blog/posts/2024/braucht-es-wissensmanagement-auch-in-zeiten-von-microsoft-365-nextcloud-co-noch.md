@@ -24,15 +24,15 @@ In meiner täglichen Arbeit erlebe ich immer wieder Menschen und Organisationen,
 **Ganzheitliches Wissensmanagement** ist mehr, als nur die Bereitstellung von Technik. Bullinger et.al. haben das schon 1988 in ihrem viel zitierten **TOM-Modell** aufgezeigt (s.a. [mein Linkedin-Beitrag zur loscon22](https://www.linkedin.com/posts/simondueckert_wissensmanagement-loscon22-activity-6931498679979683841-eTSW?utm_source=share&utm_medium=member_desktop)):
 
 - **Technologie**
-  - Weiterentwicklung und Migration von IT Systemen
-  - Bedarfsermittlung und Feedbackschleife
+    - Weiterentwicklung und Migration von IT Systemen
+    - Bedarfsermittlung und Feedbackschleife
 - **Organisation**
-  - Klare Prozesse definieren und umsetzen (z.B. WM Zeiterfassung, WM Prozesse im Projekthandbuch)
-  - Schnittstelle zu anderen Abteilungen nutzen
+    - Klare Prozesse definieren und umsetzen (z.B. WM Zeiterfassung, WM Prozesse im Projekthandbuch)
+    - Schnittstelle zu anderen Abteilungen nutzen
 - **Mensch**
-  - Motivation und Kommunikation (z.B. Success Stories, Intranet, Events)
-  - Schulung (live, online)
-  - Zielsetzung pro Jobrolle, Messung
+    - Motivation und Kommunikation (z.B. Success Stories, Intranet, Events)
+    - Schulung (live, online)
+    - Zielsetzung pro Jobrolle, Messung
 
 Redewendungen wie **„Wissensmanagement wird eingeführt“** rühren daher, dass Wissensmanagement mit der Einführung von Technologien gleichgesetzt und mit deren Einführung oft auch als abgeschlossen betrachtet wird. Bei Prozess**organisation** wird meist nur auf Bereitstellungs- und Betriebsprozesse geachtet und die Motivation/Schulung der **Menschen** erfolgt meist nur in Bezug auf die jeweilige Technologie und nicht auf den Ende-zu-Ende Wissensprozess.
 

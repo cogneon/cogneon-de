@@ -30,9 +30,9 @@ It’s a pity but I can only be one day at this year’s Enterprise 2.0 Summit (
 - Speaker: Richard Collin ([@richardcollin](http://twitter.com/richardcollin))
 - „Enterprise 2.0 has nothing(!) to do with Web 2.0 … it’s a new model for the enterprise …“
 - Book tips:
-  - „The Future of Management“ by Gary Hamel; funny: the french translation means „the end of management“ (note: Gary Hamel also started the [Management Innovation Lab](http://www.managementlab.org/))
-  - Center of Creative Leadership – The Changing Nature of Leadership
-  - … and some more …
+    - „The Future of Management“ by Gary Hamel; funny: the french translation means „the end of management“ (note: Gary Hamel also started the [Management Innovation Lab](http://www.managementlab.org/))
+    - Center of Creative Leadership – The Changing Nature of Leadership
+    - … and some more …
 - Important is the „framework in which we are acting as person“ (Territory, Goods, Dow Jones, …); instead the „economy of goods“ the „economy of information“ is emerging and this changes everything („the ’north point‘ is changing and we have to manage the transition).
 - „The crisis is not behind us it is in front because it is no crisis it is a shift“.
 - Three major transitions: 1. invention of writing 2. invention of book 3. invention of internet
@@ -57,9 +57,9 @@ It’s a pity but I can only be one day at this year’s Enterprise 2.0 Summit (
 - Speaker: Cécile Demailly (Early Strategies)
 - Reports from study Towards Enterprise 2.0 – Making the change in the Cooperation (PDF, 2010)
 - Three success factors:
-  - Give it sense (organizational level: support strategic vision; individual level: must help in daily work; management level: must help create new management model)
-  - Make it balanced (change facilitation: people, knowledge, technology; change leadership: collaboration between IT, HR and Communication; change agency; change effectiveness: top-down/bottom-up; employee adoption)
-  - Sustain the change cycle (Awekening, Envisioning, Re-Architecting, Leverating and streching)
+    - Give it sense (organizational level: support strategic vision; individual level: must help in daily work; management level: must help create new management model)
+    - Make it balanced (change facilitation: people, knowledge, technology; change leadership: collaboration between IT, HR and Communication; change agency; change effectiveness: top-down/bottom-up; employee adoption)
+    - Sustain the change cycle (Awekening, Envisioning, Re-Architecting, Leverating and streching)
 - 30% of respondends said that ROI is intangible
 
 ## Efficient adoption of Web 2.0 – still a challenge for large companies
@@ -67,9 +67,9 @@ It’s a pity but I can only be one day at this year’s Enterprise 2.0 Summit (
 - Speaker: Juliette Girard (Renault Web 2.0 Programm Manager)
 - „Sharing knowledge is the key success factor for our company!“
 - 10 years ago Renault created a Business to Employee programm (not related to IT) with objectives:
-  - Improve individual performance (B2E (55.000 user, 8000 groups), B2B portals)
-  - Improve group performance (eCollaboration, virtual Workspaces, Social Networks)
-  - … on more … :)
+    - Improve individual performance (B2E (55.000 user, 8000 groups), B2B portals)
+    - Improve group performance (eCollaboration, virtual Workspaces, Social Networks)
+    - … on more … :)
 - „Motivation comes from fun, self-estime and generosity“.
 - Vision of Renault 2.0: External world and Corporate world: inform/dialogue (blogs, twitts, wiki, intranet, forum), build networks (online communities), develop collaboration and share/innovate (innovation jams).
 - Note: the slide for the collaboration services looks like MS SharePoint is used (first screen shot, yes it is MOSS :)
@@ -99,6 +99,6 @@ It’s a pity but I can only be one day at this year’s Enterprise 2.0 Summit (
 - „The major drivers of social software behind the firewall is communities … we need a comunity of community leaders“ (So true!)
 - „Several dozens of the managers at IBM are using social software“ (IBM has more than 40.000!)
 - Learnings
-  - In a 5 stage maturity model (1. See value 2. Recognize business use 3. Alltogether now 4. Integrate workflows 5. Shift perspective) IBM sees itself at between 3 and 4
-  - Different level of maturation (guidelines and governance, adoption, measurement, infrastructure)
-  - At the road ahead change management will be a big issue because change of behaviour takes time.
+    - In a 5 stage maturity model (1. See value 2. Recognize business use 3. Alltogether now 4. Integrate workflows 5. Shift perspective) IBM sees itself at between 3 and 4
+    - Different level of maturation (guidelines and governance, adoption, measurement, infrastructure)
+    - At the road ahead change management will be a big issue because change of behaviour takes time.
