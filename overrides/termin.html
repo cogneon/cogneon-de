@@ -1,0 +1,28 @@
+{#-
+  Ein Termin (docs/event/<slug>.md). Angaben stehen im Kopf der Datei:
+  beginn, ende, ganztags, ort {name, adresse}, online, kosten, anmeldung, kategorien.
+-#}
+{% extends "main.html" %}
+{% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
+{% block container %}
+{% import "partials/termine-daten.html" as daten %}
+{% set m = page.meta %}
+<div class="md-content cg-beitrag" data-md-component="content">
+  <article class="md-content__inner md-typeset">
+    <a id="__skip" tabindex="-1"></a>
+    <p class="cg-beitrag__meta"><a href="{{ 'events/' | url }}">Termine</a>{% for k in m.kategorien | d([]) %}<span aria-hidden="true">·</span><a href="{{ ('events/kategorie/' ~ m.kategorie_slugs[loop.index0] ~ '/') | url }}">{{ k }}</a>{% endfor %}</p>
+    {% if m.bild %}<img class="cg-beitrag__bild" src="{{ m.bild | url }}" alt="">{% endif %}
+    {{ page.content }}
+    <dl class="cg-termin">
+      <div><dt>Wann</dt><dd>{{ daten.termine.zeiten[page.url] | d(m.beginn, true) }}</dd></div>
+      {% if m.ort %}<div><dt>Wo</dt><dd>{{ m.ort.name }}{% if m.ort.adresse %}<br>{{ m.ort.adresse }}{% endif %}</dd></div>
+      {% elif m.online %}<div><dt>Wo</dt><dd>Online</dd></div>{% endif %}
+      {% if m.kosten %}<div><dt>Kosten</dt><dd>{{ m.kosten }}</dd></div>{% endif %}
+    </dl>
+    <div class="cg-beitrag__weiter">
+      {% if m.anmeldung %}<a class="cg-button" href="{{ m.anmeldung }}">Anmeldung und Details</a>{% endif %}
+      <a class="cg-link" href="{{ 'events/' | url }}">Alle Termine</a>
+    </div>
+  </article>
+</div>
+{% endblock %}

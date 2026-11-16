@@ -443,3 +443,10 @@ def test_featured_image_lands_in_frontmatter(server, tmp_path):
     assert list(with_image[0])[-1] == "wp"
     # zweiter Lauf ändert nichts mehr
     assert run_export(server, tmp_path, "--no-media") == 0
+
+
+def test_calendar_markup_is_removed():
+    source = ('<div class="tribe-events-schedule tribe-clearfix"><p>@</p></div><p>Text bleibt.</p>'
+              '<div class="tribe-block tribe-block__events-link"><button>Zum Kalender hinzufügen</button></div>')
+    cleaned = wp_export.Export.strip_calendar_markup(source)
+    assert "Text bleibt." in cleaned and "Kalender" not in cleaned and "@" not in cleaned

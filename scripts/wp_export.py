@@ -758,6 +758,16 @@ class Export:
 
     # -- Termine (The Events Calendar) -------------------------------------
 
+    @staticmethod
+    def strip_calendar_markup(source: str) -> str:
+        """Der Kalender umgibt die Beschreibung mit eigenen Bausteinen (Datum, Abo-Knopf,
+        Details). Die Angaben stehen im Kopf der Datei, die Bausteine entfallen."""
+        soup = BeautifulSoup(source, "html.parser")
+        for el in soup.find_all(class_=re.compile(r"^tribe-")):
+            if not el.decomposed:
+                el.decompose()
+        return str(soup)
+
     def event_items(self):
         """Alle veroeffentlichten Termine, auch vergangene. Die Schnittstelle des Kalenders
         blaettert anders als wp/v2: Liste unter 'events', Seitenzahl unter 'total_pages'."""
@@ -783,7 +793,7 @@ class Export:
         """Termine als docs/event/<slug>.md, unter ihrer alten Adresse /event/<slug>/."""
         for event in self.event_items():
             raw_html = event.get("description") or ""
-            conv = convert_html(raw_html, self.wp.base_url)
+            conv = convert_html(self.strip_calendar_markup(raw_html), self.wp.base_url)
             self.media.update(dict.fromkeys(conv.media))
             title = html.unescape(event["title"])
             meta: dict = {"title": title, "template": "termin.html",

@@ -74,3 +74,33 @@ URLs, die es als Seite nicht mehr gibt, brauchen einen Eintrag in `migration/red
 
 - `main` ist geschützt, Änderungen kommen per Pull Request.
 - Jeder Pull Request wird gebaut und getestet (Workflow **Build**).
+
+## Termine
+
+Jeder Termin ist eine Datei unter `docs/event/`. Der Dateiname wird zur Adresse:
+`docs/event/edmod27a.md` erscheint unter `/event/edmod27a/`.
+
+```markdown
+---
+title: Expert Debriefing Praxis-Ausbildung Frühjahr 2027
+template: termin.html
+beginn: 2027-03-11 09:00
+ende: 2027-03-12 17:00
+ort:
+  name: Cogneon Akademie
+  adresse: Bucherstr. 79a, 90419 Nürnberg
+kosten: 1.900 €
+anmeldung: https://pretix.eu/...       # Link zur Anmeldung
+kategorien: [Expert Debriefing Praxis-Ausbildung]
+kategorie_slugs: [edmod]
+---
+
+# Expert Debriefing Praxis-Ausbildung Frühjahr 2027
+
+Beschreibung des Termins.
+```
+
+Für ganztägige Termine `ganztags: true`, für Online-Termine `online: true` statt `ort`.
+Übersicht (`/events/`), Kategorie-Seiten, die Terminliste der Startseite und die
+Kalenderdatei `/events/cogneon.ics` entstehen daraus bei jedem Build. Vergangene
+Termine wandern von selbst ins Archiv.

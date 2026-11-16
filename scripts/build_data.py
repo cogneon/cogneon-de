@@ -156,6 +156,140 @@ def build_tags(root: Path) -> int:
     return len(tags)
 
 
+WOCHENTAGE = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+
+
+def as_datetime(value) -> dt.datetime | None:
+    if isinstance(value, dt.datetime):
+        return value
+    if isinstance(value, dt.date):
+        return dt.datetime.combine(value, dt.time())
+    if isinstance(value, str):
+        try:
+            return dt.datetime.fromisoformat(value.strip().replace(" ", "T"))
+        except ValueError:
+            return None
+    return None
+
+
+def zeitraum(start: dt.datetime, end: dt.datetime, all_day: bool) -> str:
+    """Lesbarer Zeitraum: 'Do, 24.09.2020, 11:45 - 15:30 Uhr' oder über mehrere Tage."""
+    tag = lambda d: f"{WOCHENTAGE[d.weekday()]}, {d:%d.%m.%Y}"   # noqa: E731
+    if start.date() == end.date():
+        return tag(start) if all_day else f"{tag(start)}, {start:%H:%M} - {end:%H:%M} Uhr"
+    if all_day:
+        return f"{tag(start)} - {tag(end)}"
+    return f"{tag(start)}, {start:%H:%M} Uhr - {tag(end)}, {end:%H:%M} Uhr"
+
+
+def all_events(root: Path) -> list[dict]:
+    """Alle Termine aus docs/event/*.md, nach Beginn sortiert."""
+    events = []
+    for path in sorted((root / "docs" / "event").glob("*.md")):
+        meta = frontmatter(path)
+        start = as_datetime(meta.get("beginn"))
+        if not start or not meta.get("title"):
+            continue
+        end = as_datetime(meta.get("ende")) or start
+        all_day = bool(meta.get("ganztags"))
+        ort = meta.get("ort") or {}
+        events.append({
+            "titel": str(meta["title"]), "slug": path.stem, "url": f"event/{path.stem}/",
+            "beginn": start, "ende": end, "ganztags": all_day,
+            "datum": f"{start:%d.%m.%Y}", "zeitraum": zeitraum(start, end, all_day),
+            "ort": "Online" if meta.get("online") and not ort else str(ort.get("name") or ""),
+            "adresse": str(ort.get("adresse") or ""),
+            "kategorien": list(zip(meta.get("kategorien") or [], meta.get("kategorie_slugs") or [])),
+            "anmeldung": str(meta.get("anmeldung") or ""),
+        })
+    events.sort(key=lambda e: e["beginn"])
+    return events
+
+
+def ics_text(value: str) -> str:
+    return value.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
+
+
+def ics_fold(line: str) -> str:
+    """Zeilen nach 75 Bytes umbrechen, wie es das Kalenderformat verlangt."""
+    out, current = [], ""
+    for char in line:
+        if len((current + char).encode("utf-8")) > 74:
+            out.append(current)
+            current = " "
+        current += char
+    return "\r\n".join(out + [current])
+
+
+def build_ics(events: list[dict], site_url: str, stamp: dt.datetime) -> str:
+    from zoneinfo import ZoneInfo
+
+    berlin, utc = ZoneInfo("Europe/Berlin"), ZoneInfo("UTC")
+    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Cogneon//cogneon.de//DE",
+             "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "X-WR-CALNAME:Cogneon Termine", "X-WR-TIMEZONE:Europe/Berlin"]
+    for e in events:
+        lines += ["BEGIN:VEVENT", f"UID:{e['slug']}@cogneon.de", f"DTSTAMP:{stamp:%Y%m%dT%H%M%SZ}"]
+        if e["ganztags"]:
+            lines += [f"DTSTART;VALUE=DATE:{e['beginn']:%Y%m%d}",
+                      f"DTEND;VALUE=DATE:{e['ende'].date() + dt.timedelta(days=1):%Y%m%d}"]
+        else:
+            for key, moment in (("DTSTART", e["beginn"]), ("DTEND", e["ende"])):
+                lines.append(f"{key}:{moment.replace(tzinfo=berlin).astimezone(utc):%Y%m%dT%H%M%SZ}")
+        lines.append("SUMMARY:" + ics_text(e["titel"]))
+        place = ", ".join(x for x in (e["ort"], e["adresse"]) if x)
+        if place:
+            lines.append("LOCATION:" + ics_text(place))
+        lines += [f"URL:{site_url}{e['url']}", "END:VEVENT"]
+    lines.append("END:VCALENDAR")
+    return "\r\n".join(ics_fold(l) for l in lines) + "\r\n"
+
+
+def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de/") -> dict:
+    """Erzeugt alles rund um Termine: Daten für die Übersicht /events/, eine Seite je
+    Kategorie unter /events/kategorie/<slug>/ und die Kalenderdatei /events/cogneon.ics."""
+    events = all_events(root)
+    kurz = lambda e: {"titel": e["titel"], "zeitraum": e["zeitraum"], "datum": e["datum"],   # noqa: E731
+                      "ort": e["ort"], "url": e["url"]}
+    kommend = [e for e in events if e["ende"].date() >= today]
+    vergangen = [e for e in reversed(events) if e["ende"].date() < today]
+    archiv: list[dict] = []
+    for e in vergangen:
+        if not archiv or archiv[-1]["jahr"] != e["beginn"].year:
+            archiv.append({"jahr": e["beginn"].year, "termine": []})
+        archiv[-1]["termine"].append(kurz(e))
+    kategorien: dict[str, dict] = {}
+    for e in events:
+        for name, slug in e["kategorien"]:
+            kategorien.setdefault(slug, {"titel": name, "termine": []})["termine"].append(e)
+
+    target = root / "docs" / "events"
+    cat_dir = target / "kategorie"
+    if cat_dir.exists():
+        for old in cat_dir.glob("*.md"):
+            old.unlink()
+    head = "<!-- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -->\n"
+    for slug, cat in kategorien.items():
+        cat_dir.mkdir(parents=True, exist_ok=True)
+        meta = {"title": cat["titel"], "description": f"Termine: {cat['titel']}", "template": "termine.html",
+                "kommend": [{**kurz(e), "url": "../../../" + e["url"]} for e in cat["termine"] if e["ende"].date() >= today],
+                "vergangen": [{**kurz(e), "url": "../../../" + e["url"]} for e in reversed(cat["termine"]) if e["ende"].date() < today]}
+        (cat_dir / f"{slug}.md").write_text(
+            "---\n" + yaml.safe_dump(meta, allow_unicode=True, sort_keys=False, width=1000) + "---\n" + head,
+            encoding="utf-8")
+    if events:
+        target.mkdir(parents=True, exist_ok=True)
+        stamp = dt.datetime.combine(today, dt.time())
+        (target / "cogneon.ics").write_text(build_ics(events, site_url, stamp), encoding="utf-8", newline="")
+    daten = {"kommend": [kurz(e) for e in kommend], "archiv": archiv,
+             "zeiten": {e["url"]: e["zeitraum"] for e in events},
+             "kategorien": [{"titel": c["titel"], "url": f"events/kategorie/{s}/", "anzahl": len(c["termine"])}
+                            for s, c in sorted(kategorien.items(), key=lambda kv: kv[1]["titel"].lower())]}
+    (root / "overrides" / "partials" / "termine-daten.html").write_text(
+        "{#- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -#}\n"
+        "{% set termine = " + json.dumps(daten, ensure_ascii=False) + " %}\n", encoding="utf-8")
+    return {"kommend": kommend, "gesamt": len(events), "kategorien": len(kategorien)}
+
+
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
     posts = []
     for path in post_dir.rglob("*.md"):
@@ -189,7 +323,10 @@ def build(root: Path, today: dt.date, limit: int = 4) -> dict:
             continue
         highlights.append({k: v for k, v in item.items() if k != "gueltig_bis"})
 
-    termine = []
+    # Termine kommen aus docs/event/. Einträge in inhalte/aktuell.yml kommen dazu
+    # (zum Beispiel fremde Veranstaltungen ohne eigene Seite).
+    termine = [{"titel": e["titel"], "datum": e["datum"], "url": e["url"]}
+               for e in all_events(root) if e["ende"].date() >= today][:5]
     for item in data.get("termine") or []:
         day = as_date(item.get("tag"))
         if day and day < today:
@@ -234,6 +371,8 @@ def main() -> int:
     )
     print(f"{target.relative_to(args.root)}: {sum(len(j['beitraege']) for j in blog['archiv'])} Beiträge, "
           f"{len(blog['kategorien'])} Kategorien")
+    info = build_events(args.root, today)
+    print(f"docs/events/: {info['gesamt']} Termine, davon {len(info['kommend'])} kommend, {info['kategorien']} Kategorien")
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     return 0

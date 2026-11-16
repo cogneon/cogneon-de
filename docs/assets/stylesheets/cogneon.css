@@ -1182,3 +1182,28 @@ ol.cg-schritte > li,
   margin: 0 0 1.6rem;
   display: block;
 }
+
+/* Termin: Angaben unter dem Text */
+.md-typeset dl.cg-termin {
+  margin: 2rem 0 1.6rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--cg-bg-soft);
+  border-radius: var(--cg-radius);
+  display: grid;
+  gap: 0.8rem;
+}
+.cg-termin div {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.8rem;
+}
+.md-typeset .cg-termin dt {
+  font-weight: 600;
+  margin: 0;
+}
+.md-typeset .cg-termin dd {
+  margin: 0;
+}
+[data-md-color-scheme="slate"] .md-typeset dl.cg-termin {
+  background: var(--cg-karte);
+}

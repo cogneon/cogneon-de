@@ -68,3 +68,29 @@ def test_auszug_wird_an_wortgrenze_gekuerzt():
     text = "Wort " * 100
     result = build_data.excerpt(text, length=50)
     assert result.endswith(" …") and len(result) <= 52
+
+
+def test_termine(tmp_path):
+    kopf = "---\ntitle: {t}\ntemplate: termin.html\nbeginn: {b}\nende: {e}\n{x}---\n\nText\n"
+    write(tmp_path / "docs/event/alt.md", kopf.format(t="Alt", b="2025-03-01 10:00", e="2025-03-01 12:00",
+          x="kategorien: [Ausbildung]\nkategorie_slugs: [edmod]\n"))
+    write(tmp_path / "docs/event/neu.md", kopf.format(t="Neu, mit Komma", b="2026-12-01 09:00", e="2026-12-02 17:00",
+          x="ort:\n  name: Akademie\n  adresse: Bucherstr. 79a, 90419 Nürnberg\nkategorien: [Ausbildung]\nkategorie_slugs: [edmod]\n"))
+    write(tmp_path / "docs/event/tag.md", kopf.format(t="Ganztags", b="2026-11-14 00:00", e="2026-11-14 23:59", x="ganztags: true\nonline: true\n"))
+    (tmp_path / "overrides/partials").mkdir(parents=True)
+    heute = dt.date(2026, 11, 14)
+
+    info = build_data.build_events(tmp_path, heute)
+    assert [e["titel"] for e in info["kommend"]] == ["Ganztags", "Neu, mit Komma"]     # heute zählt noch als kommend
+    assert info["kommend"][1]["zeitraum"] == "Di, 01.12.2026, 09:00 Uhr - Mi, 02.12.2026, 17:00 Uhr"
+    assert info["kommend"][0]["zeitraum"] == "Sa, 14.11.2026" and info["kommend"][0]["ort"] == "Online"
+
+    ics = (tmp_path / "docs/events/cogneon.ics").read_bytes().decode("utf-8")
+    assert "SUMMARY:Neu\\, mit Komma" in ics and "DTSTART:20261201T080000Z" in ics       # 9 Uhr Berlin = 8 Uhr UTC
+    assert "DTSTART;VALUE=DATE:20261114" in ics and "DTEND;VALUE=DATE:20261115" in ics
+    assert ics.count("BEGIN:VEVENT") == 3 and all(len(l.encode()) <= 75 for l in ics.split("\r\n"))
+
+    kategorie = build_data.frontmatter(tmp_path / "docs/events/kategorie/edmod.md")
+    assert [t["titel"] for t in kategorie["kommend"]] == ["Neu, mit Komma"]
+    assert [t["titel"] for t in kategorie["vergangen"]] == ["Alt"]
+    assert build_data.build(tmp_path, heute)["termine"][0] == {"titel": "Ganztags", "datum": "14.11.2026", "url": "event/tag/"}
