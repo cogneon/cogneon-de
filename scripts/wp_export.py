@@ -139,6 +139,11 @@ class Converter(MarkdownConverter):
         result = super().convert_a(el, text, *args, **kwargs)
         if el.get("data-embed") and result.endswith(")"):
             result += "{ .embed }"
+        # Knöpfe aus WordPress (Handlungsaufforderungen) bleiben als Knopf erkennbar.
+        # "uagb-text-link" sind dagegen schlichte Weiterlesen-Links.
+        classes = el.get("class") or []
+        if "wp-block-button__link" in classes and "uagb-text-link" not in classes and result.strip().endswith(")"):
+            result = result.rstrip() + "{ .cg-button }"
         return result
 
 
@@ -824,6 +829,9 @@ class Export:
                 rel = unquote(urlparse(image).path).lstrip("/")
                 if rel.startswith("wp-content/"):
                     meta["bild"] = rel
+                    # Steht das Bild schon im Text, zeigt die Vorlage es oben nicht noch einmal.
+                    if re.sub(r"-\d+x\d+$", "", Path(rel).stem) in conv.markdown:
+                        meta["bild_im_text"] = True
             meta["wp"] = {"id": event["id"], "link": event["url"]}
             target = self.docs / "event" / f"{event['slug']}.md"
             item = {"id": event["id"], "link": event["url"], "modified": event.get("modified") or ""}

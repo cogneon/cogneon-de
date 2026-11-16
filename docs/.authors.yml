@@ -1,4 +1,7 @@
-# Autorenprofile. Beschreibung und Bild werden später gepflegt.
+# Autorenprofile.
+#   description  Kurztext für den Kasten unter jedem Beitrag (ein bis zwei Sätze)
+#   avatar       quadratisches Foto unter docs/assets/authors/, etwa 400 x 400 Pixel
+#   url          optional: Adresse einer Profilseite, erscheint als Link "Profil"
 authors:
   simon-dueckert:
     name: Simon Dückert
