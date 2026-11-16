@@ -1,0 +1,82 @@
+{#-
+  Termin-Übersicht unter /events/ und die Kategorie-Seiten unter
+  /events/kategorie/<slug>/. Die Daten erzeugt scripts/build_data.py aus den
+  Dateien unter docs/event/.
+-#}
+{% extends "main.html" %}
+{% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
+{% block container %}{% endblock %}
+{% block hero %}
+{% import "partials/termine-daten.html" as daten %}
+{% set m = page.meta %}
+{% set kategorie = m.kommend is defined %}
+{% set kommend = m.kommend if kategorie else daten.termine.kommend %}
+<div class="cg-page">
+
+  <section class="cg-section cg-section--kopf">
+    <div class="cg-wrap cg-stack">
+      {% if kategorie %}
+      <nav class="cg-pfad" aria-label="Pfad"><ol><li><a href="{{ 'events/' | url }}">Termine</a></li></ol></nav>
+      {% endif %}
+      <h1 class="cg-h1">{{ m.title }}</h1>
+      {% if m.einleitung %}<p class="cg-lead cg-muted">{{ m.einleitung }}</p>{% endif %}
+      {% if not kategorie %}
+      <ul class="cg-schlagworte cg-schlagworte--links" aria-label="Kategorien">
+        {% for k in daten.termine.kategorien %}<li><a href="{{ k.url | url }}">{{ k.titel }}</a></li>{% endfor %}
+      </ul>
+      <p><a class="cg-link" href="{{ 'events/cogneon.ics' | url }}">Kalender abonnieren (ICS)</a></p>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="cg-section cg-section--soft">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2 cg-h2--klein">Kommende Termine</h2>
+      {% if kommend %}
+      <ul class="cg-cards cg-cards--zwei">
+        {% for t in kommend %}
+        <li>
+          <a class="cg-card" href="{{ t.url if kategorie else t.url | url }}">
+            <span class="cg-card__marke">{{ t.zeitraum }}</span>
+            <span class="cg-card__titel">{{ t.titel }}</span>
+            {% if t.ort %}<span class="cg-card__text">{{ t.ort }}</span>{% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="cg-lead cg-muted">Zurzeit sind keine Termine angekündigt. Der <a href="{{ nav.homepage.url | url }}#newsletter">Newsletter</a> informiert über neue Termine.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if (kategorie and m.vergangen) or (not kategorie and daten.termine.archiv) %}
+  <section class="cg-section" id="archiv">
+    <div class="cg-wrap cg-stack cg-stack--weit">
+      <h2 class="cg-h2 cg-h2--klein">Vergangene Termine</h2>
+      {% if kategorie %}
+      <ul class="cg-liste">
+        {% for t in m.vergangen %}
+        <li><a href="{{ t.url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}</span></a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="cg-archiv">
+        {% for j in daten.termine.archiv %}
+        <details{% if loop.first %} open{% endif %}>
+          <summary><span class="cg-archiv__jahr">{{ j.jahr }}</span> <span class="cg-muted">{{ j.termine | length }} Termine</span></summary>
+          <ul class="cg-liste">
+            {% for t in j.termine %}
+            <li><a href="{{ t.url | url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}</span></a></li>
+            {% endfor %}
+          </ul>
+        </details>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+</div>
+{% endblock %}

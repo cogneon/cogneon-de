@@ -743,11 +743,130 @@ class Export:
                 meta["tags"] = tags
             if post.get("sticky"):
                 meta["pin"] = True
-            meta["wp"] = {"id": post["id"], "link": post["link"],
-                          "featured_media": post.get("featured_media") or None}
             body = with_title(meta["title"], add_excerpt_marker(conv.markdown))
             target = self.docs / "blog" / "posts" / post["date"][:4] / f"{post['slug']}.md"
+            # Das Beitragsbild traegt resolve_featured_media() ein. Bleibt es dasselbe,
+            # wird es hier uebernommen, damit ein zweiter Lauf nichts aendert.
+            old = read_frontmatter(target)
+            if post.get("featured_media") and (old.get("wp") or {}).get("featured_media") == post["featured_media"]:
+                for key in ("bild", "bild_alt", "bild_im_text"):
+                    if key in old:
+                        meta[key] = old[key]
+            meta["wp"] = {"id": post["id"], "link": post["link"],
+                          "featured_media": post.get("featured_media") or None}
             self._record("post", post, target, write_markdown(target, meta, body))
+
+    # -- Termine (The Events Calendar) -------------------------------------
+
+    @staticmethod
+    def strip_calendar_markup(source: str) -> str:
+        """Der Kalender umgibt die Beschreibung mit eigenen Bausteinen (Datum, Abo-Knopf,
+        Details). Die Angaben stehen im Kopf der Datei, die Bausteine entfallen."""
+        soup = BeautifulSoup(source, "html.parser")
+        for el in soup.find_all(class_=re.compile(r"^tribe-")):
+            if not el.decomposed:
+                el.decompose()
+        return str(soup)
+
+    def event_items(self):
+        """Alle veroeffentlichten Termine, auch vergangene. Die Schnittstelle des Kalenders
+        blaettert anders als wp/v2: Liste unter 'events', Seitenzahl unter 'total_pages'."""
+        page, got = 1, 0
+        while True:
+            resp = self.wp.get("tribe/events/v1/events", {
+                "per_page": 50, "page": page, "start_date": "2000-01-01", "status": "publish"})
+            if resp.status_code != 200:
+                if page == 1:
+                    self.problems.append(f"Termine nicht lesbar: HTTP {resp.status_code}")
+                return
+            data = resp.json()
+            for event in data.get("events", []):
+                yield event
+                got += 1
+                if self.args.limit and got >= self.args.limit:
+                    return
+            if page >= int(data.get("total_pages") or 1):
+                return
+            page += 1
+
+    def export_events(self):
+        """Termine als docs/event/<slug>.md, unter ihrer alten Adresse /event/<slug>/."""
+        for event in self.event_items():
+            raw_html = event.get("description") or ""
+            conv = convert_html(self.strip_calendar_markup(raw_html), self.wp.base_url)
+            self.media.update(dict.fromkeys(conv.media))
+            title = html.unescape(event["title"])
+            meta: dict = {"title": title, "template": "termin.html",
+                          "beginn": event["start_date"][:16], "ende": event["end_date"][:16]}
+            if event.get("all_day"):
+                meta["ganztags"] = True
+            venue = event.get("venue") or {}
+            if isinstance(venue, dict) and venue.get("venue"):
+                ort = {"name": html.unescape(venue["venue"])}
+                adresse = ", ".join(x for x in (venue.get("address"), " ".join(
+                    x for x in (venue.get("zip"), venue.get("city")) if x)) if x)
+                if adresse:
+                    ort["adresse"] = html.unescape(adresse)
+                meta["ort"] = ort
+            if event.get("is_virtual"):
+                meta["online"] = True
+            if event.get("cost"):
+                meta["kosten"] = html.unescape(event["cost"])
+            if event.get("website"):
+                meta["anmeldung"] = event["website"]
+            cats = [html.unescape(c["name"]) for c in event.get("categories") or [] if isinstance(c, dict)]
+            if cats:
+                meta["kategorien"] = cats
+                meta["kategorie_slugs"] = [c["slug"] for c in event["categories"] if isinstance(c, dict)]
+            image = (event.get("image") or {}).get("url") if isinstance(event.get("image"), dict) else None
+            if image:
+                self.media[image] = None
+                rel = unquote(urlparse(image).path).lstrip("/")
+                if rel.startswith("wp-content/"):
+                    meta["bild"] = rel
+            meta["wp"] = {"id": event["id"], "link": event["url"]}
+            target = self.docs / "event" / f"{event['slug']}.md"
+            item = {"id": event["id"], "link": event["url"], "modified": event.get("modified") or ""}
+            if self.args.raw:
+                raw = self.migration / "raw" / f"event_{event['slug']}.html"
+                raw.parent.mkdir(parents=True, exist_ok=True)
+                raw.write_text(raw_html, encoding="utf-8")
+            self._record("event", item, target, write_markdown(target, meta, with_title(title, conv.markdown)))
+
+    # -- Weiterleitungen (Plugin Redirection) -------------------------------
+
+    def export_redirects(self):
+        """Kurzlinks und Weiterleitungen aus WordPress nach migration/redirects-wordpress.map."""
+        rules, skipped, page = [], [], 0
+        while True:
+            resp = self.wp.get("redirection/v1/redirect", {"per_page": 200, "page": page})
+            if resp.status_code != 200:
+                if page == 0:
+                    self.problems.append(f"Weiterleitungen aus WordPress nicht lesbar: HTTP {resp.status_code}")
+                    return
+                break
+            data = resp.json()
+            items = data.get("items") or []
+            for item in items:
+                source = item.get("url") or ""
+                action = item.get("action_data")
+                target = action.get("url") if isinstance(action, dict) else action
+                usable = (item.get("enabled", True) and not item.get("regex") and source.startswith("/")
+                          and item.get("action_type") == "url" and isinstance(target, str) and target)
+                if usable:
+                    rules.append((source.rstrip("/") or "/", target))
+                else:
+                    skipped.append(f"{source} ({item.get('action_type')}, regex={bool(item.get('regex'))}, aktiv={item.get('enabled', True)})")
+            page += 1
+            if not items or page * 200 >= int(data.get("total") or 0):
+                break
+        lines = ["# Erzeugt von scripts/wp_export.py - nicht von Hand ändern.",
+                 "# Kurzlinks und Weiterleitungen, die in WordPress (Plugin Redirection) eingerichtet waren."]
+        lines += [f"{a} {b}" for a, b in sorted(set(rules))]
+        (self.migration / "redirects-wordpress.map").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        self.stats["wp_redirects"] = len(set(rules))
+        for entry in skipped:
+            self.problems.append(f"Weiterleitung nicht übernommen: {entry}")
 
     def export_pages(self):
         fields = "id,date,modified,slug,link,title,content,parent,menu_order,template"
@@ -785,19 +904,49 @@ class Export:
             self._record("page", page, target, write_markdown(target, meta, body))
 
     def resolve_featured_media(self):
-        """Beitragsbilder: IDs gesammelt aufloesen und zur Medienliste hinzufuegen."""
-        ids = []
+        """Beitragsbilder: IDs gesammelt aufloesen, zur Medienliste hinzufuegen und den
+        Pfad als 'bild' in den Kopf des Beitrags schreiben (fuer Blog-Uebersicht und Beitragskopf)."""
+        files: dict[int, list[Path]] = {}
         for row in self.url_map:
             if row["type"] != "post":
                 continue
-            wp = read_frontmatter(self.root / row["file"]).get("wp") or {}
+            path = self.root / row["file"]
+            wp = read_frontmatter(path).get("wp") or {}
             if wp.get("featured_media"):
-                ids.append(int(wp["featured_media"]))
+                files.setdefault(int(wp["featured_media"]), []).append(path)
+        ids = sorted(files)
         for start in range(0, len(ids), 100):
             chunk = ",".join(str(i) for i in ids[start:start + 100])
-            for media in self.wp.items("wp/v2/media", {"include": chunk, "_fields": "id,source_url"}):
-                if media.get("source_url"):
-                    self.media[media["source_url"]] = None
+            for media in self.wp.items("wp/v2/media", {"include": chunk, "_fields": "id,source_url,alt_text"}):
+                if not media.get("source_url"):
+                    continue
+                self.media[media["source_url"]] = None
+                rel = unquote(urlparse(media["source_url"]).path).lstrip("/")
+                if not rel.startswith("wp-content/"):
+                    continue
+                for path in files.get(media["id"], []):
+                    self.set_post_image(path, rel, html.unescape(media.get("alt_text") or ""))
+
+    def set_post_image(self, path: Path, image: str, alt: str):
+        match = FRONTMATTER_RE.match(path.read_text(encoding="utf-8"))
+        if not match:
+            return
+        meta = yaml.safe_load(match.group(1)) or {}
+        if meta.get("frozen"):
+            return
+        body = path.read_text(encoding="utf-8")[match.end():].lstrip("\n")
+        meta["bild"] = image
+        if alt:
+            meta["bild_alt"] = alt
+        # Steht das Bild schon im Text, zeigt die Vorlage es oben nicht noch einmal.
+        stem = re.sub(r"-\d+x\d+$", "", Path(image).stem)
+        if stem and stem in body:
+            meta["bild_im_text"] = True
+        wp = meta.pop("wp", None)        # 'wp' bleibt der letzte Eintrag
+        if wp is not None:
+            meta["wp"] = wp
+        write_markdown(path, meta, body)
+        self.stats["post_images"] += 1
 
     def download_media(self):
         for url in self.media:
@@ -905,20 +1054,30 @@ class Export:
                 self.write_tag_redirects()
             if "pages" in self.args.types:
                 self.export_pages()
-            if not self.args.no_media:
+            if "events" in self.args.types:
+                self.export_events()
+            if "redirects" in self.args.types:
+                self.export_redirects()
+            if "posts" in self.args.types:
                 self.resolve_featured_media()
+            if not self.args.no_media:
                 self.download_media()
         self.write_reports(inv)
         print("Ergebnis:", dict(sorted(self.stats.items())))
         print(f"Bericht: {self.migration / 'report.md'}")
-        return 1 if self.stats["media_failed"] else 0
+        # Einzelne Medien, die es in WordPress selbst nicht mehr gibt, stehen im Bericht
+        # und brechen den Lauf nicht ab. Fehlt mehr als jedes zehnte, stimmt etwas nicht.
+        failed, loaded = self.stats["media_failed"], self.stats["media_downloaded"] + self.stats["media_present"]
+        if failed:
+            print(f"WARNUNG: {failed} Medien nicht ladbar, siehe Bericht.")
+        return 1 if failed > max(3, loaded // 10) else 0
 
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--base-url", default="https://cogneon.de")
     parser.add_argument("--out", default="docs", help="Zielordner relativ zum Repo")
-    parser.add_argument("--types", default="posts,pages",
+    parser.add_argument("--types", default="posts,pages,events,redirects",
                         type=lambda s: [t.strip() for t in s.split(",") if t.strip()])
     parser.add_argument("--limit", type=int, help="nur die ersten N Einträge je Typ (Pilot)")
     parser.add_argument("--no-media", action="store_true", help="keine Medien laden")

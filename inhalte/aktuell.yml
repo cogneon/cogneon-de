@@ -3,8 +3,9 @@
 # highlights: erscheinen im Abschnitt "Im Blick". Der Eintrag mit "bild" wird
 #   groß dargestellt. Mit "gueltig_bis" (JJJJ-MM-TT) verschwindet ein Eintrag
 #   nach diesem Datum von selbst.
-# termine: bis die Anbindung an pretix steht, werden Termine hier gepflegt.
-#   Vergangene Termine (Feld "tag") fallen automatisch weg.
+# termine: Termine stehen als Dateien unter docs/event/ und erscheinen von selbst.
+#   Hier nur zusätzliche Einträge ohne eigene Seite (titel, datum, tag, url).
+#   Vergangene Einträge (Feld "tag") fallen automatisch weg.
 # blog: wird automatisch aus docs/blog/posts erzeugt, hier nichts eintragen.
 
 highlights:
@@ -23,15 +24,7 @@ highlights:
     link: blog/
     gueltig_bis: 2027-06-30
 
-termine:
-  - titel: "[Termin - Platzhalter]"
-    datum: "[TT.MM.JJJJ]"
-    tag: 2027-06-30
-    url: events/
-  - titel: "[Termin - Platzhalter]"
-    datum: "[TT.MM.JJJJ]"
-    tag: 2027-06-30
-    url: events/
+termine: []
 
 # Nur für die Vorschau, solange keine Beiträge im Repository liegen.
 blog_vorschau:

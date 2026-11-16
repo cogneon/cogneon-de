@@ -30,7 +30,8 @@
       <ul class="cg-cards cg-cards--zwei">
         {% for b in blog.neueste %}
         <li>
-          <a class="cg-card" href="{{ b.url | url }}">
+          <a class="cg-card{% if b.bild %} cg-card--bild{% endif %}" href="{{ b.url | url }}">
+            {% if b.bild %}<img src="{{ b.bild | url }}" alt="{{ b.bild_alt }}" loading="lazy">{% endif %}
             <span class="cg-card__vor">{{ b.datum }}{% if b.kategorie %} · {{ b.kategorie }}{% endif %}</span>
             <span class="cg-card__titel">{{ b.titel }}</span>
             <span class="cg-card__text">{{ b.auszug }}</span>

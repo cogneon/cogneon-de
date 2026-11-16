@@ -1150,3 +1150,60 @@ ol.cg-schritte > li,
   font-size: 0.7rem;
   margin-left: 0.2rem;
 }
+
+/* Beitragsbilder */
+.cg-card--bild {
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+.cg-card--bild img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.cg-card--bild > span {
+  margin: 0 1.6rem;
+}
+.cg-card--bild > span:first-of-type {
+  margin-top: 1.4rem;
+}
+.cg-card--bild > span + span {
+  margin-top: 0.7rem;
+}
+.cg-card--bild > span:last-child {
+  margin-bottom: 1.6rem;
+}
+.cg-beitrag__bild {
+  width: 100%;
+  height: auto;
+  border-radius: var(--cg-radius);
+  margin: 0 0 1.6rem;
+  display: block;
+}
+
+/* Termin: Angaben unter dem Text */
+.md-typeset dl.cg-termin {
+  margin: 2rem 0 1.6rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--cg-bg-soft);
+  border-radius: var(--cg-radius);
+  display: grid;
+  gap: 0.8rem;
+}
+.cg-termin div {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.8rem;
+}
+.md-typeset .cg-termin dt {
+  font-weight: 600;
+  margin: 0;
+}
+.md-typeset .cg-termin dd {
+  margin: 0;
+}
+[data-md-color-scheme="slate"] .md-typeset dl.cg-termin {
+  background: var(--cg-karte);
+}
