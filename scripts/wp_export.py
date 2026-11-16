@@ -949,7 +949,12 @@ class Export:
         self.write_reports(inv)
         print("Ergebnis:", dict(sorted(self.stats.items())))
         print(f"Bericht: {self.migration / 'report.md'}")
-        return 1 if self.stats["media_failed"] else 0
+        # Einzelne Medien, die es in WordPress selbst nicht mehr gibt, stehen im Bericht
+        # und brechen den Lauf nicht ab. Fehlt mehr als jedes zehnte, stimmt etwas nicht.
+        failed, loaded = self.stats["media_failed"], self.stats["media_downloaded"] + self.stats["media_present"]
+        if failed:
+            print(f"WARNUNG: {failed} Medien nicht ladbar, siehe Bericht.")
+        return 1 if failed > max(3, loaded // 10) else 0
 
 
 def main(argv=None) -> int:
