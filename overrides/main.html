@@ -1,6 +1,9 @@
 {#- Basis aller Seiten: Zensical-Thema mit Cogneon-Kopf und -Fuß. -#}
 {% extends "base.html" %}
 {% block fonts %}{% endblock %}
+{% block extrahead %}
+  <link rel="alternate" type="application/rss+xml" title="Cogneon Blog" href="{{ 'feed.xml' | url }}">
+{% endblock %}
 {% block analytics %}
 {#-
   Matomo ohne Cookies. Gezählt wird nur auf den unter extra.matomo.hosts

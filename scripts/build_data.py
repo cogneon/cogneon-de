@@ -290,6 +290,46 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
     return {"kommend": kommend, "gesamt": len(events), "kategorien": len(kategorien)}
 
 
+def build_feed(root: Path, site_url: str = "https://cogneon.de/", limit: int = 20) -> int:
+    """RSS-Feed der neuesten Beiträge als docs/feed.xml. Der Server liefert ihn auch
+    unter der alten WordPress-Adresse /feed/ aus."""
+    from email.utils import format_datetime
+    from xml.sax.saxutils import escape
+    from zoneinfo import ZoneInfo
+
+    posts = all_posts(root / "docs" / "blog" / "posts")[:limit]
+    if not posts:
+        return 0
+    berlin = ZoneInfo("Europe/Berlin")
+    stamp = lambda day: format_datetime(dt.datetime.combine(day, dt.time(8), tzinfo=berlin))   # noqa: E731
+    items = []
+    for p in posts:
+        link = site_url + p["url"]
+        cats = "".join(f"\n      <category>{escape(c)}</category>" for c in p["kategorien"] + p["schlagworte"])
+        items.append(f"""    <item>
+      <title>{escape(p['titel'])}</title>
+      <link>{escape(link)}</link>
+      <guid isPermaLink="true">{escape(link)}</guid>
+      <pubDate>{stamp(p['tag'])}</pubDate>
+      <description>{escape(excerpt(p['pfad'].read_text(encoding='utf-8'), 400))}</description>{cats}
+    </item>""")
+    xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cogneon - The Knowledge Company</title>
+    <link>{site_url}blog/</link>
+    <description>Beiträge von Cogneon zu Wissensmanagement, Wissenstransfer und Lernenden Organisationen.</description>
+    <language>de-DE</language>
+    <lastBuildDate>{stamp(posts[0]['tag'])}</lastBuildDate>
+    <atom:link href="{site_url}feed/" rel="self" type="application/rss+xml"/>
+{chr(10).join(items)}
+  </channel>
+</rss>
+"""
+    (root / "docs" / "feed.xml").write_text(xml, encoding="utf-8")
+    return len(posts)
+
+
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
     posts = []
     for path in post_dir.rglob("*.md"):
@@ -373,6 +413,7 @@ def main() -> int:
           f"{len(blog['kategorien'])} Kategorien")
     info = build_events(args.root, today)
     print(f"docs/events/: {info['gesamt']} Termine, davon {len(info['kommend'])} kommend, {info['kategorien']} Kategorien")
+    print(f"docs/feed.xml: {build_feed(args.root)} Beiträge")
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     return 0

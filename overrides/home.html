@@ -8,6 +8,7 @@
 {% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
 {% block container %}{% endblock %}
 {% block extrahead %}
+  {{ super() }}
   <link rel="stylesheet" href="{{ 'assets/stylesheets/netz.css' | url }}">
   <script src="{{ 'assets/javascripts/netz.js' | url }}" defer></script>
 {% endblock %}

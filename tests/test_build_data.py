@@ -94,3 +94,16 @@ def test_termine(tmp_path):
     assert [t["titel"] for t in kategorie["kommend"]] == ["Neu, mit Komma"]
     assert [t["titel"] for t in kategorie["vergangen"]] == ["Alt"]
     assert build_data.build(tmp_path, heute)["termine"][0] == {"titel": "Ganztags", "datum": "14.11.2026", "url": "event/tag/"}
+
+
+def test_rss_feed(tmp_path):
+    import xml.etree.ElementTree as ET
+    write(tmp_path / "docs/blog/posts/2026/a.md",
+          "---\ntitle: Wissen & Lernen <neu>\ndate:\n  created: '2026-10-12'\nslug: a\ncategories:\n- News\ntags:\n- lernOS\n---\n\nAnriss & mehr.\n")
+    assert build_data.build_feed(tmp_path) == 1
+    channel = ET.parse(tmp_path / "docs/feed.xml").getroot().find("channel")
+    item = channel.find("item")
+    assert item.findtext("title") == "Wissen & Lernen <neu>"
+    assert item.findtext("link") == "https://cogneon.de/2026/10/12/a/"
+    assert item.findtext("pubDate") == "Mon, 12 Oct 2026 08:00:00 +0200"
+    assert [c.text for c in item.findall("category")] == ["News", "lernOS"]
