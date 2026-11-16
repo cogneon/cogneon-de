@@ -101,8 +101,9 @@ pymdownx.tasklist.custom_checkbox = true
 
 # Menü der Kopfzeile und Angaben für die Fußzeile.
 [project.extra]
-erstgespraech = "kontakt/"
+erstgespraech = "kontakt/#erstgespraech"
 community = "https://community.cogneon.de/"
+community_kalender = "https://community.cogneon.de/t/community-kalender-2024/3868"
 
 # Matomo: dieselbe Site-ID wie unter WordPress, damit die Statistik
 # durchgehend vergleichbar bleibt. Gezählt wird nur auf den genannten Adressen.

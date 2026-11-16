@@ -1244,3 +1244,34 @@ ol.cg-schritte > li,
   display: inline-block;
   margin: 0.4rem 0.6rem 0.8rem 0;
 }
+
+/* Kundenlogos: farbige Logos stehen auf weißen Kacheln */
+.cg-logos li:has(img) {
+  background: #ffffff;
+  border-color: #ffffff;
+  min-height: 4.4rem;
+  padding: 0.8rem 1rem;
+}
+.cg-logos img {
+  max-height: 2.6rem;
+  width: auto;
+  object-fit: contain;
+}
+
+/* RSS-Link der Blog-Übersicht */
+.cg-rss {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cg-rss svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--cg-orange);
+}
+
+/* Karten ohne eigene Seite: Link zur Kontaktseite */
+.cg-card .cg-link {
+  padding: 0;
+  font-size: 0.8rem;
+}

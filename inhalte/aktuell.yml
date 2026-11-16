@@ -14,15 +14,12 @@ highlights:
     bild: assets/bilder/menerva-programm-2036.jpg
     alt: ""
     link: 4010km/
-  - titel: "[Highlight]"
-    text: "[Platzhalter - zum Beispiel die nächste Veranstaltung]"
-    datum: "[Datum]"
-    link: events/
-    gueltig_bis: 2027-06-30
-  - titel: "[Highlight]"
-    text: "[Platzhalter - zum Beispiel eine neue Podcast-Folge]"
-    link: blog/
-    gueltig_bis: 2027-06-30
+  - titel: Expert Debriefing
+    text: Das Erfahrungswissen einer Person sichern, bevor sie wechselt oder geht.
+    link: expert-debriefing/
+  - titel: Expert Debriefing Praxis-Ausbildung
+    text: In der Ausbildung lernt ihr, Expert Debriefings selbst zu moderieren.
+    link: edmod/
 
 termine: []
 

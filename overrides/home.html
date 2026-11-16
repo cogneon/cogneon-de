@@ -149,7 +149,7 @@
           <li><a href="{{ t.url if '://' in t.url else t.url | url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}</span></a></li>
           {% endfor %}
         </ul>
-        <p><a class="cg-link" href="{{ 'events/' | url }}">Alle Termine</a></p>
+        <p class="cg-muted">Alle unsere Veranstaltungen findet ihr in unserem <a href="{{ 'events/' | url }}">Kalender</a> und im <a href="{{ config.extra.community_kalender }}">Community Kalender auf CONNECT</a>.</p>
       </div>
       {% endif %}
     </div>

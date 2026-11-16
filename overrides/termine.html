@@ -24,6 +24,7 @@
       <ul class="cg-schlagworte cg-schlagworte--links" aria-label="Kategorien">
         {% for k in daten.termine.kategorien %}<li><a href="{{ k.url | url }}">{{ k.titel }}</a></li>{% endfor %}
       </ul>
+      <p class="cg-muted">Weitere Termine aus der Community stehen im <a href="{{ config.extra.community_kalender }}">Community Kalender auf CONNECT</a>.</p>
       <p><a class="cg-link" href="{{ 'events/cogneon.ics' | url }}">Kalender abonnieren (ICS)</a></p>
       {% endif %}
     </div>
