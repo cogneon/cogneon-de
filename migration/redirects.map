@@ -3,3 +3,15 @@
 # Aus dieser Datei entsteht später die Redirect-Konfiguration des Webservers.
 /author/cogblogadmin /author/cogneon/
 /newsletter /#newsletter
+# Seiten des WordPress-Kalenders, die es nicht mehr gibt: Serien, Veranstalter, Orte
+/events/kategorie/live-session/onenote /events/kategorie/live-session/
+/serien/c3managers-meetup /events/kategorie/c3managers/
+/serien/community-call /events/
+/serien/knowledge-jam /events/kategorie/knowledgejam/
+/veranstalter/cogneon-akademie /events/
+/veranstalter/kongress-media /events/
+/veranstaltungsort/cogneon-akademie /events/
+/veranstaltungsort/comble /events/
+/veranstaltungsort/die-insel-online /events/
+/veranstaltungsort/virtuell-microsoft-teams /events/
+/feed/podcast https://podcasts.cogneon.io/
