@@ -201,6 +201,9 @@ def all_events(root: Path) -> list[dict]:
             "adresse": str(ort.get("adresse") or ""),
             "kategorien": list(zip(meta.get("kategorien") or [], meta.get("kategorie_slugs") or [])),
             "anmeldung": str(meta.get("anmeldung") or ""),
+            "online": bool(meta.get("online")),
+            # Termin steht fest, Beschreibung und Anmeldung folgen noch.
+            "save_the_date": bool(meta.get("save_the_date")),
         })
     events.sort(key=lambda e: e["beginn"])
     return events
@@ -235,7 +238,9 @@ def build_ics(events: list[dict], site_url: str, stamp: dt.datetime) -> str:
         else:
             for key, moment in (("DTSTART", e["beginn"]), ("DTEND", e["ende"])):
                 lines.append(f"{key}:{moment.replace(tzinfo=berlin).astimezone(utc):%Y%m%dT%H%M%SZ}")
-        lines.append("SUMMARY:" + ics_text(e["titel"]))
+        if e["save_the_date"]:
+            lines.append("STATUS:TENTATIVE")
+        lines.append("SUMMARY:" + ics_text(("Save the Date: " if e["save_the_date"] else "") + e["titel"]))
         place = ", ".join(x for x in (e["ort"], e["adresse"]) if x)
         if place:
             lines.append("LOCATION:" + ics_text(place))
@@ -244,12 +249,39 @@ def build_ics(events: list[dict], site_url: str, stamp: dt.datetime) -> str:
     return "\r\n".join(ics_fold(l) for l in lines) + "\r\n"
 
 
+def event_jsonld(e: dict, site_url: str) -> dict:
+    """Angaben eines Termins nach schema.org (Event). Suchmaschinen und andere Programme
+    lesen sie aus der Terminseite."""
+    from zoneinfo import ZoneInfo
+
+    berlin = ZoneInfo("Europe/Berlin")
+    moment = lambda d: d.date().isoformat() if e["ganztags"] else d.replace(tzinfo=berlin).isoformat()   # noqa: E731
+    data = {"@context": "https://schema.org", "@type": "Event", "name": e["titel"],
+            "startDate": moment(e["beginn"]), "endDate": moment(e["ende"]),
+            "url": site_url + e["url"], "eventStatus": "https://schema.org/EventScheduled",
+            "organizer": {"@type": "Organization", "name": "Cogneon GmbH", "url": site_url}}
+    place = {"@type": "Place", "name": e["ort"], **({"address": e["adresse"]} if e["adresse"] else {})}
+    virtual = {"@type": "VirtualLocation", "url": site_url + e["url"]}
+    if e["online"] and e["ort"] and e["ort"] != "Online":
+        data["eventAttendanceMode"] = "https://schema.org/MixedEventAttendanceMode"
+        data["location"] = [place, virtual]
+    elif e["online"] or e["ort"] == "Online":
+        data["eventAttendanceMode"] = "https://schema.org/OnlineEventAttendanceMode"
+        data["location"] = virtual
+    elif e["ort"]:
+        data["eventAttendanceMode"] = "https://schema.org/OfflineEventAttendanceMode"
+        data["location"] = place
+    if e["anmeldung"]:
+        data["offers"] = {"@type": "Offer", "url": e["anmeldung"]}
+    return data
+
+
 def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de/") -> dict:
     """Erzeugt alles rund um Termine: Daten für die Übersicht /events/, eine Seite je
     Kategorie unter /events/kategorie/<slug>/ und die Kalenderdatei /events/cogneon.ics."""
     events = all_events(root)
     kurz = lambda e: {"titel": e["titel"], "zeitraum": e["zeitraum"], "datum": e["datum"],   # noqa: E731
-                      "ort": e["ort"], "url": e["url"]}
+                      "ort": e["ort"], "url": e["url"], **({"save_the_date": True} if e["save_the_date"] else {})}
     kommend = [e for e in events if e["ende"].date() >= today]
     vergangen = [e for e in reversed(events) if e["ende"].date() < today]
     archiv: list[dict] = []
@@ -282,6 +314,7 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
         (target / "cogneon.ics").write_text(build_ics(events, site_url, stamp), encoding="utf-8", newline="")
     daten = {"kommend": [kurz(e) for e in kommend], "archiv": archiv,
              "zeiten": {e["url"]: e["zeitraum"] for e in events},
+             "schema": {e["url"]: event_jsonld(e, site_url) for e in events},
              "kategorien": [{"titel": c["titel"], "url": f"events/kategorie/{s}/", "anzahl": len(c["termine"])}
                             for s, c in sorted(kategorien.items(), key=lambda kv: kv[1]["titel"].lower())]}
     (root / "overrides" / "partials" / "termine-daten.html").write_text(
@@ -365,7 +398,8 @@ def build(root: Path, today: dt.date, limit: int = 4) -> dict:
 
     # Termine kommen aus docs/event/. Einträge in inhalte/aktuell.yml kommen dazu
     # (zum Beispiel fremde Veranstaltungen ohne eigene Seite).
-    termine = [{"titel": e["titel"], "datum": e["datum"], "url": e["url"]}
+    termine = [{"titel": e["titel"], "datum": e["datum"], "url": e["url"],
+                **({"save_the_date": True} if e["save_the_date"] else {})}
                for e in all_events(root) if e["ende"].date() >= today][:5]
     for item in data.get("termine") or []:
         day = as_date(item.get("tag"))

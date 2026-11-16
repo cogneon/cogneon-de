@@ -102,6 +102,11 @@ Beschreibung des Termins.
 ```
 
 Für ganztägige Termine `ganztags: true`, für Online-Termine `online: true` statt `ort`.
+
+**Save the Date:** Steht ein Termin fest, aber Beschreibung und Anmeldung fehlen noch,
+reicht eine Datei mit Titel, `beginn`, `ende` und `save_the_date: true`. Der Termin
+erscheint mit der Marke "Save the Date". Sobald Text und `anmeldung` da sind, die
+Zeile `save_the_date: true` wieder löschen.
 Übersicht (`/events/`), Kategorie-Seiten, die Terminliste der Startseite und die
 Kalenderdatei `/events/cogneon.ics` entstehen daraus bei jedem Build. Vergangene
 Termine wandern von selbst ins Archiv.

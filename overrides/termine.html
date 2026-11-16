@@ -38,7 +38,7 @@
         {% for t in kommend %}
         <li>
           <a class="cg-card" href="{{ t.url if kategorie else t.url | url }}">
-            <span class="cg-card__marke">{{ t.zeitraum }}</span>
+            <span class="cg-card__marke">{{ t.zeitraum }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}</span>
             <span class="cg-card__titel">{{ t.titel }}</span>
             {% if t.ort %}<span class="cg-card__text">{{ t.ort }}</span>{% endif %}
           </a>
