@@ -163,13 +163,13 @@ def main(argv=None) -> int:
               f"Geprüft: {len(internal)} interne Ziele, {len(external)} externe Adressen"
               + ("" if args.extern else " (extern nicht abgerufen)") + ".", ""]
     report += section("Defekte interne Links", "Diese Seiten gibt es auf der Website nicht. Link korrigieren oder Weiterleitung anlegen.", pages)
-    report += section("Fehlende Medien", "Bilder und Dateien, die im Build fehlen.", media)
     broken = {}
     if args.extern:
         broken = check_external(external, args.timeout, args.workers)
         report += section("Defekte externe Links",
                           "Diese fremden Adressen antworten nicht oder mit einem Fehler. Vor dem Entfernen im Browser gegenprüfen.",
                           {u: external[u] for u in broken}, broken)
+    report += section("Fehlende Medien", "Bilder und Dateien, die im Build fehlen.", media, limit=1)
     target = args.migration / "link-check.md"
     target.write_text("\n".join(report), encoding="utf-8")
     print(f"intern defekt {len(pages)}, Medien fehlen {len(media)}"
