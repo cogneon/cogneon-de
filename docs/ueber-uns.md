@@ -1,5 +1,6 @@
 ---
 title: Über uns
+frozen: true
 wp:
   id: 28
   link: https://cogneon.de/ueber-uns/
@@ -31,4 +32,3 @@ Erfahren sie auf unserer Seite, wie unsere **Vision der Lernenden Gesellschaft**
 - [Mastodon – Fachliche Beiträge, Neuigkeiten Events & Co. (meist identisch mit Linkedin)](https://colearn.social/@cogneon)
 - [Youtube – Mitschnitte von Veranstaltungen, Interviews, Screencasts.](http://youtube.com/cogneon)
 
-[Simon Dückert auf Mastodon.](https://chaos.social/@sdueckert)

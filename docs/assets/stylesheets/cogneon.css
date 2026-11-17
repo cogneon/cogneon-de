@@ -1246,7 +1246,7 @@ ol.cg-schritte > li,
 }
 
 /* Kundenlogos: farbige Logos stehen auf weißen Kacheln */
-.cg-logos li:has(img) {
+.cg-logos li.cg-logos__kachel {
   background: #ffffff;
   border-color: #ffffff;
   min-height: 4.4rem;
@@ -1256,18 +1256,6 @@ ol.cg-schritte > li,
   max-height: 2.6rem;
   width: auto;
   object-fit: contain;
-}
-
-/* RSS-Link der Blog-Übersicht */
-.cg-rss {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.cg-rss svg {
-  width: 0.9rem;
-  height: 0.9rem;
-  color: var(--cg-orange);
 }
 
 /* Karten ohne eigene Seite: Link zur Kontaktseite */
@@ -1299,4 +1287,178 @@ ol.cg-schritte > li,
 }
 [data-md-color-scheme="slate"] .md-typeset .cg-hinweis {
   background: var(--cg-karte);
+}
+
+/* Links im Fließtext der Abschnitte: unterstrichen, damit sie als Link erkennbar sind */
+.cg-page p a:not([class]),
+.cg-page figcaption a:not([class]) {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.cg-page p a:not([class]):hover {
+  color: var(--cg-akzent-text);
+}
+.cg-section--dunkel p a:not([class]):hover,
+.cg-section--orange p a:not([class]):hover {
+  color: #ffffff;
+}
+
+/* Karte (assets/javascripts/karte.js) */
+.cg-karte {
+  margin: 1.4rem 0;
+  border-radius: var(--cg-radius);
+  overflow: hidden;
+  background: var(--cg-bg-soft);
+}
+.cg-karte__vorschau {
+  min-height: 14rem;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  background:
+    radial-gradient(circle at 62% 46%, var(--cg-orange) 0 0.45rem, transparent 0.5rem),
+    repeating-linear-gradient(0deg, transparent 0 2.4rem, var(--cg-linie) 2.4rem calc(2.4rem + 1px)),
+    repeating-linear-gradient(90deg, transparent 0 2.4rem, var(--cg-linie) 2.4rem calc(2.4rem + 1px)),
+    var(--cg-bg-soft);
+}
+.md-typeset .cg-karte__vorschau p {
+  margin: 0;
+  max-width: 28rem;
+  font-size: 0.75rem;
+  background: var(--cg-bg);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--cg-radius-knopf);
+}
+.md-typeset .cg-karte__vorschau p:last-child {
+  background: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  align-items: center;
+}
+.cg-karte--laedt {
+  opacity: 0.6;
+}
+.cg-karte__flaeche {
+  height: 24rem;
+}
+.md-typeset ul.cg-karte__legende {
+  list-style: none;
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.2rem;
+  font-size: 0.7rem;
+}
+.md-typeset .cg-karte__legende li {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cg-karte__legende span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px var(--cg-linie);
+}
+.cg-karte .leaflet-container {
+  font-family: var(--cg-font);
+}
+
+/* Kommende Termine: eine Zeile je Termin, Bild links */
+.cg-termine {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cg-termin-zeile {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) 1fr;
+  gap: 1.6rem;
+  align-items: center;
+  background: var(--cg-karte);
+  color: var(--cg-fg);
+  border-radius: var(--cg-radius);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.cg-termin-zeile:hover {
+  color: var(--cg-fg);
+  transform: translateY(-2px);
+  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.12);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cg-termin-zeile, .cg-termin-zeile:hover { transition: none; transform: none; }
+}
+.cg-termin-zeile__bild {
+  width: 100%;
+  height: 100%;
+  min-height: 8.4rem;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.cg-termin-zeile__datum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--cg-bg-soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cg-fg-muted);
+}
+.cg-termin-zeile__datum span {
+  font-family: var(--cg-font-kopf);
+  font-size: 2.6rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--cg-fg);
+}
+.cg-section:not(.cg-section--soft) .cg-termin-zeile__datum,
+[data-md-color-scheme="slate"] .cg-termin-zeile__datum {
+  background: var(--cg-bg);
+}
+.cg-termin-zeile__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.2rem 1.4rem 1.2rem 0;
+}
+@media screen and (max-width: 40em) {
+  .cg-termin-zeile {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .cg-termin-zeile__text {
+    padding: 1.2rem 1.4rem;
+  }
+}
+
+/* Fehlerseite */
+.cg-fehler {
+  min-height: calc(100vh - 3.4rem);
+  display: flex;
+  align-items: center;
+}
+.cg-fehler > .cg-wrap {
+  width: 100%;
+}
+.cg-fehler__bild {
+  width: 100%;
+  max-width: 26rem;
+  height: auto;
+  color: var(--cg-fg);
+  justify-self: center;
 }

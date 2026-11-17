@@ -1,0 +1,45 @@
+# Orte für die Karte auf der Kontaktseite.
+#
+# Je Ort: name, lat, lon (Koordinaten, z. B. aus openstreetmap.org: Rechtsklick
+# auf den Ort, "Adresse anzeigen"), art und optional text und link.
+#   art: cogneon | hotel | anreise | sehenswert
+# Die Karte zeigt beim Öffnen alle Orte. Reihenfolge = Reihenfolge der Legende.
+
+orte:
+  - name: Cogneon Akademie
+    art: cogneon
+    lat: 49.4639412
+    lon: 11.0694807
+    text: Bucherstr. 79a, 90419 Nürnberg
+    link: https://www.openstreetmap.org/node/3255611047
+
+  - name: Hotel Centro
+    art: hotel
+    lat: 49.4676526
+    lon: 11.0683345
+    text: Mit dem Code „COGNEON" könnt ihr Rabatt anfragen.
+    link: https://hotelcentro.org/de/nurnberg/
+
+  - name: Motel One Nürnberg-Plärrer
+    art: hotel
+    lat: 49.4452834
+    lon: 11.0691040
+    link: http://www.motel-one.com/de/hotels/nuernberg/hotel-nuernberg-plaerrer/
+
+  # Azimut Hotel: Koordinaten noch eintragen.
+
+  - name: U-Bahn Friedrich-Ebert-Platz
+    art: anreise
+    lat: 49.4624712
+    lon: 11.0713142
+    text: Linie U3, etwa 7 Minuten vom Hauptbahnhof
+
+  - name: Nürnberg Hauptbahnhof
+    art: anreise
+    lat: 49.4462031
+    lon: 11.0818654
+
+  - name: Kaiserburg
+    art: sehenswert
+    lat: 49.4579353
+    lon: 11.0747801

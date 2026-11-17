@@ -14,8 +14,7 @@
   <section class="cg-section cg-section--kopf">
     <div class="cg-wrap cg-stack">
       <h1 class="cg-h1">{{ page.meta.title }}</h1>
-      {% if page.meta.einleitung %}<p class="cg-lead cg-muted">{{ page.meta.einleitung }}</p>{% endif %}
-      <p><a class="cg-link cg-rss" href="{{ 'feed.xml' | url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="3" fill="currentColor"/><path d="M2 9a13 13 0 0 1 13 13h-4a9 9 0 0 0-9-9z" fill="currentColor"/><path d="M2 2a20 20 0 0 1 20 20h-4A16 16 0 0 0 2 6z" fill="currentColor"/></svg>RSS-Feed abonnieren</a></p>
+      <p class="cg-lead cg-muted">{{ page.meta.einleitung | d("") }} Abonniert unseren Blog per <a href="{{ 'feed.xml' | url }}">RSS-Feed</a>.</p>
       {% if blog.kategorien %}
       <ul class="cg-schlagworte cg-schlagworte--links" aria-label="Kategorien">
         {% for k in blog.kategorien %}<li><a href="{{ k.url | url }}">{{ k.titel }}</a></li>{% endfor %}

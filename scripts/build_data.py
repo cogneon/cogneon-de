@@ -202,6 +202,8 @@ def all_events(root: Path) -> list[dict]:
             "kategorien": list(zip(meta.get("kategorien") or [], meta.get("kategorie_slugs") or [])),
             "anmeldung": str(meta.get("anmeldung") or ""),
             "online": bool(meta.get("online")),
+            "bild": str(meta.get("bild") or "") if (root / "docs" / str(meta.get("bild") or "-")).is_file() else "",
+            "auszug": excerpt(path.read_text(encoding="utf-8"), 180),
             # Termin steht fest, Beschreibung und Anmeldung folgen noch.
             "save_the_date": bool(meta.get("save_the_date")),
         })
@@ -280,8 +282,12 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
     """Erzeugt alles rund um Termine: Daten für die Übersicht /events/, eine Seite je
     Kategorie unter /events/kategorie/<slug>/ und die Kalenderdatei /events/cogneon.ics."""
     events = all_events(root)
+    MONATE = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
     kurz = lambda e: {"titel": e["titel"], "zeitraum": e["zeitraum"], "datum": e["datum"],   # noqa: E731
                       "ort": e["ort"], "url": e["url"], **({"save_the_date": True} if e["save_the_date"] else {})}
+    # Kommende Termine zeigen zusätzlich Bild, Anriss und das Datum als Kachel.
+    lang = lambda e: {**kurz(e), "bild": e["bild"], "auszug": e["auszug"],   # noqa: E731
+                      "tag": f"{e['beginn']:%d}", "monat": f"{MONATE[e['beginn'].month - 1]} {e['beginn']:%Y}"}
     kommend = [e for e in events if e["ende"].date() >= today]
     vergangen = [e for e in reversed(events) if e["ende"].date() < today]
     archiv: list[dict] = []
@@ -303,7 +309,7 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
     for slug, cat in kategorien.items():
         cat_dir.mkdir(parents=True, exist_ok=True)
         meta = {"title": cat["titel"], "description": f"Termine: {cat['titel']}", "template": "termine.html",
-                "kommend": [{**kurz(e), "url": "../../../" + e["url"]} for e in cat["termine"] if e["ende"].date() >= today],
+                "kommend": [{**lang(e), "url": "../../../" + e["url"]} for e in cat["termine"] if e["ende"].date() >= today],
                 "vergangen": [{**kurz(e), "url": "../../../" + e["url"]} for e in reversed(cat["termine"]) if e["ende"].date() < today]}
         (cat_dir / f"{slug}.md").write_text(
             "---\n" + yaml.safe_dump(meta, allow_unicode=True, sort_keys=False, width=1000) + "---\n" + head,
@@ -312,7 +318,7 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
         target.mkdir(parents=True, exist_ok=True)
         stamp = dt.datetime.combine(today, dt.time())
         (target / "cogneon.ics").write_text(build_ics(events, site_url, stamp), encoding="utf-8", newline="")
-    daten = {"kommend": [kurz(e) for e in kommend], "archiv": archiv,
+    daten = {"kommend": [lang(e) for e in kommend], "archiv": archiv,
              "zeiten": {e["url"]: e["zeitraum"] for e in events},
              "schema": {e["url"]: event_jsonld(e, site_url) for e in events},
              "kategorien": [{"titel": c["titel"], "url": f"events/kategorie/{s}/", "anzahl": len(c["termine"])}
@@ -448,6 +454,13 @@ def main() -> int:
     info = build_events(args.root, today)
     print(f"docs/events/: {info['gesamt']} Termine, davon {len(info['kommend'])} kommend, {info['kategorien']} Kategorien")
     print(f"docs/feed.xml: {build_feed(args.root)} Beiträge")
+    karte = args.root / "inhalte" / "karte.yml"
+    if karte.exists():
+        orte = yaml.safe_load(karte.read_text(encoding="utf-8")) or {}
+        ziel = args.root / "docs" / "assets" / "karte" / "orte.json"
+        ziel.parent.mkdir(parents=True, exist_ok=True)
+        ziel.write_text(json.dumps(orte, ensure_ascii=False), encoding="utf-8")
+        print(f"docs/assets/karte/orte.json: {len(orte.get('orte') or [])} Orte")
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     return 0
