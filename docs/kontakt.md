@@ -29,6 +29,8 @@ Tel.: +49 911 39570830
 
 [OpenStreetMap](https://osm.org/go/0D6z6xgbN?m=&node=3255611047), [Google Map](https://goo.gl/maps/PbwrLirr27A2) ([Navigation](https://goo.gl/maps/5RD8rehWLft))
 
+<div class="cg-karte"><p><a href="https://www.openstreetmap.org/node/3255611047">Cogneon Akademie auf OpenStreetMap</a></p></div>
+
 **Mit ÖPNV:** vom Hauptbahnhof Nürnberg mit [Linie U3](http://www.vgn.de/komfortauskunft/ttb/?lineName=U3) bis Friedrich-Ebert-Platz ca. 7 Min.<br>
 **Mit dem Flugzeug:** vom [Flughafen Nürnberg](http://www.airport-nuernberg.de) mit dem Taxi ca. 15 Min.
 

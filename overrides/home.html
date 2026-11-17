@@ -91,7 +91,7 @@
       {% if m.belege.kunden %}
       <ul class="cg-logos">
         {% for k in m.belege.kunden %}
-        <li>{% if k.logo %}<img src="{{ k.logo | url }}" alt="{{ k.name }}" loading="lazy">{% else %}{{ k.name }}{% endif %}</li>
+        <li{% if k.logo %} class="cg-logos__kachel"{% endif %}>{% if k.logo %}<img src="{{ k.logo | url }}" alt="{{ k.name }}" loading="lazy">{% else %}{{ k.name }}{% endif %}</li>
         {% endfor %}
       </ul>
       {% endif %}

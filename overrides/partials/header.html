@@ -1,7 +1,7 @@
 {#-
-  Kopfzeile: Logo, Hauptmenü, Farbschema, Suche, Erstgespräch.
+  Kopfzeile: Logo, Hauptmenü, Farbschema, Suche, Kontakt.
   Grundlage ist die Kopfzeile des Zensical-Themas. Ergänzt sind das Menü
-  (aus [project.extra.menu]) und der Knopf "Erstgespräch".
+  (aus [project.extra.menu]) und der Knopf "Kontakt".
 -#}
 <header class="md-header cg-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
@@ -55,6 +55,6 @@
         {% include "partials/search.html" %}
       {% endif %}
     {% endif %}
-    <a href="{{ config.extra.erstgespraech | url }}" class="cg-button cg-button--klein cg-header__cta">Erstgespräch</a>
+    <a href="{{ 'kontakt/' | url }}" class="cg-button cg-button--klein cg-header__cta">Kontakt</a>
   </nav>
 </header>

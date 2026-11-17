@@ -1,0 +1,43 @@
+{#-
+  Fehlerseite (404). Der Server liefert sie für jede Adresse aus, die es nicht gibt.
+-#}
+{% extends "main.html" %}
+{% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
+{% block container %}{% endblock %}
+{% block hero %}
+<div class="cg-page">
+  <section class="cg-section cg-fehler">
+    <div class="cg-wrap cg-zwei">
+      <div class="cg-stack">
+        <p class="cg-card__marke">Fehler 404</p>
+        <h1 class="cg-h1">Hoppla.<br>Hier fehlt eine Verbindung.</h1>
+        <p class="cg-lead cg-muted">Diese Seite gibt es nicht (mehr). Vielleicht ist sie umgezogen, oder in der Adresse steckt ein Tippfehler.</p>
+        <p class="cg-actions">
+          <label class="cg-button" for="__search" tabindex="0" role="button">Website durchsuchen</label>
+          <a class="cg-link" href="{{ nav.homepage.url | url }}">Zur Startseite</a>
+        </p>
+        <p class="cg-muted">Oder direkt weiter zu <a href="{{ 'blog/' | url }}">Blog</a>, <a href="{{ 'events/' | url }}">Termine</a> und <a href="{{ 'angebote/' | url }}">Angebote</a>. Fehlt euch etwas, schreibt uns über die <a href="{{ 'kontakt/' | url }}">Kontaktseite</a>.</p>
+      </div>
+      <svg class="cg-fehler__bild" viewBox="0 0 400 320" role="img" aria-label="Ein Netz aus Punkten, in dem eine Verbindung abgerissen ist">
+        <g stroke="currentColor" stroke-width="2" opacity="0.35">
+          <line x1="60" y1="90" x2="150" y2="50"/><line x1="150" y1="50" x2="240" y2="110"/>
+          <line x1="60" y1="90" x2="120" y2="190"/><line x1="120" y1="190" x2="240" y2="110"/>
+          <line x1="120" y1="190" x2="90" y2="280"/><line x1="240" y1="110" x2="220" y2="250"/>
+          <line x1="120" y1="190" x2="220" y2="250"/><line x1="90" y1="280" x2="220" y2="250"/>
+        </g>
+        <g stroke="#ff6600" stroke-width="3" stroke-linecap="round">
+          <line x1="240" y1="110" x2="285" y2="125"/>
+          <line x1="320" y1="138" x2="340" y2="145" stroke-dasharray="2 9"/>
+        </g>
+        <g fill="currentColor">
+          <circle cx="60" cy="90" r="9"/><circle cx="150" cy="50" r="7"/><circle cx="120" cy="190" r="11"/>
+          <circle cx="90" cy="280" r="7"/><circle cx="220" cy="250" r="9"/>
+        </g>
+        <circle cx="240" cy="110" r="12" fill="#ff6600"/>
+        <circle cx="360" cy="152" r="16" fill="none" stroke="#ff6600" stroke-width="3" stroke-dasharray="5 6"/>
+        <text x="360" y="160" text-anchor="middle" font-family="Geist, Inter, sans-serif" font-size="22" font-weight="700" fill="#ff6600">?</text>
+      </svg>
+    </div>
+  </section>
+</div>
+{% endblock %}

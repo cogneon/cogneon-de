@@ -121,3 +121,9 @@ Secrets im Repository (`SFTP_HOST`, `SFTP_USER`, `SFTP_PASSWORD`, `SFTP_PATH`).
 Weiterleitungen stehen in `migration/redirects.map`, eine je Zeile:
 alte Adresse, Leerzeichen, neue Adresse. Beim Veröffentlichen entsteht
 daraus die Datei `.htaccess` für den Webserver.
+
+## Karte
+
+Auf einer Seite erscheint eine Karte mit `<div class="cg-karte"></div>` im Markdown.
+Die Orte stehen in `inhalte/karte.yml` (Name, Koordinaten, Art, optional Text und Link).
+Die Karte lädt erst nach einem Klick, vorher wird nichts von OpenStreetMap abgerufen.

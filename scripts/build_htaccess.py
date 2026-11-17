@@ -35,8 +35,8 @@ SetEnvIfNoCase Host "^(www\\.)?cogneon\\.de$" COGNEON_LIVE
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/html "access plus 10 minutes"
-  ExpiresByType text/css "access plus 1 week"
-  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType text/css "access plus 1 hour"
+  ExpiresByType application/javascript "access plus 1 hour"
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 month"
   ExpiresByType image/png "access plus 1 month"

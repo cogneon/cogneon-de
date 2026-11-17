@@ -34,13 +34,21 @@
     <div class="cg-wrap cg-stack cg-stack--weit">
       <h2 class="cg-h2 cg-h2--klein">Kommende Termine</h2>
       {% if kommend %}
-      <ul class="cg-cards cg-cards--zwei">
+      <ul class="cg-termine">
         {% for t in kommend %}
         <li>
-          <a class="cg-card" href="{{ t.url if kategorie else t.url | url }}">
-            <span class="cg-card__marke">{{ t.zeitraum }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}</span>
-            <span class="cg-card__titel">{{ t.titel }}</span>
-            {% if t.ort %}<span class="cg-card__text">{{ t.ort }}</span>{% endif %}
+          <a class="cg-termin-zeile" href="{{ t.url if kategorie else t.url | url }}">
+            {% if t.bild %}
+            <img class="cg-termin-zeile__bild" src="{{ (t.bild if kategorie else t.bild) | url }}" alt="" loading="lazy">
+            {% else %}
+            <span class="cg-termin-zeile__bild cg-termin-zeile__datum" aria-hidden="true"><span>{{ t.tag }}</span>{{ t.monat }}</span>
+            {% endif %}
+            <span class="cg-termin-zeile__text">
+              <span class="cg-card__marke">{{ t.zeitraum }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}</span>
+              <span class="cg-card__titel">{{ t.titel }}</span>
+              {% if t.ort %}<span class="cg-card__vor">{{ t.ort }}</span>{% endif %}
+              {% if t.auszug and not t.save_the_date %}<span class="cg-card__text">{{ t.auszug }}</span>{% endif %}
+            </span>
           </a>
         </li>
         {% endfor %}
