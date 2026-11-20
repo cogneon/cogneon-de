@@ -1,0 +1,199 @@
+# Wissensmanagement-Adventskalender auf /advent/
+#
+# Ein Türchen öffnet sich ab seinem Tag (Zeitzone Europe/Berlin), sobald der
+# tägliche Build läuft (03:23 UTC). Vorher steht nur eine geschlossene Kachel
+# auf der Seite, der Inhalt ist nicht im HTML.
+#
+# Ein Türchen erscheint nur, wenn titel, link und warum ausgefüllt sind. Ist es
+# an seinem Tag noch unvollständig, bleibt es geschlossen und der Build meldet es.
+#
+# ACHTUNG: Diese Datei ist im öffentlichen Repository lesbar. Wer hier
+# nachschaut, sieht künftige Türchen schon vorher.
+#
+# Felder je Türchen:
+#   tag     1-24
+#   typ     Video, Paper, Buch, Blog, Podcast, Werkzeug, Methode, Leitfaden ...
+#   titel   Titel der Empfehlung
+#   link    https-Adresse (Videos nur verlinken, nicht einbetten)
+#   von     optional: Autor:in, Verlag oder Quelle
+#   warum   2-3 Sätze: warum genau diese Empfehlung
+#   impuls  optional: eine Frage oder ein Mini-Experiment für heute
+
+jahr: 2026
+
+# Thema ab dem jeweiligen Tag (Adventswochen)
+themen:
+  - {ab: 1, titel: Wissen sichern}
+  - {ab: 6, titel: Wissen teilen}
+  - {ab: 13, titel: Lernen in Organisationen}
+  - {ab: 20, titel: KI und Wissen}
+
+tuerchen:
+  - tag: 1
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 2
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 3
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 4
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 5
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 6
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 7
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 8
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 9
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 10
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 11
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 12
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 13
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 14
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 15
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 16
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 17
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 18
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 19
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 20
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 21
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 22
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 23
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:
+  - tag: 24
+    typ:
+    titel:
+    link:
+    von:
+    warum:
+    impuls:

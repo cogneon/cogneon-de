@@ -123,3 +123,41 @@ def test_save_the_date_und_schema(tmp_path):
     assert schema["@type"] == "Event" and schema["startDate"] == "2027-03-11T09:00:00+01:00"
     assert schema["location"] == {"@type": "Place", "name": "Akademie", "address": "Bucherstr. 79a, 90419 Nürnberg"}
     assert build_data.build(tmp_path, heute)["termine"][0]["save_the_date"] is True
+
+
+ADVENT = """
+jahr: 2026
+themen:
+  - {ab: 1, titel: Wissen sichern}
+  - {ab: 6, titel: Wissen teilen}
+tuerchen:
+  - {tag: 1, typ: Video, titel: Eins, link: "https://a.example/", warum: Weil.}
+  - {tag: 2, typ: Buch, titel: Zwei, link: "https://b.example/", warum: Darum.}
+  - {tag: 3, titel: Drei, link: "https://c.example/"}
+  - {tag: 6, titel: Sechs, link: "https://d.example/", warum: Geheim.}
+"""
+
+
+def test_advent_oeffnet_nur_faellige_und_fertige_tuerchen(tmp_path):
+    write(tmp_path / "inhalte/advent.yml", ADVENT)
+    a = build_data.build_advent(tmp_path, dt.date(2026, 12, 3))
+    assert [i["tag"] for i in a["inhalte"]] == [2, 1]          # neuestes zuerst
+    assert a["fehlen"] == [3]                                  # fällig, aber ohne warum
+    offen = [t["tag"] for t in a["tueren"] if t["offen"]]
+    assert offen == [1, 2]
+    assert [t["tag"] for t in a["tueren"] if t["heute"]] == [3]
+    assert len(a["tueren"]) == 24
+    assert "Geheim" not in str(a)                              # Zukunft bleibt draußen
+    assert a["inhalte"][0]["thema"] == "Wissen sichern"
+
+
+def test_advent_vor_dem_start_alles_zu(tmp_path):
+    write(tmp_path / "inhalte/advent.yml", ADVENT)
+    a = build_data.build_advent(tmp_path, dt.date(2026, 11, 30))
+    assert a["vor_start"] and not a["inhalte"] and not a["fehlen"]
+
+
+def test_advent_thema_nach_woche(tmp_path):
+    write(tmp_path / "inhalte/advent.yml", ADVENT)
+    a = build_data.build_advent(tmp_path, dt.date(2026, 12, 6))
+    assert a["inhalte"][0]["tag"] == 6 and a["inhalte"][0]["thema"] == "Wissen teilen"

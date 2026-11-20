@@ -111,6 +111,25 @@ Zeile `save_the_date: true` wieder löschen.
 Kalenderdatei `/events/cogneon.ics` entstehen daraus bei jedem Build. Vergangene
 Termine wandern von selbst ins Archiv.
 
+## Adventskalender
+
+Der Kalender unter `/advent/` kommt aus `inhalte/advent.yml`: ein Eintrag je
+Türchen mit `typ`, `titel`, `link`, `von` (optional), `warum` und `impuls`
+(optional), dazu die Themen der Adventswochen.
+
+- Ein Türchen öffnet sich ab seinem Tag (Europe/Berlin). Das tägliche
+  Veröffentlichen um 03:23 UTC baut die Seite neu, niemand muss etwas tun.
+- Inhalte künftiger Türchen stehen nicht im HTML der Seite, wohl aber in
+  `inhalte/advent.yml` im öffentlichen Repository.
+- Fehlt an einem Tag `titel`, `link` oder `warum`, bleibt das Türchen zu und
+  `build_data.py` warnt.
+- Vorschau für einen Stichtag: `python3 scripts/build_data.py --heute 2026-12-05`,
+  danach `zensical serve`. Vor dem Einchecken wieder ohne `--heute` laufen lassen
+  (die erzeugten Dateien sind ohnehin nicht im Repo).
+- Videos nur verlinken, nicht einbetten. Keine Buchcover übernehmen.
+- Das Netz im Hintergrund lässt sich oben in `docs/assets/javascripts/advent.js`
+  einstellen (Dichte, Tempo, Helligkeit).
+
 ## Veröffentlichen
 
 Der Workflow "Veröffentlichen" baut die Website und lädt sie per SFTP auf den
