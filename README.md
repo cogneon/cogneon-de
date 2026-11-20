@@ -126,6 +126,8 @@ Türchen mit `typ`, `titel`, `link`, `von` (optional), `warum` und `impuls`
 - Vorschau für einen Stichtag: `python3 scripts/build_data.py --heute 2026-12-05`,
   danach `zensical serve`. Vor dem Einchecken wieder ohne `--heute` laufen lassen
   (die erzeugten Dateien sind ohnehin nicht im Repo).
+- Ein Klick auf ein Türchen klappt es auf und zeigt den Inhalt in einem Dialog.
+  Direktlink für Newsletter und Social Media: `https://cogneon.de/advent/#tag-5`.
 - Videos nur verlinken, nicht einbetten. Keine Buchcover übernehmen.
 - Das Netz im Hintergrund lässt sich oben in `docs/assets/javascripts/advent.js`
   einstellen (Dichte, Tempo, Helligkeit).

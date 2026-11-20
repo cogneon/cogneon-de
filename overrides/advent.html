@@ -2,8 +2,8 @@
   Wissensmanagement-Adventskalender unter /advent/. Die Inhalte kommen aus
   inhalte/advent.yml; scripts/build_data.py übernimmt nur Türchen, deren Tag
   erreicht ist (Europe/Berlin). Das Netz im Hintergrund zeichnet
-  assets/javascripts/advent.js; ohne JavaScript bleibt ein dunkler Grund und
-  alle offenen Türchen stehen als Liste unter dem Kalender.
+  assets/javascripts/advent.js. Ein Klick auf ein Türchen öffnet dessen Inhalt
+  in einem Dialog; ohne JavaScript springt der Link zur Liste darunter.
 -#}
 {% extends "main.html" %}
 {% block tabs %}{% endblock %}
@@ -59,7 +59,7 @@
 
   <section class="cg-section cg-section--soft" aria-labelledby="advent-inhalte">
     <div class="cg-wrap cg-stack cg-stack--weit cg-schmal">
-      <h2 class="cg-h2 cg-h2--klein" id="advent-inhalte">{% if a.inhalte %}Geöffnete Türchen{% else %}Bald geht es los{% endif %}</h2>
+      <h2 class="cg-h2 cg-h2--klein" id="advent-inhalte">{% if a.inhalte %}Bisher geöffnet{% else %}Bald geht es los{% endif %}</h2>
       {% if a.vor_start %}
       <p class="cg-lead cg-muted">Das erste Türchen öffnet sich am 1. Dezember {{ a.jahr }}.</p>
       {% endif %}
@@ -67,20 +67,28 @@
         {% for i in a.inhalte %}
         <article class="cg-advent__eintrag" id="tag-{{ i.tag }}" aria-labelledby="tag-{{ i.tag }}-titel">
           <p class="cg-advent__meta">{{ i.datum }}{% if i.thema %} · {{ i.thema }}{% endif %}{% if i.typ %} · {{ i.typ }}{% endif %}</p>
-          <h3 class="cg-advent__titel" id="tag-{{ i.tag }}-titel" tabindex="-1"><a href="{{ i.link }}">{{ i.titel }}</a></h3>
+          <h3 class="cg-advent__titel" id="tag-{{ i.tag }}-titel"><a href="{{ i.link }}">{{ i.titel }}</a></h3>
           {% if i.von %}<p class="cg-muted">{{ i.von }}</p>{% endif %}
           <p>{{ i.warum }}</p>
           {% if i.impuls %}<p class="cg-advent__impuls"><strong>Impuls für heute:</strong> {{ i.impuls }}</p>{% endif %}
         </article>
         {% endfor %}
       </div>
-      <p class="cg-advent__alle" hidden><a class="cg-link" href="#advent-inhalte" data-alle>Alle geöffneten Türchen zeigen</a></p>
       <div class="cg-advent__newsletter">
         <p><strong>Kein Türchen verpassen?</strong> Unser Newsletter erinnert Dich an neue Impulse.</p>
         <p><a class="cg-button" href="{{ '' | url }}#newsletter">Newsletter abonnieren</a></p>
       </div>
     </div>
   </section>
+
+  <dialog class="cg-advent__dialog" aria-labelledby="advent-dialog-titel">
+    <div class="cg-advent__karte">
+      <button type="button" class="cg-advent__schliessen" aria-label="Schließen">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <div class="cg-advent__dialog-inhalt"></div>
+    </div>
+  </dialog>
 
 </div>
 {% endblock %}

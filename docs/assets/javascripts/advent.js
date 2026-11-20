@@ -1,7 +1,7 @@
 /*
-  Adventskalender /advent/: glühendes Netz hinter den Türchen und Anzeige des
-  gewählten Türchens. Ohne JavaScript bleibt der Hintergrund dunkel und alle
-  offenen Türchen stehen als Liste da.
+  Adventskalender /advent/: glühendes Netz hinter den Türchen; ein Klick klappt
+  ein Türchen auf und zeigt seinen Inhalt in einem Dialog. Ohne JavaScript
+  bleibt der Hintergrund dunkel und die Türchen springen zur Liste darunter.
 
   Stellschrauben: */
 var ADVENT = {
@@ -14,54 +14,85 @@ var ADVENT = {
 /* Ende der Stellschrauben. */
 
 (function () {
-  // --- Türchen-Auswahl -----------------------------------------------------
-  var eintraege = Array.prototype.slice.call(document.querySelectorAll(".cg-advent__eintrag"));
-  var tueren = Array.prototype.slice.call(document.querySelectorAll(".cg-tuer--offen"));
-  var alle = document.querySelector(".cg-advent__alle");
+  // --- Türchen öffnen -----------------------------------------------------
+  // Ein Klick klappt das Türchen auf und zeigt seinen Inhalt in einem Dialog.
+  // Ohne JavaScript oder ohne <dialog> springt der Link zur Liste darunter.
   var ruhig = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var dialog = document.querySelector(".cg-advent__dialog");
+  var tueren = Array.prototype.slice.call(document.querySelectorAll(".cg-tuer--offen"));
+  var KLAPPEN = 320; // ms, passend zu advent.css
 
-  function zeigen(id, fokus) {
-    var treffer = false;
-    eintraege.forEach(function (e) {
-      var an = !id || e.id === id;
-      e.hidden = !an;
-      if (e.id === id) treffer = true;
-    });
-    if (id && !treffer) { zeigen(null, false); return; }
-    tueren.forEach(function (t) {
-      t.classList.toggle("cg-tuer--aktiv", !!id && t.getAttribute("href") === "#" + id);
-    });
-    if (alle) alle.hidden = !id || eintraege.length < 2;
-    if (id && fokus) {
-      var titel = document.getElementById(id + "-titel");
-      var ziel = document.getElementById(id);
-      if (ziel) ziel.scrollIntoView({ behavior: ruhig.matches ? "auto" : "smooth", block: "center" });
-      if (titel) titel.focus({ preventScroll: true });
+  if (dialog && typeof dialog.showModal === "function" && tueren.length) {
+    var inhalt = dialog.querySelector(".cg-advent__dialog-inhalt");
+    var ausloeser = null;
+
+    function tuerZu(id) {
+      for (var i = 0; i < tueren.length; i++) if (tueren[i].getAttribute("href") === "#" + id) return tueren[i];
+      return null;
     }
-  }
 
-  if (eintraege.length) {
-    var start = location.hash.slice(1);
-    // Standard: das neueste offene Türchen (steht zuerst in der Liste).
-    zeigen(start && document.getElementById(start) ? start : eintraege[0].id, !!start);
+    function oeffnen(id, tuer, animiert) {
+      var quelle = document.getElementById(id);
+      if (!quelle || id.indexOf("tag-") !== 0) return;
+      var kopie = quelle.cloneNode(true);
+      kopie.removeAttribute("id");
+      kopie.removeAttribute("aria-labelledby");
+      kopie.className = "cg-advent__dialog-eintrag";
+      var h = kopie.querySelector("h3");
+      if (h) { h.id = "advent-dialog-titel"; }
+      inhalt.innerHTML = "";
+      inhalt.appendChild(kopie);
+      ausloeser = tuer || tuerZu(id);
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+
+      function zeigen() {
+        dialog.showModal();
+        dialog.querySelector(".cg-advent__schliessen").focus();
+      }
+      if (animiert && ausloeser && !ruhig.matches) {
+        ausloeser.classList.add("cg-tuer--klappt");
+        setTimeout(zeigen, KLAPPEN);
+      } else {
+        zeigen();
+      }
+    }
+
+    function schliessen() { if (dialog.open) dialog.close(); }
+
+    dialog.addEventListener("close", function () {
+      if (history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+      if (ausloeser) {
+        ausloeser.classList.remove("cg-tuer--klappt");
+        ausloeser.focus();
+      }
+    });
+    // Klick auf den abgedunkelten Rand schließt.
+    dialog.addEventListener("click", function (ev) { if (ev.target === dialog) schliessen(); });
+    dialog.querySelector(".cg-advent__schliessen").addEventListener("click", schliessen);
+
     tueren.forEach(function (t) {
       t.addEventListener("click", function (ev) {
         ev.preventDefault();
-        var id = t.getAttribute("href").slice(1);
-        if (history.replaceState) history.replaceState(null, "", "#" + id);
-        zeigen(id, true);
+        oeffnen(t.getAttribute("href").slice(1), t, true);
       });
     });
+
+    // Direktlink /advent/#tag-5 öffnet das Türchen sofort.
+    // Der Browser springt dabei zur Liste; zurück zum Kalender, damit er hinter dem Dialog steht.
+    var start = location.hash.slice(1);
+    if (start && document.getElementById(start)) {
+      var direkt = function () {
+        var kalender = document.querySelector(".cg-advent");
+        if (kalender) window.scrollTo(0, kalender.getBoundingClientRect().top + window.pageYOffset);
+        oeffnen(start, null, false);
+      };
+      // Erst nach dem Sprung des Browsers zum Anker, sonst springt er hinterher.
+      if (document.readyState === "complete") setTimeout(direkt, 0);
+      else window.addEventListener("load", function () { setTimeout(direkt, 0); });
+    }
     window.addEventListener("hashchange", function () {
       var id = location.hash.slice(1);
-      if (document.getElementById(id) && id.indexOf("tag-") === 0) zeigen(id, true);
-    });
-    var alleLink = alle && alle.querySelector("[data-alle]");
-    if (alleLink) alleLink.addEventListener("click", function (ev) {
-      ev.preventDefault();
-      if (history.replaceState) history.replaceState(null, "", location.pathname);
-      zeigen(null, false);
-      eintraege[0].querySelector("h3").focus();
+      if (id && !dialog.open) oeffnen(id, null, false);
     });
   }
 
