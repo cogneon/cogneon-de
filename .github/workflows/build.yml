@@ -28,11 +28,13 @@ jobs:
         run: python scripts/check_urls.py --url-map migration/url-map.csv --url-list migration/old-urls.txt --report-only
       - name: Linkprüfung (interne Links, ohne fremde Websites)
         run: python scripts/check_links.py --report-only
+      # Nur die Prüfberichte aufheben (wenige KB). Die gebaute Website (rund
+      # 60 MB je Lauf) wird nicht mehr hochgeladen: Sie sprengte das
+      # Speicherkontingent für Actions und lässt sich jederzeit lokal bauen.
       - uses: actions/upload-artifact@v4
         with:
-          name: site
+          name: pruefberichte
           path: |
-            site
             migration/url-check.md
             migration/link-check.md
-          retention-days: 7
+          retention-days: 3
