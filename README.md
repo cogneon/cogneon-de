@@ -220,6 +220,21 @@ Das Repository bringt eine Einrichtung für Visual Studio Code mit:
   Datei von Hand kopieren und umbenennen. Blogbeiträge gehören nach
   `docs/blog/posts/JJJJ/`, Termine nach `docs/event/`, Seiten nach `docs/`.
 
+## Kurzlinks über Hashtags
+
+Termine, Seiten und Blogbeiträge können im Front Matter einen Hashtag tragen:
+
+```yaml
+hashtag: loscon27          # oder mehrere: [loscon27, lernoscon27]
+```
+
+Daraus entsteht beim Veröffentlichen automatisch die Weiterleitung
+`cogneon.de/loscon27` auf die Seite. Erlaubt sind a-z, 0-9 und `-`. Doppelte
+Hashtags, Hashtags, die schon eine Seite sind, oder Abweichungen zu
+`migration/redirects.map` meldet `build_data.py` als Warnung und erzeugt sie
+nicht. Kurzlinks ohne eigene Seite (z.B. auf externe Adressen) bleiben in
+`migration/redirects.map`.
+
 ## Veröffentlichen
 
 Der Workflow "Veröffentlichen" baut die Website und lädt sie per SFTP auf den

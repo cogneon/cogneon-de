@@ -196,3 +196,26 @@ def test_termin_ohne_kategorie_slugs(tmp_path):
     events = {e["slug"]: e for e in build_data.all_events(tmp_path)}
     assert events["neu"]["kategorien"] == [("Expert Debriefing Praxis-Ausbildung", "edmod"), ("Neue Reihe Ä", "neue-reihe-ae")]
     assert events["neu"]["beginn"] == dt.datetime(2027, 1, 15, 10, 0)
+
+
+def test_datum_spanne():
+    d = lambda *a: dt.datetime(*a)
+    assert build_data.datum_spanne(d(2026, 5, 20, 10), d(2026, 5, 20, 16)) == "20.05.2026"
+    assert build_data.datum_spanne(d(2026, 5, 20, 10), d(2026, 5, 21, 16)) == "20.-21.05.2026"
+    assert build_data.datum_spanne(d(2026, 5, 31, 10), d(2026, 6, 1, 16)) == "31.05.-01.06.2026"
+    assert build_data.datum_spanne(d(2026, 12, 30, 10), d(2027, 1, 2, 16)) == "30.12.2026-02.01.2027"
+
+
+def test_hashtags(tmp_path):
+    write(tmp_path / "docs/event/lernos-convention-2027.md", "---\ntitle: L\nbeginn: 2027-06-01 10:00\nhashtag: '#loscon27'\n---\n")
+    write(tmp_path / "docs/event/zwei.md", "---\ntitle: Z\nbeginn: 2027-06-02 10:00\nhashtag: loscon27\n---\n")
+    write(tmp_path / "docs/akademie.md", "---\ntitle: A\nhashtag: [akademie, Ungültig!]\n---\n")
+    write(tmp_path / "docs/blog/posts/2027/x.md", "---\ntitle: X\ndate: {created: 2027-01-05}\nslug: x\nhashtag: kclo27\n---\n")
+    write(tmp_path / "migration/redirects.map", "/kclo27 /anderswo/\n")
+    regeln, probleme = build_data.build_hashtags(tmp_path)
+    assert ("/loscon27", "/event/lernos-convention-2027/") in regeln
+    assert not any(a == "/kclo27" for a, _ in regeln)
+    assert any("auch in" in p for p in probleme)                 # loscon27 doppelt
+    assert any("schon eine Seite" in p for p in probleme)        # /akademie ist Seite
+    assert any("a-z" in p for p in probleme)                     # ungültig
+    assert any("redirects.map" in p for p in probleme)           # kclo27 manuell anders
