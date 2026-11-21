@@ -284,5 +284,7 @@
     "Studien und Bibliothek",
     "Wissensmanagement",
     "Wissenstransfer"
-  ]
+  ],
+  "frontMatter.templates.enabled": true,
+  "frontMatter.templates.folder": ".frontmatter/templates"
 }

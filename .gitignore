@@ -19,3 +19,9 @@ docs/assets/karte/
 overrides/partials/advent-daten.html
 overrides/partials/sprachen-daten.html
 overrides/partials/hinweis-daten.html
+# Front Matter CMS: lokaler Zwischenspeicher
+.frontmatter/database/
+
+# Installationspakete gehören nicht ins Repo
+*.whl
+*.tar.gz
