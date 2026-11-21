@@ -135,22 +135,25 @@ titel = "Über uns"
 url = "ueber-uns/"
 
 # Englisches Hauptmenü für Seiten unter /en/. Ziele ohne englische
-# Fassung (Akademie, Blog, Termine) bleiben deutsch.
+# Fassung (Blog, Termine) bleiben deutsch und tragen nur_de = true: Im Menü
+# steht dann ein kleines "DE".
 [[project.extra.menu_en]]
 titel = "Services"
 url = "en/services/"
 
 [[project.extra.menu_en]]
 titel = "Academy"
-url = "akademie/"
+url = "en/academy/"
 
 [[project.extra.menu_en]]
 titel = "Blog"
 url = "blog/"
+nur_de = true
 
 [[project.extra.menu_en]]
 titel = "Events"
 url = "events/"
+nur_de = true
 
 [[project.extra.menu_en]]
 titel = "About us"

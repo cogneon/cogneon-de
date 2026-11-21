@@ -16,7 +16,7 @@
     {% for eintrag in (config.extra.menu_en if en else config.extra.menu) %}
     <li class="md-nav__item">
       <a href="{{ eintrag.url | url }}" class="md-nav__link"{% if page.url and page.url is startingwith(eintrag.url) %} aria-current="page"{% endif %}>
-        <span class="md-ellipsis">{{ eintrag.titel }}</span>
+        <span class="md-ellipsis">{{ eintrag.titel }}{% if eintrag.nur_de %} <span class="cg-menu__de" lang="de">DE</span>{% endif %}</span>
       </a>
     </li>
     {% endfor %}
