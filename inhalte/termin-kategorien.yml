@@ -1,0 +1,12 @@
+# Adressen der Terminkategorien (/events/kategorie/<adresse>/).
+#
+# Standard: Termine aus WordPress bringen ihre Adresse mit (kategorie_slugs),
+# neue Termine bekommen eine aus dem Namen gebildete. Hier lässt sich die
+# Adresse einer Kategorie für alle Termine festlegen, unabhängig davon.
+#
+# Bei einer Änderung die alte Adresse in migration/redirects.map auf die neue
+# weiterleiten, damit alte Links funktionieren.
+#
+# Format:  Name der Kategorie: adresse
+
+lernOS Convention: loscon
