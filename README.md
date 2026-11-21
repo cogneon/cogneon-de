@@ -111,6 +111,23 @@ Zeile `save_the_date: true` wieder löschen.
 Kalenderdatei `/events/cogneon.ics` entstehen daraus bei jedem Build. Vergangene
 Termine wandern von selbst ins Archiv.
 
+## Kopfbild auf Unterseiten
+
+Seiten mit `template: angebot.html` können rechts neben Titel, Untertitel,
+Text und Button ein Bild zeigen. Beide Felder sind optional; ohne `kopfbild`
+sieht die Seite aus wie bisher.
+
+```yaml
+kopfbild: wp-content/uploads/2026/03/workshop.jpg
+kopfbild_alt: Teilnehmende beim Expert Debriefing an der Wissenslandkarte
+```
+
+- Das Bild nimmt am Desktop ein Drittel der Breite ein, mobil steht es unter dem Text.
+- Es wird auf 4:3 zugeschnitten (Mitte bleibt sichtbar). Motive also mittig wählen.
+- `kopfbild_alt` beschreibt, was zu sehen ist. Rein dekorative Bilder: Feld weglassen.
+- Echte Fotos aus Projekten oder der Akademie wirken besser als Stock-Bilder.
+- Vor dem Einchecken `python3 scripts/optimize_media.py` laufen lassen.
+
 ## Veröffentlichen
 
 Der Workflow "Veröffentlichen" baut die Website und lädt sie per SFTP auf den

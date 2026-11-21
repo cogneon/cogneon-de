@@ -1,8 +1,10 @@
 {#-
   Angebotsseite und Übersichtsseite. Felder im Frontmatter (alle optional
   außer title): untertitel, einleitung, pfad, anlaesse, gruppen, formate, ablauf,
-  pakete, verwandt, cta. Der Markdown-Text der Seite erscheint nach den
-  Anlässen bzw. Formaten.
+  pakete, verwandt, cta, kopfbild, kopfbild_alt. Der Markdown-Text der Seite
+  erscheint nach den Anlässen bzw. Formaten. Ist kopfbild gesetzt, steht das
+  Bild rechts neben dem Kopfbereich (mobil darunter); ohne kopfbild bleibt der
+  Kopf wie gehabt.
 -#}
 {% extends "main.html" %}
 {% block tabs %}{% endblock %}
@@ -13,7 +15,8 @@
 <div class="cg-page">
 
   <section class="cg-section cg-section--kopf">
-    <div class="cg-wrap cg-stack">
+    {% if m.kopfbild %}<div class="cg-wrap cg-kopf--bild">{% endif %}
+    <div class="{% if not m.kopfbild %}cg-wrap {% endif %}cg-stack">
       {% if m.pfad %}
       <nav class="cg-pfad" aria-label="Brotkrumen">
         <ol>
@@ -31,6 +34,12 @@
         <span class="cg-muted">30 Minuten, kostenlos</span>
       </p>
     </div>
+    {% if m.kopfbild %}
+    <figure class="cg-kopfbild">
+      <img src="{{ m.kopfbild | url }}" alt="{{ m.kopfbild_alt | d('', true) }}" loading="eager" fetchpriority="high" decoding="async">
+    </figure>
+    </div>
+    {% endif %}
   </section>
 
   {% if m.anlaesse %}
