@@ -168,9 +168,14 @@ def as_datetime(value) -> dt.datetime | None:
         return dt.datetime.combine(value, dt.time())
     if isinstance(value, str):
         try:
-            return dt.datetime.fromisoformat(value.strip().replace(" ", "T"))
+            wert = dt.datetime.fromisoformat(value.strip().replace(" ", "T"))
         except ValueError:
             return None
+        # Mit Zeitzone (z.B. "2027-01-15T09:00:00.000Z" aus einem Editor):
+        # in Berliner Zeit umrechnen und ohne Zone weiterführen wie alle anderen.
+        if wert.tzinfo is not None:
+            wert = wert.astimezone(ZoneInfo("Europe/Berlin")).replace(tzinfo=None)
+        return wert
     return None
 
 
@@ -184,10 +189,35 @@ def zeitraum(start: dt.datetime, end: dt.datetime, all_day: bool) -> str:
     return f"{tag(start)}, {start:%H:%M} Uhr - {tag(end)}, {end:%H:%M} Uhr"
 
 
+def termin_slug(name: str) -> str:
+    """Adresse einer Terminkategorie (/events/kategorie/<slug>/) für neue Kategorien."""
+    s = name.lower()
+    for a, b in (("ä", "ae"), ("ö", "oe"), ("ü", "ue"), ("ß", "ss")):
+        s = s.replace(a, b)
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+
+def kategorie_paare(meta: dict, bekannt: dict[str, str]) -> list[tuple[str, str]]:
+    """(Name, Slug) je Kategorie eines Termins. Aus WordPress übernommene Termine
+    bringen kategorie_slugs mit; neue Termine (z.B. aus Front Matter CMS) nur
+    Namen: dann den Slug eines anderen Termins mit gleichem Namen nehmen, sonst
+    einen aus dem Namen bilden."""
+    namen = [str(k) for k in meta.get("kategorien") or []]
+    slugs = list(meta.get("kategorie_slugs") or [])
+    return [(n, str(slugs[i]) if i < len(slugs) and slugs[i] else bekannt.get(n) or termin_slug(n))
+            for i, n in enumerate(namen)]
+
+
 def all_events(root: Path) -> list[dict]:
     """Alle Termine aus docs/event/*.md, nach Beginn sortiert."""
     events = []
-    for path in sorted((root / "docs" / "event").glob("*.md")):
+    pfade = sorted((root / "docs" / "event").glob("*.md"))
+    bekannt: dict[str, str] = {}
+    for path in pfade:
+        m = frontmatter(path)
+        for n, sl in zip(m.get("kategorien") or [], m.get("kategorie_slugs") or []):
+            bekannt.setdefault(str(n), str(sl))
+    for path in pfade:
         meta = frontmatter(path)
         start = as_datetime(meta.get("beginn"))
         if not start or not meta.get("title"):
@@ -201,7 +231,7 @@ def all_events(root: Path) -> list[dict]:
             "datum": f"{start:%d.%m.%Y}", "zeitraum": zeitraum(start, end, all_day),
             "ort": "Online" if meta.get("online") and not ort else str(ort.get("name") or ""),
             "adresse": str(ort.get("adresse") or ""),
-            "kategorien": list(zip(meta.get("kategorien") or [], meta.get("kategorie_slugs") or [])),
+            "kategorien": kategorie_paare(meta, bekannt),
             "anmeldung": str(meta.get("anmeldung") or ""),
             "online": bool(meta.get("online")),
             "bild": str(meta.get("bild") or "") if (root / "docs" / str(meta.get("bild") or "-")).is_file() else "",
@@ -322,6 +352,7 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
         (target / "cogneon.ics").write_text(build_ics(events, site_url, stamp), encoding="utf-8", newline="")
     daten = {"kommend": [lang(e) for e in kommend], "archiv": archiv,
              "zeiten": {e["url"]: e["zeitraum"] for e in events},
+             "kategorien_je_termin": {e["url"]: [list(k) for k in e["kategorien"]] for e in events},
              "schema": {e["url"]: event_jsonld(e, site_url) for e in events},
              "kategorien": [{"titel": c["titel"], "url": f"events/kategorie/{s}/", "anzahl": len(c["termine"])}
                             for s, c in sorted(kategorien.items(), key=lambda kv: kv[1]["titel"].lower())]}

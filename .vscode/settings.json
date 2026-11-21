@@ -6,7 +6,8 @@
     "editor.minimap.enabled": false,
     "editor.lineNumbers": "off",
     "editor.glyphMargin": false,
-    "editor.folding": false,
+    "editor.folding": true,
+    "editor.showFoldingControls": "mouseover",
     "editor.renderWhitespace": "none",
     "editor.fontSize": 15,
     "editor.lineHeight": 1.7

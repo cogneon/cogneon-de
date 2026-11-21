@@ -286,5 +286,7 @@
     "Wissenstransfer"
   ],
   "frontMatter.templates.enabled": true,
-  "frontMatter.templates.folder": ".frontmatter/templates"
+  "frontMatter.templates.folder": ".frontmatter/templates",
+  "frontMatter.content.hideFm": true,
+  "frontMatter.content.hideFmMessage": "Metadaten ausgeblendet - bearbeiten über das FM-Symbol links"
 }

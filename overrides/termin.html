@@ -18,7 +18,7 @@
 <div class="md-content cg-beitrag" data-md-component="content">
   <article class="md-content__inner md-typeset">
     <a id="__skip" tabindex="-1"></a>
-    <p class="cg-beitrag__meta"><a href="{{ 'events/' | url }}">Termine</a>{% for k in m.kategorien | d([]) %}<span aria-hidden="true">·</span><a href="{{ ('events/kategorie/' ~ m.kategorie_slugs[loop.index0] ~ '/') | url }}">{{ k }}</a>{% endfor %}</p>
+    <p class="cg-beitrag__meta"><a href="{{ 'events/' | url }}">Termine</a>{% for k in daten.termine.kategorien_je_termin[page.url] | d([]) %}<span aria-hidden="true">·</span><a href="{{ ('events/kategorie/' ~ k[1] ~ '/') | url }}">{{ k[0] }}</a>{% endfor %}</p>
     {% if m.bild and not m.bild_im_text %}<img class="cg-beitrag__bild" src="{{ m.bild | url }}" alt="">{% endif %}
     {{ page.content }}
     {% if m.save_the_date %}
