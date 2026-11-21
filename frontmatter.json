@@ -1,0 +1,288 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "other",
+  "frontMatter.content.publicFolder": "docs",
+  "frontMatter.preview.host": "http://localhost:8000",
+  "frontMatter.content.autoUpdateDate": false,
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Blog",
+      "path": "[[workspace]]/docs/blog/posts",
+      "contentTypes": [
+        "blogbeitrag"
+      ]
+    },
+    {
+      "title": "Termine",
+      "path": "[[workspace]]/docs/event",
+      "contentTypes": [
+        "termin"
+      ]
+    },
+    {
+      "title": "Seiten",
+      "path": "[[workspace]]/docs",
+      "contentTypes": [
+        "seite"
+      ],
+      "excludeSubdir": true
+    },
+    {
+      "title": "Englisch",
+      "path": "[[workspace]]/docs/en",
+      "contentTypes": [
+        "seite"
+      ]
+    }
+  ],
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "seite",
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Titel",
+          "name": "title",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Beschreibung (für Suchmaschinen und Vorschaukarten)",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "Kopfbild (16:9)",
+          "name": "kopfbild",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "title": "Kopfbild: Beschreibung",
+          "name": "kopfbild_alt",
+          "type": "string"
+        },
+        {
+          "title": "Vor WordPress-Export schützen",
+          "name": "frozen",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "blogbeitrag",
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Titel",
+          "name": "title",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Datum",
+          "name": "date",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "Erstellt",
+              "name": "created",
+              "type": "datetime",
+              "dateFormat": "yyyy-MM-dd",
+              "default": "{{now}}"
+            },
+            {
+              "title": "Aktualisiert",
+              "name": "updated",
+              "type": "datetime",
+              "dateFormat": "yyyy-MM-dd"
+            }
+          ]
+        },
+        {
+          "title": "Adresse (Slug)",
+          "name": "slug",
+          "type": "slug",
+          "editable": true
+        },
+        {
+          "title": "Beschreibung",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "Autor:innen",
+          "name": "authors",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "simon-dueckert",
+            "benedikt-scheerer",
+            "silvia-roderus",
+            "cogneon"
+          ],
+          "default": [
+            "simon-dueckert"
+          ]
+        },
+        {
+          "title": "Kategorien",
+          "name": "categories",
+          "type": "categories"
+        },
+        {
+          "title": "Schlagworte (CamelCase, z.B. GenerativeKI)",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Beitragsbild (16:9)",
+          "name": "bild",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "title": "Beitragsbild: Beschreibung",
+          "name": "bild_alt",
+          "type": "string"
+        },
+        {
+          "title": "Bild steht schon im Text",
+          "name": "bild_im_text",
+          "type": "boolean"
+        },
+        {
+          "title": "Sprache (nur wenn Englisch)",
+          "name": "sprache",
+          "type": "choice",
+          "choices": [
+            "",
+            "en"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "termin",
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Titel",
+          "name": "title",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Vorlage",
+          "name": "template",
+          "type": "string",
+          "default": "termin.html",
+          "hidden": true
+        },
+        {
+          "title": "Beginn",
+          "name": "beginn",
+          "type": "datetime",
+          "dateFormat": "yyyy-MM-dd HH:mm",
+          "required": true
+        },
+        {
+          "title": "Ende",
+          "name": "ende",
+          "type": "datetime",
+          "dateFormat": "yyyy-MM-dd HH:mm"
+        },
+        {
+          "title": "Ganztägig",
+          "name": "ganztags",
+          "type": "boolean"
+        },
+        {
+          "title": "Save the Date (Details folgen)",
+          "name": "save_the_date",
+          "type": "boolean"
+        },
+        {
+          "title": "Ort",
+          "name": "ort",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "Name",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "title": "Adresse",
+              "name": "adresse",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "title": "Online",
+          "name": "online",
+          "type": "boolean"
+        },
+        {
+          "title": "Kosten",
+          "name": "kosten",
+          "type": "string"
+        },
+        {
+          "title": "Anmeldung (Link)",
+          "name": "anmeldung",
+          "type": "string"
+        },
+        {
+          "title": "Kategorien",
+          "name": "kategorien",
+          "type": "list"
+        },
+        {
+          "title": "Bild (16:9)",
+          "name": "bild",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "title": "Bild steht schon im Text",
+          "name": "bild_im_text",
+          "type": "boolean"
+        }
+      ]
+    }
+  ],
+  "frontMatter.taxonomy.categories": [
+    "Akademie",
+    "Allgemein",
+    "Benchlearning",
+    "Community",
+    "Community Management und CoP",
+    "Erfolgsmessung und KPI",
+    "Events und Vorträge",
+    "Expert Debriefing",
+    "Fachwissen",
+    "Fallbeispiel",
+    "Führung und Kultur",
+    "IT und Enterprise 2.0",
+    "Keep Calm & Learn On",
+    "Künstliche Intelligenz",
+    "Lernen und 21st Century Skills",
+    "lernOS",
+    "lernOS Convention 2022",
+    "lernOS Convention 2023",
+    "lernOS Convention 2025",
+    "lernOS Convention 2026",
+    "Menerva-Programm 2036",
+    "Methoden und Tools",
+    "Office 365",
+    "Podcast und Multimedia",
+    "Studien und Bibliothek",
+    "Wissensmanagement",
+    "Wissenstransfer"
+  ]
+}

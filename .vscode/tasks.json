@@ -1,0 +1,21 @@
+{
+  // Befehlspalette (Cmd+Shift+P) > "Tasks: Run Task" > "Vorschau starten".
+  // Danach http://localhost:8000 im Browser öffnen. Beenden: im Terminal Strg+C.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Vorschau starten",
+      "type": "shell",
+      "command": "python3 scripts/build_data.py && zensical serve",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Übersetzungen prüfen",
+      "type": "shell",
+      "command": "python3 scripts/uebersetzung.py status",
+      "problemMatcher": []
+    }
+  ]
+}

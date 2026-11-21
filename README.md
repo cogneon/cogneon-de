@@ -198,6 +198,24 @@ hinweise:
 - Ohne `text_en` gibt es auf englischen Seiten keine Leiste.
 - Weggeklickt bleibt sie weg, bis sich ihr Text ändert (Speicherung nur im Browser).
 
+## Bearbeiten mit VS Code
+
+Das Repository bringt eine Einrichtung für Visual Studio Code mit:
+
+- **Empfohlene Erweiterungen** (`.vscode/extensions.json`): VS Code bietet sie beim
+  Öffnen des Ordners zur Installation an. Front Matter CMS, Markdown All in One,
+  Rechtschreibprüfung Deutsch/Englisch.
+- **Schreib-Einstellungen** für Markdown (`.vscode/settings.json`): Zeilenumbruch,
+  keine Zeilennummern und Minimap, Rechtschreibprüfung. Bilder, die Du in einen
+  Text einfügst oder ziehst, landen unter `docs/wp-content/uploads/JJJJ/MM/`.
+- **Vorschau**: Befehlspalette (Cmd+Shift+P) > "Tasks: Run Task" > "Vorschau
+  starten", dann http://localhost:8000 öffnen. Gespeicherte Änderungen
+  erscheinen nach wenigen Sekunden.
+- **Front Matter CMS** (`frontmatter.json`): Übersicht über Blog, Termine und
+  Seiten, Formularfelder statt YAML, "Create content" für neue Beiträge und
+  Termine. Neue Inhalte bekommen ein Feld `type` (blogbeitrag, termin, seite),
+  an dem Front Matter die passenden Felder erkennt.
+
 ## Veröffentlichen
 
 Der Workflow "Veröffentlichen" baut die Website und lädt sie per SFTP auf den

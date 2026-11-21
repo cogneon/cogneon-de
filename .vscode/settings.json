@@ -1,0 +1,23 @@
+{
+  // Einstellungen für dieses Repository: Schreiben statt Programmieren.
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": { "other": false, "comments": false, "strings": false },
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "off",
+    "editor.glyphMargin": false,
+    "editor.folding": false,
+    "editor.renderWhitespace": "none",
+    "editor.fontSize": 15,
+    "editor.lineHeight": 1.7
+  },
+  // Bilder per Einfügen/Ziehen in den Ordner des Jahres und Monats legen.
+  "markdown.copyFiles.destination": {
+    "docs/**/*.md": "docs/wp-content/uploads/${now:yyyy}/${now:MM}/${fileName}"
+  },
+  "markdown.updateLinksOnFileMove.enabled": "prompt",
+  "cSpell.language": "de,en",
+  "cSpell.enabledFileTypes": { "markdown": true, "*": false },
+  "files.exclude": { "site": true, "**/__pycache__": true, ".pytest_cache": true },
+  "search.exclude": { "site": true, "docs/wp-content": true }
+}
