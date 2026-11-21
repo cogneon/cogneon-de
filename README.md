@@ -73,8 +73,116 @@ URLs, die es als Seite nicht mehr gibt, brauchen einen Eintrag in `migration/red
 
 ## Arbeitsweise
 
-- `main` ist geschützt, Änderungen kommen per Pull Request.
-- Jeder Pull Request wird gebaut und getestet (Workflow **Build**).
+- `main` ist der veröffentlichte Stand. Änderungen kommen über einen eigenen
+  Branch und einen Pull Request (PR) dorthin.
+- Jeder PR wird gebaut und getestet (Workflow **Build**), nach dem Mergen
+  veröffentlicht der Workflow **Veröffentlichen** die Seite.
+
+## Ablauf für Redakteur:innen (Git Schritt für Schritt)
+
+Begriffe in einem Satz: Ein **Branch** ist eine Arbeitskopie, an der Du in Ruhe
+änderst. Ein **Commit** speichert einen Arbeitsschritt mit Beschreibung.
+**Push** lädt Deine Commits zu GitHub hoch (die Website ändert sich dadurch
+nicht). Ein **Pull Request** schlägt vor, den Branch in `main` zu übernehmen;
+erst das **Mergen** bringt die Änderungen auf die Website.
+
+### 1. Vor dem Start: aktuellen Stand holen
+
+```bash
+cd ~/Documents/GitHub/cogneon-de
+git switch main
+git pull
+```
+
+### 2. Branch anlegen
+
+Ein Branch pro Vorhaben, Name kurz und sprechend:
+
+```bash
+git switch -c inhalt/termine-2027
+```
+
+### 3. Ändern, prüfen, committen (beliebig oft)
+
+Dateien bearbeiten, Vorschau mit `python3 scripts/build_data.py && zensical serve`
+(oder in VS Code: "Tasks: Run Task" > "Vorschau starten"). Dann:
+
+```bash
+git status                     # was ist geändert?
+git add docs/                  # Inhalte vormerken (ggf. auch migration/)
+git commit -m "Termine 2027 angelegt (#35)"
+```
+
+`(#35)` verknüpft den Commit mit Issue 35. Nur vormerken, was Du bewusst
+geändert hast: Dateien wie `frontmatter.json` ändern Werkzeuge manchmal von
+selbst.
+
+### 4. Hochladen
+
+```bash
+git push -u origin HEAD        # beim ersten Mal (legt den Branch auf GitHub an)
+git push                       # danach
+```
+
+### 5. Pull Request öffnen
+
+1. https://github.com/cogneon/cogneon-de öffnen. Kurz nach einem Push steht
+   oben ein gelber Hinweis mit **Compare & pull request**: anklicken.
+   Sonst: Reiter **Pull requests** > **New pull request**, links `base: main`,
+   rechts Deinen Branch wählen.
+2. Titel eintragen, in die Beschreibung z.B. `Closes #35` (schließt das Issue
+   beim Mergen automatisch).
+3. **Create pull request** klicken. Wer noch weiterarbeitet: Pfeil daneben >
+   **Create draft pull request**; später **Ready for review**.
+4. Unten laufen die Prüfungen (Build). Grüner Haken = alles gut. Bei rotem
+   Kreuz auf **Details** klicken oder Bescheid geben.
+5. Reiter **Files changed** zeigt alle Änderungen zum Gegenlesen.
+
+### 6. Mergen
+
+**Merge pull request** > **Confirm merge**, danach **Delete branch**. Nach ein
+paar Minuten ist die Änderung auf der Website (Reiter **Actions** >
+"Veröffentlichen").
+
+Danach lokal aufräumen:
+
+```bash
+git switch main
+git pull
+git branch -d inhalt/termine-2027
+```
+
+### Zwischendurch: neuen Stand von main in den eigenen Branch holen
+
+Wurden andere PRs gemergt, während Du arbeitest:
+
+```bash
+git pull --no-edit origin main
+```
+
+Einmalig vorher (falls Git nach "divergent branches" fragt):
+`git config --global pull.rebase false`
+
+### Häufige Meldungen und was zu tun ist
+
+| Meldung | Bedeutung | Lösung |
+|---|---|---|
+| `no changes added to commit` | Nichts vorgemerkt | erst `git add docs/`, dann `git commit` |
+| `Your local changes … would be overwritten by merge` | Ungespeicherte Änderung an einer Datei, die auch auf main geändert wurde | Eigene Änderung: `git add` + `git commit`, dann erneut pullen. Ungewollte Änderung (z.B. `frontmatter.json`): `git stash push <datei>`, pullen, `git stash show -p` ansehen, `git stash drop` |
+| `Need to specify how to reconcile divergent branches` | Git fragt, wie es zusammenführen soll | `git config --global pull.rebase false`, erneut pullen |
+| `Waiting for your editor to close the file` | Git will eine Merge-Nachricht | im Terminal-Editor `Esc`, `:wq`, Enter; künftig `git pull --no-edit …` |
+| `zsh: suspended` | Mit Ctrl+Z angehalten | `fg`, dann wie oben |
+| `CONFLICT (content)` | Dieselbe Stelle wurde zweimal geändert | Datei öffnen, zwischen `<<<<<<<` und `>>>>>>>` die richtige Fassung behalten, Markierungen löschen, `git add`, `git commit`; im Zweifel Bescheid geben |
+| PR: "This branch has conflicts" | wie oben, auf GitHub | im eigenen Branch `git pull --no-edit origin main`, Konflikt lösen, `git push` |
+
+### Dasselbe in VS Code per Klick
+
+- **Branch:** unten links auf den Branch-Namen klicken > "Create new branch".
+- **Committen:** Seitenleiste "Quellcodeverwaltung" (Cmd+Shift+G): bei
+  jeder Datei "+" (vormerken), Nachricht eintippen, **Commit**.
+- **Push/Pull:** Schaltfläche **Sync Changes** bzw. "…" > Pull/Push.
+- **Pull Request:** mit der Erweiterung "GitHub Pull Requests" direkt aus
+  VS Code, sonst wie oben im Browser.
 
 ## Adventskalender
 
