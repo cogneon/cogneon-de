@@ -14,7 +14,8 @@ anmeldung:
 save_the_date: true
 kategorien:
   - Schulung
-bild: wp-content/uploads/2027/01/termin-bild.png
+  - edmod
+bild: assets/bilder/edmod-banner.png
 ---
 
 # Expert Debriefing Praxis-Ausbildung Herbst 2027 (edmod27b)
