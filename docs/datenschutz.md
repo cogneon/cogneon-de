@@ -235,3 +235,7 @@ Weitere Informationen enthält die Datenschutzerklärung der OSMF unter https://
 In der geladenen Karte kann die betroffene Person auf "Luftbild" umschalten. Erst dann ruft der Internetbrowser Luftbilder vom Landesamt für Digitalisierung, Breitband und Vermessung (Bayerische Vermessungsverwaltung), Alexandrastraße 4, 80538 München, ab; die Bilder liegen auf Servern unter der Adresse bayernwolke.de. Dabei werden ebenfalls die IP-Adresse, Informationen über den verwendeten Internetbrowser und die aufgerufene Seite übermittelt. Rechtsgrundlage ist die Einwilligung durch das Umschalten (Art. 6 Abs. 1 Buchstabe a DS-GVO). Datenschutzbeauftragter des Landesamts: datenschutz@ldbv.bayern.de.
 
 Für die Routenplanung verlinken wir auf OpenStreetMap, Google Maps und Apple Karten. Diese Dienste werden erst aufgerufen, wenn die betroffene Person einen der Links anklickt; dann gelten deren Datenschutzbestimmungen.
+
+**21. Hinweisleiste**
+
+Über der Kopfzeile blenden wir zeitweise eine Hinweisleiste ein. Klickt die betroffene Person sie mit dem "x" weg, speichert ihr Internetbrowser lokal (im sogenannten Local Storage) einen Prüfwert des Hinweistextes, damit derselbe Hinweis nicht erneut erscheint. Diese Information verbleibt im Browser, wird nicht an uns oder Dritte übermittelt und kann jederzeit über die Browsereinstellungen gelöscht werden.

@@ -454,6 +454,31 @@ def build_sprachen(root: Path) -> dict:
     return {"de_zu_en": de_zu_en, "en_zu_de": en_zu_de, "veraltet": veraltet, "fehlt": fehlt}
 
 
+HINWEIS_ARTEN = ("warnung", "hinweis", "aktion")
+
+
+def build_hinweis(root: Path, today: dt.date) -> dict:
+    """Die heute gültige Meldung für die Hinweisleiste je Sprache (oder keine)."""
+    source = root / "inhalte" / "hinweise.yml"
+    if not source.exists():
+        return {}
+    data = yaml.safe_load(source.read_text(encoding="utf-8")) or {}
+    gueltig = []
+    for i, h in enumerate(data.get("hinweise") or []):
+        ab, bis = as_date(h.get("ab")), as_date(h.get("bis"))
+        if (ab and today < ab) or (bis and today > bis) or not str(h.get("text") or "").strip():
+            continue
+        art = h.get("art") if h.get("art") in HINWEIS_ARTEN else "hinweis"
+        gueltig.append((0 if art == "warnung" else 1, i, art, h))
+    if not gueltig:
+        return {}
+    _, _, art, h = sorted(gueltig)[0]
+    ergebnis = {"de": {"text": str(h["text"]).strip(), "link": h.get("link") or "", "art": art}}
+    if str(h.get("text_en") or "").strip():
+        ergebnis["en"] = {"text": str(h["text_en"]).strip(), "link": h.get("link_en") or h.get("link") or "", "art": art}
+    return ergebnis
+
+
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
     posts = []
     for path in post_dir.rglob("*.md"):
@@ -563,6 +588,14 @@ def main() -> int:
         if advent["fehlen"]:
             print(f"Warnung: Adventskalender-Türchen ohne titel/link/warum bleiben zu: "
                   f"{', '.join(map(str, advent['fehlen']))}", file=sys.stderr)
+    hinweis = build_hinweis(args.root, today)
+    target = args.root / "overrides" / "partials" / "hinweis-daten.html"
+    target.write_text(
+        "{#- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -#}\n"
+        "{% set hinweis = " + json.dumps(hinweis, ensure_ascii=False) + " %}\n",
+        encoding="utf-8",
+    )
+    print(f"{target.relative_to(args.root)}: {'Meldung aktiv' if hinweis else 'keine Meldung'}")
     sprachen = build_sprachen(args.root)
     target = args.root / "overrides" / "partials" / "sprachen-daten.html"
     target.write_text(

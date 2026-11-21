@@ -161,3 +161,20 @@ def test_advent_thema_nach_woche(tmp_path):
     write(tmp_path / "inhalte/advent.yml", ADVENT)
     a = build_data.build_advent(tmp_path, dt.date(2026, 12, 6))
     assert a["inhalte"][0]["tag"] == 6 and a["inhalte"][0]["thema"] == "Wissen teilen"
+
+
+HINWEISE = """
+hinweise:
+  - {text: Aktion, text_en: Action, link: advent/, art: aktion, ab: 2026-11-30, bis: 2026-12-24}
+  - {text: Achtung, art: warnung, ab: 2026-12-10, bis: 2026-12-11}
+  - {text: Später, art: hinweis, ab: 2027-01-01}
+"""
+
+
+def test_hinweis_zeitraum_und_vorrang(tmp_path):
+    write(tmp_path / "inhalte/hinweise.yml", HINWEISE)
+    assert build_data.build_hinweis(tmp_path, dt.date(2026, 11, 29)) == {}
+    h = build_data.build_hinweis(tmp_path, dt.date(2026, 12, 1))
+    assert h["de"]["text"] == "Aktion" and h["en"]["text"] == "Action" and h["de"]["art"] == "aktion"
+    w = build_data.build_hinweis(tmp_path, dt.date(2026, 12, 10))
+    assert w["de"]["text"] == "Achtung" and "en" not in w

@@ -35,6 +35,7 @@ favicon = "assets/favicon.svg"
 # unter docs/assets/fonts und werden in cogneon.css eingebunden.
 font = false
 features = [
+  "announce.dismiss",
   "content.tooltips",
   "navigation.indexes",
   "navigation.top",
