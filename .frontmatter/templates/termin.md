@@ -9,7 +9,7 @@ ort:
   adresse: Bucherstr. 79a, 90419 Nürnberg
 online: false
 kosten: kostenlos
-anmeldung: https://pretix.eu/cogneon/
+anmeldung: ''
 kategorien:
 - Schulung
 bild: wp-content/uploads/2027/01/termin-bild.png
@@ -19,4 +19,5 @@ bild: wp-content/uploads/2027/01/termin-bild.png
 
 Worum es geht, für wen, was man mitnimmt.
 
-[Jetzt anmelden](https://pretix.eu/cogneon/){ .cg-button }
+<!-- Den Knopf "Jetzt anmelden" erzeugt die Seite selbst, sobald im Feld
+     "anmeldung" ein Link steht. Hier keinen eigenen Knopf einfügen. -->

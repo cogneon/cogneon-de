@@ -353,6 +353,9 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
     daten = {"kommend": [lang(e) for e in kommend], "archiv": archiv,
              "zeiten": {e["url"]: e["zeitraum"] for e in events},
              "kategorien_je_termin": {e["url"]: [list(k) for k in e["kategorien"]] for e in events},
+             # Anmeldeknopf nur bei kommenden Terminen mit Anmeldelink.
+             "anmeldung": {e["url"]: e["anmeldung"] for e in events
+                           if e["anmeldung"] and e["ende"].date() >= today},
              "schema": {e["url"]: event_jsonld(e, site_url) for e in events},
              "kategorien": [{"titel": c["titel"], "url": f"events/kategorie/{s}/", "anzahl": len(c["termine"])}
                             for s, c in sorted(kategorien.items(), key=lambda kv: kv[1]["titel"].lower())]}
