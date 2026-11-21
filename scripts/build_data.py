@@ -212,6 +212,10 @@ def all_events(root: Path) -> list[dict]:
     """Alle Termine aus docs/event/*.md, nach Beginn sortiert."""
     events = []
     pfade = sorted((root / "docs" / "event").glob("*.md"))
+    festgelegt = {}
+    quelle = root / "inhalte" / "termin-kategorien.yml"
+    if quelle.exists():
+        festgelegt = {str(k): str(v) for k, v in (yaml.safe_load(quelle.read_text(encoding="utf-8")) or {}).items()}
     bekannt: dict[str, str] = {}
     for path in pfade:
         m = frontmatter(path)
@@ -231,7 +235,7 @@ def all_events(root: Path) -> list[dict]:
             "datum": f"{start:%d.%m.%Y}", "zeitraum": zeitraum(start, end, all_day),
             "ort": "Online" if meta.get("online") and not ort else str(ort.get("name") or ""),
             "adresse": str(ort.get("adresse") or ""),
-            "kategorien": kategorie_paare(meta, bekannt),
+            "kategorien": [(n, festgelegt.get(n, sl)) for n, sl in kategorie_paare(meta, bekannt)],
             "anmeldung": str(meta.get("anmeldung") or ""),
             "online": bool(meta.get("online")),
             "bild": str(meta.get("bild") or "") if (root / "docs" / str(meta.get("bild") or "-")).is_file() else "",
