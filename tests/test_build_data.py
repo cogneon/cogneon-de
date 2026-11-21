@@ -12,13 +12,13 @@ def write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
 
-
 def test_termin_kategorie_adresse_festgelegt(tmp_path):
     write(tmp_path / "inhalte/termin-kategorien.yml", "lernOS Convention: loscon\n")
     write(tmp_path / "docs/event/a.md", "---\ntitle: A\nbeginn: 2026-01-10 10:00\n"
           "kategorien: [lernOS Convention]\nkategorie_slugs: [lernoscon]\n---\n")
     (e,) = build_data.all_events(tmp_path)
     assert e["kategorien"] == [("lernOS Convention", "loscon")]
+
 
 
 def test_abgelaufene_eintraege_fallen_weg(tmp_path):
@@ -196,4 +196,3 @@ def test_termin_ohne_kategorie_slugs(tmp_path):
     events = {e["slug"]: e for e in build_data.all_events(tmp_path)}
     assert events["neu"]["kategorien"] == [("Expert Debriefing Praxis-Ausbildung", "edmod"), ("Neue Reihe Ä", "neue-reihe-ae")]
     assert events["neu"]["beginn"] == dt.datetime(2027, 1, 15, 10, 0)
-
