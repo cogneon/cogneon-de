@@ -239,7 +239,22 @@ var NETZ = {
   var timer;
   window.addEventListener("resize", function () {
     clearTimeout(timer);
-    timer = setTimeout(function () { aufbauen(); zeichnen(); }, 200);
+    timer = setTimeout(function () {
+      // Mobile Browser melden beim Scrollen eine Größenänderung, weil die
+      // Adressleiste ein- und ausfährt. Dann nur die Fläche anpassen und das
+      // Netz behalten; neu aufbauen nur, wenn sich die Breite ändert.
+      var r = huelle.getBoundingClientRect();
+      if (Math.abs(r.width - breite) < 1 && punkte.length) {
+        var faktor = r.height / hoehe;
+        hoehe = r.height;
+        canvas.height = Math.round(hoehe * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        punkte.forEach(function (q) { q.y *= faktor; });
+      } else {
+        aufbauen();
+      }
+      zeichnen();
+    }, 200);
   });
   steuern();
 })();
