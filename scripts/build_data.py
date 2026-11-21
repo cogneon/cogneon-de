@@ -371,6 +371,9 @@ def build_feed(root: Path, site_url: str = "https://cogneon.de/", limit: int = 2
     return len(posts)
 
 
+ADVENT_VORLAUF = 6  # Stunden
+
+
 def build_advent(root: Path, today: dt.date) -> dict | None:
     """Daten für den Adventskalender /advent/ aus inhalte/advent.yml.
 
@@ -503,7 +506,12 @@ def main() -> int:
         ziel.parent.mkdir(parents=True, exist_ok=True)
         ziel.write_text(json.dumps(orte, ensure_ascii=False), encoding="utf-8")
         print(f"docs/assets/karte/orte.json: {len(orte.get('orte') or [])} Orte")
-    advent = build_advent(args.root, today)
+    # Der Adventskalender öffnet das nächste Türchen schon am Vorabend: Ab
+    # ADVENT_VORLAUF Stunden vor Mitternacht (Berliner Zeit) gilt der Folgetag.
+    # So reicht der abendliche Lauf, auch wenn GitHub ihn stundenlang verzögert.
+    advent_tag = as_date(args.heute) if args.heute else (
+        dt.datetime.now(ZoneInfo("Europe/Berlin")) + dt.timedelta(hours=ADVENT_VORLAUF)).date()
+    advent = build_advent(args.root, advent_tag)
     if advent is not None:
         target = args.root / "overrides" / "partials" / "advent-daten.html"
         target.write_text(

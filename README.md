@@ -82,8 +82,11 @@ Der Kalender unter `/advent/` kommt aus `inhalte/advent.yml`: ein Eintrag je
 Türchen mit `typ`, `titel`, `link`, `von` (optional), `warum` und `impuls`
 (optional), dazu die Themen der Adventswochen.
 
-- Ein Türchen öffnet sich ab seinem Tag (Europe/Berlin). Das tägliche
-  Veröffentlichen um 03:23 UTC baut die Seite neu, niemand muss etwas tun.
+- Ein Türchen öffnet sich am Vorabend seines Tages: Ab 18 Uhr (Berliner Zeit)
+  gilt beim Bauen der Folgetag. Das abendliche Veröffentlichen (22:17 MEZ)
+  bringt es auf die Seite, niemand muss etwas tun. GitHub verzögert geplante
+  Läufe oft um Stunden; der Puffer bis zum Morgen fängt das ab. Wer abends
+  vorbeischaut, sieht das Türchen also schon vor Mitternacht.
 - Inhalte künftiger Türchen stehen nicht im HTML der Seite, wohl aber in
   `inhalte/advent.yml` im öffentlichen Repository.
 - Fehlt an einem Tag `titel`, `link` oder `warum`, bleibt das Türchen zu und

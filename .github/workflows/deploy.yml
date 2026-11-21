@@ -2,6 +2,9 @@ name: Veröffentlichen
 
 # Baut die Website und lädt sie per SFTP auf den Webspace (Ionos).
 #   - bei jedem Merge nach main
+#   - jeden Abend (22:17 MEZ): öffnet das nächste Türchen des Adventskalenders
+#     (gilt ab 18 Uhr als Folgetag, siehe ADVENT_VORLAUF in build_data.py);
+#     GitHub verzögert geplante Läufe oft um Stunden
 #   - jeden Morgen, damit vergangene Termine ins Archiv wandern und
 #     Highlights mit Ablaufdatum verschwinden
 #   - von Hand: Actions -> Veröffentlichen -> Run workflow
@@ -12,6 +15,7 @@ on:
   push:
     branches: [main]
   schedule:
+    - cron: "17 21 * * *"
     - cron: "23 3 * * *"
   workflow_dispatch:
 
