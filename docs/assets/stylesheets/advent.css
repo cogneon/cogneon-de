@@ -1,0 +1,347 @@
+/* Adventskalender /advent/, siehe overrides/advent.html und assets/javascripts/advent.js.
+   Der Kalenderbereich bleibt in hellem und dunklem Modus dunkel. */
+
+.cg-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.cg-advent {
+  position: relative;
+  overflow: hidden;
+  background: #0f0d0e;
+  color: #ffffff;
+  padding: 3.6rem 0 4.4rem;
+}
+.cg-advent__netz {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cg-advent__netz canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.cg-advent__netz--bereit canvas {
+  opacity: 1;
+}
+.cg-advent__inhalt {
+  position: relative;
+  z-index: 1;
+}
+.cg-advent__kopf {
+  margin-bottom: 2.4rem;
+  max-width: 44rem;
+}
+.cg-advent .cg-h1,
+.cg-advent .cg-untertitel {
+  color: #ffffff;
+}
+.cg-advent .cg-h1 {
+  font-size: clamp(1.6rem, 6.6vw, 3.4rem);
+  hyphens: manual;
+}
+.cg-advent .cg-lead {
+  color: #e6e3e3;
+}
+
+/* Raster: 4 Spalten mobil, 6 ab mittlerer Breite */
+.cg-tueren {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+@media screen and (min-width: 45em) {
+  .cg-tueren {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+.cg-tueren > li {
+  margin: 0;
+}
+
+.cg-tuer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  aspect-ratio: 1 / 1;
+  border: 1.5px solid rgba(255, 102, 0, 0.45);
+  border-radius: var(--cg-radius);
+  background: rgba(15, 13, 14, 0.58);
+  color: #ffffff;
+  text-decoration: none;
+}
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .cg-tuer {
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+}
+.cg-tuer__zahl {
+  font-family: var(--cg-font-kopf);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.cg-tuer__info {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e6e3e3;
+}
+
+@media screen and (min-width: 45em) {
+  .cg-tuer {
+    aspect-ratio: 5 / 4;
+  }
+}
+
+/* Geschlossen: gedämpfter Rahmen, Schloss */
+.cg-tuer--zu {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #bdb8b9;
+}
+.cg-tuer__schloss {
+  width: 0.8rem;
+  height: 0.8rem;
+  color: #9a9495;
+}
+
+/* Offen: voller Rahmen, leicht orange gefüllt */
+.cg-tuer--offen {
+  border-color: var(--cg-orange);
+  background: rgba(60, 26, 6, 0.62);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cg-tuer--offen:hover,
+.cg-tuer--offen:focus-visible {
+  background: rgba(110, 44, 6, 0.75);
+  color: #ffffff;
+}
+.cg-tuer--offen:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Heute: volle Markenfarbe, dunkle Schrift (Kontrast 5,6:1) */
+.cg-tuer--heute {
+  background: var(--cg-orange);
+  border-color: var(--cg-orange);
+  color: #231f20;
+}
+.cg-tuer--heute .cg-tuer__info {
+  color: #231f20;
+  font-weight: 700;
+}
+.cg-tuer--heute:hover,
+.cg-tuer--heute:focus-visible {
+  background: #ff7a22;
+  color: #231f20;
+}
+
+.cg-advent__pause {
+  position: absolute;
+  right: 1.6rem;
+  bottom: -2.8rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #5f5b5c;
+  border-radius: 50%;
+  background: transparent;
+  color: #cfcccc;
+  cursor: pointer;
+}
+.cg-advent__pause[hidden] {
+  display: none;
+}
+.cg-advent__pause:hover {
+  color: #ffffff;
+  border-color: #cfcccc;
+}
+.cg-advent__pause svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+.cg-advent__pause .cg-advent__play,
+.cg-advent__pause[aria-pressed="true"] .cg-advent__stopp {
+  display: none;
+}
+.cg-advent__pause[aria-pressed="true"] .cg-advent__play {
+  display: block;
+}
+
+/* Inhalte der Türchen */
+.cg-advent__liste {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.cg-advent__eintrag {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.6rem 1.8rem;
+  border-radius: var(--cg-radius);
+  background: var(--cg-karte);
+  border-left: 4px solid var(--cg-orange);
+}
+.cg-advent__meta {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cg-akzent-text);
+  font-weight: 600;
+}
+.cg-advent__titel {
+  font-family: var(--cg-font-kopf);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0;
+}
+.cg-advent__titel a {
+  color: var(--cg-fg);
+  text-decoration: underline;
+  text-decoration-color: var(--cg-orange);
+  text-underline-offset: 0.2em;
+}
+.cg-advent__impuls {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--cg-linie);
+}
+.cg-advent__newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+/* Aufklappen: das Türchen schwingt wie eine Tür nach links auf */
+.cg-tueren > li {
+  perspective: 700px;
+}
+.cg-tuer--offen {
+  transform-origin: left center;
+}
+.cg-tuer--klappt {
+  animation: cg-tuer-klappt 0.32s ease-in forwards;
+}
+@keyframes cg-tuer-klappt {
+  to {
+    transform: rotateY(-75deg);
+    box-shadow: 0 0 2.4rem rgba(255, 102, 0, 0.6);
+  }
+}
+
+/* Dialog mit dem Inhalt des Türchens */
+html:has(.cg-advent__dialog[open]) {
+  overflow: hidden;
+}
+.cg-advent__dialog {
+  width: min(36rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  border: 0;
+  border-radius: var(--cg-radius);
+  background: transparent;
+  color: var(--cg-fg);
+  overflow: visible;
+}
+.cg-advent__dialog::backdrop {
+  background: rgba(10, 8, 9, 0.62);
+}
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .cg-advent__dialog::backdrop {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+}
+.cg-advent__dialog[open] {
+  animation: cg-dialog-auf 0.28s ease-out;
+}
+.cg-advent__dialog[open]::backdrop {
+  animation: cg-dialog-grund 0.28s ease-out;
+}
+@keyframes cg-dialog-auf {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(0.8rem);
+  }
+}
+@keyframes cg-dialog-grund {
+  from {
+    opacity: 0;
+  }
+}
+.cg-advent__karte {
+  position: relative;
+  max-height: inherit;
+  overflow-y: auto;
+  padding: 2.2rem 2rem 2rem;
+  border-radius: var(--cg-radius);
+  border-top: 5px solid var(--cg-orange);
+  background: var(--cg-karte);
+  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.45);
+}
+.cg-advent__dialog-eintrag {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.cg-advent__dialog-eintrag .cg-advent__titel {
+  font-size: 1.7rem;
+  padding-right: 2.4rem;
+}
+.cg-advent__schliessen {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cg-linie);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--cg-fg);
+  cursor: pointer;
+}
+.cg-advent__schliessen:hover,
+.cg-advent__schliessen:focus-visible {
+  border-color: var(--cg-orange);
+}
+.cg-advent__schliessen svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cg-advent__netz canvas,
+  .cg-tuer--offen {
+    transition: none;
+  }
+  .cg-tuer--klappt,
+  .cg-advent__dialog[open],
+  .cg-advent__dialog[open]::backdrop {
+    animation: none;
+  }
+}

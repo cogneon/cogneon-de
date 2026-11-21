@@ -4,6 +4,7 @@
 Quellen:
   - inhalte/aktuell.yml   Highlights und Termine, von Hand gepflegt
   - docs/blog/posts/      die neuesten Blogbeiträge
+  - inhalte/advent.yml    Adventskalender (overrides/partials/advent-daten.html)
 
 Abgelaufene Highlights (gueltig_bis) und vergangene Termine (tag) fallen weg.
 Aufruf vor jedem Build:  python scripts/build_data.py
@@ -16,6 +17,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import yaml
 
@@ -369,6 +371,49 @@ def build_feed(root: Path, site_url: str = "https://cogneon.de/", limit: int = 2
     return len(posts)
 
 
+ADVENT_VORLAUF = 6  # Stunden
+
+
+def build_advent(root: Path, today: dt.date) -> dict | None:
+    """Daten für den Adventskalender /advent/ aus inhalte/advent.yml.
+
+    Ein Türchen ist offen, wenn sein Tag erreicht ist und titel, link und warum
+    ausgefüllt sind. Inhalte geschlossener Türchen gelangen nicht in die Seite."""
+    source = root / "inhalte" / "advent.yml"
+    if not source.exists():
+        return None
+    data = yaml.safe_load(source.read_text(encoding="utf-8")) or {}
+    jahr = int(data.get("jahr") or today.year)
+    themen = sorted(data.get("themen") or [], key=lambda t: int(t["ab"]))
+    eintraege = {int(t["tag"]): t for t in data.get("tuerchen") or [] if t.get("tag")}
+
+    def thema(tag: int) -> str:
+        titel = ""
+        for t in themen:
+            if tag >= int(t["ab"]):
+                titel = t["titel"]
+        return titel
+
+    tueren, inhalte, fehlen = [], [], []
+    for tag in range(1, 25):
+        datum = dt.date(jahr, 12, tag)
+        e = eintraege.get(tag) or {}
+        fertig = all(str(e.get(f) or "").strip() for f in ("titel", "link", "warum"))
+        faellig = datum <= today
+        offen = faellig and fertig
+        if faellig and not fertig:
+            fehlen.append(tag)
+        tueren.append({"tag": tag, "offen": offen, "heute": datum == today})
+        if offen:
+            inhalte.append({"tag": tag, "datum": f"{tag}. Dezember", "thema": thema(tag),
+                            **{f: str(e.get(f) or "").strip() for f in
+                               ("typ", "titel", "link", "von", "warum", "impuls")}})
+    inhalte.reverse()   # neuestes Türchen zuerst
+    return {"jahr": jahr, "tueren": tueren, "inhalte": inhalte, "fehlen": fehlen,
+            "vor_start": today < dt.date(jahr, 12, 1),
+            "nach_ende": today > dt.date(jahr, 12, 24)}
+
+
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
     posts = []
     for path in post_dir.rglob("*.md"):
@@ -425,7 +470,7 @@ def main() -> int:
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent.parent)
     parser.add_argument("--heute", help="Stichtag JJJJ-MM-TT (Standard: heute)")
     args = parser.parse_args()
-    today = as_date(args.heute) if args.heute else dt.date.today()
+    today = as_date(args.heute) if args.heute else dt.datetime.now(ZoneInfo("Europe/Berlin")).date()
     if today is None:
         print("Ungültiges Datum für --heute", file=sys.stderr)
         return 2
@@ -461,6 +506,23 @@ def main() -> int:
         ziel.parent.mkdir(parents=True, exist_ok=True)
         ziel.write_text(json.dumps(orte, ensure_ascii=False), encoding="utf-8")
         print(f"docs/assets/karte/orte.json: {len(orte.get('orte') or [])} Orte")
+    # Der Adventskalender öffnet das nächste Türchen schon am Vorabend: Ab
+    # ADVENT_VORLAUF Stunden vor Mitternacht (Berliner Zeit) gilt der Folgetag.
+    # So reicht der abendliche Lauf, auch wenn GitHub ihn stundenlang verzögert.
+    advent_tag = as_date(args.heute) if args.heute else (
+        dt.datetime.now(ZoneInfo("Europe/Berlin")) + dt.timedelta(hours=ADVENT_VORLAUF)).date()
+    advent = build_advent(args.root, advent_tag)
+    if advent is not None:
+        target = args.root / "overrides" / "partials" / "advent-daten.html"
+        target.write_text(
+            "{#- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -#}\n"
+            "{% set advent = " + json.dumps(advent, ensure_ascii=False) + " %}\n",
+            encoding="utf-8",
+        )
+        print(f"{target.relative_to(args.root)}: {len(advent['inhalte'])} Türchen offen")
+        if advent["fehlen"]:
+            print(f"Warnung: Adventskalender-Türchen ohne titel/link/warum bleiben zu: "
+                  f"{', '.join(map(str, advent['fehlen']))}", file=sys.stderr)
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     return 0
