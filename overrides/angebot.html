@@ -11,6 +11,7 @@
 {% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
 {% block container %}{% endblock %}
 {% block hero %}
+{% import "partials/texte.html" as tx with context %}
 {% set m = page.meta %}
 <div class="cg-page">
 
@@ -18,7 +19,7 @@
     {% if m.kopfbild %}<div class="cg-wrap cg-kopf--bild">{% endif %}
     <div class="{% if not m.kopfbild %}cg-wrap {% endif %}cg-stack">
       {% if m.pfad %}
-      <nav class="cg-pfad" aria-label="Brotkrumen">
+      <nav class="cg-pfad" aria-label="{{ tx.t('brotkrumen') }}">
         <ol>
           {% for p in m.pfad %}
           <li>{% if p.link %}<a href="{{ p.link | url }}">{{ p.titel }}</a>{% else %}{{ p.titel }}{% endif %}</li>
@@ -30,8 +31,8 @@
       {% if m.untertitel %}<p class="cg-untertitel">{{ m.untertitel }}</p>{% endif %}
       {% if m.einleitung %}<p class="cg-lead cg-muted">{{ m.einleitung }}</p>{% endif %}
       <p class="cg-actions">
-        <a class="cg-button" href="{{ config.extra.erstgespraech | url }}">Erstgespräch anfragen</a>
-        <span class="cg-muted">30 Minuten, kostenlos</span>
+        <a class="cg-button" href="{{ tx.ziel('kontakt/') }}#erstgespraech">{{ tx.t('erstgespraech') }}</a>
+        <span class="cg-muted">{{ tx.t('erstgespraech_info') }}</span>
       </p>
     </div>
     {% if m.kopfbild %}
@@ -68,7 +69,7 @@
           {% if k.link %}<a class="cg-card" href="{{ k.link | url }}">{% else %}<div class="cg-card">{% endif %}
             <span class="cg-card__titel">{{ k.titel }}</span>
             <span class="cg-card__text">{{ k.text }}</span>
-            {% if k.link %}<span class="cg-card__marke">Zum Angebot</span>{% else %}<a class="cg-link" href="{{ config.extra.erstgespraech | url }}">Kontakt aufnehmen</a>{% endif %}
+            {% if k.link %}<span class="cg-card__marke">{{ tx.t('zum_angebot') }}</span>{% else %}<a class="cg-link" href="{{ tx.ziel('kontakt/') }}#erstgespraech">{{ tx.t('kontakt_aufnehmen') }}</a>{% endif %}
           {% if k.link %}</a>{% else %}</div>{% endif %}
         </li>
         {% endfor %}
@@ -89,7 +90,7 @@
             <span class="cg-card__titel">{{ f.titel }}</span>
             <span class="cg-card__text">{{ f.text }}</span>
             <span class="cg-card__art">{{ f.art }}</span>
-            {% if f.link %}<span class="cg-card__marke">Zum Angebot</span>{% endif %}
+            {% if f.link %}<span class="cg-card__marke">{{ tx.t('zum_angebot') }}</span>{% endif %}
           {% if f.link %}</a>{% else %}</div>{% endif %}
         </li>
         {% endfor %}

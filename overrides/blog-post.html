@@ -8,6 +8,7 @@
 <div class="md-content cg-beitrag" data-md-component="content">
   <article class="md-content__inner md-typeset">
     <a id="__skip" tabindex="-1"></a>
+    {% if (page.meta.sprache | d('de', true)) == 'de' %}{% include "partials/sprachhinweis.html" %}{% endif %}
     <p class="cg-beitrag__meta">
       <a href="{{ 'blog/' | url }}">Blog</a>
       <span aria-hidden="true">·</span>

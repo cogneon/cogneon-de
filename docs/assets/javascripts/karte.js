@@ -17,7 +17,23 @@
   if (!boxes.length) return;
   var base = document.querySelector('script[src*="karte.js"]').src.replace(/javascripts\/karte\.js.*$/, "");
   var FARBEN = { cogneon: "#ff6600", hotel: "#231f20", anreise: "#4a4647", sehenswert: "#8f8a8b" };
-  var NAMEN = { cogneon: "Cogneon", hotel: "Hotels", anreise: "Anreise", sehenswert: "Sehenswert" };
+  // Texte je nach Sprache der Seite (<html lang>).
+  var EN = (document.documentElement.lang || "").indexOf("en") === 0;
+  var T = EN ? {
+    hinweis: 'Clicking "Load map" loads map tiles from OpenStreetMap. Your IP address is transmitted to the OpenStreetMap Foundation. ' +
+      "Aerial images are only loaded from the Bavarian Surveying Administration after switching.",
+    laden: "Load map", oeffnen: "Open on OpenStreetMap", fehler: "The map could not be loaded.",
+    mehr: "More", route: "Route", apple: "Apple Maps", karte: "Map", luftbild: "Aerial image",
+    strassen: "Show streets", namen: { cogneon: "Cogneon", hotel: "Hotels", anreise: "Getting here", sehenswert: "Sights" }
+  } : {
+    hinweis: 'Mit Klick auf „Karte laden" werden Kartenbilder von OpenStreetMap geladen. ' +
+      "Dabei wird eure IP-Adresse an die OpenStreetMap Foundation übertragen. " +
+      "Das Luftbild kommt erst nach Umschalten von der Bayerischen Vermessungsverwaltung.",
+    laden: "Karte laden", oeffnen: "Auf OpenStreetMap öffnen", fehler: "Die Karte ließ sich nicht laden.",
+    mehr: "Mehr", route: "Route", apple: "Apple Karten", karte: "Karte", luftbild: "Luftbild",
+    strassen: "Straßen einblenden", namen: { cogneon: "Cogneon", hotel: "Hotels", anreise: "Anreise", sehenswert: "Sehenswert" }
+  };
+  var NAMEN = T.namen;
 
   function laden(url, art) {
     return new Promise(function (ok, fehler) {
@@ -35,9 +51,9 @@
   // Links zur Routenplanung. Externe Dienste erst nach Klick auf den Link.
   function route(lat, lon) {
     var z = lat + "," + lon;
-    return 'Route: <a href="https://www.openstreetmap.org/directions?route=%3B' + encodeURIComponent(z) + '">OpenStreetMap</a> · ' +
+    return T.route + ': <a href="https://www.openstreetmap.org/directions?route=%3B' + encodeURIComponent(z) + '">OpenStreetMap</a> · ' +
       '<a href="https://www.google.com/maps/dir/?api=1&amp;destination=' + encodeURIComponent(z) + '">Google Maps</a> · ' +
-      '<a href="https://maps.apple.com/?daddr=' + z + '">Apple Karten</a>';
+      '<a href="https://maps.apple.com/?daddr=' + z + '">' + T.apple + "</a>";
   }
 
   // Zoomen mit Zwei-Finger-Geste: Chrome, Firefox und Edge melden sie als
@@ -90,7 +106,9 @@
       var strassen = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19, opacity: 0.45, className: "cg-karte__strassen"
       });
-      L.control.layers({ "Karte": osm, "Luftbild": luftbild }, { "Straßen einblenden": strassen },
+      var basis = {}, ueber = {};
+      basis[T.karte] = osm; basis[T.luftbild] = luftbild; ueber[T.strassen] = strassen;
+      L.control.layers(basis, ueber,
         { collapsed: false }).addTo(karte);
       // Nach dem Klick ausführen, damit das Häkchen im Umschalter mitzieht.
       karte.on("baselayerchange", function (e) {
@@ -109,7 +127,7 @@
         }).addTo(karte);
         var html = "<strong>" + text(o.name) + "</strong>";
         if (o.text) html += "<br>" + text(o.text);
-        if (o.link) html += '<br><a href="' + encodeURI(o.link) + '">Mehr</a>';
+        if (o.link) html += '<br><a href="' + encodeURI(o.link) + '">' + T.mehr + "</a>";
         if (gross) html += "<br>" + route(o.lat, o.lon);
         m.bindPopup(html);
         if (gross) erstes = m;
@@ -127,18 +145,16 @@
       box.appendChild(legende);
     }).catch(function () {
       box.classList.remove("cg-karte--laedt");
-      box.querySelector(".cg-karte__hinweis").textContent = "Die Karte ließ sich nicht laden.";
+      box.querySelector(".cg-karte__hinweis").textContent = T.fehler;
     });
   }
 
   boxes.forEach(function (box) {
     box.innerHTML =
       '<div class="cg-karte__vorschau">' +
-      '<p class="cg-karte__hinweis">Mit Klick auf „Karte laden" werden Kartenbilder von OpenStreetMap geladen. ' +
-      'Dabei wird eure IP-Adresse an die OpenStreetMap Foundation übertragen. ' +
-      'Das Luftbild kommt erst nach Umschalten von der Bayerischen Vermessungsverwaltung.</p>' +
-      '<p><button type="button" class="cg-button">Karte laden</button> ' +
-      '<a class="cg-link" href="https://www.openstreetmap.org/node/3255611047">Auf OpenStreetMap öffnen</a></p></div>';
+      '<p class="cg-karte__hinweis">' + T.hinweis + "</p>" +
+      '<p><button type="button" class="cg-button">' + T.laden + "</button> " +
+      '<a class="cg-link" href="https://www.openstreetmap.org/node/3255611047">' + T.oeffnen + "</a></p></div>";
     box.querySelector("button").addEventListener("click", function () { zeigen(box); });
   });
 })();

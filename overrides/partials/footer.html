@@ -1,28 +1,29 @@
 {#- Fußzeile: Angebote, Ressourcen, Kontakt. Der Newsletter-Link führt zur Anmeldung auf der Startseite. -#}
+{% import "partials/texte.html" as tx with context %}
 <footer class="md-footer cg-footer">
   <div class="cg-wrap cg-footer__inner">
 
-    <nav class="cg-footer__spalten" aria-label="Fußzeile">
+    <nav class="cg-footer__spalten" aria-label="{{ tx.t('fusszeile') }}">
       <div>
-        <h3>Strategisches Wissensmanagement</h3>
+        <h3>{{ tx.t('f_strategisch') }}</h3>
         <ul>
-          <li><a href="{{ 'angebote/' | url }}#strategisch">Knowledge Excellence Coach</a></li>
-          <li><a href="{{ 'angebote/' | url }}#strategisch">Wissensbeirat</a></li>
-          <li><a href="{{ 'angebote/' | url }}#strategisch">Knowledge Pioneers</a></li>
+          <li><a href="{{ tx.ziel('angebote/') }}#strategisch">Knowledge Excellence Coach</a></li>
+          <li><a href="{{ tx.ziel('angebote/') }}#strategisch">{{ tx.t('f_wissensbeirat') }}</a></li>
+          <li><a href="{{ tx.ziel('angebote/') }}#strategisch">Knowledge Pioneers</a></li>
         </ul>
       </div>
       <div>
-        <h3>Operatives Wissensmanagement</h3>
+        <h3>{{ tx.t('f_operativ') }}</h3>
         <ul>
-          <li><a href="{{ 'wissenstransfer/' | url }}">Wissenstransfer</a></li>
-          <li><a href="{{ 'angebote/' | url }}#operativ">Wissensinfrastruktur</a></li>
-          <li><a href="{{ 'angebote/' | url }}#operativ">Communities &amp; Barcamps</a></li>
-          <li><a href="{{ 'angebote/' | url }}#operativ">Learning Sessions</a></li>
-          <li><a href="{{ 'angebote/' | url }}#operativ">Personal Knowledge Excellence</a></li>
+          <li><a href="{{ tx.ziel('wissenstransfer/') }}">{{ tx.t('f_wissenstransfer') }}</a></li>
+          <li><a href="{{ tx.ziel('angebote/') }}#operativ">{{ tx.t('f_infrastruktur') }}</a></li>
+          <li><a href="{{ tx.ziel('angebote/') }}#operativ">Communities &amp; Barcamps</a></li>
+          <li><a href="{{ tx.ziel('angebote/') }}#operativ">Learning Sessions</a></li>
+          <li><a href="{{ tx.ziel('angebote/') }}#operativ">Personal Knowledge Excellence</a></li>
         </ul>
       </div>
       <div>
-        <h3>Ressourcen</h3>
+        <h3>{{ tx.t('f_ressourcen') }}</h3>
         <ul>
           <li><a href="{{ nav.homepage.url | url }}#newsletter">Newsletter</a></li>
           <li><a href="https://podcasts.cogneon.io/">Podcasts</a></li>
@@ -36,7 +37,7 @@
         </ul>
       </div>
       <div>
-        <h3>Kontakt</h3>
+        <h3>{{ tx.t('kontakt') }}</h3>
         <address>
           Cogneon GmbH<br>
           Bucherstr. 79a<br>
@@ -52,8 +53,8 @@
     <div class="cg-footer__ende">
       <p>{{ config.copyright }}</p>
       <ul>
-        <li><a href="{{ 'impressum/' | url }}">Impressum</a></li>
-        <li><a href="{{ 'datenschutz/' | url }}">Datenschutz</a></li>
+        <li><a href="{{ 'impressum/' | url }}"{% if tx.sprache() == 'en' %} hreflang="de"{% endif %}>{{ tx.t('impressum') }}</a></li>
+        <li><a href="{{ 'datenschutz/' | url }}"{% if tx.sprache() == 'en' %} hreflang="de"{% endif %}>{{ tx.t('datenschutz') }}</a></li>
       </ul>
     </div>
 

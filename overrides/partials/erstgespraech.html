@@ -1,9 +1,10 @@
 {#- Abschlussblock jeder Angebotsseite. Felder: cta.titel, cta.text. Der Knopf führt zur Kontaktseite -#}
+{% import "partials/texte.html" as tx with context %}
 {% set cta = page.meta.cta | d({}) %}
 <section class="cg-section cg-section--dunkel" id="erstgespraech">
   <div class="cg-wrap cg-stack">
-    <h2 class="cg-h2 cg-h2--gross">{{ cta.titel | d("Lasst uns sprechen.") }}</h2>
-    <p class="cg-lead">{{ cta.text | d("Im Erstgespräch klären wir, worum es geht und was passt. 30 Minuten, kostenlos.") }}</p>
-    <p><a class="cg-button" href="{{ config.extra.erstgespraech | url }}">Erstgespräch anfragen</a></p>
+    <h2 class="cg-h2 cg-h2--gross">{{ cta.titel | d(tx.t('cta_titel'), true) }}</h2>
+    <p class="cg-lead">{{ cta.text | d(tx.t('cta_text'), true) }}</p>
+    <p><a class="cg-button" href="{{ tx.ziel('kontakt/') }}#erstgespraech">{{ tx.t('erstgespraech') }}</a></p>
   </div>
 </section>

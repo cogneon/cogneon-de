@@ -1,0 +1,74 @@
+{#-
+  Zweisprachigkeit: Sprache der aktuellen Seite, feste Texte der Vorlagen
+  und Ziele interner Links. Einbinden mit
+    {% import "partials/texte.html" as tx with context %}
+  Englische Seiten liegen unter docs/en/ und nennen ihre deutsche Vorlage im
+  Front Matter (quelle: kontakt.md). Die Zuordnung erzeugt scripts/build_data.py.
+-#}
+{% import "partials/sprachen-daten.html" as daten %}
+
+{#- "en" für Seiten unter /en/, sonst "de". -#}
+{% macro sprache() -%}
+  {%- if page and page.url and (page.url == "en/" or page.url is startingwith("en/")) -%}en{%- else -%}de{%- endif -%}
+{%- endmacro %}
+
+{#- Gegenstück der aktuellen Seite in der anderen Sprache, oder leer. -#}
+{% macro gegenstueck() -%}
+  {%- set url = page.url if page else "" -%}
+  {%- if sprache() == "en" -%}{% if url in daten.sprachen.en_zu_de %}{{ daten.sprachen.en_zu_de[url] }}{% endif %}{%- else -%}{% if url in daten.sprachen.de_zu_en %}{{ daten.sprachen.de_zu_en[url] }}{% endif %}{%- endif -%}
+{%- endmacro %}
+
+{#- "1", wenn die aktuelle Seite ein Gegenstück hat (auch die Startseite, deren
+    deutscher Pfad leer ist). -#}
+{% macro hat_gegenstueck() -%}
+  {%- set url = page.url if page else "" -%}
+  {%- if (sprache() == "en" and url in daten.sprachen.en_zu_de) or (sprache() == "de" and url in daten.sprachen.de_zu_en) -%}1{%- endif -%}
+{%- endmacro %}
+
+{#- Ziel eines internen Links (deutscher Pfad): auf englischen Seiten das
+    englische Gegenstück, falls es eines gibt. -#}
+{% macro ziel(pfad) -%}
+  {%- if sprache() == "en" and pfad in daten.sprachen.de_zu_en -%}{{ daten.sprachen.de_zu_en[pfad] | url }}{%- else -%}{{ pfad | url }}{%- endif -%}
+{%- endmacro %}
+
+{% set TEXTE = {
+  "kontakt":            {"de": "Kontakt", "en": "Contact"},
+  "startseite":         {"de": "Startseite", "en": "Home"},
+  "hauptmenue":         {"de": "Hauptmenü", "en": "Main menu"},
+  "fusszeile":          {"de": "Fußzeile", "en": "Footer"},
+  "andere_sprache":     {"de": "English", "en": "Deutsch"},
+  "andere_sprache_kurz":{"de": "EN", "en": "DE"},
+  "erstgespraech":      {"de": "Erstgespräch anfragen", "en": "Book an intro call"},
+  "erstgespraech_info": {"de": "30 Minuten, kostenlos", "en": "30 minutes, free of charge"},
+  "cta_titel":          {"de": "Lasst uns sprechen.", "en": "Let's talk."},
+  "cta_text":           {"de": "Im Erstgespräch klären wir, worum es geht und was passt. 30 Minuten, kostenlos.",
+                         "en": "In an intro call we clarify what it is about and what fits. 30 minutes, free of charge."},
+  "angebote_ansehen":   {"de": "Angebote ansehen", "en": "View our services"},
+  "weiter":             {"de": "Weiter zum Inhalt", "en": "Continue to content"},
+  "animation_anhalten": {"de": "Animation anhalten", "en": "Pause animation"},
+  "alle_angebote":      {"de": "Alle Angebote", "en": "All services"},
+  "alle_angebote_text": {"de": "Strategisches und operatives Wissensmanagement im Überblick.",
+                         "en": "Strategic and operational knowledge management at a glance."},
+  "im_blick":           {"de": "Im Blick", "en": "In focus"},
+  "blog":               {"de": "Blog", "en": "Blog"},
+  "alle_beitraege":     {"de": "Alle Beiträge", "en": "All posts"},
+  "termine":            {"de": "Termine", "en": "Events"},
+  "auf_deutsch":        {"de": "", "en": "in German"},
+  "termine_hinweis_a":  {"de": "Alle unsere Veranstaltungen findet ihr in unserem", "en": "You can find all our events in our"},
+  "termine_hinweis_b":  {"de": "Kalender", "en": "calendar"},
+  "termine_hinweis_c":  {"de": "und im", "en": "and in the"},
+  "termine_hinweis_d":  {"de": "Community-Kalender", "en": "community calendar"},
+  "brotkrumen":         {"de": "Brotkrumen", "en": "Breadcrumbs"},
+  "zum_angebot":        {"de": "Zum Angebot", "en": "Learn more"},
+  "kontakt_aufnehmen":  {"de": "Kontakt aufnehmen", "en": "Get in touch"},
+  "f_strategisch":      {"de": "Strategisches Wissensmanagement", "en": "Strategic knowledge management"},
+  "f_operativ":         {"de": "Operatives Wissensmanagement", "en": "Operational knowledge management"},
+  "f_ressourcen":       {"de": "Ressourcen", "en": "Resources"},
+  "f_wissenstransfer":  {"de": "Wissenstransfer", "en": "Knowledge transfer"},
+  "f_infrastruktur":    {"de": "Wissensinfrastruktur", "en": "Knowledge infrastructure"},
+  "f_wissensbeirat":    {"de": "Wissensbeirat", "en": "Knowledge advisory board"},
+  "impressum":          {"de": "Impressum", "en": "Legal notice (German)"},
+  "datenschutz":        {"de": "Datenschutz", "en": "Privacy policy (German)"},
+} %}
+
+{% macro t(schluessel) -%}{{ TEXTE[schluessel][sprache()] }}{%- endmacro %}

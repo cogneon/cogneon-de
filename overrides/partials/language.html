@@ -1,0 +1,14 @@
+{#-
+  Sprache der Bedienelemente des Themas (Suche, Barrierefreiheits-Texte,
+  <html lang>). Seiten unter /en/ und Seiten mit "sprache: en" im Front
+  Matter (z.B. englische Blogbeiträge) sind englisch, alle anderen deutsch.
+  Ersetzt partials/language.html des Zensical-Themas.
+-#}
+{% if page and ((page.url and (page.url == "en/" or page.url is startingwith("en/"))) or (page.meta and page.meta.sprache == "en")) %}
+  {% set language = "en" %}
+{% else %}
+  {% set language = config.theme.language | d("en", true) %}
+{% endif %}
+{% import "partials/languages/" ~ language ~ ".html" as lang %}
+{% import "partials/languages/en.html" as fallback %}
+{% macro t(key) %}{{ lang.t(key) or fallback.t(key) or key }}{% endmacro %}

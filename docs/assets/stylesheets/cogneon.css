@@ -1494,3 +1494,40 @@ ol.cg-schritte > li,
   color: var(--cg-fg);
   justify-self: center;
 }
+
+/* Sprachumschalter in der Kopfzeile (EN/DE) */
+.cg-header .cg-sprache {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  margin: 0 0.2rem;
+  padding: 0 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--cg-radius-knopf);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+.cg-header .cg-sprache:hover,
+.cg-header .cg-sprache:focus-visible {
+  border-color: var(--cg-orange);
+  color: #ffffff;
+}
+@media screen and (max-width: 76.2344em) {
+  .cg-header .cg-sprache {
+    display: none;
+  }
+}
+
+/* Hinweis auf deutschsprachigen Blog für nicht-deutsche Browser */
+.md-typeset .cg-sprachhinweis {
+  margin: 0 0 1.2rem;
+  padding: 0.7rem 1rem;
+  border-left: 4px solid var(--cg-orange);
+  background: var(--cg-bg-soft);
+  font-size: 0.8rem;
+}
