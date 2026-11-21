@@ -14,15 +14,15 @@ Die **Cogneon Akademie** wurde im Sommer 2011 mit dem Umzug von Erlangen nach N�
 
 ![](/wp-content/uploads/2024/08/cogneon-akademie-300x225.jpg)
 
-Cogneon Akademie
+Die Cogneon Akademie von außen.
 
 ![](/wp-content/uploads/2024/08/cogneon-akademie-knt16-300x144.jpg)
 
-Cogneon Akademie
+[KnowTouch 2016](https://wiki.cogneon.de/knt16) als Nachfolgeveranstaltung der [KnowTech](https://wiki.cogneon.de/knowtech) in der Cogneon Akademie.
 
 ![](/wp-content/uploads/2020/08/blp19-abschlussworkshop-80.jpg)
 
-Cogneon Akademie
+[Benchlearning Projekte](https://wiki.cogneon.de/blp) in der Cogneon Akademie.
 
 ## Räumlichkeiten
 
