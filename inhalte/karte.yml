@@ -13,12 +13,12 @@ orte:
     text: Bucherstr. 79a, 90419 Nürnberg
     link: https://www.openstreetmap.org/node/3255611047
 
-  - name: Hotel Centro
+  - name: Hotel Noris City
     art: hotel
     lat: 49.4676526
     lon: 11.0683345
-    text: Mit dem Code „COGNEON" könnt ihr Rabatt anfragen.
-    link: https://hotelcentro.org/de/nurnberg/
+    text: Bucher Str. 125, 90419 Nürnberg
+    link: https://www.uniqstay.de/hotels/noris-city
 
   - name: Motel One Nürnberg-Plärrer
     art: hotel

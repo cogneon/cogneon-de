@@ -27,7 +27,7 @@ Tel.: +49 911 39570830
 
 ## Anreise
 
-[OpenStreetMap](https://osm.org/go/0D6z6xgbN?m=&node=3255611047), [Google Map](https://goo.gl/maps/PbwrLirr27A2) ([Navigation](https://goo.gl/maps/5RD8rehWLft))
+**Route planen:** [OpenStreetMap](https://www.openstreetmap.org/directions?route=%3B49.4639412%2C11.0694807#map=17/49.46394/11.06948) · [Google Maps](https://www.google.com/maps/dir/?api=1&destination=49.4639412%2C11.0694807) · [Apple Karten](https://maps.apple.com/?daddr=49.4639412,11.0694807)
 
 <div class="cg-karte"><p><a href="https://www.openstreetmap.org/node/3255611047">Cogneon Akademie auf OpenStreetMap</a></p></div>
 
@@ -37,6 +37,6 @@ Tel.: +49 911 39570830
 <br>
 **Hotelempfehlungen:**
 
-- [Centro (mit Code „COGNEON“ könnt ihr Rabatt anfragen)](https://hotelcentro.org/de/nurnberg/)
+- [Noris City](https://www.uniqstay.de/hotels/noris-city) (früher Hotel Centro), Bucher Str. 125
 - [Azimut](https://azimuthotels.de/de/nuremberg/azimut-hotel-nuremberg)
 - [Motel One](http://www.motel-one.com/de/hotels/nuernberg/hotel-nuernberg-plaerrer/)
