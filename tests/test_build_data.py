@@ -178,3 +178,13 @@ def test_hinweis_zeitraum_und_vorrang(tmp_path):
     assert h["de"]["text"] == "Aktion" and h["en"]["text"] == "Action" and h["de"]["art"] == "aktion"
     w = build_data.build_hinweis(tmp_path, dt.date(2026, 12, 10))
     assert w["de"]["text"] == "Achtung" and "en" not in w
+
+
+def test_termin_ohne_kategorie_slugs(tmp_path):
+    write(tmp_path / "docs/event/alt.md", "---\ntitle: Alt\nbeginn: 2026-01-10 10:00\n"
+          "kategorien: [Expert Debriefing Praxis-Ausbildung]\nkategorie_slugs: [edmod]\n---\n")
+    write(tmp_path / "docs/event/neu.md", "---\ntype: termin\ntitle: Neu\n"
+          "beginn: '2027-01-15T09:00:00.000Z'\nkategorien: [Expert Debriefing Praxis-Ausbildung, Neue Reihe Ä]\n---\n")
+    events = {e["slug"]: e for e in build_data.all_events(tmp_path)}
+    assert events["neu"]["kategorien"] == [("Expert Debriefing Praxis-Ausbildung", "edmod"), ("Neue Reihe Ä", "neue-reihe-ae")]
+    assert events["neu"]["beginn"] == dt.datetime(2027, 1, 15, 10, 0)
