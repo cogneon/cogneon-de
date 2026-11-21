@@ -16,7 +16,7 @@ schild:
   alt: >-
     Gelbes Ortsschild. Oben steht "Lernende Organisation, 10 Jahre", unten
     durchgestrichen "Wissensdatenbank".
-  titel: Raus aus der Wissensdatenbank. Rein in die Lernende Organisation.
+  titel: Baut keine Wissensdatenbanken! Entwickelt Lernende Organisationen.
   text: >-
     Wissensmanagement ist mehr als ein System, in dem Dokumente liegen. Wir
     begleiten Organisationen auf dem Weg dorthin, wo Wissen fließt, Menschen
