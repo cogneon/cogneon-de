@@ -1369,6 +1369,10 @@ ol.cg-schritte > li,
 .cg-karte__flaeche {
   height: 24rem;
 }
+/* OSM über dem Luftbild: etwas kräftiger, damit Straßen sich abheben */
+.cg-karte .cg-karte__strassen {
+  filter: saturate(1.4) contrast(1.15);
+}
 .md-typeset ul.cg-karte__legende {
   list-style: none;
   margin: 0;

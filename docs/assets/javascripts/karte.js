@@ -6,7 +6,8 @@
   Die Karte lädt erst nach einem Klick: Erst dann werden Kartenbilder von den
   Servern der OpenStreetMap Foundation abgerufen. Leaflet selbst liegt lokal.
   Das Luftbild (Bayerische Vermessungsverwaltung, CC BY 4.0) wird erst geladen,
-  wenn jemand oben rechts auf "Luftbild" umschaltet.
+  wenn jemand oben rechts auf "Luftbild" umschaltet. Darüber liegt dann die
+  OSM-Karte halbdurchsichtig ("Straßen einblenden", abschaltbar).
 
   Zoomen: Plus/Minus, Doppelklick, Zwei-Finger-Geste auf Touchpad und Handy
   oder Strg + Mausrad. Mausrad allein scrollt weiter die Seite.
@@ -85,7 +86,19 @@
         maxZoom: 19,
         attribution: 'Luftbild: <a href="https://geodaten.bayern.de/opengeodata/">Bayerische Vermessungsverwaltung</a> (CC BY 4.0)'
       });
-      L.control.layers({ "Karte": osm, "Luftbild": luftbild }, null, { collapsed: false }).addTo(karte);
+      // Straßen über dem Luftbild: dieselbe OSM-Karte halbdurchsichtig darüber.
+      var strassen = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19, opacity: 0.45, className: "cg-karte__strassen"
+      });
+      L.control.layers({ "Karte": osm, "Luftbild": luftbild }, { "Straßen einblenden": strassen },
+        { collapsed: false }).addTo(karte);
+      // Nach dem Klick ausführen, damit das Häkchen im Umschalter mitzieht.
+      karte.on("baselayerchange", function (e) {
+        setTimeout(function () {
+          if (e.layer === luftbild && !karte.hasLayer(strassen)) karte.addLayer(strassen);
+          if (e.layer === osm && karte.hasLayer(strassen)) karte.removeLayer(strassen);
+        }, 0);
+      });
       zoomGesten(karte, flaeche);
       var punkte = [], erstes = null;
       orte.forEach(function (o) {
