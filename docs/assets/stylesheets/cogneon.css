@@ -1651,3 +1651,11 @@ ol.cg-schritte > li,
   border-color: var(--cg-orange);
   color: var(--cg-fg);
 }
+
+/* Marke für Termine vor Ort und online zugleich: umrandet statt gefüllt,
+   damit sie sich von "Save the Date" unterscheidet. */
+.cg-marke--hybrid {
+  background: transparent;
+  border: 1px solid var(--cg-orange);
+  color: var(--cg-akzent-text);
+}

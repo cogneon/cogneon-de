@@ -46,7 +46,7 @@
             <span class="cg-termin-zeile__text">
               <span class="cg-card__marke">{{ t.zeitraum }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}</span>
               <span class="cg-card__titel">{{ t.titel }}</span>
-              {% if t.ort %}<span class="cg-card__vor">{{ t.ort }}</span>{% endif %}
+              {% if t.ort %}<span class="cg-card__vor">{{ t.ort }}{% if t.hybrid %} <span class="cg-marke cg-marke--hybrid">Hybride Veranstaltung</span>{% endif %}</span>{% endif %}
               {% if t.auszug and not t.save_the_date %}<span class="cg-card__text">{{ t.auszug }}</span>{% endif %}
             </span>
           </a>
