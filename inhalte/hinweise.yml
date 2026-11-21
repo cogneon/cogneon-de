@@ -1,0 +1,21 @@
+# Hinweisleiste über der Kopfzeile (Ankündigungsleiste).
+#
+# Je Meldung:
+#   text      Text auf deutschen Seiten (einzeilig, kurz)
+#   text_en   optional: Text auf englischen Seiten; fehlt er, dort keine Leiste
+#   link      optional: Ziel (interner Pfad wie advent/ oder https://...)
+#   link_en   optional: Ziel auf englischen Seiten (sonst link)
+#   art       hinweis (gelb) | warnung (rot) | aktion (orange)
+#   ab, bis   optional: Zeitraum (einschließlich), Zeitzone Europe/Berlin
+#
+# Es erscheint höchstens eine Meldung: zuerst Warnungen, sonst die erste
+# gültige in dieser Liste. Wer sie wegklickt, sieht sie nicht wieder, bis
+# sich ihr Text ändert.
+
+hinweise:
+  - text: Der Wissensmanagement-Adventskalender ist offen - jeden Tag ein neues Türchen.
+    text_en: Our knowledge management advent calendar is open - a new door every day.
+    link: advent/
+    art: aktion
+    ab: 2026-11-30
+    bis: 2026-12-24

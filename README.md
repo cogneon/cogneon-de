@@ -179,6 +179,25 @@ quelle_hash: "3f2a…"   # Prüfwert der Vorlage beim Übersetzen
 - Englische Seiten, die von Hand gepflegt werden, bekommen `frozen: true`;
   dann gibt es keine Warnung mehr.
 
+## Hinweisleiste
+
+Meldungen über der Kopfzeile pflegst Du in `inhalte/hinweise.yml`:
+
+```yaml
+hinweise:
+  - text: Der Adventskalender ist offen - jeden Tag ein neues Türchen.
+    text_en: Our advent calendar is open - a new door every day.
+    link: advent/
+    art: aktion      # hinweis (gelb), warnung (rot), aktion (orange)
+    ab: 2026-11-30
+    bis: 2026-12-24
+```
+
+- Es erscheint höchstens eine Meldung: zuerst Warnungen, sonst die erste gültige.
+- Der tägliche Build schaltet sie nach `ab`/`bis` an und aus.
+- Ohne `text_en` gibt es auf englischen Seiten keine Leiste.
+- Weggeklickt bleibt sie weg, bis sich ihr Text ändert (Speicherung nur im Browser).
+
 ## Veröffentlichen
 
 Der Workflow "Veröffentlichen" baut die Website und lädt sie per SFTP auf den

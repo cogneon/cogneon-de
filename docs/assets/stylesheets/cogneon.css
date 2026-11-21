@@ -1567,3 +1567,46 @@ ol.cg-schritte > li,
   background: var(--cg-bg-soft);
   font-size: 0.8rem;
 }
+
+/* Hinweisleiste über der Kopfzeile (inhalte/hinweise.yml).
+   Farbe je Art: aktion = Orange, hinweis = Gelb, warnung = Rot. */
+.md-banner:has(.cg-meldung) {
+  background: var(--cg-orange);
+  color: #231f20;
+}
+.md-banner:has(.cg-meldung--hinweis) {
+  background: #ffd84d;
+  color: #231f20;
+}
+.md-banner:has(.cg-meldung--warnung) {
+  background: #b3261e;
+  color: #ffffff;
+}
+.md-banner:has(.cg-meldung) .md-banner__inner {
+  margin-top: 0.45rem;
+  margin-bottom: 0.45rem;
+  padding: 0 2rem;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: inherit;
+  font-size: 0.8rem;
+}
+.md-typeset .cg-meldung {
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+}
+.md-typeset .cg-meldung a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.md-typeset .cg-meldung a:hover,
+.md-typeset .cg-meldung a:focus-visible {
+  color: inherit;
+  text-decoration-thickness: 2px;
+}
+.md-banner:has(.cg-meldung) .md-banner__button {
+  color: inherit;
+}

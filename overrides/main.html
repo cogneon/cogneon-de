@@ -15,6 +15,20 @@
   <link rel="alternate" hreflang="x-default" href="{{ basis }}{{ de_url }}">
   {% endif %}
 {% endblock %}
+{#-
+  Hinweisleiste über der Kopfzeile (inhalte/hinweise.yml). Der Block muss leer
+  bleiben, wenn keine Meldung gilt, sonst zeigt das Thema eine leere Leiste.
+-#}
+{% block announce -%}
+{%- import "partials/hinweis-daten.html" as hd -%}
+{%- import "partials/texte.html" as tx with context -%}
+{%- set h = hd.hinweis[tx.sprache()] if tx.sprache() in hd.hinweis else none -%}
+{%- if h -%}
+<p class="cg-meldung cg-meldung--{{ h.art }}">{#- Absoluter Pfad, damit der Inhalt auf allen Seiten gleich ist: Das
+    Wegklicken merkt sich einen Prüfwert dieses Inhalts. -#}
+{% if h.link %}<a href="{{ h.link if '://' in h.link else '/' ~ (h.link | trim('/')) ~ '/' }}">{{ h.text }}</a>{% else %}{{ h.text }}{% endif %}</p>
+{%- endif -%}
+{%- endblock %}
 {% block analytics %}
 {#-
   Matomo ohne Cookies. Gezählt wird nur auf den unter extra.matomo.hosts
