@@ -59,3 +59,8 @@
     transition: none;
   }
 }
+
+/* Bei "Bewegung reduzieren" steht das Netz still; dann kein Pause-Knopf. */
+.cg-netz__pause[hidden] {
+  display: none;
+}
