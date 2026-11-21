@@ -25,3 +25,4 @@ overrides/partials/hinweis-daten.html
 # Installationspakete gehören nicht ins Repo
 *.whl
 *.tar.gz
+migration/redirects-hashtags.map

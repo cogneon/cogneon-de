@@ -36,7 +36,7 @@ SetEnvIfNoCase Host "^(www\\.)?cogneon\\.de$" COGNEON_LIVE
 # es eine neue Fassung gibt (sonst Antwort 304, ohne Download). So passen
 # Seite und Stylesheet nach einem Veröffentlichen sofort zusammen.
 <IfModule mod_headers.c>
-  <FilesMatch "\.(html|css|js)$">
+  <FilesMatch "\\.(html|css|js)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>

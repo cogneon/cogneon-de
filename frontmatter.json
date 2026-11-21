@@ -10,14 +10,16 @@
       "path": "[[workspace]]/docs/blog/posts",
       "contentTypes": [
         "blogbeitrag"
-      ]
+      ],
+      "filePrefix": null
     },
     {
       "title": "Termine",
       "path": "[[workspace]]/docs/event",
       "contentTypes": [
         "termin"
-      ]
+      ],
+      "filePrefix": null
     },
     {
       "title": "Seiten",
@@ -25,14 +27,16 @@
       "contentTypes": [
         "seite"
       ],
-      "excludeSubdir": true
+      "excludeSubdir": true,
+      "filePrefix": null
     },
     {
       "title": "Englisch",
       "path": "[[workspace]]/docs/en",
       "contentTypes": [
         "seite"
-      ]
+      ],
+      "filePrefix": null
     }
   ],
   "frontMatter.taxonomy.contentTypes": [
@@ -46,6 +50,11 @@
           "type": "string",
           "single": true,
           "required": true
+        },
+        {
+          "title": "Hashtag / Kurzlink (z.B. loscon27 -> cogneon.de/loscon27)",
+          "name": "hashtag",
+          "type": "string"
         },
         {
           "title": "Beschreibung (für Suchmaschinen und Vorschaukarten)",
@@ -68,7 +77,8 @@
           "name": "frozen",
           "type": "boolean"
         }
-      ]
+      ],
+      "filePrefix": null
     },
     {
       "name": "blogbeitrag",
@@ -80,6 +90,11 @@
           "type": "string",
           "single": true,
           "required": true
+        },
+        {
+          "title": "Hashtag / Kurzlink (z.B. loscon27 -> cogneon.de/loscon27)",
+          "name": "hashtag",
+          "type": "string"
         },
         {
           "title": "Datum",
@@ -162,7 +177,8 @@
             "en"
           ]
         }
-      ]
+      ],
+      "filePrefix": null
     },
     {
       "name": "termin",
@@ -174,6 +190,11 @@
           "type": "string",
           "single": true,
           "required": true
+        },
+        {
+          "title": "Hashtag / Kurzlink (z.B. loscon27 -> cogneon.de/loscon27)",
+          "name": "hashtag",
+          "type": "string"
         },
         {
           "title": "Vorlage",
@@ -223,7 +244,7 @@
           ]
         },
         {
-          "title": "Online",
+          "title": "Online (zusammen mit Ort = hybride Veranstaltung)",
           "name": "online",
           "type": "boolean"
         },
@@ -233,7 +254,7 @@
           "type": "string"
         },
         {
-          "title": "Anmeldung (Link)",
+          "title": "Anmeldung (Link; leer = kein Anmeldeknopf)",
           "name": "anmeldung",
           "type": "string"
         },
@@ -253,7 +274,8 @@
           "name": "bild_im_text",
           "type": "boolean"
         }
-      ]
+      ],
+      "filePrefix": null
     }
   ],
   "frontMatter.taxonomy.categories": [

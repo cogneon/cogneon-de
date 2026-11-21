@@ -149,7 +149,7 @@
         <h2 class="cg-h2 cg-h2--klein">{{ tx.t('termine') }}{% if en %} <span class="cg-marke">{{ tx.t('auf_deutsch') }}</span>{% endif %}</h2>
         <ul class="cg-liste cg-liste--termine">
           {% for t in aktuell.termine %}
-          <li><a href="{{ t.url if '://' in t.url else t.url | url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}</span></a></li>
+          <li><a href="{{ t.url if '://' in t.url else t.url | url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}{% if t.hybrid %} <span class="cg-marke cg-marke--hybrid">Hybride Veranstaltung</span>{% endif %}</span></a></li>
           {% endfor %}
         </ul>
         <p class="cg-muted">{{ tx.t('termine_hinweis_a') }} <a href="{{ 'events/' | url }}">{{ tx.t('termine_hinweis_b') }}</a> {{ tx.t('termine_hinweis_c') }} <a href="{{ config.extra.community_kalender }}">{{ tx.t('termine_hinweis_d') }}</a>.</p>

@@ -25,7 +25,7 @@
         {% for k in daten.termine.kategorien %}<li><a href="{{ k.url | url }}">{{ k.titel }}</a></li>{% endfor %}
       </ul>
       <p class="cg-muted">Weitere Termine aus der Community stehen im <a href="{{ config.extra.community_kalender }}">Community Kalender auf CONNECT</a>.</p>
-      <p><a class="cg-link" href="{{ 'events/cogneon.ics' | url }}">Kalender abonnieren (ICS)</a></p>
+      <p><a class="cg-link cg-link--icon" href="{{ 'events/cogneon.ics' | url }}"><svg class="cg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7.5 13.5h2M11 13.5h2M14.5 13.5h2M7.5 17h2M11 17h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Kalender abonnieren (ICS)</a></p>
       {% endif %}
     </div>
   </section>
@@ -46,7 +46,7 @@
             <span class="cg-termin-zeile__text">
               <span class="cg-card__marke">{{ t.zeitraum }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}</span>
               <span class="cg-card__titel">{{ t.titel }}</span>
-              {% if t.ort %}<span class="cg-card__vor">{{ t.ort }}</span>{% endif %}
+              {% if t.ort %}<span class="cg-card__vor">{{ t.ort }}{% if t.hybrid %} <span class="cg-marke cg-marke--hybrid">Hybride Veranstaltung</span>{% endif %}</span>{% endif %}
               {% if t.auszug and not t.save_the_date %}<span class="cg-card__text">{{ t.auszug }}</span>{% endif %}
             </span>
           </a>
