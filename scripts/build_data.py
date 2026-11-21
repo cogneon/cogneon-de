@@ -179,6 +179,19 @@ def as_datetime(value) -> dt.datetime | None:
     return None
 
 
+def datum_spanne(start: dt.datetime, end: dt.datetime) -> str:
+    """Kurzes Datum für Listen: '20.05.2026', mehrtägig '20.-21.05.2026',
+    über Monats- oder Jahresgrenze '30.12.2026-02.01.2027'."""
+    a, b = start.date(), end.date()
+    if b <= a:
+        return f"{a:%d.%m.%Y}"
+    if (a.year, a.month) == (b.year, b.month):
+        return f"{a:%d}.-{b:%d.%m.%Y}"
+    if a.year == b.year:
+        return f"{a:%d.%m.}-{b:%d.%m.%Y}"
+    return f"{a:%d.%m.%Y}-{b:%d.%m.%Y}"
+
+
 def zeitraum(start: dt.datetime, end: dt.datetime, all_day: bool) -> str:
     """Lesbarer Zeitraum: 'Do, 24.09.2020, 11:45 - 15:30 Uhr' oder über mehrere Tage."""
     tag = lambda d: f"{WOCHENTAGE[d.weekday()]}, {d:%d.%m.%Y}"   # noqa: E731
@@ -232,7 +245,7 @@ def all_events(root: Path) -> list[dict]:
         events.append({
             "titel": str(meta["title"]), "slug": path.stem, "url": f"event/{path.stem}/",
             "beginn": start, "ende": end, "ganztags": all_day,
-            "datum": f"{start:%d.%m.%Y}", "zeitraum": zeitraum(start, end, all_day),
+            "datum": datum_spanne(start, end), "zeitraum": zeitraum(start, end, all_day),
             "ort": "Online" if meta.get("online") and not ort else str(ort.get("name") or ""),
             "adresse": str(ort.get("adresse") or ""),
             "kategorien": [(n, festgelegt.get(n, sl)) for n, sl in kategorie_paare(meta, bekannt)],
@@ -316,6 +329,14 @@ def event_jsonld(e: dict, site_url: str) -> dict:
     return data
 
 
+def kachel_tag(e: dict) -> str:
+    """Tag(e) auf der Datumskachel: '20', mehrtägig im selben Monat '20-21'."""
+    a, b = e["beginn"].date(), e["ende"].date()
+    if b > a and (a.year, a.month) == (b.year, b.month):
+        return f"{a:%d}-{b:%d}"
+    return f"{a:%d}"
+
+
 def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de/") -> dict:
     """Erzeugt alles rund um Termine: Daten für die Übersicht /events/, eine Seite je
     Kategorie unter /events/kategorie/<slug>/ und die Kalenderdatei /events/cogneon.ics."""
@@ -326,7 +347,7 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
                       **({"hybrid": True} if e["hybrid"] else {})}
     # Kommende Termine zeigen zusätzlich Bild, Anriss und das Datum als Kachel.
     lang = lambda e: {**kurz(e), "bild": e["bild"], "auszug": e["auszug"],   # noqa: E731
-                      "tag": f"{e['beginn']:%d}", "monat": f"{MONATE[e['beginn'].month - 1]} {e['beginn']:%Y}"}
+                      "tag": kachel_tag(e), "monat": f"{MONATE[e['beginn'].month - 1]} {e['beginn']:%Y}"}
     kommend = [e for e in events if e["ende"].date() >= today]
     vergangen = [e for e in reversed(events) if e["ende"].date() < today]
     archiv: list[dict] = []
@@ -520,6 +541,65 @@ def build_hinweis(root: Path, today: dt.date) -> dict:
     return ergebnis
 
 
+HASHTAG_DATEI = "redirects-hashtags.map"
+
+
+def build_hashtags(root: Path) -> tuple[list[tuple[str, str]], list[str]]:
+    """Kurzlinks aus dem Feld 'hashtag' (z.B. hashtag: loscon27 -> /loscon27).
+
+    Gilt für Termine, Seiten und Blogbeiträge; mehrere Hashtags als Liste.
+    Ergebnis landet in migration/redirects-hashtags.map, daraus macht
+    build_htaccess.py Weiterleitungen. Doppelte oder kollidierende Hashtags
+    werden gemeldet und nicht erzeugt."""
+    docs = root / "docs"
+    eintraege: list[tuple[str, str, str]] = []          # (hashtag, ziel, datei)
+    for path in sorted(docs.rglob("*.md")):
+        rel = path.relative_to(docs)
+        if rel.parts[0] in ("tag", "events"):     # erzeugte Seiten
+            continue
+        meta = frontmatter(path)
+        werte = meta.get("hashtag")
+        if not werte:
+            continue
+        if rel.parts[:2] == ("blog", "posts"):
+            date = meta.get("date")
+            created = as_date(date.get("created") if isinstance(date, dict) else date)
+            if not created:
+                continue
+            ziel = f"/{created:%Y/%m/%d}/{meta.get('slug') or path.stem}/"
+        else:
+            ziel = "/" + md_url(str(rel))
+        for h in werte if isinstance(werte, list) else [werte]:
+            eintraege.append((str(h).strip().lstrip("#").lower(), ziel, str(rel)))
+
+    manuell = {}
+    datei = root / "migration" / "redirects.map"
+    if datei.exists():
+        for zeile in datei.read_text(encoding="utf-8").splitlines():
+            teile = zeile.split()
+            if len(teile) == 2 and not zeile.startswith("#"):
+                manuell[teile[0].rstrip("/").lower()] = teile[1]
+
+    regeln, probleme, gesehen = [], [], {}
+    for h, ziel, rel in eintraege:
+        if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", h):
+            probleme.append(f"{rel}: Hashtag '{h}' nur aus a-z, 0-9 und - bilden")
+            continue
+        if (docs / h).exists() or (docs / f"{h}.md").exists():
+            probleme.append(f"{rel}: /{h} ist schon eine Seite")
+            continue
+        if h in gesehen and gesehen[h][0] != ziel:
+            probleme.append(f"{rel}: Hashtag '{h}' auch in {gesehen[h][1]}")
+            continue
+        if f"/{h}" in manuell and manuell[f"/{h}"].rstrip("/") != ziel.rstrip("/"):
+            probleme.append(f"{rel}: /{h} steht in redirects.map mit anderem Ziel ({manuell[f'/{h}']}); dort gilt es")
+            continue
+        if h not in gesehen:
+            gesehen[h] = (ziel, rel)
+            regeln.append((f"/{h}", ziel))
+    return regeln, probleme
+
+
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
     posts = []
     for path in post_dir.rglob("*.md"):
@@ -638,6 +718,14 @@ def main() -> int:
         encoding="utf-8",
     )
     print(f"{target.relative_to(args.root)}: {'Meldung aktiv' if hinweis else 'keine Meldung'}")
+    regeln, probleme = build_hashtags(args.root)
+    target = args.root / "migration" / HASHTAG_DATEI
+    target.write_text(
+        "# Erzeugt von scripts/build_data.py aus dem Feld 'hashtag' - nicht von Hand ändern.\n"
+        + "".join(f"{a} {b}\n" for a, b in regeln), encoding="utf-8")
+    print(f"{target.relative_to(args.root)}: {len(regeln)} Kurzlinks aus Hashtags")
+    for zeile in probleme:
+        print(f"Warnung: Hashtag: {zeile}", file=sys.stderr)
     sprachen = build_sprachen(args.root)
     target = args.root / "overrides" / "partials" / "sprachen-daten.html"
     target.write_text(

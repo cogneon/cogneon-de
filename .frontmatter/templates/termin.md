@@ -1,6 +1,7 @@
 ---
 type: termin
 title: Titel der Veranstaltung
+hashtag: ''
 template: termin.html
 beginn: 2027-01-15 10:00
 ende: 2027-01-15 17:00

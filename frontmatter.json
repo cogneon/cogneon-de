@@ -52,6 +52,11 @@
           "required": true
         },
         {
+          "title": "Hashtag / Kurzlink (z.B. loscon27 -> cogneon.de/loscon27)",
+          "name": "hashtag",
+          "type": "string"
+        },
+        {
           "title": "Beschreibung (für Suchmaschinen und Vorschaukarten)",
           "name": "description",
           "type": "string"
@@ -85,6 +90,11 @@
           "type": "string",
           "single": true,
           "required": true
+        },
+        {
+          "title": "Hashtag / Kurzlink (z.B. loscon27 -> cogneon.de/loscon27)",
+          "name": "hashtag",
+          "type": "string"
         },
         {
           "title": "Datum",
@@ -180,6 +190,11 @@
           "type": "string",
           "single": true,
           "required": true
+        },
+        {
+          "title": "Hashtag / Kurzlink (z.B. loscon27 -> cogneon.de/loscon27)",
+          "name": "hashtag",
+          "type": "string"
         },
         {
           "title": "Vorlage",
