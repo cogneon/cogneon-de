@@ -556,7 +556,8 @@ def build(root: Path, today: dt.date, limit: int = 4) -> dict:
     # Termine kommen aus docs/event/. Einträge in inhalte/aktuell.yml kommen dazu
     # (zum Beispiel fremde Veranstaltungen ohne eigene Seite).
     termine = [{"titel": e["titel"], "datum": e["datum"], "url": e["url"],
-                **({"save_the_date": True} if e["save_the_date"] else {})}
+                **({"save_the_date": True} if e["save_the_date"] else {}),
+                **({"hybrid": True} if e["hybrid"] else {})}
                for e in all_events(root) if e["ende"].date() >= today][:5]
     for item in data.get("termine") or []:
         day = as_date(item.get("tag"))
