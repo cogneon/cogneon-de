@@ -127,3 +127,10 @@ daraus die Datei `.htaccess` für den Webserver.
 Auf einer Seite erscheint eine Karte mit `<div class="cg-karte"></div>` im Markdown.
 Die Orte stehen in `inhalte/karte.yml` (Name, Koordinaten, Art, optional Text und Link).
 Die Karte lädt erst nach einem Klick, vorher wird nichts von OpenStreetMap abgerufen.
+
+## Lizenz
+
+- Texte: [CC BY 4.0](LICENSE-INHALTE.md), Namensnennung "Cogneon GmbH, cogneon.de"
+- Code (Skripte, Vorlagen, CSS, JavaScript): [MIT](LICENSE)
+- Ausgenommen sind Marken und Logos, Kundenlogos, Fotos von Personen sowie
+  Werke Dritter, Schriften und Bibliotheken (Einzelheiten in `LICENSE-INHALTE.md`)

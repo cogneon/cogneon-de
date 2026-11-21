@@ -1,5 +1,6 @@
 ---
 title: Datenschutz
+frozen: true
 wp:
   id: 50522
   link: https://cogneon.de/datenschutz/
@@ -222,3 +223,11 @@ Mit der Setzung des Opt-Out-Cookies besteht jedoch die Möglichkeit, dass die In
 Weitere Informationen und die geltenden Datenschutzbestimmungen von Matomo können unter https://matomo.org/privacy/ abgerufen werden.
 
 [Eingebetteter Inhalt: analytics.cogneon.de](https://analytics.cogneon.de/index.php?module=CoreAdminHome&action=optOut&language=de&backgroundColor=cccccc&fontColor=&fontSize=&fontFamily=Helvetica){ .embed }
+
+**20. Datenschutzbestimmungen zur Kartendarstellung (OpenStreetMap)**
+
+Auf unserer Kontaktseite bieten wir eine Karte mit unserem Standort und Orten in der Umgebung an. Die Karte wird nicht automatisch geladen. Erst wenn die betroffene Person auf "Karte laden" klickt, ruft der Internetbrowser Kartenbilder von den Servern der OpenStreetMap Foundation (OSMF), St John's Innovation Centre, Cowley Road, Cambridge, CB4 0WS, Vereinigtes Königreich, ab. Die zur Darstellung verwendete Programmbibliothek (Leaflet) liegt auf unserem eigenen Server.
+
+Beim Abruf der Kartenbilder werden technisch notwendige Daten an die OSMF übermittelt, insbesondere die IP-Adresse, Informationen über den verwendeten Internetbrowser und die aufgerufene Seite. Rechtsgrundlage ist die Einwilligung der betroffenen Person durch den Klick auf "Karte laden" (Art. 6 Abs. 1 Buchstabe a DS-GVO). Ohne diesen Klick findet keine Übermittlung statt. Für das Vereinigte Königreich besteht ein Angemessenheitsbeschluss der Europäischen Kommission.
+
+Weitere Informationen enthält die Datenschutzerklärung der OSMF unter https://osmfoundation.org/wiki/Privacy_Policy.
