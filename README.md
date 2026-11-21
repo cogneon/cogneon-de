@@ -146,8 +146,9 @@ kopfbild: wp-content/uploads/2026/03/workshop.jpg
 kopfbild_alt: Teilnehmende beim Expert Debriefing an der Wissenslandkarte
 ```
 
-- Das Bild nimmt am Desktop ein Drittel der Breite ein, mobil steht es unter dem Text.
-- Es wird auf 4:3 zugeschnitten (Mitte bleibt sichtbar). Motive also mittig wählen.
+- Format 16:9, wie Blog- und Terminbilder (dasselbe Bild wie für Präsentationen).
+- Am Desktop steht es neben dem Text (halbe Breite), mobil darunter.
+- Andere Formate werden auf 16:9 zugeschnitten (Mitte bleibt sichtbar).
 - `kopfbild_alt` beschreibt, was zu sehen ist. Rein dekorative Bilder: Feld weglassen.
 - Echte Fotos aus Projekten oder der Akademie wirken besser als Stock-Bilder.
 - Vor dem Einchecken `python3 scripts/optimize_media.py` laufen lassen.

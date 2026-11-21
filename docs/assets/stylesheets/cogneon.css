@@ -266,7 +266,8 @@ input:focus-visible {
   padding: 3.6rem 0 4.4rem;
 }
 /* Optionales Kopfbild auf Unterseiten (Front Matter: kopfbild, kopfbild_alt).
-   Mobil steht das Bild unter dem Text, ab 60em rechts in einem Drittel. */
+   16:9 wie Blog- und Terminbilder, damit ein Bildformat für alles reicht.
+   Mobil steht das Bild unter dem Text, ab 60em rechts neben dem Text. */
 .cg-kopf--bild {
   display: grid;
   gap: 2.4rem;
@@ -277,13 +278,13 @@ input:focus-visible {
 .cg-kopfbild img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: var(--cg-radius);
 }
 @media screen and (min-width: 60em) {
   .cg-kopf--bild {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 3.2rem;
   }
