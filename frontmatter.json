@@ -10,14 +10,16 @@
       "path": "[[workspace]]/docs/blog/posts",
       "contentTypes": [
         "blogbeitrag"
-      ]
+      ],
+      "filePrefix": null
     },
     {
       "title": "Termine",
       "path": "[[workspace]]/docs/event",
       "contentTypes": [
         "termin"
-      ]
+      ],
+      "filePrefix": null
     },
     {
       "title": "Seiten",
@@ -25,14 +27,16 @@
       "contentTypes": [
         "seite"
       ],
-      "excludeSubdir": true
+      "excludeSubdir": true,
+      "filePrefix": null
     },
     {
       "title": "Englisch",
       "path": "[[workspace]]/docs/en",
       "contentTypes": [
         "seite"
-      ]
+      ],
+      "filePrefix": null
     }
   ],
   "frontMatter.taxonomy.contentTypes": [
@@ -68,7 +72,8 @@
           "name": "frozen",
           "type": "boolean"
         }
-      ]
+      ],
+      "filePrefix": null
     },
     {
       "name": "blogbeitrag",
@@ -162,7 +167,8 @@
             "en"
           ]
         }
-      ]
+      ],
+      "filePrefix": null
     },
     {
       "name": "termin",
@@ -253,7 +259,8 @@
           "name": "bild_im_text",
           "type": "boolean"
         }
-      ]
+      ],
+      "filePrefix": null
     }
   ],
   "frontMatter.taxonomy.categories": [
