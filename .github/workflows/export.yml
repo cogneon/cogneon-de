@@ -117,4 +117,4 @@ jobs:
             docs
             !docs/wp-content/**
           include-hidden-files: true
-          retention-days: 14
+          retention-days: 3

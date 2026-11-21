@@ -56,4 +56,4 @@ jobs:
         with:
           name: link-check
           path: migration/link-check.md
-          retention-days: 30
+          retention-days: 7

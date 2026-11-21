@@ -58,7 +58,7 @@ Regeln:
 - Medien werden nur geladen, wenn sie lokal fehlen.
 - Der Bericht liegt danach in `migration/report.md`.
 
-Ohne lokale Installation: Workflow **WordPress-Export** unter *Actions* starten. Das Ergebnis hängt als Artefakt am Lauf.
+Ohne lokale Installation: Workflow **WordPress-Export** unter *Actions* starten. Das Ergebnis hängt drei Tage lang als Artefakt am Lauf.
 
 ## URL-Check
 
