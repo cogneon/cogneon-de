@@ -192,6 +192,11 @@
           "required": true
         },
         {
+          "title": "Untertitel (optional, im Kopf unter dem Titel)",
+          "name": "untertitel",
+          "type": "string"
+        },
+        {
           "title": "Hashtag / Kurzlink (z.B. loscon27 -> cogneon.de/loscon27)",
           "name": "hashtag",
           "type": "string"
@@ -268,6 +273,11 @@
           "name": "bild",
           "type": "image",
           "isPreviewImage": true
+        },
+        {
+          "title": "Bild: Beschreibung",
+          "name": "bild_alt",
+          "type": "string"
         },
         {
           "title": "Bild steht schon im Text",
