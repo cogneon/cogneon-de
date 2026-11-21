@@ -1333,6 +1333,11 @@ ol.cg-schritte > li,
   border-radius: var(--cg-radius);
   overflow: hidden;
   background: var(--cg-bg-soft);
+  /* Leaflet setzt z-index bis 1000; isolate hält das innerhalb der Karte,
+     sonst liegt sie beim Scrollen über der Kopfzeile. */
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
 }
 .cg-karte__vorschau {
   min-height: 14rem;
