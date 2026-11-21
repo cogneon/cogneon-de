@@ -33,9 +33,13 @@
     {% endblock %}
     <footer class="cg-beitrag__fuss">
       {% if page.meta.tags %}
-      <ul class="cg-schlagworte cg-schlagworte--links" aria-label="Schlagworte">
-        {% for tag in page.meta.tags %}{% set slug = tag | lower | replace("ä", "ae") | replace("ö", "oe") | replace("ü", "ue") | replace("ß", "ss") %}<li><a href="{{ ('tag/' ~ slug ~ '/') | url }}">#{{ tag }}</a></li>{% endfor %}
-      </ul>
+      {% set tags_label = "Tags" if page.meta.sprache == "en" else "Schlagworte" %}
+      <div class="cg-tags">
+        <span class="cg-tags__label" id="cg-tags-label">{{ tags_label }}:</span>
+        <ul class="cg-tags__liste" aria-labelledby="cg-tags-label">
+          {% for tag in page.meta.tags %}{% set slug = tag | lower | replace("ä", "ae") | replace("ö", "oe") | replace("ü", "ue") | replace("ß", "ss") %}<li><a class="cg-tag" href="{{ ('tag/' ~ slug ~ '/') | url }}">#{{ tag }}</a></li>{% endfor %}
+        </ul>
+      </div>
       {% endif %}
       {% for author in page.authors %}
       <aside class="cg-autor" aria-label="Über die Autorin oder den Autor">

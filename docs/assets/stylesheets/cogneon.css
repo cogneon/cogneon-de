@@ -1610,3 +1610,44 @@ ol.cg-schritte > li,
 .md-banner:has(.cg-meldung) .md-banner__button {
   color: inherit;
 }
+
+/* Schlagworte unter Blogbeiträgen: eine Zeile, die bei Bedarf umbricht,
+   mit Beschriftung vorne und schlanken Pillen. */
+.md-typeset .cg-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  font-size: 0.75rem;
+}
+.md-typeset .cg-tags__label {
+  color: var(--cg-fg-muted);
+  font-weight: 600;
+}
+.md-typeset ul.cg-tags__liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.md-typeset ul.cg-tags__liste li {
+  margin: 0;
+  padding: 0;
+}
+.md-typeset a.cg-tag {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--cg-linie);
+  border-radius: 99px;
+  color: var(--cg-fg);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.md-typeset a.cg-tag:hover,
+.md-typeset a.cg-tag:focus-visible {
+  border-color: var(--cg-orange);
+  color: var(--cg-fg);
+}
