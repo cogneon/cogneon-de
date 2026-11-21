@@ -1651,3 +1651,16 @@ ol.cg-schritte > li,
   border-color: var(--cg-orange);
   color: var(--cg-fg);
 }
+
+/* Link mit vorangestelltem Symbol, z.B. Kalender abonnieren */
+.cg-link--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.cg-link--icon .cg-icon {
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+  color: var(--cg-orange);
+}
