@@ -1672,3 +1672,33 @@ ol.cg-schritte > li,
   border: 1px solid var(--cg-orange);
   color: var(--cg-akzent-text);
 }
+
+/* Terminseiten: Kopf wie Angebotsseiten (Titel, Eckdaten, Anmeldung, Bild) */
+.cg-termin-kopf__eckdaten {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.9rem;
+  margin: 0;
+  color: var(--cg-fg-muted);
+  font-weight: 600;
+}
+.cg-termin-kopf__eckdaten .cg-marke {
+  margin-left: 0;
+}
+/* Die Überschrift steht im Kopf, die gleichlautende im Text entfällt. */
+.cg-termin-seite .md-content__inner > h1:first-of-type {
+  display: none;
+}
+.cg-termin-kopf .cg-h1 {
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  line-height: 1.1;
+  hyphens: auto;
+}
+.cg-section--kopf.cg-termin-kopf {
+  padding-bottom: 1.6rem;
+}
+.cg-termin-seite .md-content__inner {
+  margin-top: 0;
+  padding-top: 0.4rem;
+}

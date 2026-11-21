@@ -2,7 +2,9 @@
   Ein Termin (docs/event/<slug>.md). Angaben stehen im Kopf der Datei:
   beginn, ende, ganztags, ort {name, adresse}, online, kosten, anmeldung, kategorien,
   (ort und online: true zusammen = hybride Veranstaltung),
-  save_the_date. Die Seite gibt die Angaben zusätzlich nach schema.org (Event) aus.
+  save_the_date, untertitel (optional), bild_alt (optional). Kopf wie bei
+  Angebotsseiten: links Titel, Eckdaten, Anmeldeknopf; rechts das Bild (16:9).
+  Die Seite gibt die Angaben zusätzlich nach schema.org (Event) aus.
 -#}
 {% extends "main.html" %}
 {% block site_nav %}{% include "partials/seitenmenue.html" %}{% endblock %}
@@ -13,14 +15,50 @@
   <script type="application/ld+json">{{ termindaten.termine.schema[page.url] | tojson }}</script>
   {% endif %}
 {% endblock %}
+{% block hero %}
+{% import "partials/termine-daten.html" as daten %}
+{% set m = page.meta %}
+{% set mit_bild = m.bild and not m.bild_im_text %}
+{% set anmeldung = daten.termine.anmeldung[page.url] if page.url in daten.termine.anmeldung else "" %}
+<div class="cg-page">
+  <section class="cg-section cg-section--kopf cg-termin-kopf">
+    {% if mit_bild %}<div class="cg-wrap cg-kopf--bild">{% endif %}
+    <div class="{% if not mit_bild %}cg-wrap {% endif %}cg-stack">
+      <nav class="cg-pfad" aria-label="Brotkrumen">
+        <ol>
+          <li><a href="{{ 'events/' | url }}">Termine</a></li>
+          {% for k in daten.termine.kategorien_je_termin[page.url] | d([]) %}<li><a href="{{ ('events/kategorie/' ~ k[1] ~ '/') | url }}">{{ k[0] }}</a></li>{% endfor %}
+        </ol>
+      </nav>
+      <h1 class="cg-h1">{{ m.title }}</h1>
+      {% if m.untertitel %}<p class="cg-untertitel">{{ m.untertitel }}</p>{% endif %}
+      <p class="cg-termin-kopf__eckdaten">
+        <span>{{ daten.termine.zeiten[page.url] | d(m.beginn, true) }}</span>
+        {% if m.ort and m.ort.name %}<span>{{ m.ort.name }}{% if m.online %} und online{% endif %}</span>{% elif m.online %}<span>Online</span>{% endif %}
+        {% if m.ort and m.ort.name and m.online %}<span class="cg-marke cg-marke--hybrid">Hybride Veranstaltung</span>{% endif %}
+        {% if m.save_the_date %}<span class="cg-marke">Save the Date</span>{% endif %}
+      </p>
+      {% if anmeldung %}
+      <p class="cg-actions"><a class="cg-button" href="{{ anmeldung }}">Jetzt anmelden</a></p>
+      {% elif m.save_the_date %}
+      <p class="cg-muted">Anmeldung folgt.</p>
+      {% endif %}
+    </div>
+    {% if mit_bild %}
+    <figure class="cg-kopfbild">
+      <img src="{{ m.bild | url }}" alt="{{ m.bild_alt | d('', true) }}" loading="eager" fetchpriority="high" decoding="async">
+    </figure>
+    </div>
+    {% endif %}
+  </section>
+{% endblock %}
 {% block container %}
 {% import "partials/termine-daten.html" as daten %}
 {% set m = page.meta %}
-<div class="md-content cg-beitrag" data-md-component="content">
+<div class="md-content cg-beitrag cg-termin-seite" data-md-component="content">
   <article class="md-content__inner md-typeset">
     <a id="__skip" tabindex="-1"></a>
-    <p class="cg-beitrag__meta"><a href="{{ 'events/' | url }}">Termine</a>{% for k in daten.termine.kategorien_je_termin[page.url] | d([]) %}<span aria-hidden="true">·</span><a href="{{ ('events/kategorie/' ~ k[1] ~ '/') | url }}">{{ k[0] }}</a>{% endfor %}</p>
-    {% if m.bild and not m.bild_im_text %}<img class="cg-beitrag__bild" src="{{ m.bild | url }}" alt="">{% endif %}
+    {#- Die Überschrift steht im Kopf; die erste h1 im Text blendet das CSS aus. -#}
     {{ page.content }}
     {% if m.save_the_date %}
     <p class="cg-hinweis"><strong>Save the Date.</strong> Der Termin steht fest, Beschreibung und Anmeldung folgen. Der <a href="{{ nav.homepage.url | url }}#newsletter">Newsletter</a> informiert, sobald die Anmeldung offen ist.</p>
