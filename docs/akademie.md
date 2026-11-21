@@ -14,20 +14,20 @@ Die **Cogneon Akademie** wurde im Sommer 2011 mit dem Umzug von Erlangen nach N�
 
 ![](/wp-content/uploads/2024/08/cogneon-akademie-300x225.jpg)
 
-Cogneon Akademie
+Die Cogneon Akademie von außen.
 
 ![](/wp-content/uploads/2024/08/cogneon-akademie-knt16-300x144.jpg)
 
-Cogneon Akademie
+[KnowTouch 2016](https://wiki.cogneon.de/knt16) als Nachfolgeveranstaltung der [KnowTech](https://wiki.cogneon.de/knowtech) in der Cogneon Akademie.
 
 ![](/wp-content/uploads/2020/08/blp19-abschlussworkshop-80.jpg)
 
-Cogneon Akademie
+[Benchlearning Projekte](https://wiki.cogneon.de/blp) in der Cogneon Akademie.
 
 ## Räumlichkeiten
 
-- **Küche** – Vollausgestattete Küche für gemeinsame kulinarische Aktivitäten
-- **Wohnzimmer** – der Hauptraum der Akademie für Coworking, Workshops, Projekttermine, Schulungen
-- **Studio** – zwei Arbeitsplätze mit Ausstattung für Audio- und Videoproduktion
-- **La Boca** – Workshop-Raum mit Rundum-Whiteboards in den Farben des [Stadtteils La Boca in Bueinos Aires](https://de.m.wikipedia.org/wiki/La_Boca)
-- **Bibliothek** – technikfreier Raum für Gespräche, Besprechungen, Workshops mit vielen Büchern und Medien
+- **[Küche](https://wiki.cogneon.de/K%C3%BCche_(Cogneon_Akademie))** – Vollausgestattete Küche für gemeinsame kulinarische Aktivitäten
+- **[Wohnzimmer](https://wiki.cogneon.de/Plenum_(Cogneon_Akademie))** – der Hauptraum der Akademie für Coworking, Workshops, Projekttermine, Schulungen
+- **[Studio](https://wiki.cogneon.de/Plenum_(Cogneon_Akademie))** – zwei Arbeitsplätze mit Ausstattung für Audio- und Videoproduktion
+- **[La Boca](https://wiki.cogneon.de/La_Boca_(Cogneon_Akademie))** – Workshop-Raum mit Rundum-Whiteboards in den Farben des [Stadtteils La Boca in Buenos Aires](https://de.m.wikipedia.org/wiki/La_Boca)
+- **[Bibliothek](https://wiki.cogneon.de/Bibliothek_(Cogneon_Akademie))** – technikfreier Raum für Gespräche, Besprechungen, Workshops mit vielen Büchern und Medien
