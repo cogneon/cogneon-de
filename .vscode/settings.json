@@ -18,6 +18,6 @@
   "markdown.updateLinksOnFileMove.enabled": "prompt",
   "cSpell.language": "de,en",
   "cSpell.enabledFileTypes": { "markdown": true, "*": false },
-  "files.exclude": { "site": true, "**/__pycache__": true, ".pytest_cache": true },
+  "files.exclude": { "site": true, ".cache": true, "**/__pycache__": true, ".pytest_cache": true, ".frontmatter/database": true },
   "search.exclude": { "site": true, "docs/wp-content": true }
 }

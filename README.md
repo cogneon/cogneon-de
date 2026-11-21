@@ -215,6 +215,10 @@ Das Repository bringt eine Einrichtung für Visual Studio Code mit:
   Seiten, Formularfelder statt YAML, "Create content" für neue Beiträge und
   Termine. Neue Inhalte bekommen ein Feld `type` (blogbeitrag, termin, seite),
   an dem Front Matter die passenden Felder erkennt.
+- **Vorlagen** unter `.frontmatter/templates/` (Blogbeitrag, Termin, Seite):
+  im Front-Matter-Dashboard "Create content" > "Create by template", oder die
+  Datei von Hand kopieren und umbenennen. Blogbeiträge gehören nach
+  `docs/blog/posts/JJJJ/`, Termine nach `docs/event/`, Seiten nach `docs/`.
 
 ## Veröffentlichen
 
