@@ -5,6 +5,11 @@
 
   Die Karte lädt erst nach einem Klick: Erst dann werden Kartenbilder von den
   Servern der OpenStreetMap Foundation abgerufen. Leaflet selbst liegt lokal.
+  Das Luftbild (Bayerische Vermessungsverwaltung, CC BY 4.0) wird erst geladen,
+  wenn jemand oben rechts auf "Luftbild" umschaltet.
+
+  Zoomen: Plus/Minus, Doppelklick, Zwei-Finger-Geste auf Touchpad und Handy
+  oder Strg + Mausrad. Mausrad allein scrollt weiter die Seite.
 */
 (function () {
   var boxes = document.querySelectorAll(".cg-karte");
@@ -26,6 +31,36 @@
     var d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML;
   }
 
+  // Links zur Routenplanung. Externe Dienste erst nach Klick auf den Link.
+  function route(lat, lon) {
+    var z = lat + "," + lon;
+    return 'Route: <a href="https://www.openstreetmap.org/directions?route=%3B' + encodeURIComponent(z) + '">OpenStreetMap</a> · ' +
+      '<a href="https://www.google.com/maps/dir/?api=1&amp;destination=' + encodeURIComponent(z) + '">Google Maps</a> · ' +
+      '<a href="https://maps.apple.com/?daddr=' + z + '">Apple Karten</a>';
+  }
+
+  // Zoomen mit Zwei-Finger-Geste: Chrome, Firefox und Edge melden sie als
+  // Mausrad mit Strg-Taste, Safari als eigene "gesture"-Ereignisse. Normales
+  // Scrollen bleibt bei der Seite.
+  function zoomGesten(karte, el) {
+    function punkt(ev) { return karte.mouseEventToContainerPoint(ev); }
+    function grenzen(z) { return Math.max(karte.getMinZoom(), Math.min(karte.getMaxZoom(), z)); }
+    el.addEventListener("wheel", function (ev) {
+      if (!ev.ctrlKey) return;
+      ev.preventDefault();
+      var faktor = ev.deltaMode === 1 ? 0.05 : 0.01;
+      karte.setZoomAround(punkt(ev), grenzen(karte.getZoom() - ev.deltaY * faktor), { animate: false });
+    }, { passive: false });
+    var start = null;
+    el.addEventListener("gesturestart", function (ev) { ev.preventDefault(); start = karte.getZoom(); });
+    el.addEventListener("gesturechange", function (ev) {
+      if (start === null) return;
+      ev.preventDefault();
+      karte.setZoomAround(punkt(ev), grenzen(start + Math.log(ev.scale) / Math.LN2), { animate: false });
+    });
+    el.addEventListener("gestureend", function () { start = null; });
+  }
+
   function zeigen(box) {
     box.classList.add("cg-karte--laedt");
     Promise.all([
@@ -40,11 +75,18 @@
       var flaeche = document.createElement("div");
       flaeche.className = "cg-karte__flaeche";
       box.appendChild(flaeche);
-      var karte = L.map(flaeche, { scrollWheelZoom: false });
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      var karte = L.map(flaeche, { scrollWheelZoom: false, zoomSnap: 0.25 });
+      var osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende'
       }).addTo(karte);
+      var luftbild = L.tileLayer("https://wmtsod{s}.bayernwolke.de/wmts/by_dop/smerc/{z}/{x}/{y}", {
+        subdomains: "123456789",
+        maxZoom: 19,
+        attribution: 'Luftbild: <a href="https://geodaten.bayern.de/opengeodata/">Bayerische Vermessungsverwaltung</a> (CC BY 4.0)'
+      });
+      L.control.layers({ "Karte": osm, "Luftbild": luftbild }, null, { collapsed: false }).addTo(karte);
+      zoomGesten(karte, flaeche);
       var punkte = [], erstes = null;
       orte.forEach(function (o) {
         var gross = o.art === "cogneon";
@@ -55,6 +97,7 @@
         var html = "<strong>" + text(o.name) + "</strong>";
         if (o.text) html += "<br>" + text(o.text);
         if (o.link) html += '<br><a href="' + encodeURI(o.link) + '">Mehr</a>';
+        if (gross) html += "<br>" + route(o.lat, o.lon);
         m.bindPopup(html);
         if (gross) erstes = m;
         punkte.push([o.lat, o.lon]);
@@ -79,7 +122,8 @@
     box.innerHTML =
       '<div class="cg-karte__vorschau">' +
       '<p class="cg-karte__hinweis">Mit Klick auf „Karte laden" werden Kartenbilder von OpenStreetMap geladen. ' +
-      'Dabei wird eure IP-Adresse an die OpenStreetMap Foundation übertragen.</p>' +
+      'Dabei wird eure IP-Adresse an die OpenStreetMap Foundation übertragen. ' +
+      'Das Luftbild kommt erst nach Umschalten von der Bayerischen Vermessungsverwaltung.</p>' +
       '<p><button type="button" class="cg-button">Karte laden</button> ' +
       '<a class="cg-link" href="https://www.openstreetmap.org/node/3255611047">Auf OpenStreetMap öffnen</a></p></div>';
     box.querySelector("button").addEventListener("click", function () { zeigen(box); });
