@@ -100,40 +100,139 @@ Türchen mit `typ`, `titel`, `link`, `von` (optional), `warum` und `impuls`
 - Das Netz im Hintergrund lässt sich oben in `docs/assets/javascripts/advent.js`
   einstellen (Dichte, Tempo, Helligkeit).
 
-## Termine
+## Inhalte anlegen und pflegen
 
-Jeder Termin ist eine Datei unter `docs/event/`. Der Dateiname wird zur Adresse:
-`docs/event/edmod27a.md` erscheint unter `/event/edmod27a/`.
+Jeder Inhalt ist eine Markdown-Datei. Oben zwischen `---` stehen die
+Metadaten (Front Matter), darunter der Text. Am bequemsten geht das mit
+VS Code und Front Matter CMS (siehe "Bearbeiten mit VS Code"): Dashboard
+"FM" > "Create content" > Blog, Termine oder Seiten; die Felder erscheinen
+als Formular. Vorlagen liegen unter `.frontmatter/templates/`.
 
-```markdown
+Nach dem Anlegen, Umbenennen oder Löschen von Beiträgen und Terminen die
+Vorschau neu starten (`python3 scripts/build_data.py && zensical serve`),
+denn Übersichten, Startseite und Kalender erzeugt `build_data.py`.
+
+### Wo liegt was, wie heißt die Datei?
+
+| Inhalt | Ordner | Adresse |
+|---|---|---|
+| Blogbeitrag | `docs/blog/posts/JJJJ/` | aus Datum und Slug: `/2026/12/01/mein-beitrag/` |
+| Termin | `docs/event/` | Dateiname: `docs/event/lernos-convention-2027.md` → `/event/lernos-convention-2027/` |
+| Seite | `docs/` | Dateiname: `docs/akademie.md` → `/akademie/` |
+
+Dateinamen klein, ohne Umlaute und Leerzeichen, Wörter mit `-` getrennt,
+lieber sprechend und lang. Kurze Adressen wie `/loscon27` entstehen über
+das Feld `hashtag` (siehe "Kurzlinks über Hashtags"), nicht über den Dateinamen.
+
+### Blogbeitrag
+
+```yaml
+---
+title: Titel des Beitrags
+date:
+  created: '2026-12-01'        # Erscheinungsdatum, bestimmt die Adresse
+  updated: '2026-12-03'        # optional
+slug: titel-des-beitrags       # optional, sonst aus dem Titel
+authors: [simon-dueckert]      # Schlüssel aus docs/.authors.yml
+categories: [Wissensmanagement]
+tags: [Wissensmanagement, GenerativeKI]   # CamelCase, siehe migration/schlagworte.csv
+bild: assets/bilder/kclo-banner.png       # 16:9, erscheint in Übersicht und Kopf
+bild_alt: Was auf dem Bild zu sehen ist
+hashtag: kclo2612              # optional: Kurzlink /kclo2612
+sprache: en                    # nur für englische Beiträge
+---
+
+# Titel des Beitrags
+
+Anreißer: ein bis drei Sätze für Übersicht und Feed.
+
+<!-- more -->
+
+Weiterer Text.
+```
+
+### Termin
+
+```yaml
 ---
 title: Expert Debriefing Praxis-Ausbildung Frühjahr 2027
+untertitel: Zwei Tage Praxis am eigenen Fall   # optional, im Kopf
 template: termin.html
+hashtag: edmod27a              # Kurzlink /edmod27a
 beginn: 2027-03-11 09:00
-ende: 2027-03-12 17:00
+ende: 2027-03-12 17:00         # mehrtägig: erscheint als 11.-12.03.2027
+ganztags: false
 ort:
   name: Cogneon Akademie
   adresse: Bucherstr. 79a, 90419 Nürnberg
+online: true                   # mit ort = "Hybride Veranstaltung"
 kosten: 1.900 €
-anmeldung: https://pretix.eu/...       # Link zur Anmeldung
+anmeldung: https://pretix.eu/cogneon/edmod27a/   # leer = kein Anmeldeknopf
 kategorien: [Expert Debriefing Praxis-Ausbildung]
-kategorie_slugs: [edmod]
+bild: assets/bilder/expert-debriefing-16-9.png
+bild_alt: Zwei Menschen im Gespräch an einem Tisch
+save_the_date: false
 ---
 
 # Expert Debriefing Praxis-Ausbildung Frühjahr 2027
 
-Beschreibung des Termins.
+Beschreibung des Termins. Keinen eigenen Anmeldeknopf in den Text setzen,
+den erzeugt die Seite aus `anmeldung`.
 ```
 
-Für ganztägige Termine `ganztags: true`, für Online-Termine `online: true` statt `ort`.
+- **Ort und online:** nur `ort` = vor Ort, nur `online: true` = Online,
+  beides = hybrid (Marke "Hybride Veranstaltung").
+- **Anmeldung:** Der Knopf "Jetzt anmelden" erscheint im Kopf und unten, wenn
+  `anmeldung` einen Link enthält und der Termin noch nicht vorbei ist.
+- **Save the Date:** Steht nur das Datum fest, `save_the_date: true` setzen und
+  `anmeldung` leer lassen. Der Termin bekommt die Marke "Save the Date", im
+  Kalender gilt er als vorläufig. Sobald Text und Anmeldung stehen, Link
+  eintragen und `save_the_date` entfernen.
+- **Kategorien:** Name genügt. Die Adresse der Kategorieseite kommt aus
+  `inhalte/termin-kategorien.yml` oder aus bestehenden Terminen; neue Namen
+  bekommen automatisch eine Seite. `kategorie_slugs` brauchen nur
+  übernommene WordPress-Termine.
+- **Bild im Text:** Steht das Bild schon im Text, `bild_im_text: true` setzen,
+  dann erscheint es nicht zusätzlich im Kopf.
+- Übersicht (`/events/`), Kategorieseiten, Startseite und Kalenderdatei
+  (`/events/cogneon.ics`) entstehen bei jedem Build; vergangene Termine wandern
+  ins Archiv.
 
-**Save the Date:** Steht ein Termin fest, aber Beschreibung und Anmeldung fehlen noch,
-reicht eine Datei mit Titel, `beginn`, `ende` und `save_the_date: true`. Der Termin
-erscheint mit der Marke "Save the Date". Sobald Text und `anmeldung` da sind, die
-Zeile `save_the_date: true` wieder löschen.
-Übersicht (`/events/`), Kategorie-Seiten, die Terminliste der Startseite und die
-Kalenderdatei `/events/cogneon.ics` entstehen daraus bei jedem Build. Vergangene
-Termine wandern von selbst ins Archiv.
+### Seite
+
+```yaml
+---
+title: Titel der Seite
+description: Ein Satz für Suchmaschinen und Vorschaukarten.
+hashtag: akademie-tour         # optional
+frozen: true                   # vom WordPress-Export nicht überschreiben
+---
+```
+
+Angebotsseiten mit Kopf, Karten und Ablauf nutzen `template: angebot.html`;
+Aufbau siehe `docs/angebote.md` und "Kopfbild auf Unterseiten".
+
+### Bilder
+
+- **Format:** 16:9 für Beitrags-, Termin- und Kopfbilder, dasselbe Bild wie für
+  Präsentationen und Videostreams. Breite höchstens 1920 Pixel, PNG oder JPG.
+- **Wiederkehrende Bilder** (z.B. eines für alle Expert-Debriefing-Ausbildungen,
+  das KCLO-Banner) einmal unter `docs/assets/bilder/` ablegen, sprechend
+  benennen und überall darauf verweisen:
+  `bild: assets/bilder/expert-debriefing-16-9.png`. Ein neues Motiv ersetzt
+  dann alle Verwendungen auf einmal, wenn es denselben Dateinamen bekommt.
+- **Einmalige Bilder** (Keyvisual einer bestimmten Veranstaltung, Fotos in einem
+  Beitrag) in VS Code in den Text einfügen oder hineinziehen. Sie landen unter
+  `docs/wp-content/uploads/JJJJ/MM/`; den Pfad bei Bedarf in `bild:` übernehmen.
+- **Bestehende Bilder** aus WordPress liegen unter `docs/wp-content/uploads/`
+  und können weiterverwendet werden.
+- **Bildbeschreibung:** `bild_alt` bzw. `![Beschreibung](pfad)` sagt, was zu sehen
+  ist. Rein dekorative Bilder ohne Beschreibung.
+- **Große Fotos** vor dem Einchecken verkleinern (längste Kante 1920 Pixel):
+  `python3 scripts/optimize_media.py` für `docs/wp-content/`,
+  `python3 scripts/optimize_media.py --dir docs/assets/bilder` für wiederkehrende Bilder.
+- Bilder von Personen nur mit deren Einverständnis, Logos und Werke Dritter
+  nur mit Erlaubnis (siehe `LICENSE-INHALTE.md`).
 
 ## Kopfbild auf Unterseiten
 
