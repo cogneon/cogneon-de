@@ -196,3 +196,13 @@ def test_termin_ohne_kategorie_slugs(tmp_path):
     events = {e["slug"]: e for e in build_data.all_events(tmp_path)}
     assert events["neu"]["kategorien"] == [("Expert Debriefing Praxis-Ausbildung", "edmod"), ("Neue Reihe Ä", "neue-reihe-ae")]
     assert events["neu"]["beginn"] == dt.datetime(2027, 1, 15, 10, 0)
+
+
+def test_termin_hybrid(tmp_path):
+    write(tmp_path / "docs/event/h.md", "---\ntitle: H\nbeginn: 2027-02-01 10:00\nonline: true\n"
+          "ort: {name: Cogneon Akademie, adresse: Bucherstr. 79a}\n---\n")
+    write(tmp_path / "docs/event/o.md", "---\ntitle: O\nbeginn: 2027-02-02 10:00\nonline: true\n---\n")
+    ev = {e["slug"]: e for e in build_data.all_events(tmp_path)}
+    assert ev["h"]["hybrid"] and ev["h"]["ort"] == "Cogneon Akademie"
+    assert not ev["o"]["hybrid"] and ev["o"]["ort"] == "Online"
+    assert build_data.event_jsonld(ev["h"], "https://cogneon.de/")["eventAttendanceMode"].endswith("MixedEventAttendanceMode")

@@ -223,7 +223,7 @@
           ]
         },
         {
-          "title": "Online",
+          "title": "Online (zusammen mit Ort = hybride Veranstaltung)",
           "name": "online",
           "type": "boolean"
         },

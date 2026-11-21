@@ -238,6 +238,8 @@ def all_events(root: Path) -> list[dict]:
             "kategorien": [(n, festgelegt.get(n, sl)) for n, sl in kategorie_paare(meta, bekannt)],
             "anmeldung": str(meta.get("anmeldung") or ""),
             "online": bool(meta.get("online")),
+            # Vor Ort und zugleich online (online: true und ein Ort gesetzt).
+            "hybrid": bool(meta.get("online")) and bool(ort.get("name")),
             "bild": str(meta.get("bild") or "") if (root / "docs" / str(meta.get("bild") or "-")).is_file() else "",
             "auszug": excerpt(path.read_text(encoding="utf-8"), 180),
             # Termin steht fest, Beschreibung und Anmeldung folgen noch.
@@ -320,7 +322,8 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
     events = all_events(root)
     MONATE = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
     kurz = lambda e: {"titel": e["titel"], "zeitraum": e["zeitraum"], "datum": e["datum"],   # noqa: E731
-                      "ort": e["ort"], "url": e["url"], **({"save_the_date": True} if e["save_the_date"] else {})}
+                      "ort": e["ort"], "url": e["url"], **({"save_the_date": True} if e["save_the_date"] else {}),
+                      **({"hybrid": True} if e["hybrid"] else {})}
     # Kommende Termine zeigen zusätzlich Bild, Anriss und das Datum als Kachel.
     lang = lambda e: {**kurz(e), "bild": e["bild"], "auszug": e["auszug"],   # noqa: E731
                       "tag": f"{e['beginn']:%d}", "monat": f"{MONATE[e['beginn'].month - 1]} {e['beginn']:%Y}"}
@@ -553,7 +556,8 @@ def build(root: Path, today: dt.date, limit: int = 4) -> dict:
     # Termine kommen aus docs/event/. Einträge in inhalte/aktuell.yml kommen dazu
     # (zum Beispiel fremde Veranstaltungen ohne eigene Seite).
     termine = [{"titel": e["titel"], "datum": e["datum"], "url": e["url"],
-                **({"save_the_date": True} if e["save_the_date"] else {})}
+                **({"save_the_date": True} if e["save_the_date"] else {}),
+                **({"hybrid": True} if e["hybrid"] else {})}
                for e in all_events(root) if e["ende"].date() >= today][:5]
     for item in data.get("termine") or []:
         day = as_date(item.get("tag"))
