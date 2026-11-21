@@ -32,11 +32,17 @@ SetEnvIfNoCase Host "^(www\\.)?cogneon\\.de$" COGNEON_LIVE
   Header set X-Robots-Tag "noindex, nofollow" env=!COGNEON_LIVE
 </IfModule>
 
+# HTML, CSS und JavaScript: Der Browser fragt bei jedem Aufruf kurz nach, ob
+# es eine neue Fassung gibt (sonst Antwort 304, ohne Download). So passen
+# Seite und Stylesheet nach einem Veröffentlichen sofort zusammen.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType text/html "access plus 10 minutes"
-  ExpiresByType text/css "access plus 1 hour"
-  ExpiresByType application/javascript "access plus 1 hour"
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 month"
   ExpiresByType image/png "access plus 1 month"
