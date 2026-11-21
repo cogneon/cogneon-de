@@ -67,9 +67,8 @@ belege:
       logo: wp-content/uploads/2026/03/SAP-Logo.svg_.png
   zitat:
     text: >-
-      Simon is an outstanding thought leader of Practice with modern social
-      media, and a very pedagogical skill to take people into the ICT future.
-    quelle: Leif Edvinsson
+      I’m deeply impressed by the unique combination of skills and perspectives: a profound understanding of Knowledge Management, paired with a genuine grasp of management structures and business dynamics, also on a macro level.
+    quelle: Gunther Tutein (Geschäftsführer Spirit Link)
     sprache: en
 
 newsletter:
