@@ -233,7 +233,7 @@
           "type": "string"
         },
         {
-          "title": "Anmeldung (Link)",
+          "title": "Anmeldung (Link; leer = kein Anmeldeknopf)",
           "name": "anmeldung",
           "type": "string"
         },

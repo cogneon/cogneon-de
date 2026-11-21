@@ -1652,6 +1652,19 @@ ol.cg-schritte > li,
   color: var(--cg-fg);
 }
 
+/* Link mit vorangestelltem Symbol, z.B. Kalender abonnieren */
+.cg-link--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.cg-link--icon .cg-icon {
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+  color: var(--cg-orange);
+}
+
 /* Marke für Termine vor Ort und online zugleich: umrandet statt gefüllt,
    damit sie sich von "Save the Date" unterscheidet. */
 .cg-marke--hybrid {

@@ -32,7 +32,8 @@
       {% if m.kosten %}<div><dt>Kosten</dt><dd>{{ m.kosten }}</dd></div>{% endif %}
     </dl>
     <div class="cg-beitrag__weiter">
-      {% if m.anmeldung %}<a class="cg-button" href="{{ m.anmeldung }}">Anmeldung und Details</a>{% endif %}
+      {#- Knopf erscheint nur, wenn "anmeldung" einen Link enthält und der Termin noch kommt. -#}
+      {% if page.url in daten.termine.anmeldung %}<a class="cg-button" href="{{ daten.termine.anmeldung[page.url] }}">Jetzt anmelden</a>{% endif %}
       <a class="cg-link" href="{{ 'events/' | url }}">Alle Termine</a>
     </div>
   </article>
