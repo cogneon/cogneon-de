@@ -3,6 +3,17 @@
 {% block fonts %}{% endblock %}
 {% block extrahead %}
   <link rel="alternate" type="application/rss+xml" title="Cogneon Blog" href="{{ 'feed.xml' | url }}">
+  {#- Sprachfassungen für Suchmaschinen (nur wenn es ein Gegenstück gibt). -#}
+  {% import "partials/texte.html" as tx with context %}
+  {% set gegen = tx.gegenstueck() %}
+  {% if tx.hat_gegenstueck() %}
+    {% set basis = config.site_url | d("https://cogneon.de/", true) %}
+    {% set de_url = gegen if tx.sprache() == "en" else page.url %}
+    {% set en_url = page.url if tx.sprache() == "en" else gegen %}
+  <link rel="alternate" hreflang="de" href="{{ basis }}{{ de_url }}">
+  <link rel="alternate" hreflang="en" href="{{ basis }}{{ en_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ basis }}{{ de_url }}">
+  {% endif %}
 {% endblock %}
 {% block analytics %}
 {#-

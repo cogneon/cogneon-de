@@ -1,11 +1,14 @@
 {#-
   Kopfzeile: Logo, Hauptmenü, Farbschema, Suche, Kontakt.
   Grundlage ist die Kopfzeile des Zensical-Themas. Ergänzt sind das Menü
-  (aus [project.extra.menu]) und der Knopf "Kontakt".
+  (aus [project.extra.menu], englisch [project.extra.menu_en]), der
+  Sprachumschalter und der Knopf "Kontakt".
 -#}
+{% import "partials/texte.html" as tx with context %}
+{% set en = tx.sprache() == "en" %}
 <header class="md-header cg-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
-    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-header__button md-logo" aria-label="{{ config.site_name }} Startseite" data-md-component="logo">
+    <a href="{{ ('en/' if en else config.extra.homepage | d(nav.homepage.url, true)) | url }}" title="{{ config.site_name | e }}" class="md-header__button md-logo" aria-label="{{ config.site_name }} {{ tx.t('startseite') }}" data-md-component="logo">
       {% include "partials/logo.html" %}
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -26,7 +29,7 @@
       </div>
     </div>
     <ul class="cg-menu">
-      {% for eintrag in config.extra.menu %}
+      {% for eintrag in (config.extra.menu_en if en else config.extra.menu) %}
         {% set ziel = eintrag.url | url %}
         <li>
           <a href="{{ ziel }}" class="cg-menu__link"{% if page.url and page.url is startingwith(eintrag.url) %} aria-current="page"{% endif %}>{{ eintrag.titel }}</a>
@@ -44,6 +47,8 @@
     {% if config.extra.alternate %}
       {% include "partials/alternate.html" %}
     {% endif %}
+    {% set gegen = tx.gegenstueck() %}
+    <a class="cg-sprache" href="{{ (gegen if tx.hat_gegenstueck() else ('' if en else 'en/')) | url }}" lang="{{ 'de' if en else 'en' }}" hreflang="{{ 'de' if en else 'en' }}" aria-label="{{ tx.t('andere_sprache') }}">{{ tx.t('andere_sprache_kurz') }}</a>
     {% if "search" in config.plugins %}
       {% set search = config.plugins["search"] | attr("config") %}
       {% if search.enabled %}
@@ -55,6 +60,6 @@
         {% include "partials/search.html" %}
       {% endif %}
     {% endif %}
-    <a href="{{ 'kontakt/' | url }}" class="cg-button cg-button--klein cg-header__cta">Kontakt</a>
+    <a href="{{ tx.ziel('kontakt/') }}" class="cg-button cg-button--klein cg-header__cta">{{ tx.t('kontakt') }}</a>
   </nav>
 </header>

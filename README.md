@@ -153,6 +153,32 @@ kopfbild_alt: Teilnehmende beim Expert Debriefing an der Wissenslandkarte
 - Echte Fotos aus Projekten oder der Akademie wirken besser als Stock-Bilder.
 - Vor dem Einchecken `python3 scripts/optimize_media.py` laufen lassen.
 
+## Englische Seiten
+
+Englische Fassungen liegen unter `docs/en/` und erscheinen unter `/en/…`. Jede
+nennt im Front Matter ihre deutsche Vorlage:
+
+```yaml
+quelle: kontakt.md
+quelle_hash: "3f2a…"   # Prüfwert der Vorlage beim Übersetzen
+```
+
+- Sprachumschalter (EN/DE) in der Kopfzeile führt zum Gegenstück, sonst zur
+  Startseite der anderen Sprache. `hreflang`-Angaben entstehen automatisch.
+- Feste Texte der Vorlagen (Knöpfe, Menü, Fußzeile) stehen zweisprachig in
+  `overrides/partials/texte.html`; das englische Menü in `zensical.toml`
+  unter `[[project.extra.menu_en]]`.
+- Interne Links in Vorlagen nutzen `tx.ziel('kontakt/')`: auf englischen Seiten
+  führt das zur englischen Fassung, falls es eine gibt.
+- Blog, Termine, Akademie, Impressum und Datenschutz bleiben deutsch. Auf
+  Blogbeiträgen sehen Lesende mit nicht-deutschem Browser einen Hinweis, dass
+  ihr Browser übersetzen kann. Englische Blogbeiträge bekommen `sprache: en`.
+- Veraltete Übersetzungen: `python3 scripts/uebersetzung.py status`. Nach dem
+  Übersetzen den Prüfwert setzen: `python3 scripts/uebersetzung.py stempel
+  docs/en/contact.md`. Der Build warnt ebenfalls.
+- Englische Seiten, die von Hand gepflegt werden, bekommen `frozen: true`;
+  dann gibt es keine Warnung mehr.
+
 ## Veröffentlichen
 
 Der Workflow "Veröffentlichen" baut die Website und lädt sie per SFTP auf den

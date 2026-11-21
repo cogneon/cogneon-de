@@ -1,0 +1,18 @@
+{#-
+  Hinweis für Lesende ohne Deutsch: erscheint nur, wenn der Browser nicht auf
+  Deutsch eingestellt ist oder jemand von einer englischen Seite kommt.
+  Ohne JavaScript bleibt er verborgen. Keine Daten gehen an Dritte.
+-#}
+<p class="cg-sprachhinweis" lang="en" hidden>
+  Our blog is written in German. Your browser can translate this page for you,
+  or visit our <a href="{{ 'en/' | url }}" hreflang="en">English pages</a>.
+</p>
+<script>
+  (function () {
+    var p = document.currentScript.previousElementSibling;
+    var sprachen = navigator.languages || [navigator.language || ""];
+    var deutsch = sprachen.some(function (s) { return /^de\b/i.test(s); });
+    var vonEn = /\/en\//.test(document.referrer) && document.referrer.indexOf(location.host) !== -1;
+    if (!deutsch || vonEn) p.hidden = false;
+  })();
+</script>

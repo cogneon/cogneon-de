@@ -13,6 +13,8 @@
   <script src="{{ 'assets/javascripts/netz.js' | url }}" defer></script>
 {% endblock %}
 {% block hero %}
+{% import "partials/texte.html" as tx with context %}
+{% set en = tx.sprache() == "en" %}
 {% set m = page.meta %}
 {% set aktuell = config.extra.aktuell | d({}) %}
 <div class="cg-page">
@@ -26,13 +28,13 @@
       <div class="cg-stack">
         <p class="cg-lead">{{ m.hero.text }}</p>
         <p class="cg-actions">
-          <a class="cg-button" href="{{ config.extra.erstgespraech | url }}">Erstgespräch anfragen</a>
-          <a class="cg-link cg-link--hell" href="{{ 'angebote/' | url }}">Angebote ansehen</a>
+          <a class="cg-button" href="{{ tx.ziel('kontakt/') }}#erstgespraech">{{ tx.t('erstgespraech') }}</a>
+          <a class="cg-link cg-link--hell" href="{{ tx.ziel('angebote/') }}">{{ tx.t('angebote_ansehen') }}</a>
         </p>
       </div>
     </div>
-    <a class="cg-hero__weiter" href="#mehr" aria-label="Weiter zum Inhalt"><span aria-hidden="true">↓</span></a>
-    <button type="button" class="cg-netz__pause" aria-pressed="false" aria-label="Animation anhalten">
+    <a class="cg-hero__weiter" href="#mehr" aria-label="{{ tx.t('weiter') }}"><span aria-hidden="true">↓</span></a>
+    <button type="button" class="cg-netz__pause" aria-pressed="false" aria-label="{{ tx.t('animation_anhalten') }}">
       <svg class="cg-netz__stopp" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" fill="currentColor"/><rect x="9.5" y="2" width="3.5" height="12" fill="currentColor"/></svg>
       <svg class="cg-netz__play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg>
     </button>
@@ -69,8 +71,8 @@
         {% endfor %}
         <li class="cg-cards__breit">
           <a class="cg-card cg-card--dunkel" href="{{ 'angebote/' | url }}">
-            <span class="cg-card__titel">Alle Angebote</span>
-            <span class="cg-card__text">Strategisches und operatives Wissensmanagement im Überblick.</span>
+            <span class="cg-card__titel">{{ tx.t('alle_angebote') }}</span>
+            <span class="cg-card__text">{{ tx.t('alle_angebote_text') }}</span>
             <span class="cg-card__marke" aria-hidden="true">→</span>
           </a>
         </li>
@@ -105,7 +107,8 @@
   </section>
   {% endif %}
 
-  {% if aktuell.highlights %}
+  {#- Highlights sind deutschsprachig und erscheinen nur auf der deutschen Startseite. -#}
+  {% if aktuell.highlights and not en %}
   <section class="cg-section cg-section--soft">
     <div class="cg-wrap cg-stack cg-stack--weit">
       <h2 class="cg-h2">Im Blick</h2>
@@ -132,24 +135,24 @@
     <div class="cg-wrap cg-zwei cg-zwei--oben">
       {% if aktuell.blog %}
       <div>
-        <h2 class="cg-h2 cg-h2--klein">Blog</h2>
+        <h2 class="cg-h2 cg-h2--klein">{{ tx.t('blog') }}{% if en %} <span class="cg-marke">{{ tx.t('auf_deutsch') }}</span>{% endif %}</h2>
         <ul class="cg-liste">
           {% for b in aktuell.blog %}
-          <li><a href="{{ b.url | url }}"><span class="cg-liste__meta">{{ b.datum }}</span><span class="cg-liste__titel">{{ b.titel }}</span></a></li>
+          <li><a href="{{ b.url | url }}"{% if en %} hreflang="de"{% endif %}><span class="cg-liste__meta">{{ b.datum }}</span><span class="cg-liste__titel">{{ b.titel }}</span></a></li>
           {% endfor %}
         </ul>
-        <p><a class="cg-link" href="{{ 'blog/' | url }}">Alle Beiträge</a></p>
+        <p><a class="cg-link" href="{{ 'blog/' | url }}">{{ tx.t('alle_beitraege') }}</a></p>
       </div>
       {% endif %}
       {% if aktuell.termine %}
       <div>
-        <h2 class="cg-h2 cg-h2--klein">Termine</h2>
+        <h2 class="cg-h2 cg-h2--klein">{{ tx.t('termine') }}{% if en %} <span class="cg-marke">{{ tx.t('auf_deutsch') }}</span>{% endif %}</h2>
         <ul class="cg-liste cg-liste--termine">
           {% for t in aktuell.termine %}
           <li><a href="{{ t.url if '://' in t.url else t.url | url }}"><span class="cg-liste__meta">{{ t.datum }}</span><span class="cg-liste__titel">{{ t.titel }}{% if t.save_the_date %} <span class="cg-marke">Save the Date</span>{% endif %}</span></a></li>
           {% endfor %}
         </ul>
-        <p class="cg-muted">Alle unsere Veranstaltungen findet ihr in unserem <a href="{{ 'events/' | url }}">Kalender</a> und im <a href="{{ config.extra.community_kalender }}">Community Kalender auf CONNECT</a>.</p>
+        <p class="cg-muted">{{ tx.t('termine_hinweis_a') }} <a href="{{ 'events/' | url }}">{{ tx.t('termine_hinweis_b') }}</a> {{ tx.t('termine_hinweis_c') }} <a href="{{ config.extra.community_kalender }}">{{ tx.t('termine_hinweis_d') }}</a>.</p>
       </div>
       {% endif %}
     </div>

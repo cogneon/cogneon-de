@@ -133,3 +133,25 @@ url = "events/"
 [[project.extra.menu]]
 titel = "Über uns"
 url = "ueber-uns/"
+
+# Englisches Hauptmenü für Seiten unter /en/. Ziele ohne englische
+# Fassung (Akademie, Blog, Termine) bleiben deutsch.
+[[project.extra.menu_en]]
+titel = "Services"
+url = "en/services/"
+
+[[project.extra.menu_en]]
+titel = "Academy"
+url = "akademie/"
+
+[[project.extra.menu_en]]
+titel = "Blog"
+url = "blog/"
+
+[[project.extra.menu_en]]
+titel = "Events"
+url = "events/"
+
+[[project.extra.menu_en]]
+titel = "About us"
+url = "en/about/"

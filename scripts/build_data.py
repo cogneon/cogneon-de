@@ -414,6 +414,46 @@ def build_advent(root: Path, today: dt.date) -> dict | None:
             "nach_ende": today > dt.date(jahr, 12, 24)}
 
 
+def md_url(rel: str) -> str:
+    """Pfad einer Markdown-Datei relativ zu docs/ -> URL wie im Build (ohne führenden /)."""
+    rel = rel.replace("\\", "/")
+    if rel.endswith("index.md"):
+        return rel[: -len("index.md")]
+    return rel[: -len(".md")] + "/"
+
+
+def quell_hash(path: Path) -> str:
+    """Kurzer Prüfwert einer Quelldatei, um veraltete Übersetzungen zu erkennen."""
+    import hashlib
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:12]
+
+
+def build_sprachen(root: Path) -> dict:
+    """Zuordnung deutscher und englischer Seiten aus docs/en/**.md.
+
+    Jede englische Seite nennt im Front Matter ihre Vorlage (quelle: kontakt.md)
+    und deren Prüfwert beim Übersetzen (quelle_hash). Weicht der Prüfwert ab,
+    hat sich die deutsche Seite seither geändert."""
+    docs = root / "docs"
+    de_zu_en, en_zu_de, veraltet, fehlt = {}, {}, [], []
+    for en in sorted((docs / "en").rglob("*.md")) if (docs / "en").exists() else []:
+        meta = frontmatter(en)
+        quelle = meta.get("quelle")
+        if not quelle:
+            continue
+        de = docs / quelle
+        en_url = md_url(str(en.relative_to(docs)))
+        if not de.exists():
+            fehlt.append(f"{en.relative_to(docs)} -> {quelle}")
+            continue
+        de_url = md_url(quelle)
+        de_zu_en[de_url] = en_url
+        en_zu_de[en_url] = de_url
+        if not meta.get("frozen") and str(meta.get("quelle_hash") or "") != quell_hash(de):
+            veraltet.append(f"{en.relative_to(docs)} (Vorlage {quelle} geändert)")
+    return {"de_zu_en": de_zu_en, "en_zu_de": en_zu_de, "veraltet": veraltet, "fehlt": fehlt}
+
+
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
     posts = []
     for path in post_dir.rglob("*.md"):
@@ -523,6 +563,19 @@ def main() -> int:
         if advent["fehlen"]:
             print(f"Warnung: Adventskalender-Türchen ohne titel/link/warum bleiben zu: "
                   f"{', '.join(map(str, advent['fehlen']))}", file=sys.stderr)
+    sprachen = build_sprachen(args.root)
+    target = args.root / "overrides" / "partials" / "sprachen-daten.html"
+    target.write_text(
+        "{#- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -#}\n"
+        "{% set sprachen = " + json.dumps({k: sprachen[k] for k in ("de_zu_en", "en_zu_de")},
+                                         ensure_ascii=False) + " %}\n",
+        encoding="utf-8",
+    )
+    print(f"{target.relative_to(args.root)}: {len(sprachen['de_zu_en'])} englische Seiten")
+    for zeile in sprachen["veraltet"]:
+        print(f"Warnung: Übersetzung veraltet: {zeile}", file=sys.stderr)
+    for zeile in sprachen["fehlt"]:
+        print(f"Warnung: Vorlage fehlt: {zeile}", file=sys.stderr)
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     return 0
