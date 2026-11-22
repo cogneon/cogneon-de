@@ -814,12 +814,54 @@ def main() -> int:
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     schreibe_podcast(args.root, args.podcast_feed)
+    kommentare, probleme = build_kommentare(args.root)
+    target = args.root / "overrides" / "partials" / "kommentare-daten.html"
+    target.write_text(
+        "{#- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -#}\n"
+        "{% set kommentare = " + json.dumps(kommentare, ensure_ascii=False) + " %}\n", encoding="utf-8")
+    print(f"{target.relative_to(args.root)}: {len(kommentare['beitraege'])} Beiträge mit Kommentaren")
+    for zeile in probleme:
+        print(f"Warnung: Kommentare: {zeile}", file=sys.stderr)
     # Vorschaubilder baut scripts/build_social.py (nur beim Veröffentlichen nötig);
     # ohne sie bekommt main.html eine leere Zuordnung.
     social = args.root / "overrides" / "partials" / "social-daten.html"
     if not social.exists():
         social.write_text("{% set social = {} %}\n", encoding="utf-8")
     return 0
+
+
+def toot_teile(url: str) -> dict | None:
+    """Toot-Adresse -> Instanz und ID für die Mastodon-API, sonst None."""
+    m = re.match(r"^https://([a-z0-9.-]+)/(?:@[^/]+|users/[^/]+/statuses)/(\d+)/?$", str(url or "").strip(), re.I)
+    return {"toot": str(url).strip(), "instanz": f"https://{m.group(1).lower()}", "id": m.group(2)} if m else None
+
+
+def build_kommentare(root: Path) -> tuple[dict, list[str]]:
+    """Welcher Blogbeitrag zu welchem Toot gehört: aus .daten/mastodon.json (vom
+    Mastodon-Bot, Branch daten/mastodon) und dem Feld mastodon im Front Matter
+    (hat Vorrang). Dazu inhalte/kommentare.yml (ausblenden)."""
+    zuordnung, probleme = {}, []
+    datei = root / ".daten" / "mastodon.json"
+    if datei.exists():
+        try:
+            zuordnung.update(json.loads(datei.read_text(encoding="utf-8")))
+        except ValueError:
+            probleme.append(f"{datei.relative_to(root)} ist kein gültiges JSON")
+    for p in all_posts(root / "docs" / "blog" / "posts"):
+        eigen = frontmatter(p["pfad"]).get("mastodon")
+        if eigen:
+            zuordnung[p["url"]] = str(eigen)
+    beitraege = {}
+    for url, toot in sorted(zuordnung.items()):
+        teile = toot_teile(toot)
+        if teile:
+            beitraege[url] = teile
+        else:
+            probleme.append(f"{url}: keine Toot-Adresse: {toot}")
+    cfg_datei = root / "inhalte" / "kommentare.yml"
+    cfg = (yaml.safe_load(cfg_datei.read_text(encoding="utf-8")) or {}) if cfg_datei.exists() else {}
+    ausblenden = [str(a).strip() for a in cfg.get("ausblenden") or [] if a]
+    return {"beitraege": beitraege, "ausblenden": ausblenden}, probleme
 
 
 def schreibe_podcast(root: Path, quelle: str | None) -> None:

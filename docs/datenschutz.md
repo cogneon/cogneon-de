@@ -239,3 +239,9 @@ Für die Routenplanung verlinken wir auf OpenStreetMap, Google Maps und Apple Ka
 **21. Hinweisleiste**
 
 Über der Kopfzeile blenden wir zeitweise eine Hinweisleiste ein. Klickt die betroffene Person sie mit dem "x" weg, speichert ihr Internetbrowser lokal (im sogenannten Local Storage) einen Prüfwert des Hinweistextes, damit derselbe Hinweis nicht erneut erscheint. Diese Information verbleibt im Browser, wird nicht an uns oder Dritte übermittelt und kann jederzeit über die Browsereinstellungen gelöscht werden.
+
+**22. Kommentare aus dem Fediverse (Mastodon)**
+
+Unter Blogbeiträgen können Kommentare angezeigt werden. Kommentare sind öffentliche Antworten auf unseren Beitrag im Fediverse (Mastodon). Wir speichern sie nicht auf unserem Server. Sie werden nicht automatisch geladen. Erst wenn die betroffene Person auf "Kommentare laden" klickt, ruft der Internetbrowser die öffentlichen Antworten von dem Mastodon-Server ab, auf dem unser Beitrag liegt; dessen Adresse steht beim Kommentarbereich. Dabei werden technisch notwendige Daten an den Betreiber dieses Servers übermittelt, insbesondere die IP-Adresse und Informationen über den verwendeten Internetbrowser. Cookies werden dabei nicht übertragen, die aufgerufene Seite wird nicht mitgeteilt. Rechtsgrundlage ist die Einwilligung der betroffenen Person durch den Klick (Art. 6 Abs. 1 Buchstabe a DS-GVO). Ohne diesen Klick findet keine Übermittlung statt. Profilbilder werden nicht geladen.
+
+Wer kommentiert, antwortet mit dem eigenen Konto auf dem eigenen Server im Fediverse; dafür gelten die Bedingungen und die Datenschutzerklärung dieses Servers. Angezeigt werden Name, Kontoadresse, Datum und Text der öffentlichen Antwort. Einzelne Antworten können wir von der Anzeige auf unserer Internetseite ausschließen; löschen kann eine Antwort nur, wer sie geschrieben hat, oder der Betreiber des jeweiligen Servers.

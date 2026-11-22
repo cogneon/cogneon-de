@@ -275,3 +275,20 @@ def test_social_seiten_url():
     assert build_social.seiten_url(Path("en/index.md")) == "en/"
     assert build_social.seiten_url(Path("edmod.md")) == "edmod/"
     assert build_social.seiten_url(Path("en/services.md")) == "en/services/"
+
+
+def test_kommentare_zuordnung(tmp_path):
+    write(tmp_path / "docs/blog/posts/2026/a.md", "---\ntitle: A\ndate: 2026-11-20\n---\nText\n")
+    write(tmp_path / "docs/blog/posts/2026/b.md",
+          "---\ntitle: B\ndate: 2026-11-21\nmastodon: https://social.cologne/@cogneon/11345\n---\nText\n")
+    write(tmp_path / ".daten/mastodon.json",
+          '{"2026/11/20/a/": "https://mastodon.social/@cogneon/999", "2026/11/21/b/": "https://x.y/@z/1",'
+          ' "2026/11/19/c/": "keine Adresse"}')
+    write(tmp_path / "inhalte/kommentare.yml", "ausblenden: [https://a.b/@c/5]\n")
+    k, probleme = build_data.build_kommentare(tmp_path)
+    assert k["beitraege"]["2026/11/20/a/"] == {"toot": "https://mastodon.social/@cogneon/999",
+                                              "instanz": "https://mastodon.social", "id": "999"}
+    assert k["beitraege"]["2026/11/21/b/"]["instanz"] == "https://social.cologne"   # Front Matter gewinnt
+    assert k["ausblenden"] == ["https://a.b/@c/5"] and len(probleme) == 1
+    assert build_data.toot_teile("https://h.de/users/x/statuses/42")["id"] == "42"
+    assert build_data.toot_teile("javascript:alert(1)") is None

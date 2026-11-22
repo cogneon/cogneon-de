@@ -56,6 +56,20 @@
         <a class="cg-link" href="{{ nav.homepage.url | url }}#newsletter">Newsletter abonnieren</a>
       </div>
     </footer>
+    {#- Kommentare aus dem Fediverse: Antworten auf den Toot zum Beitrag, erst nach Klick geladen (kommentare.js). -#}
+    {% import "partials/kommentare-daten.html" as kd %}
+    {% if page.url in kd.kommentare.beitraege %}
+    {% set k = kd.kommentare.beitraege[page.url] %}
+    <section class="cg-kommentare" aria-labelledby="cg-kommentare-titel"
+             data-instanz="{{ k.instanz }}" data-id="{{ k.id }}" data-toot="{{ k.toot }}"
+             data-ausblenden='{{ kd.kommentare.ausblenden | tojson }}'>
+      <h2 id="cg-kommentare-titel">Kommentare</h2>
+      <p>Kommentieren könnt ihr mit eurem Mastodon-Konto (oder einem anderen Konto im Fediverse): einfach auf <a href="{{ k.toot }}">unseren Beitrag auf Mastodon</a> antworten. Ist euer Konto auf einer anderen Instanz, kopiert den Link in deren Suche.</p>
+      <p><button type="button" class="cg-button cg-kommentare__laden">Kommentare laden</button></p>
+      <p class="cg-muted cg-kommentare__hinweis">Beim Laden ruft euer Browser die Antworten von {{ k.instanz | replace("https://", "") }} ab. Dabei wird eure IP-Adresse dorthin übertragen, siehe <a href="{{ 'datenschutz/' | url }}">Datenschutz</a>.</p>
+      <div class="cg-kommentare__liste" aria-live="polite"></div>
+    </section>
+    {% endif %}
   </article>
 </div>
 {% endblock %}

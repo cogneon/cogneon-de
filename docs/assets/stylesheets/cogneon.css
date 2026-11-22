@@ -1772,3 +1772,33 @@ ol.cg-schritte > li,
   width: auto;
   display: block;
 }
+
+/* Kommentare aus dem Fediverse unter Blogbeiträgen (kommentare.js) */
+.cg-kommentare {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--cg-linie);
+}
+.cg-kommentare__hinweis {
+  font-size: 0.75rem;
+}
+.cg-kommentar {
+  margin: 0 0 1.2rem calc(var(--tiefe, 0) * 1.6rem);
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-left: 3px solid var(--cg-linie);
+}
+.cg-kommentar__kopf {
+  margin: 0 0 0.3rem;
+  font-size: 0.75rem;
+  color: var(--cg-fg-muted);
+}
+.cg-kommentar__name {
+  font-weight: 700;
+  color: var(--cg-fg);
+}
+.cg-kommentar__text p {
+  margin: 0 0 0.5rem;
+}
+.cg-kommentar__cw {
+  font-style: italic;
+}

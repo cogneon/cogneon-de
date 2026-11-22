@@ -20,7 +20,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  # write: der Mastodon-Schritt merkt sich im Branch daten/mastodon, welcher Toot
+  # zu welchem Beitrag gehört (main ist geschützt und bleibt unberührt).
+  # actions: startet danach einen zweiten Lauf, damit die Kommentare sofort erscheinen.
+  contents: write
+  actions: write
 
 concurrency:
   group: deploy
@@ -38,6 +42,12 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python -m pytest -q tests
+      - name: Zuordnung Beitrag -> Toot holen (Kommentare)
+        run: |
+          mkdir -p .daten
+          if git fetch -q --no-tags --depth=1 origin daten/mastodon 2>/dev/null; then
+            git show FETCH_HEAD:mastodon.json > .daten/mastodon.json
+          fi
       - run: python scripts/build_data.py
       - name: Vorschaubilder für soziale Netzwerke
         run: python scripts/build_social.py
@@ -99,10 +109,29 @@ jobs:
           MASTODON_INSTANZ: ${{ secrets.MASTODON_INSTANZ }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
           VORHER: ${{ github.event.before }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           if ! git fetch -q --no-tags --depth=1 origin "$VORHER"; then
             echo "Vorheriger Stand nicht abrufbar, nichts angekündigt." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
+          cp .daten/mastodon.json .daten/vorher.json 2>/dev/null || echo "{}" > .daten/vorher.json
           git diff --name-only --diff-filter=A "$VORHER" HEAD -- docs/blog/posts docs/event \
-            | python scripts/mastodon.py | tee -a "$GITHUB_STEP_SUMMARY"
+            | python scripts/mastodon.py --zuordnung .daten/mastodon.json | tee -a "$GITHUB_STEP_SUMMARY"
+          # Neue Verknüpfungen Beitrag -> Toot im Branch daten/mastodon sichern und
+          # die Website gleich noch einmal bauen, damit "Kommentare" erscheint.
+          if [ -s .daten/mastodon.json ] && ! cmp -s .daten/vorher.json .daten/mastodon.json; then
+            ZWEIG=$(mktemp -d)
+            git worktree add -q --detach "$ZWEIG"
+            cd "$ZWEIG"
+            git checkout -q --orphan daten/mastodon
+            git rm -rq --cached . && git clean -fdxq
+            cp "$GITHUB_WORKSPACE/.daten/mastodon.json" mastodon.json
+            git add mastodon.json
+            git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Kommentare: Zuordnung Beitrag -> Toot ($(date -u +%Y-%m-%d))"
+            git push -q --force origin HEAD:refs/heads/daten/mastodon
+            cd "$GITHUB_WORKSPACE"
+            gh workflow run deploy.yml --ref main
+            echo "Kommentare verknüpft, zweiter Lauf gestartet." | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
