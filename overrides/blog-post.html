@@ -52,7 +52,9 @@
       </aside>
       {% endfor %}
       <div class="cg-beitrag__weiter">
+        {#- Diskussion in der Community (Discourse), vorerst ausgeblendet. Zum Wiedereinblenden die Kommentarzeichen entfernen.
         <a class="cg-button" href="{{ page.meta.diskussion | d(config.extra.community, true) }}">In der Community diskutieren</a>
+        -#}
         <a class="cg-link" href="{{ nav.homepage.url | url }}#newsletter">Newsletter abonnieren</a>
       </div>
     </footer>
