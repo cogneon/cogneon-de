@@ -22,6 +22,7 @@ Stand: Aufbau und Test. Die Live-Website läuft weiter auf WordPress, bis der Um
 | `scripts/build_htaccess.py` | erzeugt `site/.htaccess`: Weiterleitungen aus `migration/redirects*.map` und Server-Regeln |
 | `scripts/wp_export.py` | wiederholbarer Export aus WordPress |
 | `scripts/check_urls.py` | prüft, ob alle alten URLs erreichbar bleiben |
+| `scripts/check_umzug.py` | spielt die Weiterleitungen der `.htaccess` gegen `site/` durch: alte WordPress-Adressen und interne Links, Bericht `migration/umzug-check.md` |
 | `migration/` | Berichte des Exports (Inventar, URL-Liste, URL-Check) |
 
 ## Lokal arbeiten
