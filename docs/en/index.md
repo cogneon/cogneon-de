@@ -3,7 +3,7 @@ title: Knowledge. Learning. Impact.
 description: Since 2001, Cogneon has helped organizations make systematic use of knowledge - from a keynote to multi-year support.
 template: home.html
 quelle: index.md
-quelle_hash: "11dd3bc3c39f"
+quelle_hash: "3c0d33eb9bb7"
 
 hero:
   claim: [Knowledge, Learning, Impact]
@@ -80,5 +80,5 @@ newsletter:
   formular: https://newsletter.cogneon.de/hp/KRx-2hEiUPdv39fcqiME3g/signup
   links:
     - titel: Newsletter archive
-      url: category/kclo/
+      url: category/keep-calm--learn-on/
 ---
