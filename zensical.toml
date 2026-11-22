@@ -11,7 +11,7 @@ docs_dir = "docs"
 site_dir = "site"
 use_directory_urls = true
 extra_css = ["assets/stylesheets/cogneon.css"]
-extra_javascript = ["assets/javascripts/karte.js", "assets/javascripts/mail.js"]
+extra_javascript = ["assets/javascripts/karte.js"]
 
 # Seitenmenü (mobil) und Reihenfolge der Seiten. Das Menü in der Kopfzeile
 # steht unter [project.extra] weiter unten.
