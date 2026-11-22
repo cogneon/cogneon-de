@@ -77,7 +77,7 @@ newsletter:
   formular: https://newsletter.cogneon.de/hp/KRx-2hEiUPdv39fcqiME3g/signup
   links:
     - titel: Newsletter-Archiv
-      url: category/kclo/
+      url: category/keep-calm--learn-on/
     - titel: Ausgaben vor 2023
       url: https://wiki.cogneon.de/kclo
 ---
