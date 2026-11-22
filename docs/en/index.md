@@ -3,7 +3,7 @@ title: Knowledge. Learning. Impact.
 description: Since 2001, Cogneon has helped organizations make systematic use of knowledge - from a keynote to multi-year support.
 template: home.html
 quelle: index.md
-quelle_hash: "8286015bae9d"
+quelle_hash: "10719de9e977"
 
 hero:
   claim: [Knowledge, Learning, Impact]
@@ -33,8 +33,8 @@ anlaesse:
       angebot: Knowledge transfer
       link: en/knowledge-transfer/
     - zitat: We need a strategy for our knowledge.
-      text: From the target picture to implementation, with a coach at your side.
-      angebot: Knowledge Excellence Coach
+      text: From the fundamentals to an ISO 30401 concept in one or two days.
+      angebot: Strategy workshop
       link: en/services/#strategisch
     - zitat: Nobody here can find anything.
       text: Build wikis, intranets and AI assistants that people actually use.
