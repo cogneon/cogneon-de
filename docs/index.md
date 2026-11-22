@@ -47,7 +47,7 @@ belege:
   titel: Erfahrung, die sich belegen lässt.
   zahlen:
     - zahl: "2001"
-      text: Gründung von Cogneon in Nürnberg.
+      text: Gründung von Cogneon in Erlangen.
     - zahl: "400+"
       text: Wissensmanagement-Projekte durchgeführt.
     - zahl: "1.000+"
