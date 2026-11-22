@@ -49,7 +49,7 @@ belege:
   titel: Experience you can verify.
   zahlen:
     - zahl: "2001"
-      text: Cogneon founded in Nuremberg.
+      text: Cogneon founded in Erlangen.
     - zahl: "400+"
       text: Knowledge management projects delivered.
     - zahl: "1,000+"
