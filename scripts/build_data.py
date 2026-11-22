@@ -814,6 +814,11 @@ def main() -> int:
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     schreibe_podcast(args.root, args.podcast_feed)
+    # Vorschaubilder baut scripts/build_social.py (nur beim Veröffentlichen nötig);
+    # ohne sie bekommt main.html eine leere Zuordnung.
+    social = args.root / "overrides" / "partials" / "social-daten.html"
+    if not social.exists():
+        social.write_text("{% set social = {} %}\n", encoding="utf-8")
     return 0
 
 

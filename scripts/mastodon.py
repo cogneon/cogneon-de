@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""Neue Blogbeiträge und Termine auf Mastodon ankündigen.
+
+Läuft in .github/workflows/deploy.yml nach dem Hochladen, nur bei einem Merge
+nach main. Bekommt die in diesem Merge neu hinzugefügten Dateien und postet je
+neuem Beitrag oder Termin einen Toot:
+
+    Neuer Blog-Beitrag auf cogneon.de: <Titel>
+    <Link>
+
+Sicherungen:
+  - ohne Secrets MASTODON_INSTANZ und MASTODON_TOKEN passiert nichts
+  - Entwürfe, Beiträge mit Datum in der Zukunft oder älter als 14 Tage und
+    vergangene Termine werden übersprungen
+  - mehr als 3 neue Einträge auf einmal (z.B. ein Import): nichts posten
+  - steht der Link schon in einem der letzten 40 eigenen Toots: nicht nochmal
+
+    git diff --name-only --diff-filter=A <vorher> HEAD | python3 scripts/mastodon.py
+    ... | python3 scripts/mastodon.py --probe     # nur anzeigen, nichts posten
+"""
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import hashlib
+import os
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+import build_data  # noqa: E402
+
+HOECHSTENS = 3
+MAX_ALTER_TAGE = 14
+
+
+def site_url(root: Path) -> str:
+    for zeile in (root / "zensical.toml").read_text(encoding="utf-8").splitlines():
+        if zeile.startswith("site_url"):
+            return zeile.split("=", 1)[1].strip().strip('"').rstrip("/") + "/"
+    return "https://cogneon.de/"
+
+
+def ankuendigungen(root: Path, neue_dateien: list[str], heute: dt.date) -> tuple[list[dict], list[str]]:
+    basis = site_url(root)
+    neu = {Path(d).as_posix() for d in neue_dateien}
+    toots, hinweise = [], []
+    for p in build_data.all_posts(root / "docs" / "blog" / "posts"):
+        rel = p["pfad"].relative_to(root).as_posix()
+        if rel not in neu:
+            continue
+        if p["tag"] > heute or (heute - p["tag"]).days > MAX_ALTER_TAGE:
+            hinweise.append(f"übersprungen (Datum {p['datum']}): {rel}")
+            continue
+        toots.append({"url": basis + p["url"],
+                      "text": f"Neuer Blog-Beitrag auf cogneon.de: {p['titel']}\n\n{basis + p['url']}"})
+    for e in build_data.all_events(root):
+        rel = f"docs/event/{e['slug']}.md"
+        if rel not in neu:
+            continue
+        if e["ende"].date() < heute:
+            hinweise.append(f"übersprungen (vorbei): {rel}")
+            continue
+        wann = " · ".join(x for x in (e["datum"], e["ort"]) if x)
+        toots.append({"url": basis + e["url"],
+                      "text": f"Neuer Termin auf cogneon.de: {e['titel']} ({wann})\n\n{basis + e['url']}"})
+    # Entwürfe und Dateien ohne Titel tauchen oben nicht auf.
+    bekannt = {t["url"] for t in toots}
+    for d in sorted(neu):
+        if d.startswith(("docs/blog/posts/", "docs/event/")) and d.endswith(".md") \
+                and not any(Path(d).stem in u for u in bekannt) \
+                and not any(Path(d).name in h for h in hinweise):
+            hinweise.append(f"übersprungen (Entwurf oder ohne Titel/Datum): {d}")
+    return toots, hinweise
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
+    ap.add_argument("--probe", action="store_true", help="nur anzeigen, nichts posten")
+    ap.add_argument("--heute", help="Stichtag JJJJ-MM-TT (zum Testen)")
+    args = ap.parse_args(argv)
+    heute = build_data.as_date(args.heute) if args.heute else dt.date.today()
+
+    dateien = [z.strip() for z in sys.stdin.read().splitlines() if z.strip()]
+    toots, hinweise = ankuendigungen(args.root, dateien, heute)
+    for h in hinweise:
+        print(h)
+    if not toots:
+        print("Nichts anzukündigen.")
+        return 0
+    if len(toots) > HOECHSTENS:
+        print(f"{len(toots)} neue Einträge auf einmal - vermutlich ein Import. Nichts gepostet:")
+        for t in toots:
+            print(f"  {t['url']}")
+        return 0
+
+    instanz = os.environ.get("MASTODON_INSTANZ", "").rstrip("/")
+    token = os.environ.get("MASTODON_TOKEN", "")
+    if args.probe or not (instanz and token):
+        print("Nur Probe, nichts gepostet." if args.probe else
+              "MASTODON_INSTANZ oder MASTODON_TOKEN fehlt, nichts gepostet.")
+        for t in toots:
+            print("---\n" + t["text"])
+        return 0
+
+    import requests
+    kopf = {"Authorization": f"Bearer {token}"}
+    ich = requests.get(f"{instanz}/api/v1/accounts/verify_credentials", headers=kopf, timeout=20)
+    ich.raise_for_status()
+    letzte = requests.get(f"{instanz}/api/v1/accounts/{ich.json()['id']}/statuses",
+                          params={"limit": 40}, headers=kopf, timeout=20)
+    letzte.raise_for_status()
+    schon = " ".join(s.get("content", "") for s in letzte.json())
+    for t in toots:
+        if t["url"] in schon:
+            print(f"schon gepostet: {t['url']}")
+            continue
+        antwort = requests.post(
+            f"{instanz}/api/v1/statuses",
+            headers={**kopf, "Idempotency-Key": hashlib.sha1(t["url"].encode()).hexdigest()},
+            data={"status": t["text"], "language": "de", "visibility": "public"}, timeout=30)
+        antwort.raise_for_status()
+        print(f"gepostet: {antwort.json().get('url')}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
