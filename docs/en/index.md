@@ -3,7 +3,7 @@ title: Knowledge. Learning. Impact.
 description: Since 2001, Cogneon has helped organizations make systematic use of knowledge - from a keynote to multi-year support.
 template: home.html
 quelle: index.md
-quelle_hash: "10719de9e977"
+quelle_hash: "11dd3bc3c39f"
 
 hero:
   claim: [Knowledge, Learning, Impact]
