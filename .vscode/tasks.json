@@ -12,10 +12,28 @@
       "presentation": { "reveal": "always", "panel": "dedicated" }
     },
     {
+      // Zeigt die Seite so, als wäre der eingegebene Tag heute, z.B. für den
+      // Adventskalender. Danach wieder "Vorschau starten" nutzen.
+      "label": "Vorschau für Stichtag",
+      "type": "shell",
+      "command": "python3 scripts/build_data.py --heute ${input:stichtag} && zensical serve",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
       "label": "Übersetzungen prüfen",
       "type": "shell",
       "command": "python3 scripts/uebersetzung.py status",
       "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "stichtag",
+      "type": "promptString",
+      "description": "Stichtag JJJJ-MM-TT",
+      "default": "2026-12-01"
     }
   ]
 }

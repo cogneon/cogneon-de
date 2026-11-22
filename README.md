@@ -199,8 +199,9 @@ Türchen mit `typ`, `titel`, `link`, `von` (optional), `warum` und `impuls`
   `inhalte/advent.yml` im öffentlichen Repository.
 - Fehlt an einem Tag `titel`, `link` oder `warum`, bleibt das Türchen zu und
   `build_data.py` warnt.
-- Vorschau für einen Stichtag: `python3 scripts/build_data.py --heute 2026-12-05`,
-  danach `zensical serve`. Vor dem Einchecken wieder ohne `--heute` laufen lassen
+- Vorschau für einen Stichtag: in VS Code die Aufgabe "Vorschau für Stichtag"
+  (Datum eingeben, z.B. 2026-12-01), oder im Terminal
+  `python3 scripts/build_data.py --heute 2026-12-05`, danach `zensical serve`. Vor dem Einchecken wieder ohne `--heute` laufen lassen
   (die erzeugten Dateien sind ohnehin nicht im Repo).
 - Ein Klick auf ein Türchen klappt es auf und zeigt den Inhalt in einem Dialog.
   Direktlink für Newsletter und Social Media: `https://cogneon.de/advent/#tag-5`.
