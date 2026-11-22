@@ -1723,3 +1723,29 @@ ol.cg-schritte > li,
 .md-typeset .cg-mail-kopieren:focus-visible {
   border-color: var(--cg-orange);
 }
+
+/* Kommende Termine im Fließtext einer Seite (termine_kategorie im Front Matter):
+   Listen- und Linkstil des Textbereichs zurücksetzen. */
+.md-typeset ul.cg-termine {
+  list-style: none;
+  margin: 1.2em 0 2em;
+  padding: 0;
+}
+.md-typeset ul.cg-termine > li {
+  margin: 0;
+}
+.md-typeset .cg-termin-zeile,
+.md-typeset .cg-termin-zeile:hover,
+.md-typeset .cg-termin-zeile:focus {
+  color: var(--cg-fg);
+  text-decoration: none;
+}
+.md-typeset .cg-termin-zeile {
+  box-shadow: 0 0 0 1px var(--cg-linie);
+}
+.md-typeset .cg-termin-zeile:hover {
+  box-shadow: 0 0 0 1px var(--cg-linie), 0 0.4rem 1.2rem rgba(0, 0, 0, 0.12);
+}
+.md-typeset .cg-termin-zeile .cg-card__titel {
+  font-size: 1.1rem;
+}

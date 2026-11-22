@@ -1,0 +1,33 @@
+{#-
+  Seiteninhalt wie im Zensical-Thema, ergänzt um kommende Termine einer
+  Kategorie: Steht im Front Matter "termine_kategorie: <adresse>" (z.B. edmod),
+  erscheinen die kommenden Termine dieser Kategorie an der Stelle der Zeile
+  <!-- termine --> im Text, ohne diese Zeile am Ende der Seite.
+-#}
+{% include "partials/actions.html" %}
+{% if "<h1" not in page.content %}
+  <h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+{% if page.meta and page.meta.termine_kategorie %}
+  {% import "partials/termine-daten.html" as daten %}
+  {% set slug = page.meta.termine_kategorie | string %}
+  {% set liste = daten.termine.kommend_je_kategorie[slug] if slug in daten.termine.kommend_je_kategorie else [] %}
+  {% set relativ = false %}
+  {% set block_termine %}
+  {% if liste %}{% include "partials/termin-liste.html" %}
+  {% else %}<p class="cg-muted">Zurzeit sind keine Termine angekündigt. Alle Termine stehen unter <a href="{{ 'events/' | url }}">Termine</a>.</p>{% endif %}
+  {% endset %}
+  {% set marke = "<!-- termine -->" %}
+  {% if marke in page.content %}
+{{ page.content | replace(marke, block_termine) | safe }}
+  {% else %}
+{{ page.content }}
+{{ block_termine | safe }}
+  {% endif %}
+{% else %}
+{{ page.content }}
+{% endif %}
+{% include "partials/tags.html" %}
+{% include "partials/source-file.html" %}
+{% include "partials/feedback.html" %}
+{% include "partials/comments.html" %}

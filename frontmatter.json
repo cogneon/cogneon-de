@@ -73,6 +73,11 @@
           "type": "string"
         },
         {
+          "title": "Kommende Termine dieser Kategorie zeigen (z.B. edmod), Platz im Text: <!-- termine -->",
+          "name": "termine_kategorie",
+          "type": "string"
+        },
+        {
           "title": "Vor WordPress-Export schützen",
           "name": "frozen",
           "type": "boolean"

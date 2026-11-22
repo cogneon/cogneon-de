@@ -317,6 +317,15 @@ frozen: true                   # vom WordPress-Export nicht überschreiben
 ---
 ```
 
+**Kommende Termine auf einer Seite:** Mit `termine_kategorie: <adresse>` im
+Front Matter zeigt eine Seite die kommenden Termine dieser Kategorie, genau wie
+unter /events/, jeweils mit Link auf den Termin. Die Adresse ist der letzte Teil
+von `/events/kategorie/<adresse>/`, z.B. `edmod`. Die Liste erscheint dort, wo
+im Text die Zeile `<!-- termine -->` steht, ohne diese Zeile am Seitenende.
+Gibt es keinen kommenden Termin, steht dort ein Hinweis auf /events/. Beispiel:
+`docs/edmod.md`. Neue Termine erscheinen nach dem nächsten Bau automatisch,
+vergangene verschwinden von selbst.
+
 Angebotsseiten mit Kopf, Karten und Ablauf nutzen `template: angebot.html`;
 Aufbau siehe `docs/angebote.md` und "Kopfbild auf Unterseiten".
 

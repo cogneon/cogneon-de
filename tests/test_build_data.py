@@ -1,3 +1,4 @@
+import json
 """Tests für scripts/build_data.py (Daten der Startseite)."""
 import datetime as dt
 import sys
@@ -126,6 +127,9 @@ def test_termine(tmp_path):
     kategorie = build_data.frontmatter(tmp_path / "docs/events/kategorie/edmod.md")
     assert [t["titel"] for t in kategorie["kommend"]] == ["Neu, mit Komma"]
     assert [t["titel"] for t in kategorie["vergangen"]] == ["Alt"]
+    daten = (tmp_path / "overrides/partials/termine-daten.html").read_text(encoding="utf-8")
+    je = json.loads(daten.split("{% set termine = ", 1)[1].rsplit(" %}", 1)[0])["kommend_je_kategorie"]
+    assert [t["titel"] for t in je["edmod"]] == ["Neu, mit Komma"] and je["edmod"][0]["url"] == "event/neu/"
     assert build_data.build(tmp_path, heute)["termine"][0] == {"titel": "Ganztags", "datum": "14.11.2026", "url": "event/tag/"}
 
 
