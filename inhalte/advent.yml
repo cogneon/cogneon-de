@@ -30,12 +30,12 @@ themen:
 
 tuerchen:
   - tag: 1
-    typ:
-    titel:
-    link:
-    von:
-    warum:
-    impuls:
+    typ: Video
+    titel: Wissensmanagement einfach erklärt
+    link: https://www.youtube.com/watch?v=uz0KXaflY2w
+    von: Patrick Lambe
+    warum: Das Video zeigt eine ironische Sicht auf Wissensmanagement in Organisationen ... oft gar nicht so weit von der Realität entfernt!
+    impuls: Wie erklärst du Wissensmanagement in 2-3 Sätzen? Schreibe in der Community oder sozialen Netzwerken und teile den Link zu diesem Adventskalender 🙏
   - tag: 2
     typ:
     titel:
