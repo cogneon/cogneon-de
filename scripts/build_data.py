@@ -16,6 +16,8 @@ import datetime as dt
 import json
 import re
 import sys
+import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -603,6 +605,72 @@ def build_hashtags(root: Path) -> tuple[list[tuple[str, str]], list[str]]:
     return regeln, probleme
 
 
+PLATTFORM_NAMEN = {"castopod": "Castopod", "apple": "Apple Podcasts", "spotify": "Spotify"}
+
+
+def podcast_dauer(wert: str) -> int:
+    """Dauer einer Folge in Minuten aus itunes:duration (Sekunden oder hh:mm:ss)."""
+    teile = [int(t) for t in str(wert or "0").strip().split(":") if t.strip().isdigit()]
+    sekunden = 0
+    for t in teile:
+        sekunden = sekunden * 60 + t
+    return round(sekunden / 60)
+
+
+def build_podcast(root: Path, feed_text: str) -> dict:
+    """Neueste Folgen für die Startseite aus dem Podcast-Feed und inhalte/podcast.yml.
+
+    Angepinnte Folgen (Adresse oder letzter Teil der Adresse) stehen oben, danach
+    die neuesten bis zur gewünschten Anzahl. Abo-Links kommen aus podcast:id im
+    Feed und lassen sich in podcast.yml überschreiben oder ergänzen (logo)."""
+    cfg = yaml.safe_load((root / "inhalte" / "podcast.yml").read_text(encoding="utf-8")) or {}
+    kanal = ET.fromstring(feed_text.encode("utf-8")).find("channel")
+    ns_itunes = "{http://www.itunes.com/dtds/podcast-1.0.dtd}"
+
+    ids = {}
+    for el in kanal:
+        if el.tag.endswith("}id") and el.get("platform"):
+            # Ohne Tracking-Anhang (Spotify hängt ?si=... an).
+            ids[el.get("platform").lower()] = (el.get("url") or (el.text or "").strip()).split("?")[0]
+    ids.setdefault("castopod", (kanal.findtext("link") or "").strip())
+
+    folgen = []
+    for item in kanal.findall("item"):
+        link = (item.findtext("link") or "").strip()
+        try:
+            datum = parsedate_to_datetime(item.findtext("pubDate") or "").astimezone(ZoneInfo("Europe/Berlin"))
+        except (TypeError, ValueError):
+            continue
+        folgen.append({"titel": (item.findtext("title") or "").strip(), "url": link,
+                       "datum": f"{datum:%d.%m.%Y}", "_sort": datum,
+                       "nummer": (item.findtext(f"{ns_itunes}episode") or "").strip(),
+                       "minuten": podcast_dauer(item.findtext(f"{ns_itunes}duration"))})
+    folgen.sort(key=lambda f: f["_sort"], reverse=True)
+
+    def passt(f: dict, merkmal: str) -> bool:
+        merkmal = str(merkmal).strip().rstrip("/")
+        return bool(merkmal) and (f["url"].rstrip("/") == merkmal or f["url"].rstrip("/").endswith("/" + merkmal))
+
+    pins = [m for m in cfg.get("angepinnt") or [] if m]
+    oben = [{**f, "angepinnt": True} for m in pins for f in folgen if passt(f, m)]
+    fehlend = [str(m) for m in pins if not any(passt(f, m) for f in folgen)]
+    rest = [f for f in folgen if not any(f["url"] == o["url"] for o in oben)]
+    liste = (oben + rest)[:max(int(cfg.get("anzahl") or 5), len(oben))]
+
+    plattformen = []
+    for eintrag in cfg.get("plattformen") or ["castopod", "apple", "spotify"]:
+        e = {"id": eintrag} if isinstance(eintrag, str) else dict(eintrag)
+        key = str(e.get("id") or "").lower()
+        url = e.get("url") or ids.get(key)
+        if url:
+            plattformen.append({"name": e.get("name") or PLATTFORM_NAMEN.get(key, key), "url": url,
+                                "logo": e.get("logo") or ""})
+    return {"titel": cfg.get("titel") or (kanal.findtext("title") or "").strip(),
+            "text": cfg.get("text") or "", "bild": cfg.get("bild") or "", "bild_alt": cfg.get("bild_alt") or "",
+            "feed": cfg.get("feed") or "", "plattformen": plattformen,
+            "folgen": [{k: v for k, v in f.items() if k != "_sort"} for f in liste], "fehlend": fehlend}
+
+
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
     posts = []
     for path in post_dir.rglob("*.md"):
@@ -659,6 +727,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent.parent)
     parser.add_argument("--heute", help="Stichtag JJJJ-MM-TT (Standard: heute)")
+    parser.add_argument("--podcast-feed", help="Podcast-Feed aus Datei statt aus dem Netz (zum Testen)")
     args = parser.parse_args()
     today = as_date(args.heute) if args.heute else dt.datetime.now(ZoneInfo("Europe/Berlin")).date()
     if today is None:
@@ -744,7 +813,40 @@ def main() -> int:
         print(f"Warnung: Vorlage fehlt: {zeile}", file=sys.stderr)
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
+    schreibe_podcast(args.root, args.podcast_feed)
     return 0
+
+
+def schreibe_podcast(root: Path, quelle: str | None) -> None:
+    """Holt den Podcast-Feed und schreibt die Daten für die Startseite. Ist der
+    Feed nicht erreichbar, bleibt der letzte Stand; fehlt auch der, bleibt der
+    Abschnitt weg."""
+    cfg_datei = root / "inhalte" / "podcast.yml"
+    target = root / "overrides" / "partials" / "podcast-daten.html"
+    if not cfg_datei.exists():
+        return
+    try:
+        if quelle and not quelle.startswith(("http://", "https://")):
+            text = Path(quelle).read_text(encoding="utf-8")
+        else:
+            import requests
+            url = quelle or (yaml.safe_load(cfg_datei.read_text(encoding="utf-8")) or {}).get("feed")
+            antwort = requests.get(url, timeout=20, headers={"User-Agent": "cogneon-de-build/1.0"})
+            antwort.raise_for_status()
+            text = antwort.text
+        podcast = build_podcast(root, text)
+    except Exception as fehler:   # noqa: BLE001 - der Build soll am Podcast nicht scheitern
+        print(f"Warnung: Podcast-Feed nicht gelesen ({fehler}); "
+              f"{'letzter Stand bleibt' if target.exists() else 'Abschnitt entfällt'}", file=sys.stderr)
+        if not target.exists():
+            target.write_text("{% set podcast = none %}\n", encoding="utf-8")
+        return
+    target.write_text(
+        "{#- Erzeugt von scripts/build_data.py - nicht von Hand ändern. -#}\n"
+        "{% set podcast = " + json.dumps(podcast, ensure_ascii=False) + " %}\n", encoding="utf-8")
+    print(f"{target.relative_to(root)}: {len(podcast['folgen'])} Folgen")
+    for m in podcast["fehlend"]:
+        print(f"Warnung: Podcast: angepinnte Folge nicht im Feed: {m}", file=sys.stderr)
 
 
 if __name__ == "__main__":
