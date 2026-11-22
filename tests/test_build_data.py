@@ -235,3 +235,19 @@ def test_termin_hybrid(tmp_path):
     assert ev["h"]["hybrid"] and ev["h"]["ort"] == "Cogneon Akademie"
     assert not ev["o"]["hybrid"] and ev["o"]["ort"] == "Online"
     assert build_data.event_jsonld(ev["h"], "https://cogneon.de/")["eventAttendanceMode"].endswith("MixedEventAttendanceMode")
+
+
+def test_podcast_neueste_und_angepinnte_folgen(tmp_path):
+    feed = (Path(__file__).parent / "daten" / "podcast-feed.xml").read_text(encoding="utf-8")
+    write(tmp_path / "inhalte/podcast.yml", "anzahl: 2\nangepinnt: [folge-eins, gibt-es-nicht]\n")
+    p = build_data.build_podcast(tmp_path, feed)
+    assert [f["titel"] for f in p["folgen"]] == ["Folge eins", "Folge drei"]
+    assert p["folgen"][0]["angepinnt"] and "angepinnt" not in p["folgen"][1]
+    assert p["folgen"][1] == {"titel": "Folge drei", "url": "https://podcasts.cogneon.io/@kclo/episodes/folge-drei",
+                              "datum": "11.10.2026", "nummer": "48", "minuten": 46}
+    assert p["fehlend"] == ["gibt-es-nicht"]
+    assert [(x["name"], x["url"]) for x in p["plattformen"]] == [
+        ("Castopod", "https://podcasts.cogneon.io/@kclo"),
+        ("Apple Podcasts", "https://podcasts.apple.com/de/podcast/keep-calm-learn-on/id714087020"),
+        ("Spotify", "https://open.spotify.com/show/672J7qThg0wQq1P8jb4N1f")]
+    assert build_data.podcast_dauer("00:48:58") == 49

@@ -159,6 +159,33 @@
   </section>
   {% endif %}
 
+  {#- Neueste Podcast-Folgen (inhalte/podcast.yml, Folgen aus dem Feed). -#}
+  {% import "partials/podcast-daten.html" as pd %}
+  {% if pd.podcast and pd.podcast.folgen %}
+  {% set pc = pd.podcast %}
+  <section class="cg-section cg-section--trenner" id="podcast">
+    <div class="cg-wrap cg-zwei cg-zwei--oben cg-podcast">
+      {% if pc.bild %}<img class="cg-bild cg-podcast__bild" src="{{ pc.bild | url }}" alt="{{ pc.bild_alt }}" loading="lazy">{% endif %}
+      <div class="cg-stack">
+        <h2 class="cg-h2 cg-h2--klein">{{ pc.titel }}{% if en %} <span class="cg-marke">{{ tx.t('auf_deutsch') }}</span>{% endif %}</h2>
+        {% if pc.text and not en %}<p class="cg-muted">{{ pc.text }}</p>{% endif %}
+        <ul class="cg-liste">
+          {% for f in pc.folgen %}
+          <li><a href="{{ f.url }}" hreflang="de"><span class="cg-liste__meta">{% if f.nummer %}{{ tx.t('podcast_folge') }} {{ f.nummer }} · {% endif %}{{ f.datum }}{% if f.minuten %} · {{ f.minuten }} Min.{% endif %}</span><span class="cg-liste__titel">{{ f.titel }}{% if f.angepinnt %} <span class="cg-marke">{{ tx.t('podcast_angepinnt') }}</span>{% endif %}</span></a></li>
+          {% endfor %}
+        </ul>
+        {% if pc.plattformen %}
+        <div class="cg-podcast__abo">
+          <span class="cg-muted">{{ tx.t('podcast_abo') }}</span>
+          {% for pl in pc.plattformen %}<a class="cg-podcast__plattform{% if pl.logo %} cg-podcast__plattform--logo{% endif %}" href="{{ pl.url }}">{% if pl.logo %}<img src="{{ pl.logo | url }}" alt="{{ pl.name }}" loading="lazy">{% else %}{{ pl.name }}{% endif %}</a>{% endfor %}
+          {% if pc.feed %}<a class="cg-podcast__plattform" href="{{ pc.feed }}">RSS</a>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
   {% if m.newsletter %}
   <section class="cg-section cg-section--soft" id="newsletter">
     <div class="cg-wrap cg-zwei cg-zwei--oben">

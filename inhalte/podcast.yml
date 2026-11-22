@@ -1,0 +1,27 @@
+# Podcast-Abschnitt auf der Startseite (unter Blog und Terminen).
+#
+# Die Folgen kommen beim Bauen aus dem Feed (jede Nacht neu), hier steht nur,
+# was nicht im Feed steht. Ohne diese Datei entfällt der Abschnitt.
+
+feed: https://podcasts.cogneon.io/@kclo/feed.xml
+titel: Keep Calm & Learn On - der Podcast
+text: >-
+  Gespräche über Wissensmanagement, Lernende Organisationen und KI. Neue
+  Folgen verpasst ihr nicht, wenn ihr den Podcast abonniert.
+anzahl: 5
+
+# Bild links (16:9 oder 4:3), Pfad ohne docs/
+bild: assets/bilder/podcast-aufnahme.jpg
+bild_alt: Mikrofon bei einer Podcast-Aufnahme
+
+# Folgen, die oben stehen sollen: Adresse der Folge auf podcasts.cogneon.io
+# oder nur ihr letzter Teil. Mehrere möglich, Reihenfolge wie hier.
+angepinnt: []
+#  - personal-knowledge-mastery-mit-harold-jarche
+
+# Abo-Links. Ohne url kommt die Adresse aus dem Feed. logo (optional): Bild
+# unter docs/assets/bilder/podcast/, z.B. das offizielle Abzeichen der Plattform.
+plattformen:
+  - id: castopod
+  - id: apple
+  - id: spotify

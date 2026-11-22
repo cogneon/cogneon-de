@@ -26,3 +26,4 @@ overrides/partials/hinweis-daten.html
 *.whl
 *.tar.gz
 migration/redirects-hashtags.map
+overrides/partials/podcast-daten.html

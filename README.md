@@ -396,6 +396,26 @@ quelle_hash: "3f2a…"   # Prüfwert der Vorlage beim Übersetzen
 - Englische Seiten, die von Hand gepflegt werden, bekommen `frozen: true`;
   dann gibt es keine Warnung mehr.
 
+## Podcast auf der Startseite
+
+Unter Blog und Terminen zeigt die Startseite die neuesten Folgen von "Keep Calm
+& Learn On". Die Folgen kommen beim Bauen aus dem Feed auf podcasts.cogneon.io,
+also jede Nacht und bei jedem Merge neu. Von Hand gepflegt wird nur
+`inhalte/podcast.yml`:
+
+- `angepinnt`: Folgen, die oben stehen sollen. Adresse der Folge oder nur ihr
+  letzter Teil, z.B. `personal-knowledge-mastery-mit-harold-jarche`.
+- `bild`, `bild_alt`: Foto links.
+- `plattformen`: Abo-Links. Die Adressen für Apple Podcasts und Spotify stehen
+  im Feed. Mit `logo: assets/bilder/podcast/apple.svg` erscheint statt des
+  Namens das Abzeichen der Plattform (offizielle Abzeichen von den
+  Marketing-Seiten der Plattformen herunterladen).
+- `anzahl`: wie viele Folgen (Standard 5).
+
+Ist der Feed beim Bauen nicht erreichbar, bleibt der letzte Stand bzw. der
+Abschnitt entfällt; der Build läuft weiter. Lokal testen ohne Netz:
+`python3 scripts/build_data.py --podcast-feed tests/daten/podcast-feed.xml`.
+
 ## Hinweisleiste
 
 Meldungen über der Kopfzeile pflegst Du in `inhalte/hinweise.yml`:

@@ -1728,3 +1728,47 @@ ol.cg-schritte > li,
 .md-typeset .cg-termin-zeile .cg-card__titel {
   font-size: 1.1rem;
 }
+
+/* Podcast auf der Startseite: Bild links, Folgen und Abo-Links rechts */
+.cg-section--trenner {
+  padding-top: 0;
+}
+.cg-section--trenner > .cg-wrap {
+  border-top: 1px solid var(--cg-linie);
+  padding-top: 4rem;
+}
+.cg-podcast__bild {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.cg-podcast__abo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+}
+.cg-podcast__plattform {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.2rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--cg-linie);
+  border-radius: 999px;
+  color: var(--cg-fg);
+  font-weight: 600;
+  text-decoration: none;
+}
+.cg-podcast__plattform:hover {
+  border-color: var(--cg-orange);
+  color: var(--cg-fg);
+}
+.cg-podcast__plattform--logo {
+  padding: 0;
+  border: 0;
+}
+.cg-podcast__plattform--logo img {
+  height: 2.2rem;
+  width: auto;
+  display: block;
+}
