@@ -3,6 +3,7 @@
 {% block fonts %}{% endblock %}
 {% block extrahead %}
   <link rel="alternate" type="application/rss+xml" title="Cogneon Blog" href="{{ 'feed.xml' | url }}">
+  {% if config.extra.mastodon %}<link rel="me" href="{{ config.extra.mastodon }}">{% endif %}
   {#- Vorschau beim Teilen (LinkedIn, Mastodon ...): Bilder von scripts/build_social.py. -#}
   {% import "partials/social-daten.html" as sd %}
   {% set basis_og = config.site_url | d("https://cogneon.de/", true) %}

@@ -15,6 +15,9 @@ Sicherungen:
   - mehr als 3 neue Einträge auf einmal (z.B. ein Import): nichts posten
   - steht der Link schon in einem der letzten 40 eigenen Toots: nicht nochmal
 
+Mit --zuordnung schreibt es für Blogbeiträge Beitrag -> Toot in eine JSON-Datei.
+Daraus zeigt die Beitragsseite den Kommentarbereich (Antworten auf den Toot).
+
     git diff --name-only --diff-filter=A <vorher> HEAD | python3 scripts/mastodon.py
     ... | python3 scripts/mastodon.py --probe     # nur anzeigen, nichts posten
 """
@@ -53,7 +56,7 @@ def ankuendigungen(root: Path, neue_dateien: list[str], heute: dt.date) -> tuple
         if p["tag"] > heute or (heute - p["tag"]).days > MAX_ALTER_TAGE:
             hinweise.append(f"übersprungen (Datum {p['datum']}): {rel}")
             continue
-        toots.append({"url": basis + p["url"],
+        toots.append({"url": basis + p["url"], "seite": p["url"],
                       "text": f"Neuer Blog-Beitrag auf cogneon.de: {p['titel']}\n\n{basis + p['url']}"})
     for e in build_data.all_events(root):
         rel = f"docs/event/{e['slug']}.md"
@@ -80,6 +83,8 @@ def main(argv=None) -> int:
     ap.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     ap.add_argument("--probe", action="store_true", help="nur anzeigen, nichts posten")
     ap.add_argument("--heute", help="Stichtag JJJJ-MM-TT (zum Testen)")
+    ap.add_argument("--zuordnung", type=Path,
+                    help="JSON-Datei Beitrag -> Toot, wird um die geposteten Blogbeiträge ergänzt")
     args = ap.parse_args(argv)
     heute = build_data.as_date(args.heute) if args.heute else dt.date.today()
 
@@ -112,17 +117,28 @@ def main(argv=None) -> int:
     letzte = requests.get(f"{instanz}/api/v1/accounts/{ich.json()['id']}/statuses",
                           params={"limit": 40}, headers=kopf, timeout=20)
     letzte.raise_for_status()
-    schon = " ".join(s.get("content", "") for s in letzte.json())
+    zuordnung = {}
     for t in toots:
-        if t["url"] in schon:
+        frueher = next((s for s in letzte.json() if t["url"] in s.get("content", "")), None)
+        if frueher:
             print(f"schon gepostet: {t['url']}")
-            continue
-        antwort = requests.post(
-            f"{instanz}/api/v1/statuses",
-            headers={**kopf, "Idempotency-Key": hashlib.sha1(t["url"].encode()).hexdigest()},
-            data={"status": t["text"], "language": "de", "visibility": "public"}, timeout=30)
-        antwort.raise_for_status()
-        print(f"gepostet: {antwort.json().get('url')}")
+            toot = frueher
+        else:
+            antwort = requests.post(
+                f"{instanz}/api/v1/statuses",
+                headers={**kopf, "Idempotency-Key": hashlib.sha1(t["url"].encode()).hexdigest()},
+                data={"status": t["text"], "language": "de", "visibility": "public"}, timeout=30)
+            antwort.raise_for_status()
+            toot = antwort.json()
+            print(f"gepostet: {toot.get('url')}")
+        if t.get("seite") and toot.get("url"):
+            zuordnung[t["seite"]] = toot["url"]
+    if args.zuordnung and zuordnung:
+        import json
+        bisher = json.loads(args.zuordnung.read_text(encoding="utf-8")) if args.zuordnung.exists() else {}
+        args.zuordnung.write_text(json.dumps({**bisher, **zuordnung}, ensure_ascii=False, indent=1,
+                                             sort_keys=True) + "\n", encoding="utf-8")
+        print(f"Kommentare: {len(zuordnung)} Beitrag/Beiträge mit Toot verknüpft")
     return 0
 
 

@@ -1,0 +1,9 @@
+# Kommentare unter Blogbeiträgen kommen aus Mastodon: Antworten auf den Toot,
+# den der Bot beim Veröffentlichen postet. Welcher Toot zu welchem Beitrag
+# gehört, merkt sich der Bot selbst. Für ältere Beiträge im Front Matter:
+#   mastodon: https://instanz.example/@cogneon/113456789012345678
+#
+# Einzelne Antworten nicht auf der Website zeigen: ihre Adresse hier eintragen
+# (auf Mastodon beim Beitrag: "Link kopieren").
+ausblenden: []
+#  - https://example.social/@jemand/113456789012345999

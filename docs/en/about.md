@@ -2,7 +2,7 @@
 title: About us
 description: Cogneon GmbH, founded in 2001 in Nuremberg, helps organizations succeed through the systematic use of knowledge.
 quelle: ueber-uns.md
-quelle_hash: "ceab71e36e29"
+quelle_hash: "61572eaa3d50"
 ---
 
 # About us
@@ -27,5 +27,5 @@ On our website you can learn about our **vision of the learning society** and th
 ## Cogneon online
 
 - [LinkedIn - expert posts, news, events & more](https://www.linkedin.com/company/2404206/)
-- [Mastodon - expert posts, news, events & more (mostly the same as LinkedIn)](https://colearn.social/@cogneon)
+- [Mastodon - expert posts, news, events & more (mostly the same as LinkedIn)](https://mastodon.social/@cogneon)
 - [YouTube - event recordings, interviews, screencasts](http://youtube.com/cogneon)

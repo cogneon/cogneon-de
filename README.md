@@ -439,6 +439,19 @@ werden Entwürfe, Beiträge älter als 14 Tage oder mit Datum in der Zukunft,
 vergangene Termine und alles, wenn mehr als 3 neue Einträge auf einmal kommen
 (Import). Was passiert ist, steht in der Zusammenfassung des Laufs unter Actions.
 
+**Kommentare aus dem Fediverse:** Unter jedem Blogbeitrag, zu dem es einen
+Toot gibt, steht ein Abschnitt "Kommentare". Kommentare sind die öffentlichen
+Antworten auf den Toot; sie werden erst nach Klick auf "Kommentare laden"
+direkt von der Mastodon-Instanz geholt und bereinigt angezeigt (ohne
+Profilbilder). Idee nach Carl Schwan.
+
+- Welcher Toot zu welchem Beitrag gehört, speichert der Bot nach dem Posten
+  im Branch `daten/mastodon` (Datei `mastodon.json`) und startet einen zweiten
+  Lauf, damit der Abschnitt sofort erscheint. Den Branch nicht löschen.
+- Ältere Beiträge: im Front Matter `mastodon: <Link zum Toot>` eintragen.
+- Einzelne Antworten ausblenden: Link der Antwort in `inhalte/kommentare.yml`
+  unter `ausblenden`.
+
 **LinkedIn:** Den Blog-Feed `https://cogneon.de/feed.xml` in der
 Einstellungen der Unternehmensseite unter "Manage Content Sharing" eintragen
 (deutsche Oberfläche: sinngemäß "Inhalte teilen").

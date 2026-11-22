@@ -30,3 +30,5 @@ migration/redirects-hashtags.map
 overrides/partials/podcast-daten.html
 overrides/partials/social-daten.html
 docs/assets/social/
+overrides/partials/kommentare-daten.html
+.daten/

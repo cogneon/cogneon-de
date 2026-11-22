@@ -11,7 +11,7 @@ docs_dir = "docs"
 site_dir = "site"
 use_directory_urls = true
 extra_css = ["assets/stylesheets/cogneon.css"]
-extra_javascript = ["assets/javascripts/karte.js"]
+extra_javascript = ["assets/javascripts/karte.js", "assets/javascripts/kommentare.js"]
 
 # Seitenmenü (mobil) und Reihenfolge der Seiten. Das Menü in der Kopfzeile
 # steht unter [project.extra] weiter unten.
@@ -103,6 +103,9 @@ pymdownx.tasklist.custom_checkbox = true
 
 # Menü der Kopfzeile und Angaben für die Fußzeile.
 [project.extra]
+# Mastodon-Profil von Cogneon. Steht hier eine Adresse, verweist jede Seite mit
+# rel="me" darauf; Mastodon zeigt dann bei cogneon.de im Profil den grünen Haken.
+mastodon = "https://mastodon.social/@cogneon"
 erstgespraech = "kontakt/#erstgespraech"
 community = "https://community.cogneon.de/"
 community_kalender = "https://community.cogneon.de/t/community-kalender-2024/3868"
