@@ -10,8 +10,8 @@ ort:
 online: true
 hashtag: edmod27a
 kosten: tbd.
-anmeldung:
-save_the_date: true
+anmeldung: null
+save_the_date: false
 kategorien:
   - Schulung
   - edmod
