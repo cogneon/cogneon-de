@@ -2,7 +2,7 @@
 title: Contact
 description: Contact Cogneon in Nuremberg - intro call, address and directions.
 quelle: kontakt.md
-quelle_hash: "c42b54134a94"
+quelle_hash: "6ad054bb9a47"
 ---
 
 # Contact
@@ -26,16 +26,18 @@ Phone: +49 911 39570830
 
 ## Getting here
 
-**Plan your route:** [OpenStreetMap](https://www.openstreetmap.org/directions?route=%3B49.4639412%2C11.0694807#map=17/49.46394/11.06948) · [Google Maps](https://www.google.com/maps/dir/?api=1&destination=49.4639412%2C11.0694807) · [Apple Maps](https://maps.apple.com/?daddr=49.4639412,11.0694807)
+- **Plan your route:** [OpenStreetMap](https://www.openstreetmap.org/directions?route=%3B49.4639412%2C11.0694807#map=17/49.46394/11.06948) · [Google Maps](https://www.google.com/maps/dir/?api=1&destination=49.4639412%2C11.0694807) · [Apple Maps](https://maps.apple.com/?daddr=49.4639412,11.0694807)
+- **By public transport:** From Nuremberg main station take [subway line U3](http://www.vgn.de/komfortauskunft/ttb/?lineName=U3) to the Friedrich-Ebert-Platz stop, about 7 minutes.<br>
+- **By plane:** From [Nuremberg Airport](http://www.airport-nuernberg.de) about 15 minutes by taxi.
 
 <div class="cg-karte"><p><a href="https://www.openstreetmap.org/node/3255611047">Cogneon Akademie on OpenStreetMap</a></p></div>
 
-**By public transport:** from Nuremberg main station take [subway line U3](http://www.vgn.de/komfortauskunft/ttb/?lineName=U3) to Friedrich-Ebert-Platz, about 7 minutes.<br>
-**By plane:** from [Nuremberg Airport](http://www.airport-nuernberg.de) about 15 minutes by taxi.
 
 <br>
 **Hotel recommendations:**
 
-- [Noris City](https://www.uniqstay.de/hotels/noris-city) (formerly Hotel Centro), Bucher Str. 125
-- [Azimut](https://azimuthotels.de/de/nuremberg/azimut-hotel-nuremberg)
-- [Motel One](http://www.motel-one.com/de/hotels/nuernberg/hotel-nuernberg-plaerrer/)
+- [Noris City](https://www.uniqstay.de/hotels/noris-city) - closest, within walking distance (formerly Hotel Centro)
+- [Invite Hotel Nürnberg City](https://invite-hotels.de/content/unsere-hotels/nuernberg/invite-hotel-nuernberg-city/) - easy walking distance (formerly Azimut)
+- [Hotel Burgschmiet](https://hotel-burgschmiet.de/) - opposite the castle, just outside the city wall
+- [Dürer Hotel](https://www.duerer-hotel.de/) - in the old town near the castle
+- [Motel One](http://www.motel-one.com/de/hotels/nuernberg/hotel-nuernberg-plaerrer/) - direct tram connection
