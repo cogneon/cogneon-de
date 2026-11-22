@@ -21,13 +21,15 @@ formate:
       text: Strukturierter Interviewprozess, mit dem wir das Erfahrungswissen einer Person erheben und an Nachfolger:innen übergeben.
       art: Interviewprozess, seit 1999
       link: expert-debriefing/
-    - anlass: Ein Projekt endet
+    - anlass: Ein Projekt endet oder erreicht einen Meilenstein
       titel: Project Debriefing
-      text: Das Projektteam wertet seine Erfahrungen aus und hält fest, was das nächste Projekt wissen muss.
+      text: >-
+        Am Projektende oder zu wichtigen Meilensteinen wertet das Projektteam seine Erfahrungen aus und hält fest, was das nächste Projekt wissen muss. Lässt sich gut mit einem Offsite verbinden, etwa bei uns in der Cogneon Akademie, damit das Team auch seine Erfolge feiern kann.
       art: Workshop, auf Anfrage
-    - anlass: Ein Team verändert sich
+    - anlass: Ein Team zieht Bilanz
       titel: Team Debriefing
-      text: Das Team macht sichtbar, wer was weiß, und sichert, was für die Arbeit kritisch ist.
+      text: >-
+        Typischerweise als jährliches Review: Das Team macht sichtbar, wer was weiß, und sichert, was für die Arbeit kritisch ist. Lässt sich gut mit einem Offsite verbinden, etwa bei uns in der Cogneon Akademie, damit das Team auch seine Erfolge feiern kann.
       art: Workshop, auf Anfrage
 
 cta:

@@ -3,7 +3,7 @@ title: Expert Debriefing
 description: With Expert Debriefing you capture the experience-based knowledge of specialists and managers before they change roles or leave.
 template: angebot.html
 quelle: expert-debriefing.md
-quelle_hash: "c0ccc3152943"
+quelle_hash: "0d5b3a212ec5"
 pfad:
   - titel: Services
     link: en/services/
@@ -61,11 +61,11 @@ pakete:
 verwandt:
   titel: A different situation?
   karten:
-    - anlass: A project ends
+    - anlass: Project end or milestone
       titel: Project Debriefing
       text: Workshop format, on request.
       link: en/knowledge-transfer/
-    - anlass: A team changes
+    - anlass: Annual team review
       titel: Team Debriefing
       text: Workshop format, on request.
       link: en/knowledge-transfer/

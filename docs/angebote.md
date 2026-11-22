@@ -13,21 +13,22 @@ gruppen:
     titel: Strategisches Wissensmanagement
     text: Für Geschäftsführung und Verantwortliche, die Wissensmanagement in der Organisation verankern.
     karten:
+      - titel: Wissensmanagement-Strategie-Workshop
+        text: >-
+          In ein bis zwei Tagen führen wir in die Grundlagen des Wissensmanagements ein, bestimmen mit euch den Geltungsbereich und leiten Ziele und Maßnahmen ab. Ergebnis ist ein Wissensmanagement-Konzept, das der ISO 30401 entspricht.
       - titel: Knowledge Excellence Coach
         text: >-
-          In Workshops bestimmen wir mit euch die Ausrichtung eures Wissensmanagements: Geltungsbereich, Ziele und Maßnahmen. Danach begleitet euch ein Coach bei der Umsetzung, typischerweise über ein bis drei Jahre.
+          Nach dem Strategie-Workshop begleitet euch ein Coach bei der Umsetzung des Konzepts, typischerweise über ein bis drei Jahre.
       - titel: Wissensbeirat
         text: >-
           Ein Beirat nimmt an euren Leitungssitzungen teil und bringt dort die Wissensperspektive ein. So fließt Wissensmanagement in Entscheidungen ein, statt neben ihnen herzulaufen.
-      - titel: Knowledge Pioneers
-        text: >-
-          Eine Gruppe von Organisationen, die Wissensmanagement professionell umsetzen wollen und dabei voneinander lernen. Start 2027.
   - id: operativ
     titel: Operatives Wissensmanagement
     text: Für Teams und Fachbereiche mit einem konkreten Anlass.
     karten:
       - titel: Wissenstransfer
-        text: Erfahrungswissen von Personen, Projekten und Teams sichern und weitergeben.
+        text: >-
+          Mit Expert Debriefing, unserer seit 1999 erprobten Methode, sichert ihr das Erfahrungswissen von Menschen, die wechseln oder gehen. Für Projekte und Teams gibt es Project und Team Debriefing.
         link: wissenstransfer/
       - titel: Wissensinfrastruktur
         text: >-

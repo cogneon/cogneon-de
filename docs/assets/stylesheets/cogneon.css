@@ -1702,3 +1702,24 @@ ol.cg-schritte > li,
   margin-top: 0;
   padding-top: 0.4rem;
 }
+
+/* Hinweis unter E-Mail-Knöpfen (mail.js) */
+.md-typeset .cg-mail-hinweis {
+  margin-top: -0.4rem;
+  font-size: 0.8rem;
+  color: var(--cg-fg-muted);
+}
+.md-typeset .cg-mail-kopieren {
+  margin-left: 0.3rem;
+  padding: 0.1rem 0.55rem;
+  border: 1px solid var(--cg-linie);
+  border-radius: 99px;
+  background: transparent;
+  color: var(--cg-fg);
+  font: inherit;
+  cursor: pointer;
+}
+.md-typeset .cg-mail-kopieren:hover,
+.md-typeset .cg-mail-kopieren:focus-visible {
+  border-color: var(--cg-orange);
+}

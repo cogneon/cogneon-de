@@ -60,11 +60,11 @@ pakete:
 verwandt:
   titel: Anderer Anlass?
   karten:
-    - anlass: Ein Projekt endet
+    - anlass: Projektende oder Meilenstein
       titel: Project Debriefing
       text: Workshop-Format, auf Anfrage.
       link: wissenstransfer/
-    - anlass: Ein Team verändert sich
+    - anlass: Jährliches Team-Review
       titel: Team Debriefing
       text: Workshop-Format, auf Anfrage.
       link: wissenstransfer/

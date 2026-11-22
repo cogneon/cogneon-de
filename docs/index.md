@@ -31,8 +31,8 @@ anlaesse:
       angebot: Wissenstransfer
       link: wissenstransfer/
     - zitat: Wir brauchen eine Strategie für unser Wissen.
-      text: Vom Zielbild bis zur Umsetzung, mit einem Coach an eurer Seite.
-      angebot: Knowledge Excellence Coach
+      text: In ein bis zwei Tagen von den Grundlagen zum Konzept nach ISO 30401.
+      angebot: Strategie-Workshop
       link: angebote/#strategisch
     - zitat: Bei uns findet niemand etwas.
       text: Wikis, Intranet und KI-Assistenten so aufbauen, dass sie genutzt werden.
