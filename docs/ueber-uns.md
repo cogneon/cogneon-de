@@ -13,7 +13,7 @@ Die Cogneon GmbH wurde am 21.12.2001 gegründet. Wir helfen Unternehmen, Organis
 
 ## Vision
 
-**Gesellschaft** und **Wirtschaft** im **21. Jahrhundert** sind durch **dauerhaften Wandel** gekennzeichnet. Das wird oft mit der Abkürzung [VUCA](https://de.wikipedia.org/wiki/VUCA) beschrieben (en. für Volatilität, Unsicherheit, Komplexität und Mehrdeutigkeit) . **Einzelpersonen** und **Organisationen** aller Art müssen sich darauf durch **kontinuierliches Lernen** einstellen. Sonst werden sie in Zukunft keinen **Erfolg** haben und das **Wohlergehen** aller kann nicht garantiert werden.
+**Gesellschaft** und **Wirtschaft** im **21. Jahrhundert** sind durch **dauerhaften Wandel** gekennzeichnet. Das wird oft mit der Abkürzung [VUCA](https://de.wikipedia.org/wiki/VUCA) beschrieben (en. für Volatilität, Unsicherheit, Komplexität und Mehrdeutigkeit) . **Einzelpersonen** und **Organisationen** aller Art sollten sich darauf durch **kontinuierliches Lernen** einstellen, um in Zukunft erfolgreich zu sein.
 
 In Vergangenheit wurden unter Schlagworten wie [Wissensmanagement](https://de.wikipedia.org/wiki/Wissensmanagement), [Digitale Transformation](https://de.wikipedia.org/wiki/Digitale_Transformation), [Agilität](https://de.wikipedia.org/wiki/Agilit%C3%A4t_(Management)), [Weiterbildung](https://de.wikipedia.org/wiki/Erwachsenen-_und_Weiterbildung), [Digitaler Arbeitsplatz](https://de.wikipedia.org/wiki/Digital_Workplace), [Lebenslanges Lernen](https://de.wikipedia.org/wiki/Lebenslanges_Lernen) etc. schon viele **gute Ansätze** entwickelt. Im nächsten Schritt geht es darum, diese zu **systematisieren** und **in die Breite** zu **bringen**.
 
@@ -22,13 +22,16 @@ Erfahren sie auf unserer Seite, wie unsere **Vision der Lernenden Gesellschaft**
 ## Partner und Netzwerk
 
 - [Corporate Learning Community](https://colearn.de)
-- [Das Demographie Netzwerk e.V.](http://demographie-netzwerk.de/)
-- [Gesellschaft für Wissensmanagement e.V.](https://gfwm.de)
+- [Das Demographie Netzwerk](http://demographie-netzwerk.de/)
+- [Gesellschaft für Wissensmanagement](https://gfwm.de)
 - [New Club of Paris](http://new-club-of-paris.org/)
 
 ## Cogneon im Netz
 
-- [Linkedin – Fachliche Beiträge, Neuigkeiten Events & Co.](https://www.linkedin.com/company/2404206/)
-- [Mastodon – Fachliche Beiträge, Neuigkeiten Events & Co. (meist identisch mit Linkedin)](https://colearn.social/@cogneon)
-- [Youtube – Mitschnitte von Veranstaltungen, Interviews, Screencasts.](http://youtube.com/cogneon)
+- [Linkedin](https://www.linkedin.com/company/2404206/) – Fachliche Beiträge, Neuigkeiten Events & Co.
+- [Mastodon](https://colearn.social/@cogneon) – Fachliche Beiträge, Neuigkeiten Events & Co. (meist identisch mit Linkedin)
+- [Meetup](https://www.meetup.com/cogneon/) - Ankündungen und Einladungen zu Events & Veranstaltungen
+- [Youtube](http://youtube.com/cogneon) – Mitschnitte von Veranstaltungen, Interviews, Screencasts
+- [CONNECT](https://community.cogneon.de) - Unsere Community-Plattform für Diskussion und Austausch
+- [COPOD](https://podcasts.cogneon.io) - Plattform für Podcasts und Audio-Inhalte (auch auf anderen Audio-Plattformen verfügbar)
 

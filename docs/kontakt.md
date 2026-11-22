@@ -27,16 +27,18 @@ Tel.: +49 911 39570830
 
 ## Anreise
 
-**Route planen:** [OpenStreetMap](https://www.openstreetmap.org/directions?route=%3B49.4639412%2C11.0694807#map=17/49.46394/11.06948) · [Google Maps](https://www.google.com/maps/dir/?api=1&destination=49.4639412%2C11.0694807) · [Apple Karten](https://maps.apple.com/?daddr=49.4639412,11.0694807)
+- **Route planen:** [OpenStreetMap](https://www.openstreetmap.org/directions?route=%3B49.4639412%2C11.0694807#map=17/49.46394/11.06948) · [Google Maps](https://www.google.com/maps/dir/?api=1&destination=49.4639412%2C11.0694807) · [Apple Karten](https://maps.apple.com/?daddr=49.4639412,11.0694807)
+- **Mit ÖPNV:** Vom Hauptbahnhof Nürnberg mit [Linie U3](http://www.vgn.de/komfortauskunft/ttb/?lineName=U3) bis Haltestelle Friedrich-Ebert-Platz ca. 7 Min.<br>
+- **Mit dem Flugzeug:** Vom [Flughafen Nürnberg](http://www.airport-nuernberg.de) mit dem Taxi ca. 15 Min.
 
 <div class="cg-karte"><p><a href="https://www.openstreetmap.org/node/3255611047">Cogneon Akademie auf OpenStreetMap</a></p></div>
 
-**Mit ÖPNV:** vom Hauptbahnhof Nürnberg mit [Linie U3](http://www.vgn.de/komfortauskunft/ttb/?lineName=U3) bis Friedrich-Ebert-Platz ca. 7 Min.<br>
-**Mit dem Flugzeug:** vom [Flughafen Nürnberg](http://www.airport-nuernberg.de) mit dem Taxi ca. 15 Min.
 
 <br>
 **Hotelempfehlungen:**
 
-- [Noris City](https://www.uniqstay.de/hotels/noris-city) (früher Hotel Centro), Bucher Str. 125
-- [Azimut](https://azimuthotels.de/de/nuremberg/azimut-hotel-nuremberg)
-- [Motel One](http://www.motel-one.com/de/hotels/nuernberg/hotel-nuernberg-plaerrer/)
+- [Noris City](https://www.uniqstay.de/hotels/noris-city) - am nächsten zu Fuß (früher Hotel Centro)
+- [Invite Hotel Nürnberg City](https://invite-hotels.de/content/unsere-hotels/nuernberg/invite-hotel-nuernberg-city/) - gut fußläufig zu erreichen (früher Azimut)
+- [Hotel Burgschmiet](https://hotel-burgschmiet.de/) - gegenüber der Burg, außerhalb der Mauer
+- [Dürer Hotel](https://www.duerer-hotel.de/) - direkt in der Altstadt in der Nähe der Burg
+- [Motel One](http://www.motel-one.com/de/hotels/nuernberg/hotel-nuernberg-plaerrer/) - direkte Verbindung mit Straßenbahn
