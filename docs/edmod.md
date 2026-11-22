@@ -1,5 +1,7 @@
 ---
 title: Expert Debriefing Praxis-Ausbildung
+termine_kategorie: edmod
+frozen: true
 wp:
   id: 8966
   link: https://cogneon.de/edmod/
@@ -31,18 +33,8 @@ Die Ausbildung kombiniert Online-Theorie, zwei intensive Praxistage und ein eige
 - **Schritt 1 – Live-Online-Training (ca. 1 Stunde)** Du lernst die Grundlagen des Wissenstransfers und den Expert Debriefing Referenzprozess anhand eines konkreten Praxisbeispiels kennen.
 - **Schritt 2 – Online-Kurs Expert Debriefing (Selbststudium)** Im begleitenden Online-Kurs vertiefst du die Theorie in deinem eigenen Tempo – als Vorbereitung auf die Praxistage.
 - **Schritt 3 – Praxis an zwei Tagen** Du führst ein vollständiges Expert Debriefing selbst durch und erhältst direktes Feedback zu jedem Prozessschritt. Das Expert Debriefing Toolkit – mit Checklisten, Vorlagen, Netzwerkdiagrammen, Lessons-Learned-Formaten und mehr – steht dir danach dauerhaft zur Verfügung.
-- **Schritt 4 – Eigenes Praxisprojekt** Du bearbeitest ein eigenes Expert Debriefing in deiner Organisation. Beim Erfahrungsaustausch (2–4 Wochen später) stellst du deinen Fall vor und besprichst offene Fragen mit der Gruppe.List item
+- **Schritt 4 – Eigenes Praxisprojekt** Du bearbeitest ein eigenes Expert Debriefing in deiner Organisation. Beim Erfahrungsaustausch (2–4 Wochen später) stellst du deinen Fall vor und besprichst offene Fragen mit der Gruppe.
 
 ## Die nächsten Termine
 
-### 20.-21.05.2026 (edmod26a)
-
-Praxistage: 20.05. (10:00-17:00 Uhr) – 21.05. (09:00-16:00 Uhr); Live-Online-Training: 11.05. (13:00-13:55 Uhr).
-
-[Jetzt buchen](https://pretix.eu/cogneon/edmod26a/){ .cg-button }
-
-### 18.-19.11.2026 (edmod26b)
-
-Praxistage: 18.11. (10:00-16:00 Uhr) – 19.11. (09:00-16:00 Uhr); Live-Online-Training: 09.11. (15:00-15:55 Uhr).
-
-[Jetzt buchen](https://pretix.eu/cogneon/edmod26b/){ .cg-button }
+<!-- termine -->

@@ -381,6 +381,9 @@ def build_events(root: Path, today: dt.date, site_url: str = "https://cogneon.de
     daten = {"kommend": [lang(e) for e in kommend], "archiv": archiv,
              "zeiten": {e["url"]: e["zeitraum"] for e in events},
              "kategorien_je_termin": {e["url"]: [list(k) for k in e["kategorien"]] for e in events},
+             # Kommende Termine je Kategorie, für Seiten mit termine_kategorie im Front Matter.
+             "kommend_je_kategorie": {s: [lang(e) for e in c["termine"] if e["ende"].date() >= today]
+                                      for s, c in kategorien.items()},
              # Anmeldeknopf nur bei kommenden Terminen mit Anmeldelink.
              "anmeldung": {e["url"]: e["anmeldung"] for e in events
                            if e["anmeldung"] and e["ende"].date() >= today},
