@@ -251,3 +251,27 @@ def test_podcast_neueste_und_angepinnte_folgen(tmp_path):
         ("Apple Podcasts", "https://podcasts.apple.com/de/podcast/keep-calm-learn-on/id714087020"),
         ("Spotify", "https://open.spotify.com/show/672J7qThg0wQq1P8jb4N1f")]
     assert build_data.podcast_dauer("00:48:58") == 49
+
+
+def test_mastodon_ankuendigungen(tmp_path):
+    import mastodon
+    write(tmp_path / "zensical.toml", 'site_url = "https://cogneon.de/"\n')
+    write(tmp_path / "docs/blog/posts/2026/neu.md", "---\ntitle: Neu\ndate: 2026-11-20\n---\nText\n")
+    write(tmp_path / "docs/blog/posts/2026/alt.md", "---\ntitle: Alt\ndate: 2026-01-01\n---\nText\n")
+    write(tmp_path / "docs/blog/posts/2026/entwurf.md", "---\ntitle: E\ndate: 2026-11-20\ndraft: true\n---\n")
+    write(tmp_path / "docs/event/treff.md", "---\ntitle: Treff\nbeginn: 2026-12-03 10:00\nende: 2026-12-03 11:00\nonline: true\n---\nText\n")
+    toots, hinweise = mastodon.ankuendigungen(tmp_path, [
+        "docs/blog/posts/2026/neu.md", "docs/blog/posts/2026/alt.md",
+        "docs/blog/posts/2026/entwurf.md", "docs/event/treff.md"], dt.date(2026, 11, 22))
+    assert [t["url"] for t in toots] == ["https://cogneon.de/2026/11/20/neu/", "https://cogneon.de/event/treff/"]
+    assert toots[0]["text"] == "Neuer Blog-Beitrag auf cogneon.de: Neu\n\nhttps://cogneon.de/2026/11/20/neu/"
+    assert toots[1]["text"].startswith("Neuer Termin auf cogneon.de: Treff (")
+    assert len(hinweise) == 2
+
+
+def test_social_seiten_url():
+    import build_social
+    assert build_social.seiten_url(Path("index.md")) == ""
+    assert build_social.seiten_url(Path("en/index.md")) == "en/"
+    assert build_social.seiten_url(Path("edmod.md")) == "edmod/"
+    assert build_social.seiten_url(Path("en/services.md")) == "en/services/"

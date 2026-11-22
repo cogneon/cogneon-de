@@ -3,6 +3,26 @@
 {% block fonts %}{% endblock %}
 {% block extrahead %}
   <link rel="alternate" type="application/rss+xml" title="Cogneon Blog" href="{{ 'feed.xml' | url }}">
+  {#- Vorschau beim Teilen (LinkedIn, Mastodon ...): Bilder von scripts/build_social.py. -#}
+  {% import "partials/social-daten.html" as sd %}
+  {% set basis_og = config.site_url | d("https://cogneon.de/", true) %}
+  {% set og_titel = page.meta.title if page.meta and page.meta.title else (page.title | d(config.site_name, true)) %}
+  {% set og = sd.social[page.url] if page.url in sd.social else (sd.social[""] if "" in sd.social else none) %}
+  {% set og_eigen = page.url in sd.social %}
+  {% set og_text = sd.social[page.url].text if og_eigen and sd.social[page.url].text else config.site_description %}
+  {% set og_bild = og.bild if og else "" %}
+  <meta property="og:type" content="{{ 'article' if page.url is startingwith('20') else 'website' }}">
+  <meta property="og:site_name" content="Cogneon">
+  <meta property="og:title" content="{{ og_titel | striptags }}">
+  <meta property="og:description" content="{{ og_text | striptags }}">
+  <meta property="og:url" content="{{ basis_og }}{{ page.url }}">
+  <meta property="og:locale" content="{{ 'en_US' if page.url is startingwith('en/') else 'de_DE' }}">
+  {% if og_bild %}
+  <meta property="og:image" content="{{ basis_og }}{{ og_bild }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  {% endif %}
   {#- Sprachfassungen für Suchmaschinen (nur wenn es ein Gegenstück gibt). -#}
   {% import "partials/texte.html" as tx with context %}
   {% set gegen = tx.gegenstueck() %}

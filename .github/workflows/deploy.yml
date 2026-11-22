@@ -39,6 +39,8 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m pytest -q tests
       - run: python scripts/build_data.py
+      - name: Vorschaubilder für soziale Netzwerke
+        run: python scripts/build_social.py
       - run: zensical build
       - name: Alte Adressen prüfen
         run: python scripts/check_urls.py --url-map migration/url-map.csv --url-list migration/old-urls.txt --report-only
@@ -76,11 +78,31 @@ jobs:
           fi
 
           # Zuerst Seiten, Stile und Skripte (jedes Mal vollständig), dann die Medien
-          # (nur neue oder in der Größe geänderte Dateien). Die Markierungsdatei kommt
+          # und Vorschaubilder (nur neue oder in der Größe geänderte Dateien). Die Markierungsdatei kommt
           # zuletzt, damit ein abgebrochener Upload nicht als vollständig gilt.
           mv site/.cogneon-de-deploy /tmp/marke
           lftp -c "$VERBINDUNG; mkdir -p -f $SFTP_PATH;
-            mirror -R $LOESCHEN --verbose=1 --parallel=4 --no-perms --exclude-glob wp-content/ --exclude-glob .cogneon-de-deploy site $SFTP_PATH;
+            mirror -R $LOESCHEN --verbose=1 --parallel=4 --no-perms --exclude-glob wp-content/ --exclude-glob assets/social/ --exclude-glob .cogneon-de-deploy site $SFTP_PATH;
             mirror -R $LOESCHEN --verbose=1 --parallel=4 --ignore-time --no-perms site/wp-content $SFTP_PATH/wp-content;
+            mkdir -p -f $SFTP_PATH/assets/social;
+            mirror -R $LOESCHEN --verbose=1 --parallel=4 --ignore-time --no-perms site/assets/social $SFTP_PATH/assets/social;
             put -O $SFTP_PATH /tmp/marke -o .cogneon-de-deploy" | tail -n 40
           echo "Hochgeladen: $(find site -type f | wc -l) Dateien, $(du -sh site | cut -f1)." | tee -a "$GITHUB_STEP_SUMMARY"
+      # Neue Blogbeiträge und Termine aus diesem Merge auf Mastodon ankündigen.
+      # Nur bei einem Merge (nicht bei den nächtlichen Läufen) und nur, wenn die
+      # Secrets MASTODON_INSTANZ (z.B. https://mastodon.social) und MASTODON_TOKEN
+      # gesetzt sind. Ein Fehler hier stoppt die Veröffentlichung nicht.
+      - name: Auf Mastodon ankündigen
+        if: github.event_name == 'push'
+        continue-on-error: true
+        env:
+          MASTODON_INSTANZ: ${{ secrets.MASTODON_INSTANZ }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          VORHER: ${{ github.event.before }}
+        run: |
+          if ! git fetch -q --no-tags --depth=1 origin "$VORHER"; then
+            echo "Vorheriger Stand nicht abrufbar, nichts angekündigt." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git diff --name-only --diff-filter=A "$VORHER" HEAD -- docs/blog/posts docs/event \
+            | python scripts/mastodon.py | tee -a "$GITHUB_STEP_SUMMARY"

@@ -28,3 +28,5 @@ overrides/partials/hinweis-daten.html
 *.tar.gz
 migration/redirects-hashtags.map
 overrides/partials/podcast-daten.html
+overrides/partials/social-daten.html
+docs/assets/social/

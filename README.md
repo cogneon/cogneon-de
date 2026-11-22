@@ -22,6 +22,8 @@ Stand: Aufbau und Test. Die Live-Website läuft weiter auf WordPress, bis der Um
 | `scripts/build_htaccess.py` | erzeugt `site/.htaccess`: Weiterleitungen aus `migration/redirects*.map` und Server-Regeln |
 | `scripts/wp_export.py` | wiederholbarer Export aus WordPress |
 | `scripts/check_urls.py` | prüft, ob alle alten URLs erreichbar bleiben |
+| `scripts/build_social.py` | Vorschaubilder und Beschreibungen fürs Teilen (`docs/assets/social/`) |
+| `scripts/mastodon.py` | kündigt neue Beiträge und Termine auf Mastodon an (im Deploy) |
 | `scripts/check_umzug.py` | spielt die Weiterleitungen der `.htaccess` gegen `site/` durch: alte WordPress-Adressen und interne Links, Bericht `migration/umzug-check.md` |
 | `migration/` | Berichte des Exports (Inventar, URL-Liste, URL-Check) |
 
@@ -416,6 +418,30 @@ also jede Nacht und bei jedem Merge neu. Von Hand gepflegt wird nur
 Ist der Feed beim Bauen nicht erreichbar, bleibt der letzte Stand bzw. der
 Abschnitt entfällt; der Build läuft weiter. Lokal testen ohne Netz:
 `python3 scripts/build_data.py --podcast-feed tests/daten/podcast-feed.xml`.
+
+## Teilen in sozialen Netzwerken
+
+**Vorschaubilder:** Jede Seite, jeder Beitrag und jeder Termin bekommt beim
+Veröffentlichen ein Vorschaubild 1200x630 (Logo, Art, Titel, Datum/Ort), das
+LinkedIn, Mastodon, Signal & Co. beim Teilen eines Links zeigen. Dazu
+Beschreibung (Anriss des Textes) und Titel als `og:`-Angaben.
+`scripts/build_social.py` zeichnet nur geänderte Bilder neu. Lokal ist das
+nicht nötig; wer die Bilder sehen will: `python3 scripts/build_social.py`,
+Ergebnis in `docs/assets/social/`.
+
+**Mastodon:** Nach einem Merge postet GitHub für jeden neuen Blogbeitrag und
+jeden neuen Termin einen Toot ("Neuer Blog-Beitrag auf cogneon.de: Titel" +
+Link). Voraussetzung: Secrets `MASTODON_INSTANZ` (z.B.
+`https://mastodon.social`) und `MASTODON_TOKEN` (Mastodon: Einstellungen >
+Entwicklung > Neue Anwendung, Recht `write:statuses` und
+`read:accounts`/`read:statuses`). Ohne Secrets passiert nichts. Nicht gepostet
+werden Entwürfe, Beiträge älter als 14 Tage oder mit Datum in der Zukunft,
+vergangene Termine und alles, wenn mehr als 3 neue Einträge auf einmal kommen
+(Import). Was passiert ist, steht in der Zusammenfassung des Laufs unter Actions.
+
+**LinkedIn:** Den Blog-Feed `https://cogneon.de/feed.xml` in der
+Einstellungen der Unternehmensseite unter "Manage Content Sharing" eintragen
+(deutsche Oberfläche: sinngemäß "Inhalte teilen").
 
 ## Hinweisleiste
 
