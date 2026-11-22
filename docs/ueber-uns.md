@@ -29,7 +29,7 @@ Erfahren sie auf unserer Seite, wie unsere **Vision der Lernenden Gesellschaft**
 ## Cogneon im Netz
 
 - [Linkedin](https://www.linkedin.com/company/2404206/) – Fachliche Beiträge, Neuigkeiten Events & Co.
-- [Mastodon](https://colearn.social/@cogneon) – Fachliche Beiträge, Neuigkeiten Events & Co. (meist identisch mit Linkedin)
+- [Mastodon](https://mastodon.social/@cogneon) – Fachliche Beiträge, Neuigkeiten Events & Co. (meist identisch mit Linkedin)
 - [Meetup](https://www.meetup.com/cogneon/) - Ankündungen und Einladungen zu Events & Veranstaltungen
 - [Youtube](http://youtube.com/cogneon) – Mitschnitte von Veranstaltungen, Interviews, Screencasts
 - [CONNECT](https://community.cogneon.de) - Unsere Community-Plattform für Diskussion und Austausch

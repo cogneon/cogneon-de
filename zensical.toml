@@ -105,7 +105,7 @@ pymdownx.tasklist.custom_checkbox = true
 [project.extra]
 # Mastodon-Profil von Cogneon. Steht hier eine Adresse, verweist jede Seite mit
 # rel="me" darauf; Mastodon zeigt dann bei cogneon.de im Profil den grünen Haken.
-mastodon = ""
+mastodon = "https://mastodon.social/@cogneon"
 erstgespraech = "kontakt/#erstgespraech"
 community = "https://community.cogneon.de/"
 community_kalender = "https://community.cogneon.de/t/community-kalender-2024/3868"
