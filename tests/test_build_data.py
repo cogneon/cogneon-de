@@ -308,3 +308,12 @@ def test_bluesky_post_text_mit_link_facette():
     assert roh[f["byteStart"]:f["byteEnd"]].decode() == url
     lang = bluesky.post_text({"url": url, "text": "Neuer Termin auf cogneon.de: " + "Ä" * 400 + f"\n\n{url}"})[0]
     assert len(lang) <= bluesky.MAX_ZEICHEN and lang.endswith(url) and "…" in lang
+
+
+def test_feed_behaelt_wordpress_kennung(tmp_path):
+    write(tmp_path / "docs/blog/posts/2026/alt.md", "---\ntitle: Alt\ndate: 2026-11-01\nwp:\n  id: 4711\n---\nText\n")
+    write(tmp_path / "docs/blog/posts/2026/neu.md", "---\ntitle: Neu\ndate: 2026-11-02\n---\nText\n")
+    build_data.build_feed(tmp_path)
+    xml = (tmp_path / "docs/feed.xml").read_text(encoding="utf-8")
+    assert '<guid isPermaLink="false">https://cogneon.de/?p=4711</guid>' in xml
+    assert '<guid isPermaLink="true">https://cogneon.de/2026/11/02/neu/</guid>' in xml
