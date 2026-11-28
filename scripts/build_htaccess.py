@@ -24,7 +24,12 @@ AddDefaultCharset utf-8
 AddType text/calendar .ics
 AddType application/rss+xml .xml
 ErrorDocument 404 /404.html
-Options -Indexes
+Options -Indexes -MultiViews
+# Keine automatische "Tippfehler-Korrektur" des Servers (mod_speling): sonst
+# landet z.B. /blp27/ auf /blp26/ statt auf der 404-Seite.
+<IfModule mod_speling.c>
+  CheckSpelling Off
+</IfModule>
 
 # Nur cogneon.de darf in Suchmaschinen erscheinen, Vorschau-Adressen nicht.
 SetEnvIfNoCase Host "^(www\\.)?cogneon\\.de$" COGNEON_LIVE
