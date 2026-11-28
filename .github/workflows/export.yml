@@ -38,8 +38,8 @@ jobs:
       LIMIT: ${{ inputs.limit || '10' }}
       MEDIEN: ${{ ((github.event_name == 'workflow_dispatch' && inputs.medien == false) || contains(github.event.head_commit.message, '[ohne-medien]')) && 'nein' || 'ja' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -48,16 +48,17 @@ jobs:
         env:
           WP_USER: ${{ secrets.WP_USER }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          WP_BASIS: ${{ vars.WP_BASIS || secrets.WP_BASIS }}
         run: |
           ARGS=""
           if [ "$MODUS" = "inventar" ]; then ARGS="--inventory-only"; fi
           if [ "$MODUS" = "pilot" ]; then ARGS="--limit $LIMIT --raw"; fi
           if [ "$MODUS" = "voll" ]; then ARGS="--raw"; fi
           if [ "$MEDIEN" = "nein" ]; then ARGS="$ARGS --no-media"; fi
-          python scripts/wp_export.py $ARGS
+          python scripts/wp_export.py --base-url "${WP_BASIS:-https://archiv.cogneon.de}" $ARGS
       - name: Alte URLs aus der Sitemap sichern
         if: always()
-        run: python scripts/check_urls.py --sitemap https://cogneon.de/wp-sitemap.xml --save-list migration/old-urls.txt --report-only || true
+        run: python scripts/check_urls.py --sitemap https://archiv.cogneon.de/wp-sitemap.xml --save-list migration/old-urls.txt --report-only || true
       - name: Bericht
         if: always()
         run: |
@@ -108,7 +109,7 @@ jobs:
           done
           git commit -q -m "Inhalte und Medien aus WordPress, Export vom $(date -u +%d.%m.%Y)" || echo "nichts zu übernehmen"
           git push -q --force origin inhalt/aus-export
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: always()
         with:
           name: wordpress-export
