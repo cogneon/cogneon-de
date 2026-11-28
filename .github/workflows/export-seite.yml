@@ -1,0 +1,59 @@
+# Eine einzelne WordPress-Seite übernehmen (z.B. blp27), ohne vollen Export.
+#
+# Auslösen: Actions > "WordPress-Einzelseite" > Run workflow > Adresse eingeben.
+# Ergebnis: Branch inhalt/seite-<adresse> mit docs/<adresse>.md und den Bildern
+# der Seite. Daraus einen Pull Request öffnen. Seiten mit frozen: true bleiben
+# unangetastet. Nur solange WordPress noch erreichbar ist.
+name: WordPress-Einzelseite
+
+on:
+  workflow_dispatch:
+    inputs:
+      seite:
+        description: "Adresse der Seite ohne Schrägstriche, z.B. blp27"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  seite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SEITE: ${{ inputs.seite }}
+      # Nach der Umstellung liegt WordPress unter archiv.cogneon.de.
+      WP_BASIS: ${{ vars.WP_BASIS || 'https://cogneon.de' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Seite exportieren
+        env:
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          case "$SEITE" in (*[!a-z0-9-]*|"") echo "Ungültige Adresse: $SEITE"; exit 1;; esac
+          python scripts/wp_export.py --base-url "$WP_BASIS" --types pages --slug "$SEITE" --out .einzel/docs
+          test -f ".einzel/docs/$SEITE.md" || { echo "Seite $SEITE nicht exportiert"; cat migration/report.md; exit 1; }
+      - name: In Branch inhalt/seite-<adresse> übernehmen
+        run: |
+          if grep -q '^frozen: true' "docs/$SEITE.md" 2>/dev/null; then
+            echo "docs/$SEITE.md ist frozen, nichts übernommen." | tee -a "$GITHUB_STEP_SUMMARY"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -q -- migration docs 2>/dev/null || true
+          git checkout -q -B "inhalt/seite-$SEITE"
+          cp ".einzel/docs/$SEITE.md" "docs/$SEITE.md"
+          # Nur die Bilder, die diese Seite verwendet.
+          grep -o 'wp-content/[^)" ]*' "docs/$SEITE.md" | sort -u | while read -r f; do
+            if [ -f ".einzel/docs/$f" ]; then mkdir -p "docs/$(dirname "$f")"; cp ".einzel/docs/$f" "docs/$f"; fi
+          done
+          git add "docs/$SEITE.md" docs/wp-content
+          git commit -q -m "WordPress-Seite $SEITE übernommen ($(date -u +%d.%m.%Y))" || { echo "Keine Änderung" | tee -a "$GITHUB_STEP_SUMMARY"; exit 0; }
+          git push -q --force origin "inhalt/seite-$SEITE"
+          echo "Branch inhalt/seite-$SEITE bereit - daraus einen Pull Request öffnen." | tee -a "$GITHUB_STEP_SUMMARY"

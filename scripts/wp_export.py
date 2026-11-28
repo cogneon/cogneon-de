@@ -916,8 +916,12 @@ class Export:
 
     def export_pages(self):
         fields = "id,date,modified,slug,link,title,content,parent,menu_order,template"
-        pages = list(self.wp.items("wp/v2/pages", {"_fields": fields, "orderby": "id",
-                                                   "order": "asc"}, self.args.limit))
+        params = {"_fields": fields, "orderby": "id", "order": "asc"}
+        if getattr(self.args, "slug", None):
+            params["slug"] = self.args.slug   # nur diese eine Seite
+        pages = list(self.wp.items("wp/v2/pages", params, self.args.limit))
+        if getattr(self.args, "slug", None) and not pages:
+            self.problems.append(f"Seite mit Adresse '{self.args.slug}' nicht gefunden")
         paths = [url_path(p["link"]) for p in pages]
         redirected = redirect_sources(self.migration)
         for page in pages:
@@ -1126,6 +1130,7 @@ def main(argv=None) -> int:
     parser.add_argument("--types", default="posts,pages,events,redirects",
                         type=lambda s: [t.strip() for t in s.split(",") if t.strip()])
     parser.add_argument("--limit", type=int, help="nur die ersten N Einträge je Typ (Pilot)")
+    parser.add_argument("--slug", help="nur die Seite mit dieser Adresse, z.B. blp27 (mit --types pages)")
     parser.add_argument("--no-media", action="store_true", help="keine Medien laden")
     parser.add_argument("--raw", action="store_true",
                         help="Original-HTML je Seite nach migration/raw/ schreiben (zur Fehlersuche)")

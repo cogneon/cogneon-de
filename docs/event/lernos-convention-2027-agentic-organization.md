@@ -21,4 +21,3 @@ bild:
 
 Die **lernOS Convention** findet 2027 vom 15.-16. Juni wieder im Rahmen des [Nürnberger Digital Festivals](https://nuernberg.digital/) statt.
 
-[Jetzt anmelden](https://pretix.eu/cogneon/){ .cg-button }
