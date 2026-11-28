@@ -1,6 +1,6 @@
 ---
 title: About us
-description: Cogneon GmbH, founded in 2001 in Nuremberg, helps organizations succeed through the systematic use of knowledge.
+description: Cogneon GmbH, founded in 2001, helps organizations succeed through the systematic use of knowledge.
 quelle: ueber-uns.md
 quelle_hash: "61572eaa3d50"
 ---
