@@ -28,7 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import build_data  # noqa: E402
-from mastodon import HOECHSTENS, ankuendigungen, site_url  # noqa: E402
+from mastodon import HOECHSTENS, ankuendigungen, faellige_dateien, site_url  # noqa: E402
 
 OEFFENTLICH = "https://public.api.bsky.app"
 MAX_ZEICHEN = 300
@@ -68,11 +68,17 @@ def main(argv=None) -> int:
     ap.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     ap.add_argument("--probe", action="store_true", help="nur anzeigen, nichts posten")
     ap.add_argument("--heute", help="Stichtag JJJJ-MM-TT (zum Testen)")
+    ap.add_argument("--faellig", action="store_true",
+                    help="statt neuer Dateien von stdin: vordatierte Beiträge, die heute erscheinen")
     ap.add_argument("--zuordnung", type=Path, help="JSON-Datei Beitrag -> Bluesky-Post, wird ergänzt")
     args = ap.parse_args(argv)
-    heute = build_data.as_date(args.heute) if args.heute else dt.date.today()
+    heute = build_data.as_date(args.heute) if args.heute else build_data.stichtag()
+    build_data.STICHTAG = heute
 
-    dateien = [z.strip() for z in sys.stdin.read().splitlines() if z.strip()]
+    if args.faellig:
+        dateien = faellige_dateien(args.root, heute, args.zuordnung)
+    else:
+        dateien = [z.strip() for z in sys.stdin.read().splitlines() if z.strip()]
     posts, hinweise = ankuendigungen(args.root, dateien, heute)
     for h in hinweise:
         print(h)

@@ -109,7 +109,7 @@ def seiten_url(rel: Path) -> str:
 def karten(root: Path) -> list[dict]:
     docs = root / "docs"
     liste = []
-    for p in build_data.all_posts(docs / "blog" / "posts"):
+    for p in build_data.all_posts(docs / "blog" / "posts", auch_zukuenftige=True):
         liste.append({"url": p["url"], "art": "Blog", "titel": p["titel"], "zeile": p["datum"],
                       "text": build_data.excerpt(p["pfad"].read_text(encoding="utf-8"), 200)})
     for e in build_data.all_events(root):

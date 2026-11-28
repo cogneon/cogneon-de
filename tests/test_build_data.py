@@ -308,3 +308,18 @@ def test_bluesky_post_text_mit_link_facette():
     assert roh[f["byteStart"]:f["byteEnd"]].decode() == url
     lang = bluesky.post_text({"url": url, "text": "Neuer Termin auf cogneon.de: " + "Ä" * 400 + f"\n\n{url}"})[0]
     assert len(lang) <= bluesky.MAX_ZEICHEN and lang.endswith(url) and "…" in lang
+
+
+def test_vordatierte_beitraege_erscheinen_erst_an_ihrem_tag(tmp_path, monkeypatch):
+    import mastodon
+    write(tmp_path / "docs/blog/posts/2026/heute.md", "---\ntitle: Heute\ndate: 2026-11-30\n---\nText\n")
+    write(tmp_path / "docs/blog/posts/2026/morgen.md", "---\ntitle: Morgen\ndate: 2026-12-01\n---\nText\n")
+    write(tmp_path / "docs/blog/posts/2026/alt.md", "---\ntitle: Alt\ndate: 2026-11-01\n---\nText\n")
+    monkeypatch.setattr(build_data, "STICHTAG", dt.date(2026, 11, 30))
+    posts = tmp_path / "docs/blog/posts"
+    assert [p["titel"] for p in build_data.all_posts(posts)] == ["Heute", "Alt"]
+    assert [p["titel"] for p in build_data.all_posts(posts, auch_zukuenftige=True)] == ["Morgen", "Heute", "Alt"]
+    zuordnung = tmp_path / "z.json"
+    assert mastodon.faellige_dateien(tmp_path, dt.date(2026, 11, 30), zuordnung) == ["docs/blog/posts/2026/heute.md"]
+    zuordnung.write_text('{"2026/11/30/heute/": "https://mastodon.social/@cogneon/1"}')
+    assert mastodon.faellige_dateien(tmp_path, dt.date(2026, 11, 30), zuordnung) == []

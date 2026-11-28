@@ -452,6 +452,12 @@ Profilbilder). Idee nach Carl Schwan.
 - Einzelne Antworten ausblenden: Link der Antwort in `inhalte/kommentare.yml`
   unter `ausblenden`.
 
+**Vordatierte Beiträge:** Ein Blogbeitrag mit Datum in der Zukunft kann
+schon vorher gemergt werden. Er erscheint an seinem Tag mit dem nächtlichen
+Lauf (gegen 4:30 Uhr) auf Website, Startseite und im Feed und wird um 7:37 Uhr
+(Sommer 8:37 Uhr) auf Mastodon und Bluesky angekündigt. In der lokalen
+Vorschau ist er schon vorher zu sehen.
+
 **Bluesky:** Genauso wie Mastodon, über `scripts/bluesky.py` mit einer
 Link-Karte samt Vorschaubild. Secrets: `BLUESKY_HANDLE`
 (`cogneon.eurosky.social`) und `BLUESKY_APP_PASSWORD` (App-Passwort, nicht das
