@@ -42,11 +42,13 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python -m pytest -q tests
-      - name: Zuordnung Beitrag -> Toot holen (Kommentare)
+      - name: Zuordnung Beitrag -> Mastodon/Bluesky holen (Kommentare)
         run: |
           mkdir -p .daten
           if git fetch -q --no-tags --depth=1 origin daten/mastodon 2>/dev/null; then
-            git show FETCH_HEAD:mastodon.json > .daten/mastodon.json
+            for f in mastodon.json bluesky.json; do
+              git show "FETCH_HEAD:$f" > ".daten/$f" 2>/dev/null || rm -f ".daten/$f"
+            done
           fi
       - run: python scripts/build_data.py
       - name: Vorschaubilder für soziale Netzwerke
@@ -98,16 +100,21 @@ jobs:
             mirror -R $LOESCHEN --verbose=1 --parallel=4 --ignore-time --no-perms site/assets/social $SFTP_PATH/assets/social;
             put -O $SFTP_PATH /tmp/marke -o .cogneon-de-deploy" | tail -n 40
           echo "Hochgeladen: $(find site -type f | wc -l) Dateien, $(du -sh site | cut -f1)." | tee -a "$GITHUB_STEP_SUMMARY"
-      # Neue Blogbeiträge und Termine aus diesem Merge auf Mastodon ankündigen.
-      # Nur bei einem Merge (nicht bei den nächtlichen Läufen) und nur, wenn die
-      # Secrets MASTODON_INSTANZ (z.B. https://mastodon.social) und MASTODON_TOKEN
-      # gesetzt sind. Ein Fehler hier stoppt die Veröffentlichung nicht.
-      - name: Auf Mastodon ankündigen
+      # Neue Blogbeiträge und Termine aus diesem Merge auf Mastodon und Bluesky
+      # ankündigen. Nur bei einem Merge (nicht bei den nächtlichen Läufen) und
+      # nur für Netzwerke, deren Secrets gesetzt sind:
+      #   Mastodon: MASTODON_INSTANZ, MASTODON_TOKEN
+      #   Bluesky:  BLUESKY_HANDLE, BLUESKY_APP_PASSWORD
+      # Welcher Beitrag zu welchem Post gehört, steht im Branch daten/mastodon
+      # (mastodon.json, bluesky.json). Ein Fehler hier stoppt nichts.
+      - name: Auf Mastodon und Bluesky ankündigen
         if: github.event_name == 'push'
         continue-on-error: true
         env:
           MASTODON_INSTANZ: ${{ secrets.MASTODON_INSTANZ }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           VORHER: ${{ github.event.before }}
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -115,21 +122,30 @@ jobs:
             echo "Vorheriger Stand nicht abrufbar, nichts angekündigt." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          cp .daten/mastodon.json .daten/vorher.json 2>/dev/null || echo "{}" > .daten/vorher.json
-          git diff --name-only --diff-filter=A "$VORHER" HEAD -- docs/blog/posts docs/event \
-            | python scripts/mastodon.py --zuordnung .daten/mastodon.json | tee -a "$GITHUB_STEP_SUMMARY"
-          # Neue Verknüpfungen Beitrag -> Toot im Branch daten/mastodon sichern und
-          # die Website gleich noch einmal bauen, damit "Kommentare" erscheint.
-          if [ -s .daten/mastodon.json ] && ! cmp -s .daten/vorher.json .daten/mastodon.json; then
+          git diff --name-only --diff-filter=A "$VORHER" HEAD -- docs/blog/posts docs/event > .daten/neu.txt
+          for n in mastodon bluesky; do
+            cp ".daten/$n.json" ".daten/$n.vorher" 2>/dev/null || echo "{}" > ".daten/$n.vorher"
+            echo "### $n" | tee -a "$GITHUB_STEP_SUMMARY"
+            python "scripts/$n.py" --zuordnung ".daten/$n.json" < .daten/neu.txt | tee -a "$GITHUB_STEP_SUMMARY" || true
+          done
+          # Neue Verknüpfungen sichern und die Website gleich noch einmal bauen,
+          # damit der Kommentarbereich sofort erscheint.
+          GEAENDERT=""
+          for n in mastodon bluesky; do
+            if [ -s ".daten/$n.json" ] && ! cmp -s ".daten/$n.vorher" ".daten/$n.json"; then GEAENDERT=1; fi
+          done
+          if [ -n "$GEAENDERT" ]; then
             ZWEIG=$(mktemp -d)
             git worktree add -q --detach "$ZWEIG"
             cd "$ZWEIG"
             git checkout -q --orphan daten/mastodon
             git rm -rq --cached . && git clean -fdxq
-            cp "$GITHUB_WORKSPACE/.daten/mastodon.json" mastodon.json
-            git add mastodon.json
+            for n in mastodon bluesky; do
+              [ -s "$GITHUB_WORKSPACE/.daten/$n.json" ] && cp "$GITHUB_WORKSPACE/.daten/$n.json" "$n.json"
+            done
+            git add -A
             git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-              commit -q -m "Kommentare: Zuordnung Beitrag -> Toot ($(date -u +%Y-%m-%d))"
+              commit -q -m "Kommentare: Zuordnung Beitrag -> Post ($(date -u +%Y-%m-%d))"
             git push -q --force origin HEAD:refs/heads/daten/mastodon
             cd "$GITHUB_WORKSPACE"
             gh workflow run deploy.yml --ref main

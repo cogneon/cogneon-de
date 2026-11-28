@@ -76,7 +76,7 @@ Du kannst uns jederzeit **eine E-Mail schreiben**, um ein konkretes Angebot anzu
 
 **Welche weiteren Informationsquellen bietet ihr zu euren Leistungen an?**
 
-Wir haben eine [Linkedin-Seite](https://www.linkedin.com/company/cogneon-gmbh/), ein [Mastodon-Kanal](https://mastodon.social/@cogneon), ein [Bluesky-Konto](https://bsky.app/profile/cogneon.bsky.social), einen [Youtube-Kanal](https://youtube.com/cogneon) und eine eigene [Podcast-Plattform](https://podcasts.cogneon.io). Außerden informieren wir über den [KCLO-Newsletter](/newsletter/) (auch [auf Linkedin](https://www.linkedin.com/newsletters/7024998990765031424/)), eine [Signal Gruppe](https://signal.group/#CjQKIDNQYWGcxr_9b2SvUxNEhfOHGYREkzACWbVAmrW8YXQ6EhBTk-TPGvQVe5ZWqKWVOiuS) und einen [Whatsapp Kanal](https://whatsapp.com/channel/0029VaIEWWd2ZjCpkOZ7jV3C).
+Wir haben eine [Linkedin-Seite](https://www.linkedin.com/company/cogneon-gmbh/), ein [Mastodon-Kanal](https://mastodon.social/@cogneon), ein [Bluesky-Konto](https://bsky.app/profile/cogneon.eurosky.social), einen [Youtube-Kanal](https://youtube.com/cogneon) und eine eigene [Podcast-Plattform](https://podcasts.cogneon.io). Außerden informieren wir über den [KCLO-Newsletter](/newsletter/) (auch [auf Linkedin](https://www.linkedin.com/newsletters/7024998990765031424/)), eine [Signal Gruppe](https://signal.group/#CjQKIDNQYWGcxr_9b2SvUxNEhfOHGYREkzACWbVAmrW8YXQ6EhBTk-TPGvQVe5ZWqKWVOiuS) und einen [Whatsapp Kanal](https://whatsapp.com/channel/0029VaIEWWd2ZjCpkOZ7jV3C).
 
 **Wo kann ich Fragen stellen, mich austauschen und die Community der Cogneon Akademie kennenlernen?**
 

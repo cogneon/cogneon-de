@@ -839,28 +839,44 @@ def toot_teile(url: str) -> dict | None:
     return {"toot": str(url).strip(), "instanz": f"https://{m.group(1).lower()}", "id": m.group(2)} if m else None
 
 
+def bsky_teile(url: str) -> dict | None:
+    """Bluesky-Post-Adresse (bsky.app oder at://) -> Autor (DID/Handle) und rkey."""
+    url = str(url or "").strip()
+    m = (re.match(r"^https://bsky\.app/profile/([^/]+)/post/([a-z0-9]+)/?$", url, re.I)
+         or re.match(r"^at://([^/]+)/app\.bsky\.feed\.post/([a-z0-9]+)$", url, re.I))
+    if not m:
+        return None
+    autor, rkey = m.group(1), m.group(2)
+    return {"post": f"https://bsky.app/profile/{autor}/post/{rkey}", "autor": autor, "rkey": rkey}
+
+
 def build_kommentare(root: Path) -> tuple[dict, list[str]]:
-    """Welcher Blogbeitrag zu welchem Toot gehört: aus .daten/mastodon.json (vom
-    Mastodon-Bot, Branch daten/mastodon) und dem Feld mastodon im Front Matter
-    (hat Vorrang). Dazu inhalte/kommentare.yml (ausblenden)."""
-    zuordnung, probleme = {}, []
-    datei = root / ".daten" / "mastodon.json"
-    if datei.exists():
-        try:
-            zuordnung.update(json.loads(datei.read_text(encoding="utf-8")))
-        except ValueError:
-            probleme.append(f"{datei.relative_to(root)} ist kein gültiges JSON")
+    """Welcher Blogbeitrag zu welchem Mastodon- bzw. Bluesky-Post gehört: aus
+    .daten/mastodon.json und .daten/bluesky.json (vom Bot, Branch daten/mastodon)
+    und den Feldern mastodon und bluesky im Front Matter (haben Vorrang).
+    Dazu inhalte/kommentare.yml (ausblenden)."""
+    probleme = []
+    quellen = {"mastodon": ({}, toot_teile), "bluesky": ({}, bsky_teile)}
+    for netz, (zuordnung, _) in quellen.items():
+        datei = root / ".daten" / f"{netz}.json"
+        if datei.exists():
+            try:
+                zuordnung.update(json.loads(datei.read_text(encoding="utf-8")))
+            except ValueError:
+                probleme.append(f"{datei.relative_to(root)} ist kein gültiges JSON")
     for p in all_posts(root / "docs" / "blog" / "posts"):
-        eigen = frontmatter(p["pfad"]).get("mastodon")
-        if eigen:
-            zuordnung[p["url"]] = str(eigen)
-    beitraege = {}
-    for url, toot in sorted(zuordnung.items()):
-        teile = toot_teile(toot)
-        if teile:
-            beitraege[url] = teile
-        else:
-            probleme.append(f"{url}: keine Toot-Adresse: {toot}")
+        meta = frontmatter(p["pfad"])
+        for netz, (zuordnung, _) in quellen.items():
+            if meta.get(netz):
+                zuordnung[p["url"]] = str(meta[netz])
+    beitraege: dict[str, dict] = {}
+    for netz, (zuordnung, zerlegen) in quellen.items():
+        for url, adresse in sorted(zuordnung.items()):
+            teile = zerlegen(adresse)
+            if teile:
+                beitraege.setdefault(url, {})[netz] = teile
+            else:
+                probleme.append(f"{url}: keine {netz}-Adresse: {adresse}")
     cfg_datei = root / "inhalte" / "kommentare.yml"
     cfg = (yaml.safe_load(cfg_datei.read_text(encoding="utf-8")) or {}) if cfg_datei.exists() else {}
     ausblenden = [str(a).strip() for a in cfg.get("ausblenden") or [] if a]
