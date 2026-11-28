@@ -285,10 +285,26 @@ def test_kommentare_zuordnung(tmp_path):
           '{"2026/11/20/a/": "https://mastodon.social/@cogneon/999", "2026/11/21/b/": "https://x.y/@z/1",'
           ' "2026/11/19/c/": "keine Adresse"}')
     write(tmp_path / "inhalte/kommentare.yml", "ausblenden: [https://a.b/@c/5]\n")
+    write(tmp_path / ".daten/bluesky.json", '{"2026/11/20/a/": "https://bsky.app/profile/did:plc:abc/post/3kxyz"}')
     k, probleme = build_data.build_kommentare(tmp_path)
-    assert k["beitraege"]["2026/11/20/a/"] == {"toot": "https://mastodon.social/@cogneon/999",
-                                              "instanz": "https://mastodon.social", "id": "999"}
-    assert k["beitraege"]["2026/11/21/b/"]["instanz"] == "https://social.cologne"   # Front Matter gewinnt
+    assert k["beitraege"]["2026/11/20/a/"]["mastodon"] == {"toot": "https://mastodon.social/@cogneon/999",
+                                                          "instanz": "https://mastodon.social", "id": "999"}
+    assert k["beitraege"]["2026/11/20/a/"]["bluesky"] == {
+        "post": "https://bsky.app/profile/did:plc:abc/post/3kxyz", "autor": "did:plc:abc", "rkey": "3kxyz"}
+    assert k["beitraege"]["2026/11/21/b/"]["mastodon"]["instanz"] == "https://social.cologne"   # Front Matter gewinnt
+    assert "bluesky" not in k["beitraege"]["2026/11/21/b/"]
+    assert build_data.bsky_teile("at://cogneon.eurosky.social/app.bsky.feed.post/3abc")["autor"] == "cogneon.eurosky.social"
     assert k["ausblenden"] == ["https://a.b/@c/5"] and len(probleme) == 1
     assert build_data.toot_teile("https://h.de/users/x/statuses/42")["id"] == "42"
     assert build_data.toot_teile("javascript:alert(1)") is None
+
+
+def test_bluesky_post_text_mit_link_facette():
+    import bluesky
+    url = "https://cogneon.de/2026/11/30/neue-website/"
+    text, facetten = bluesky.post_text({"url": url, "text": f"Neuer Blog-Beitrag auf cogneon.de: Neue Website\n\n{url}"})
+    roh = text.encode("utf-8")
+    f = facetten[0]["index"]
+    assert roh[f["byteStart"]:f["byteEnd"]].decode() == url
+    lang = bluesky.post_text({"url": url, "text": "Neuer Termin auf cogneon.de: " + "Ä" * 400 + f"\n\n{url}"})[0]
+    assert len(lang) <= bluesky.MAX_ZEICHEN and lang.endswith(url) and "…" in lang

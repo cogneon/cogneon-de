@@ -452,6 +452,15 @@ Profilbilder). Idee nach Carl Schwan.
 - Einzelne Antworten ausblenden: Link der Antwort in `inhalte/kommentare.yml`
   unter `ausblenden`.
 
+**Bluesky:** Genauso wie Mastodon, über `scripts/bluesky.py` mit einer
+Link-Karte samt Vorschaubild. Secrets: `BLUESKY_HANDLE`
+(`cogneon.eurosky.social`) und `BLUESKY_APP_PASSWORD` (App-Passwort, nicht das
+Konto-Passwort). Antworten auf Bluesky erscheinen im selben Kommentarbereich
+wie die von Mastodon, nach Zeit sortiert und mit Herkunft gekennzeichnet. Für
+ältere Beiträge im Front Matter: `bluesky: https://bsky.app/profile/…/post/…`.
+In `inhalte/kommentare.yml` unter `ausblenden` funktionieren Links aus beiden
+Netzwerken.
+
 **LinkedIn:** Den Blog-Feed `https://cogneon.de/feed.xml` in der
 Einstellungen der Unternehmensseite unter "Manage Content Sharing" eintragen
 (deutsche Oberfläche: sinngemäß "Inhalte teilen").

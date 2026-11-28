@@ -58,17 +58,27 @@
         <a class="cg-link" href="{{ nav.homepage.url | url }}#newsletter">Newsletter abonnieren</a>
       </div>
     </footer>
-    {#- Kommentare aus dem Fediverse: Antworten auf den Toot zum Beitrag, erst nach Klick geladen (kommentare.js). -#}
+    {#- Kommentare aus Mastodon und Bluesky: Antworten auf die Posts zum Beitrag, erst nach Klick geladen (kommentare.js). -#}
     {% import "partials/kommentare-daten.html" as kd %}
     {% if page.url in kd.kommentare.beitraege %}
     {% set k = kd.kommentare.beitraege[page.url] %}
+    {% set m = k.mastodon if "mastodon" in k else none %}
+    {% set b = k.bluesky if "bluesky" in k else none %}
     <section class="cg-kommentare" aria-labelledby="cg-kommentare-titel"
-             data-instanz="{{ k.instanz }}" data-id="{{ k.id }}" data-toot="{{ k.toot }}"
+             {% if m %}data-instanz="{{ m.instanz }}" data-id="{{ m.id }}"{% endif %}
+             {% if b %}data-bsky-autor="{{ b.autor }}" data-bsky-rkey="{{ b.rkey }}"{% endif %}
              data-ausblenden='{{ kd.kommentare.ausblenden | tojson }}'>
       <h2 id="cg-kommentare-titel">Kommentare</h2>
-      <p>Kommentieren könnt ihr mit eurem Mastodon-Konto (oder einem anderen Konto im Fediverse): einfach auf <a href="{{ k.toot }}">unseren Beitrag auf Mastodon</a> antworten. Ist euer Konto auf einer anderen Instanz, kopiert den Link in deren Suche.</p>
+      <p>Kommentieren könnt ihr, indem ihr auf unseren Beitrag
+        {%- if m %} auf <a href="{{ m.toot }}">Mastodon</a>{% endif %}
+        {%- if m and b %} oder{% endif %}
+        {%- if b %} auf <a href="{{ b.post }}">Bluesky</a>{% endif %} antwortet.
+        {%- if m %} Ist euer Mastodon-Konto auf einer anderen Instanz, kopiert den Link in deren Suche.{% endif %}</p>
       <p><button type="button" class="cg-button cg-kommentare__laden">Kommentare laden</button></p>
-      <p class="cg-muted cg-kommentare__hinweis">Beim Laden ruft euer Browser die Antworten von {{ k.instanz | replace("https://", "") }} ab. Dabei wird eure IP-Adresse dorthin übertragen, siehe <a href="{{ 'datenschutz/' | url }}">Datenschutz</a>.</p>
+      <p class="cg-muted cg-kommentare__hinweis">Beim Laden ruft euer Browser die öffentlichen Antworten
+        {%- if m %} von {{ m.instanz | replace("https://", "") }}{% endif %}
+        {%- if m and b %} und{% endif %}
+        {%- if b %} von public.api.bsky.app (Bluesky, USA){% endif %} ab. Dabei wird eure IP-Adresse dorthin übertragen, siehe <a href="{{ 'datenschutz/' | url }}">Datenschutz</a>.</p>
       <div class="cg-kommentare__liste" aria-live="polite"></div>
     </section>
     {% endif %}

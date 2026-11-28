@@ -2,7 +2,7 @@
 title: About us
 description: Cogneon GmbH, founded in 2001, helps organizations succeed through the systematic use of knowledge.
 quelle: ueber-uns.md
-quelle_hash: "61572eaa3d50"
+quelle_hash: "60f5b22416a0"
 ---
 
 # About us
@@ -28,4 +28,5 @@ On our website you can learn about our **vision of the learning society** and th
 
 - [LinkedIn - expert posts, news, events & more](https://www.linkedin.com/company/2404206/)
 - [Mastodon - expert posts, news, events & more (mostly the same as LinkedIn)](https://mastodon.social/@cogneon)
+- [Bluesky - expert posts, news, events & more (mostly the same as Mastodon)](https://bsky.app/profile/cogneon.eurosky.social)
 - [YouTube - event recordings, interviews, screencasts](http://youtube.com/cogneon)
