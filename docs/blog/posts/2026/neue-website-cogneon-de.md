@@ -7,19 +7,20 @@ authors:
 - simon-dueckert
 categories:
 - Cogneon News
+bild: assets/bilder/neue-website-startseite.jpg
 tags:
 - Website
 ---
 
 # Neue Website - cogneon.de ist jetzt statisch, schneller und zweisprachig
 
-Nach vielen Jahren mit WordPress läuft cogneon.de ab heute als statische Website. Die Inhalte sind dieselben, alle alten Links funktionieren weiter. Hier ein kompakter Überblick, warum wir umgestellt haben, wie die Seite gebaut ist und was neu ist.
+Die Website von Cogneon hat schon einige Systeme erlebt: Angefangen hat sie als statisches HTML, gebaut mit Microsoft FrontPage. Danach kam Drupal, dann WordPress, beide auf PHP. Ab heute ist cogneon.de wieder statisches HTML - back to the roots. Die Inhalte sind dieselben, alle alten Links funktionieren weiter. Hier ein kompakter Überblick, warum wir umgestellt haben, wie die Seite gebaut ist und was neu ist.
 
 <!-- more -->
 
 ## Warum wir umgestellt haben
 
-WordPress hat uns lange gut gedient, aber zuletzt ging viel Zeit in Updates, Plugins und Sicherheit statt in Inhalte. Eine statische Website besteht aus fertigen HTML-Seiten. Es gibt keine Datenbank, kein Login und nichts, was ständig gepatcht werden muss. Die Seite lädt schneller, ist sicherer und günstiger im Betrieb.
+WordPress hat uns lange gut gedient. Zuletzt überwogen aber die Nachteile. Die jüngsten Sicherheitslücken in PHP und die Angriffsflächen, die wir mit Plugins, Login und Datenbank hatten, kosteten Zeit und Nerven. Dazu kam deutlich mehr Spam in den Kommentaren, inzwischen oft von KI-Agenten erzeugt. Eine statische Website besteht aus fertigen HTML-Seiten. Es gibt keine Datenbank, kein Login und nichts, was ständig gepatcht werden muss. Die Seite lädt schneller, ist sicherer und günstiger im Betrieb.
 
 Wichtiger ist uns aber etwas anderes: Alle Inhalte liegen jetzt als einfache Textdateien (Markdown) in einem Git-Repository. Damit gehören sie wirklich uns, sind versioniert und unabhängig von einem bestimmten System lesbar. Für eine Knowledge Company ist das auch ein Stück gelebtes Wissensmanagement.
 

@@ -52,6 +52,11 @@ SetEnvIfNoCase Host "^(www\\.)?cogneon\\.de$" COGNEON_LIVE
 
 RewriteEngine On
 
+# www.cogneon.de -> cogneon.de (eine Adresse je Seite). http -> https stellt
+# Ionos über die SSL-Einstellung der Domain sicher.
+RewriteCond %{HTTP_HOST} ^www\\.cogneon\\.de$ [NC]
+RewriteRule ^(.*)$ https://cogneon.de/$1 [R=301,L]
+
 # Adressen, die WordPress dynamisch bedient hat
 RewriteRule ^feed/?$ /feed.xml [L]
 RewriteRule ^(category|tag|author)/.+/feed/?$ /feed/ [R=301,L]
