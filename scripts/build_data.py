@@ -426,11 +426,16 @@ def build_feed(root: Path, site_url: str = "https://cogneon.de/", limit: int = 2
     items = []
     for p in posts:
         link = site_url + p["url"]
+        # Beiträge aus WordPress behalten ihre alte Kennung (?p=<id>), sonst halten
+        # Feedreader und LinkedIn sie nach dem Umzug für neu.
+        wp_id = (frontmatter(p["pfad"]).get("wp") or {}).get("id")
+        guid = (f'<guid isPermaLink="false">{escape(site_url)}?p={wp_id}</guid>' if wp_id
+                else f'<guid isPermaLink="true">{escape(link)}</guid>')
         cats = "".join(f"\n      <category>{escape(c)}</category>" for c in p["kategorien"] + p["schlagworte"])
         items.append(f"""    <item>
       <title>{escape(p['titel'])}</title>
       <link>{escape(link)}</link>
-      <guid isPermaLink="true">{escape(link)}</guid>
+      {guid}
       <pubDate>{stamp(p['tag'])}</pubDate>
       <description>{escape(excerpt(p['pfad'].read_text(encoding='utf-8'), 400))}</description>{cats}
     </item>""")
