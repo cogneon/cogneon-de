@@ -82,6 +82,10 @@ archive_url_format = "{date}"
 categories_pagination_per_page = 20
 authors_profiles_pagination_per_page = 20
 archive_pagination_per_page = 20
+# Vordatierte Beiträge erscheinen erst an ihrem Datum (nächtlicher Lauf) und
+# werden am selben Morgen auf Mastodon/Bluesky angekündigt. In der lokalen
+# Vorschau (zensical serve) sind sie sichtbar.
+draft_if_future_date = true
 
 # Daten aus _data/*.yml stehen in den Vorlagen als config.extra.<datei> bereit.
 [project.plugins.markdownextradata]

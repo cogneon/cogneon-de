@@ -67,8 +67,19 @@ def excerpt(text: str, length: int = 220) -> str:
     return body[:length].rsplit(" ", 1)[0].rstrip(".,;:- ") + " …"
 
 
-def all_posts(post_dir: Path) -> list[dict]:
-    """Alle veröffentlichten Beiträge, neueste zuerst."""
+# Stichtag für "schon erschienen". main() setzt ihn auf --heute, sonst gilt der
+# heutige Tag in Berlin. Beiträge mit späterem Datum erscheinen erst an ihrem
+# Tag (wie draft_if_future_date in zensical.toml).
+STICHTAG: dt.date | None = None
+
+
+def stichtag() -> dt.date:
+    return STICHTAG or dt.datetime.now(ZoneInfo("Europe/Berlin")).date()
+
+
+def all_posts(post_dir: Path, auch_zukuenftige: bool = False) -> list[dict]:
+    """Alle veröffentlichten Beiträge, neueste zuerst. Vordatierte Beiträge nur
+    mit auch_zukuenftige=True (für Vorschaubilder und Ankündigungen)."""
     posts = []
     for path in post_dir.rglob("*.md"):
         meta = frontmatter(path)
@@ -77,6 +88,8 @@ def all_posts(post_dir: Path) -> list[dict]:
         date = meta.get("date")
         created = as_date(date.get("created") if isinstance(date, dict) else date)
         if not created or not meta.get("title"):
+            continue
+        if created > stichtag() and not auch_zukuenftige:
             continue
         slug = meta.get("slug") or path.stem
         posts.append({
@@ -672,24 +685,8 @@ def build_podcast(root: Path, feed_text: str) -> dict:
 
 
 def latest_posts(post_dir: Path, limit: int) -> list[dict]:
-    posts = []
-    for path in post_dir.rglob("*.md"):
-        meta = frontmatter(path)
-        if meta.get("draft"):
-            continue
-        date = meta.get("date")
-        created = as_date(date.get("created") if isinstance(date, dict) else date)
-        if not created or not meta.get("title"):
-            continue
-        slug = meta.get("slug") or path.stem
-        posts.append({
-            "titel": str(meta["title"]),
-            "datum": created.strftime("%d.%m.%Y"),
-            "url": f"{created:%Y/%m/%d}/{slug}/",
-            "_tag": created,
-        })
-    posts.sort(key=lambda p: p["_tag"], reverse=True)
-    return [{k: v for k, v in p.items() if k != "_tag"} for p in posts[:limit]]
+    """Die neuesten erschienenen Beiträge für die Startseite."""
+    return [{"titel": p["titel"], "datum": p["datum"], "url": p["url"]} for p in all_posts(post_dir)[:limit]]
 
 
 def build(root: Path, today: dt.date, limit: int = 4) -> dict:
@@ -730,6 +727,8 @@ def main() -> int:
     parser.add_argument("--podcast-feed", help="Podcast-Feed aus Datei statt aus dem Netz (zum Testen)")
     args = parser.parse_args()
     today = as_date(args.heute) if args.heute else dt.datetime.now(ZoneInfo("Europe/Berlin")).date()
+    global STICHTAG
+    STICHTAG = today
     if today is None:
         print("Ungültiges Datum für --heute", file=sys.stderr)
         return 2
