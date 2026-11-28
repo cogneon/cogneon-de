@@ -3,7 +3,7 @@ title: Expert Debriefing
 description: With Expert Debriefing you capture the experience-based knowledge of specialists and managers before they change roles or leave.
 template: angebot.html
 quelle: expert-debriefing.md
-quelle_hash: "0d5b3a212ec5"
+quelle_hash: "236c485dd3c7"
 pfad:
   - titel: Services
     link: en/services/
@@ -42,17 +42,17 @@ ablauf:
 
 pakete:
   titel: Packages and prices
-  text: Usually remote via Microsoft Teams. All prices plus VAT.
+  text: Usually remote via Microsoft Teams or the platform of your choice. All prices plus VAT.
   liste:
     - titel: ED S
-      text: "[Scope to be taken from the previous page]"
+      text: "Preliminary talk, knowledge map, action planning, regular check-ins to track the measures, and reflection. A good fit when the role is clearly defined and there is a specific successor."
       preis: €2,900
     - titel: ED M
-      text: "[Scope to be taken from the previous page]"
+      text: "Everything in ED S, plus identifying key contacts and key documents. A good fit when the role involves a broad network and important document collections that need a systematic handover."
       preis: €4,900
       hervorgehoben: true
     - titel: ED L
-      text: "[Scope to be taken from the previous page]"
+      text: "Everything in ED M, plus checklists and document collections for key tasks and documentation of central lessons learned. A good fit for key people with complex, hard-to-grasp experience, or when there is no direct successor."
       preis: €7,900
     - titel: ED Individual
       text: Tailored to your situation, also on site.
@@ -80,4 +80,5 @@ cta:
 
 - A personal knowledge map of the expert
 - An action plan for handing over the most important topics
+- Depending on the package, different knowledge transfer measures, from support during implementation to checklists, document collections and lessons learned
 - [Case study to follow - only with client approval]

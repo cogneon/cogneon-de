@@ -41,17 +41,17 @@ ablauf:
 
 pakete:
   titel: Pakete und Preise
-  text: In der Regel remote via Microsoft Teams. Alle Preise zzgl. MwSt.
+  text: In der Regel remote via Microsoft Teams oder auf der Plattform eurer Wahl. Alle Preise zzgl. MwSt.
   liste:
     - titel: ED S
-      text: "[Leistungsumfang aus der bisherigen Seite übernehmen]"
+      text: "Vorgespräch, Wissenslandkarte, Maßnahmenplanung, Regeltermin zum Verfolgen der Maßnahmen und Reflexion. Passt, wenn die Rolle klar umrissen ist und es eine konkrete Nachfolge gibt."
       preis: 2.900 €
     - titel: ED M
-      text: "[Leistungsumfang aus der bisherigen Seite übernehmen]"
+      text: "Alles aus ED S, dazu die Erhebung von Ansprechpartner:innen und Schlüsseldokumenten. Passt, wenn die Rolle ein breites Netzwerk und wichtige Dokumentenbestände umfasst, die systematisch übergeben werden müssen."
       preis: 4.900 €
       hervorgehoben: true
     - titel: ED L
-      text: "[Leistungsumfang aus der bisherigen Seite übernehmen]"
+      text: "Alles aus ED M, dazu Checklisten und Dokumentensammlungen zu Schlüsselaufgaben und die Dokumentation zentraler Lessons Learned. Passt bei Schlüsselpersonen mit komplexem, schwer greifbarem Erfahrungswissen oder wenn es keine direkte Nachfolge gibt."
       preis: 7.900 €
     - titel: ED Individual
       text: Zugeschnitten auf eure Situation, auch vor Ort.
@@ -79,4 +79,5 @@ cta:
 
 - Eine persönliche Wissenslandkarte der Expertin oder des Experten
 - Einen Maßnahmenplan für die Übergabe der wichtigsten Themen
+- Je nach Paket unterschiedliche Maßnahmen des Wissenstransfers, von der Begleitung der Umsetzung bis zu Checklisten, Dokumentensammlungen und Lessons Learned
 - [Fallbeispiel folgt - nur mit Freigabe des Kunden]

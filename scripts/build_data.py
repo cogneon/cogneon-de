@@ -814,6 +814,9 @@ def main() -> int:
     anzahl = build_tags(args.root)
     print(f"docs/tag/: {anzahl} Schlagwort-Seiten")
     schreibe_podcast(args.root, args.podcast_feed)
+    llms = args.root / "docs" / "llms.txt"
+    llms.write_text(build_llms(args.root, today), encoding="utf-8")
+    print(f"{llms.relative_to(args.root)}: geschrieben")
     kommentare, probleme = build_kommentare(args.root)
     target = args.root / "overrides" / "partials" / "kommentare-daten.html"
     target.write_text(
@@ -862,6 +865,56 @@ def build_kommentare(root: Path) -> tuple[dict, list[str]]:
     cfg = (yaml.safe_load(cfg_datei.read_text(encoding="utf-8")) or {}) if cfg_datei.exists() else {}
     ausblenden = [str(a).strip() for a in cfg.get("ausblenden") or [] if a]
     return {"beitraege": beitraege, "ausblenden": ausblenden}, probleme
+
+
+LLMS_SEITEN = [
+    ("Angebote", ["angebote", "wissenstransfer", "expert-debriefing", "edmod", "akademie", "kme", "lernos"]),
+    ("Über Cogneon", ["ueber-uns", "kontakt", "impressum"]),
+    ("English", ["en/index", "en/services", "en/knowledge-transfer", "en/expert-debriefing",
+                 "en/academy", "en/about", "en/contact"]),
+]
+
+
+def build_llms(root: Path, today: dt.date) -> str:
+    """llms.txt nach llmstxt.org: kurze Beschreibung und die wichtigsten Seiten
+    mit absoluten Links, für KI-Assistenten und Suchsysteme."""
+    basis = "https://cogneon.de/"
+    for zeile in (root / "zensical.toml").read_text(encoding="utf-8").splitlines():
+        if zeile.startswith("site_url"):
+            basis = zeile.split("=", 1)[1].strip().strip('"').rstrip("/") + "/"
+    docs = root / "docs"
+    out = ["# Cogneon", "",
+           "> Cogneon GmbH aus Nürnberg - The Knowledge Company. "
+           "Beratung, Ausbildung und Methoden für Wissensmanagement, Wissenstransfer und Lernende "
+           "Organisation, u.a. Expert Debriefing, lernOS und ISO 30401. Website auf Deutsch, "
+           "wichtige Seiten auch auf Englisch.", ""]
+    for titel, seiten in LLMS_SEITEN:
+        zeilen = []
+        for name in seiten:
+            pfad = docs / f"{name}.md"
+            if not pfad.exists():
+                continue
+            meta = frontmatter(pfad)
+            url = "" if name == "index" else (name[:-6] if name.endswith("/index") else name) + "/"
+            text = str(meta.get("description") or meta.get("untertitel") or "").strip()
+            zeilen.append(f"- [{meta.get('title') or name}]({basis}{url})" + (f": {text}" if text else ""))
+        if zeilen:
+            out += [f"## {titel}", "", *zeilen, ""]
+    kommend = [e for e in all_events(root) if e["ende"].date() >= today]
+    if kommend:
+        out += ["## Kommende Termine", ""]
+        out += [f"- [{e['titel']}]({basis}{e['url']}): {e['datum']}" + (f", {e['ort']}" if e["ort"] else "")
+                for e in kommend]
+        out.append("")
+    out += ["## Blog (neueste Beiträge)", ""]
+    out += [f"- [{p['titel']}]({basis}{p['url']}): {p['datum']}"
+            for p in all_posts(docs / "blog" / "posts")[:15]]
+    out += ["", "## Optional", "",
+            f"- [Alle Termine]({basis}events/)",
+            f"- [Blog-Archiv]({basis}blog/)",
+            f"- [RSS-Feed des Blogs]({basis}feed.xml)",
+            f"- [Sitemap]({basis}sitemap.xml)", ""]
+    return "\n".join(out)
 
 
 def schreibe_podcast(root: Path, quelle: str | None) -> None:
