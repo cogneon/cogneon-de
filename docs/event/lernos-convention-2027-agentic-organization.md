@@ -1,6 +1,6 @@
 ---
 type: termin
-title: lernOS Convention 2026 - The Agentic Organization
+title: lernOS Convention 2027 - The Agentic Organization
 template: termin.html
 beginn: 2027-06-15 13:00
 ende: 2027-06-16 16:00

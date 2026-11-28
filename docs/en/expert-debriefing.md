@@ -3,7 +3,7 @@ title: Expert Debriefing
 description: With Expert Debriefing you capture the experience-based knowledge of specialists and managers before they change roles or leave.
 template: angebot.html
 quelle: expert-debriefing.md
-quelle_hash: "236c485dd3c7"
+quelle_hash: "f9e9cdd52828"
 pfad:
   - titel: Services
     link: en/services/
@@ -81,4 +81,10 @@ cta:
 - A personal knowledge map of the expert
 - An action plan for handing over the most important topics
 - Depending on the package, different knowledge transfer measures, from support during implementation to checklists, document collections and lessons learned
-- [Case study to follow - only with client approval]
+
+## What our clients say (in German)
+
+<div class="cg-zitate">
+<figure class="cg-zitat"><blockquote lang="de">„Bei der EnBW war und ist Wissensbewahrung ein wichtiges Thema. Meine Kolleg:innen und ich werden zukünftig das Vorgehensmodell des Expert Debriefings nutzen.“</blockquote><figcaption>Werner Stockinger, Organisationsberater, EnBW Energie Baden-Württemberg</figcaption></figure>
+<figure class="cg-zitat"><blockquote lang="de">„Der Prozess ist fokussiert, interaktiv und bringt schnell sehr brauchbare Ergebnisse. Ich hoffe, dass ich in einer zukünftigen Rolle auch einmal von dieser Art der Einarbeitung profitieren werde.“</blockquote><figcaption>Jochen Eckhold, VP Global Retail HR, adidas AG</figcaption></figure>
+</div>
