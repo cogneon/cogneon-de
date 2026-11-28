@@ -17,9 +17,12 @@ highlights:
   - titel: Expert Debriefing
     text: Das Erfahrungswissen einer Person sichern, bevor sie wechselt oder geht.
     link: expert-debriefing/
-  - titel: Expert Debriefing Praxis-Ausbildung
-    text: In der Ausbildung lernt ihr, Expert Debriefings selbst zu moderieren.
-    link: edmod/
+  # Wenn die Grafik fertig ist: bild/alt hier eintragen und den Eintrag an die
+  # erste Stelle (statt Menerva) schieben. Der Eintrag mit bild wird groß.
+  - titel: Benchlearning Projekt 2027 „Agentic Organization“
+    datum: April - November 2027
+    text: Gemeinsam mit anderen Organisationen die Agentic Organization gestalten. Frühbucherpreis bis 31.12.2026.
+    link: blp27/
 
 termine: []
 
