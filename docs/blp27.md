@@ -2,7 +2,7 @@
 title: Benchlearning Projekt 2027 „Agentic Organization“
 wp:
   id: 68167
-  link: https://archiv.cogneon.de/blp27/
+  link: https://cogneon.de/blp27/
   modified: '2026-11-28'
 ---
 
@@ -22,8 +22,8 @@ Im Benchlearning-Projekt 2027 entwickeln wir Antworten darauf nicht im Alleingan
 
 **Zeitraum:** April – November 2027<br>
 **Format:** 4x hybride 1,5-tägige Treffen (Cogneon Akademie Nürnberg + Online), 3x Online-Sessions à 2 Stunden<br>
-**Hybrid-Termine:** 13.-14.04; 22.-23.06, 21.-22.09., 30.11.-01.12.                                                                                        <br>
-**Online-Termine:** 31.05. (10-12 Uhr), 13.09 .(10-12 Uhr), 09.11. (10-12 Uhr)<br>
+**Hybrid-Termine:** 13.-14.04; 22.-23.06, 21.-22.09., 30.11.-01.12.<br>
+**Online-Termine:** 31.05. (10-12 Uhr), 13.09. (10-12 Uhr), 09.11. (10-12 Uhr)<br>
 **Teilnahme:** 5 Teilnehmer:innen pro Organisation inklusive<br>
 **Zielgruppen:** Verantwortliche für KI-Einführung, Digitalstrategie, IT, HR, Wissensmanagement, Kommunikation<br>
 **Investition:** 4.900 EUR Frühbucher (bis 31.12.2026), regulärer Preis 5.900 EUR pro Jahr und Organisation
@@ -35,9 +35,9 @@ Im Benchlearning-Projekt 2027 entwickeln wir Antworten darauf nicht im Alleingan
 – Welche Entwicklungen und Anwendungsfälle sind für Unternehmen wirklich relevant?<br>
 – Wie entwickeln andere Organisationen ihre KI-Strategie weiter?
 
-**2. Arbeitsprozesse neu denken – mit Menschen und KI-Agenten<br>**– du identifizierst du Prozesse und Aufgaben, bei denen KI-Agenten einen echten Mehrwert schaffen können<br>
-– du lernst du Ansätze kennen, um Arbeit zwischen Menschen, KI-Assistenten und autonomen Agenten sinnvoll aufzuteilen<br>
-– du entwickelst du ein besseres Verständnis dafür, wie sich Produktivität, Qualität und Nutzen agentischer Lösungen bewerten lassen
+**2. Arbeitsprozesse neu denken – mit Menschen und KI-Agenten<br>**– du identifizierst Prozesse und Aufgaben, bei denen KI-Agenten einen echten Mehrwert schaffen können<br>
+– du lernst Ansätze kennen, um Arbeit zwischen Menschen, KI-Assistenten und autonomen Agenten sinnvoll aufzuteilen<br>
+– du entwickelst ein besseres Verständnis dafür, wie sich Produktivität, Qualität und Nutzen agentischer Lösungen bewerten lassen
 
 **3. Praxis zu KI-Agenten, Automatisierung & Orchestrierung<br>**– wie andere Organisationen KI-Agenten einsetzen<br>
 – wie Agenten Informationen verarbeiten, Werkzeuge nutzen und mehrstufige Aufgaben erledigen<br>
