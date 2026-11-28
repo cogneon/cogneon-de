@@ -13,6 +13,7 @@ Links zählen dafür nicht), mit --report-only immer 0.
 from __future__ import annotations
 
 import argparse
+import re
 import concurrent.futures
 import sys
 from collections import defaultdict
@@ -142,6 +143,23 @@ def section(title: str, hint: str, items: dict, reasons: dict | None = None, lim
     return lines + [""]
 
 
+ARCHIV = re.compile(r"^/(\d{4}|event|events|tag|category|author|blog)/")
+
+
+def nach_bereich(items: dict) -> tuple[dict, dict]:
+    """Teilt Funde in (auf Seiten, nur in Blogbeiträgen/Terminen/Übersichten).
+    Ein Fund zählt zu den Seiten, sobald er auf mindestens einer Seite steht."""
+    seiten = {t: q for t, q in items.items() if any(not ARCHIV.match(s) for s in q)}
+    return seiten, {t: q for t, q in items.items() if t not in seiten}
+
+
+def sections(title: str, hint: str, items: dict, reasons: dict | None = None, limit: int = 3) -> list[str]:
+    seiten, archiv = nach_bereich(items)
+    return (section(f"{title} auf Seiten (zuerst prüfen)", hint, seiten, reasons, limit)
+            + section(f"{title} nur in Blogbeiträgen und Terminen", "Archiv. Nur bei Gelegenheit korrigieren.",
+                      archiv, reasons, limit))
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     root = Path(__file__).resolve().parent.parent
@@ -162,11 +180,11 @@ def main(argv=None) -> int:
     report = ["# Linkprüfung", "",
               f"Geprüft: {len(internal)} interne Ziele, {len(external)} externe Adressen"
               + ("" if args.extern else " (extern nicht abgerufen)") + ".", ""]
-    report += section("Defekte interne Links", "Diese Seiten gibt es auf der Website nicht. Link korrigieren oder Weiterleitung anlegen.", pages)
+    report += sections("Defekte interne Links", "Diese Seiten gibt es auf der Website nicht. Link korrigieren oder Weiterleitung anlegen.", pages)
     broken = {}
     if args.extern:
         broken = check_external(external, args.timeout, args.workers)
-        report += section("Defekte externe Links",
+        report += sections("Defekte externe Links",
                           "Diese fremden Adressen antworten nicht oder mit einem Fehler. Vor dem Entfernen im Browser gegenprüfen.",
                           {u: external[u] for u in broken}, broken)
     report += section("Fehlende Medien", "Bilder und Dateien, die im Build fehlen.", media, limit=1)
