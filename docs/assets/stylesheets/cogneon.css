@@ -1838,3 +1838,16 @@ ol.cg-schritte > li,
 }
 .cg-kommentar__netz--mastodon { color: #6364ff; border-color: #6364ff; }
 .cg-kommentar__netz--bluesky { color: #0a7aff; border-color: #0a7aff; }
+
+/* Nur für Screenreader sichtbar (z.B. Hinweis "öffnet in neuem Tab", links.js) */
+.cg-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
