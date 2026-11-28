@@ -1738,7 +1738,7 @@ ol.cg-schritte > li,
   padding-top: 4rem;
 }
 .cg-podcast__bild {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 .cg-podcast__abo {
@@ -1801,4 +1801,29 @@ ol.cg-schritte > li,
 }
 .cg-kommentar__cw {
   font-style: italic;
+}
+
+/* Mehrere Zitate im Fließtext (z.B. Expert Debriefing) */
+.md-typeset .cg-zitate {
+  display: grid;
+  gap: 2rem;
+  margin: 1.5rem 0 1rem;
+}
+.md-typeset .cg-zitat {
+  margin: 0;
+  padding-left: 1.2rem;
+  border-left: 4px solid var(--cg-orange);
+}
+.md-typeset .cg-zitate .cg-zitat blockquote {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  margin: 0;
+  padding: 0;
+  border-left: 0;
+}
+.md-typeset .cg-zitate .cg-zitat figcaption {
+  margin: 0;
+}
+.md-typeset .cg-zitate + * ,
+.md-typeset h2 + .cg-zitate {
+  margin-top: 1rem;
 }

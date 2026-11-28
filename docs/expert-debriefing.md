@@ -80,4 +80,10 @@ cta:
 - Eine persönliche Wissenslandkarte der Expertin oder des Experten
 - Einen Maßnahmenplan für die Übergabe der wichtigsten Themen
 - Je nach Paket unterschiedliche Maßnahmen des Wissenstransfers, von der Begleitung der Umsetzung bis zu Checklisten, Dokumentensammlungen und Lessons Learned
-- [Fallbeispiel folgt - nur mit Freigabe des Kunden]
+
+## Das sagen unsere Kunden
+
+<div class="cg-zitate">
+<figure class="cg-zitat"><blockquote>„Bei der EnBW war und ist Wissensbewahrung ein wichtiges Thema. Meine Kolleg:innen und ich werden zukünftig das Vorgehensmodell des Expert Debriefings nutzen.“</blockquote><figcaption>Werner Stockinger, Organisationsberater, EnBW Energie Baden-Württemberg</figcaption></figure>
+<figure class="cg-zitat"><blockquote>„Der Prozess ist fokussiert, interaktiv und bringt schnell sehr brauchbare Ergebnisse. Ich hoffe, dass ich in einer zukünftigen Rolle auch einmal von dieser Art der Einarbeitung profitieren werde.“</blockquote><figcaption>Jochen Eckhold, VP Global Retail HR, adidas AG</figcaption></figure>
+</div>

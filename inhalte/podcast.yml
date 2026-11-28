@@ -12,7 +12,7 @@ anzahl: 5
 
 # Bild links (16:9 oder 4:3), Pfad ohne docs/
 bild: assets/bilder/podcast-aufnahme.jpg
-bild_alt: Mikrofon bei einer Podcast-Aufnahme
+bild_alt: Podcast-Aufnahme mit Headsets vor dem lernOS-Banner
 
 # Folgen, die oben stehen sollen: Adresse der Folge auf podcasts.cogneon.io
 # oder nur ihr letzter Teil. Mehrere möglich, Reihenfolge wie hier.
