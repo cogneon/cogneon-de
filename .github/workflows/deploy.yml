@@ -17,6 +17,9 @@ on:
   schedule:
     - cron: "17 21 * * *"
     - cron: "23 3 * * *"
+    # Morgens (07:37 bzw. im Sommer 08:37 Uhr): vordatierte Beiträge, die heute
+    # erschienen sind, auf Mastodon und Bluesky ankündigen.
+    - cron: "37 6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -108,7 +111,7 @@ jobs:
       # Welcher Beitrag zu welchem Post gehört, steht im Branch daten/mastodon
       # (mastodon.json, bluesky.json). Ein Fehler hier stoppt nichts.
       - name: Auf Mastodon und Bluesky ankündigen
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event.schedule == '37 6 * * *'
         continue-on-error: true
         env:
           MASTODON_INSTANZ: ${{ secrets.MASTODON_INSTANZ }}
@@ -118,15 +121,21 @@ jobs:
           VORHER: ${{ github.event.before }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! git fetch -q --no-tags --depth=1 origin "$VORHER"; then
-            echo "Vorheriger Stand nicht abrufbar, nichts angekündigt." | tee -a "$GITHUB_STEP_SUMMARY"
-            exit 0
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            # Morgenlauf: vordatierte Beiträge, die heute erscheinen.
+            MODUS="--faellig"; : > .daten/neu.txt
+          else
+            MODUS=""
+            if ! git fetch -q --no-tags --depth=1 origin "$VORHER"; then
+              echo "Vorheriger Stand nicht abrufbar, nichts angekündigt." | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            git diff --name-only --diff-filter=A "$VORHER" HEAD -- docs/blog/posts docs/event > .daten/neu.txt
           fi
-          git diff --name-only --diff-filter=A "$VORHER" HEAD -- docs/blog/posts docs/event > .daten/neu.txt
           for n in mastodon bluesky; do
             cp ".daten/$n.json" ".daten/$n.vorher" 2>/dev/null || echo "{}" > ".daten/$n.vorher"
             echo "### $n" | tee -a "$GITHUB_STEP_SUMMARY"
-            python "scripts/$n.py" --zuordnung ".daten/$n.json" < .daten/neu.txt | tee -a "$GITHUB_STEP_SUMMARY" || true
+            python "scripts/$n.py" $MODUS --zuordnung ".daten/$n.json" < .daten/neu.txt | tee -a "$GITHUB_STEP_SUMMARY" || true
           done
           # Neue Verknüpfungen sichern und die Website gleich noch einmal bauen,
           # damit der Kommentarbereich sofort erscheint.

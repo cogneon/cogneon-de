@@ -317,3 +317,16 @@ def test_feed_behaelt_wordpress_kennung(tmp_path):
     xml = (tmp_path / "docs/feed.xml").read_text(encoding="utf-8")
     assert '<guid isPermaLink="false">https://cogneon.de/?p=4711</guid>' in xml
     assert '<guid isPermaLink="true">https://cogneon.de/2026/11/02/neu/</guid>' in xml
+def test_vordatierte_beitraege_erscheinen_erst_an_ihrem_tag(tmp_path, monkeypatch):
+    import mastodon
+    write(tmp_path / "docs/blog/posts/2026/heute.md", "---\ntitle: Heute\ndate: 2026-11-30\n---\nText\n")
+    write(tmp_path / "docs/blog/posts/2026/morgen.md", "---\ntitle: Morgen\ndate: 2026-12-01\n---\nText\n")
+    write(tmp_path / "docs/blog/posts/2026/alt.md", "---\ntitle: Alt\ndate: 2026-11-01\n---\nText\n")
+    monkeypatch.setattr(build_data, "STICHTAG", dt.date(2026, 11, 30))
+    posts = tmp_path / "docs/blog/posts"
+    assert [p["titel"] for p in build_data.all_posts(posts)] == ["Heute", "Alt"]
+    assert [p["titel"] for p in build_data.all_posts(posts, auch_zukuenftige=True)] == ["Morgen", "Heute", "Alt"]
+    zuordnung = tmp_path / "z.json"
+    assert mastodon.faellige_dateien(tmp_path, dt.date(2026, 11, 30), zuordnung) == ["docs/blog/posts/2026/heute.md"]
+    zuordnung.write_text('{"2026/11/30/heute/": "https://mastodon.social/@cogneon/1"}')
+    assert mastodon.faellige_dateien(tmp_path, dt.date(2026, 11, 30), zuordnung) == []

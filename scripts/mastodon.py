@@ -49,7 +49,7 @@ def ankuendigungen(root: Path, neue_dateien: list[str], heute: dt.date) -> tuple
     basis = site_url(root)
     neu = {Path(d).as_posix() for d in neue_dateien}
     toots, hinweise = [], []
-    for p in build_data.all_posts(root / "docs" / "blog" / "posts"):
+    for p in build_data.all_posts(root / "docs" / "blog" / "posts", auch_zukuenftige=True):
         rel = p["pfad"].relative_to(root).as_posix()
         if rel not in neu:
             continue
@@ -78,17 +78,33 @@ def ankuendigungen(root: Path, neue_dateien: list[str], heute: dt.date) -> tuple
     return toots, hinweise
 
 
+def faellige_dateien(root: Path, heute: dt.date, zuordnung: Path | None) -> list[str]:
+    """Vordatierte Blogbeiträge, deren Tag heute oder gestern war (falls ein Lauf
+    ausfiel) und die noch keinen Post haben - für den morgendlichen Lauf."""
+    import json
+    bekannt = json.loads(zuordnung.read_text(encoding="utf-8")) if zuordnung and zuordnung.exists() else {}
+    return [p["pfad"].relative_to(root).as_posix()
+            for p in build_data.all_posts(root / "docs" / "blog" / "posts", auch_zukuenftige=True)
+            if heute - dt.timedelta(days=1) <= p["tag"] <= heute and p["url"] not in bekannt]
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     ap.add_argument("--probe", action="store_true", help="nur anzeigen, nichts posten")
     ap.add_argument("--heute", help="Stichtag JJJJ-MM-TT (zum Testen)")
+    ap.add_argument("--faellig", action="store_true",
+                    help="statt neuer Dateien von stdin: vordatierte Beiträge, die heute erscheinen")
     ap.add_argument("--zuordnung", type=Path,
                     help="JSON-Datei Beitrag -> Toot, wird um die geposteten Blogbeiträge ergänzt")
     args = ap.parse_args(argv)
-    heute = build_data.as_date(args.heute) if args.heute else dt.date.today()
+    heute = build_data.as_date(args.heute) if args.heute else build_data.stichtag()
+    build_data.STICHTAG = heute
 
-    dateien = [z.strip() for z in sys.stdin.read().splitlines() if z.strip()]
+    if args.faellig:
+        dateien = faellige_dateien(args.root, heute, args.zuordnung)
+    else:
+        dateien = [z.strip() for z in sys.stdin.read().splitlines() if z.strip()]
     toots, hinweise = ankuendigungen(args.root, dateien, heute)
     for h in hinweise:
         print(h)
