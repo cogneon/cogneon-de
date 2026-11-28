@@ -168,8 +168,12 @@ class Converted:
 
 
 def _same_site(url: str, site_host: str) -> bool:
-    host = urlparse(url).netloc.lower().removeprefix("www.")
-    return host in ("", site_host.removeprefix("www."))
+    # WordPress liegt seit dem Umzug unter archiv.cogneon.de, Links im Inhalt
+    # zeigen oft noch auf cogneon.de: beides zählt als eigene Seite.
+    def kern(h: str) -> str:
+        return h.lower().removeprefix("www.").removeprefix("archiv.")
+    host = urlparse(url).netloc
+    return host == "" or kern(host) == kern(site_host)
 
 
 def _local_path(url: str) -> str:

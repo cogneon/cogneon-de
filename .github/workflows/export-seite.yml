@@ -22,11 +22,12 @@ jobs:
     timeout-minutes: 15
     env:
       SEITE: ${{ inputs.seite }}
-      # Nach der Umstellung liegt WordPress unter archiv.cogneon.de.
-      WP_BASIS: ${{ vars.WP_BASIS || 'https://cogneon.de' }}
+      # WordPress liegt seit der Umstellung (28.11.2026) unter archiv.cogneon.de.
+      # Überschreibbar als Repo-Variable oder Secret WP_BASIS.
+      WP_BASIS: ${{ vars.WP_BASIS || secrets.WP_BASIS || 'https://archiv.cogneon.de' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
